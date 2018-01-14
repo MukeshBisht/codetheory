@@ -1,0 +1,4 @@
+#ignore directories
+.vscode
+.settings
+target
