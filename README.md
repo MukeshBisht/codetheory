@@ -1,10 +1,10 @@
-# codetheory
-Online Coding Competition portal
+# codetheory  
+Online Coding Competition portal  
 
-#Framework
-Spring-mvc
+#Framework  
+Spring-mvc  
 
-# Requirements
-Maven
-Apache Tomcat
-Code Editor/IDE
+# Requirements  
+Maven  
+Apache Tomcat  
+Code Editor/IDE  
