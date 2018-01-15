@@ -24,6 +24,10 @@
                   
                     <div class="btn btn-success">Participate</div>
                   </div>
+                
+            <div>
+                <a href="register.jsp">Create New Account</a>
+            </div>
         </div>
     <!-- footer -->
     <jsp:include page="/WEB-INF/shared/footer.jsp"/>
