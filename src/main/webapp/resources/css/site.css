@@ -1,8 +1,7 @@
 body {
-	padding-top: 20px;
-	padding-bottom: 60px;
+	padding-top: 70px;
+	padding-bottom: 20px;
 }
-
 .navbar {
 	margin-bottom: 20px;
 }
@@ -16,6 +15,5 @@ body {
 }
 
 .container {
-	width: auto;
 	padding: 0 15px;
 }
