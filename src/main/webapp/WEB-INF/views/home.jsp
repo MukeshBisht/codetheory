@@ -12,6 +12,7 @@
                 <div class="container">
                     <h1>Hello, world!</h1>
                     <p>Use it as a starting point to create something more unique.</p>
+                    <a role="button" class="btn btn-success">Start Quick Quiz</a>
                 </div>
             </div>
 
@@ -24,8 +25,7 @@
                   
                     <div class="btn btn-success">Participate</div>
                   </div>
-            <a href="<c:url value='register.jsp' />">Register</a>
-            <a href="register.jsp">Create an Account</a>
+                  
         </div>
     <!-- footer -->
     <jsp:include page="/WEB-INF/shared/footer.jsp"/>

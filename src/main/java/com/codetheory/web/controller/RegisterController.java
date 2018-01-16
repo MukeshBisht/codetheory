@@ -14,6 +14,15 @@ public class RegisterController {
          *
          *  
          */
-        return "home";
+        return "register";
     }
+
+    // @RequestMapping ( value="/register" , method=RequestMethod.POST )
+    // public String register (ModelMap model){
+    //     /* After verifying email id, Put Everything in DB then
+    //      *
+    //      *  
+    //      */
+    //     return "register";
+    // }
 }
