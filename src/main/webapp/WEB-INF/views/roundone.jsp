@@ -11,7 +11,11 @@
     <script src="<c:url value=" /resources/script/roundOne.js " />"></script>
 
     <!-- page body -->
-        <section class="boxShadow" id="roundOneSection">
+        <header>
+            <h1 class="jumbotron">Welcome To Round 1</h1>
+        </header>
+
+        <section class="boxShadow col-md-9" id="roundOneSection">
             <div class="instruction" id="roundOneInstruction">
                 <h3>Instructions for the Guidance of Candidates During Round One</h3>
                 <ul>
@@ -45,47 +49,22 @@
 
         </section>
         
-        <section class="durationSelect boxShadow text-center" id="durationSelect">
+        <section class="durationSelect boxShadow text-center btn-primary col-md-3" id="durationSelect">
             <h4>Select Time Duration</h4>
-            <select class="form-control btn-success" id="timeSelect">
+            <select class="form-control" id="timeSelect">
                 <option id="10min">10 minutes</option>
                 <option id="20min">20 minutes</option>
                 <option id="30min">30 minutes</option>
             </select>
         </section>
 
-        <section class="timer boxShadow text-center" id="timer">
+        <section class="timer boxShadow text-center col-md-3" id="timer">
             <h1 class="starttimer text-active" id="starttimer"></h1>
            
         </section>
         
-        <section class="questionOptions boxShadow" id="questionOptions">
-            <table class="table">
-                <th>S.No.</th>
-                <th>A</th>
-                <th>B</th>
-                <th>C</th>
-                <th>D</th>
-                <tr>
-                    <td>1</td>
-                    <td> <input type="radio" name="q1"></td>
-                    <td> <input type="radio" name="q1"></td>
-                    <td> <input type="radio" name="q1"></td>
-                    <td> <input type="radio" name="q1"></td>
-                    
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td> <input type="radio" name="q2"></td>
-                    <td> <input type="radio" name="q2"></td>
-                    <td> <input type="radio" name="q2"></td>
-                    <td> <input type="radio" name="q2"></td>
-                    
-                </tr>
-                
-            </ta
-            </table>
-        </section>
+        <section class="questionOptions boxShadow col-md-3" id="optionSidebar">
+                   </section>
     <!-- footer -->
     <jsp:include page="/WEB-INF/shared/footer.jsp" />
 </body>

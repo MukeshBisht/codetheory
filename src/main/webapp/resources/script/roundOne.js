@@ -1,28 +1,35 @@
+var num = 0;
 function loadQuestion(){
     $.ajax({
             type: "GET",
             url: "/quiz",
             success: function (response) {
+
                 var question_data = '';
+                num = response.length;
                 for ( i=0;i<response.length;i++){
+
                     question_data += '<h4>'+'Ques '+(i+1)+': '+ response[i].question + '</h4>';
                     question_data += '<div class="radio">' ;
-                    question_data += '<label>' + '<input type="radio" name="opt'+i+'">' + response[i].options[0] + '</label> <br>';
-                    question_data += '<label>' + '<input type="radio" name="opt'+i+'">' + response[i].options[1] + '</label> <br>';
-                    question_data += '<label>' + '<input type="radio" name="opt'+i+'">' + response[i].options[2] + '</label> <br>';
-                    question_data += '<label>' + '<input type="radio" name="opt'+i+'">' + response[i].options[3] + '</label> <br>';
-             
+                    
+                    for (j=0; j<4; j++){
+                        question_data += '<label>' + '<input type="radio" name="opt'+j+'">' + response[i].options[j] + '</label> <br>';
+                    }
+                
                }question_data += '<input class="btn btn-success" type="submit">';
                 
-               $('#showQuestion').html(question_data);
+                $('#showQuestion').html(question_data);
                 $('#roundOneInstruction').hide();
                 $('#startRoundOne').hide();
                 $('#durationSelect').hide();
                 document.getElementById('timer').style.display='block';
-                document.getElementById('questionOptions').style.display='block';
+                document.getElementById('optionSidebar').style.display='block';
+                buildOptionSideBar(num);          // defination of this function is given below
             }
+            
     });
 
+    
     var time = $('.durationSelect option:selected').val();
     var t;
     if (time == "10 minutes")
@@ -32,7 +39,27 @@ function loadQuestion(){
     } else {
         t=30;
     }
-    document.getElementById('starttimer').innerHTML = t + ":" + 00;
-    startTimer();
+    document.getElementById('starttimer').innerHTML = +t + ":" + 00;
+    startTimer();                               // defination of this function is present in the file, timer.js
+    
+}
 
-} 
+/**
+    This Method will Build the Sidebar (table) which contain serial number of the question 
+    with four options. 
+    It takes 1 parameter which is the NUMBER OF QUESTIONS we get as the JSON response
+**/
+
+function buildOptionSideBar(num){
+    var table = '';
+    table += '<table class="table">';
+    table += '<th> s.no. </th> <th> A </th> <th> B </th> <th> C </th> <th> D </th>';
+    for (i=1; i<=num; i++){
+        table += '<tr>';
+        table += '<td>'+ i + '</td>';
+        for (j=1; j<=4; j++)
+            table += '<td> <input type="radio" name="ques'+i+'"></td>';
+    }
+    document.getElementById('optionSidebar').innerHTML = table;
+   
+}
