@@ -11,7 +11,7 @@
     <script src="<c:url value=" /resources/script/question.js " />"></script>
 
     <!-- page body -->
-        <section class="boxShadow">
+        <section class="boxShadow" id="roundOneSection">
             <div class="instruction" id="roundOneInstruction">
                 <h3>Instructions for the Guidance of Candidates During Round One</h3>
                 <ul>
@@ -29,6 +29,12 @@
                             drafting instruments, and, if specifically permitted, electronic calculators.
                         </p>
                     </li>
+                </ul>
+                
+                <ul>
+                    <strong>Beginning the Examination</strong>
+                    <p>Only those candidates who are required to write the examination will be allowed in the room 
+                        during the examination.</p>
                 </ul>
             </div>
             <button onclick="loadQuestion()" id="startRoundOne" class="btn btn-success">Start</button>
