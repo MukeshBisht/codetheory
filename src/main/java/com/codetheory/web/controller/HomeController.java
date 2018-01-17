@@ -31,7 +31,7 @@ public class HomeController {
 		ModelAndView model = new ModelAndView("cards");
 		model.addObject("cardList", wrapper);
 		//test loading
-		try{Thread.sleep(5000);}catch(Exception ex){}
+		try{Thread.sleep(2000);}catch(Exception ex){}
 
 		return model;
 	}

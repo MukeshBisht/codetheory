@@ -40,7 +40,7 @@
                         <sec:authorize access="isAnonymous()">
                                 <form name="f" class="navbar-form navbar-right" method="POST" action="<c:url value='/login'/>" onsubmit="return validate()">
                                         <div class="form-group">
-                                                <input class="form-control" placeholder="Email" name="username" value="${sessionScope.username}" type="text" />
+                                                <input class="form-control" placeholder="Username" name="username" value="${sessionScope.username}" type="text" />
                                         </div>
                                         <div class="form-group">
                                                 <input class="form-control" placeholder="Password" name="password" type="password" />

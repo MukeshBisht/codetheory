@@ -4,10 +4,11 @@
 <html>
 	<head>
         <link rel='stylesheet' href="<c:url value="/resources/lib/bootstrap/css/bootstrap.css"/>" type='text/css' media='screen' /> 
-        <script src="<c:url value="/resources/lib/jquery/jquery.js" />"></script>
+		<script src="<c:url value="/resources/lib/jquery/jquery.js" />"></script>	
         <script src="<c:url value="/resources/lib/bootstrap/js/bootstrap.js" />"></script> 
         <link rel='stylesheet' href="<c:url value="/resources/css/site.css"/>" type='text/css' media='screen' />   
-        <style>
+		<script src="<c:url value=" /resources/script/register.js " />"></script>
+		<style>
 			input{
 				margin:5px;
 				padding:2px;
@@ -43,9 +44,11 @@
 
 				<p class="text-success text-center">Create Your CodeTheory Account.<br>It will not take long.</p><hr/>
 				
-				<h2 class="form-signin-heading">Sign in</h3>
+				<h2 class="form-signin-heading">Sign in</h2>
+				
 				<label for="username" class="sr-only">Username</label>
 				<input type="text" id="uname" class="form-control" placeholder="Username" required autofocus>
+				<div id="uname_response" class="response"></div>
 				
 				<label for="name" class="sr-only">Name</label>
 				<input type="text" id="name" class="form-control" placeholder="Name" required>
