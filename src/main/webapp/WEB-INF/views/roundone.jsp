@@ -45,6 +45,12 @@
 
         </section>
         
+        <section class="timer boxShadow">
+            <h3>Timer : 1 Hour 30 Minute 20 Sec hour</h3>
+        </section>
+        <section class="questionOptions boxShadow">
+            IT CONTAINS QUESTION NUMBERS AND OPTIONS
+        </section>
     <!-- footer -->
     <jsp:include page="/WEB-INF/shared/footer.jsp" />
 </body>

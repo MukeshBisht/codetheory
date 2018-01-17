@@ -27,6 +27,20 @@ body {
 }
 #roundOneSection{
 	margin:0px auto;
-	width:80%;
+	margin-left:10px;
+	margin-right:10px;
+	width:75%;
 	padding:2%;
+	float:left;
+}
+.timer{
+	width:20%;
+	height:20%;
+	float:left;
+}
+.questionOptions{
+	width:20%;
+	padding:2%;
+	float:left;
+	height:500px;
 }
