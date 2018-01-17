@@ -6,7 +6,7 @@ public class QuizQuestion {
     private String correct;
 
     public QuizQuestion() {
-
+        options = new String[4];
     }
 
     public void setQuestion (String question){

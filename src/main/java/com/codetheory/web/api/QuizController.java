@@ -1,13 +1,14 @@
-package com.codetheory.web.controller;
+package com.codetheory.web.api;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.codetheory.web.model.QuizQuestion;
 
-@Controller
+@RestController
 public class QuizController {
 
 	@RequestMapping(value = "/quiz", method = RequestMethod.GET, produces = "application/json")
@@ -21,7 +22,7 @@ public class QuizController {
 			options[1] = "JAVA IS AN OOD LANGUAGE";
 			options[2] = "JAVA IS AN OOA LANGUAGE";
 			options[3] = "JAVA IS AN OBP LANGUAGE";
-		question.setOptions(options);AGE");
+		question.setOptions(options);
 		return question;
 	}
 }
