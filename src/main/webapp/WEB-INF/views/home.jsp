@@ -15,7 +15,7 @@
             <div class="container">
                 <h1>Hello, world!</h1>
                 <p>Use it as a starting point to create something more unique.</p>
-                <a role="button" class="btn btn-success">Start Quick Quiz</a>
+                <a role="button" class="btn btn-success" href="/RoundOne">Start Quick Quiz</a>
             </div>
         </div>
 
