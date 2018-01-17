@@ -5,7 +5,9 @@ $(document).ajaxStart(function(){
     $('#loading').hide();
     $('#loadmore').show();
 });
+
 var no = 0
+
 function loadCard() {
     $("html, body").animate({ scrollTop: $(document).height()}, 1000);
     $.ajax({

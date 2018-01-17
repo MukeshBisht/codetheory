@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping(value="/register")
@@ -33,7 +34,7 @@ public class RegisterController {
     }
 
     @RequestMapping(value="/available/{username}", method=RequestMethod.GET)
-    public ResponseEntity<Object> available(@PathVariable String username){
+    public ResponseEntity available(@PathVariable String username){
         if(dao.userExist(username)){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
