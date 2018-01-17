@@ -6,6 +6,7 @@
 <script src="<c:url value=" /resources/lib/jquery/jquery.js " />"></script>
 <script src="<c:url value=" /resources/script/Validate.js " />"></script>
 <script src="<c:url value=" /resources/lib/bootstrap/js/bootstrap.js " />"></script>
+<script src="<c:url value=" /resources/script/timer.js " />"></script>
 <link rel='stylesheet' href="<c:url value=" /resources/css/site.css "/>" type='text/css' media='screen' />
 <script src="<c:url value=" /resources/script/site.js " />"></script>
 

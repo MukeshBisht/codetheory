@@ -33,7 +33,7 @@ body {
 	padding:2%;
 	float:left;
 }
-.timer{
+.durationSelect{
 	width:20%;
 	height:20%;
 	float:left;
@@ -43,4 +43,15 @@ body {
 	padding:2%;
 	float:left;
 	height:500px;
+	display: none;
+}
+#timeSelect{
+	width:75%;
+	margin:0px auto;
+}
+.timer{
+	width:20%;
+	height:20%;
+	float:left;
+	display: none;
 }
