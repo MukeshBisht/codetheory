@@ -22,13 +22,13 @@
                     </div>
               </div>
               <div class="col-sm-4">
-                <a class="btn btn-success" href="#">Submit</a>
+                <a class="btn btn-success" href="#" id="submitRoundOne">Submit</a>
               </div>
             </div>
 
-        <section class="container boxShadow col-md-6" id="roundOneSection">
-            <div class="instruction" id="roundOneInstruction">
-                <h3>Instructions for the Guidance of Candidates During Round One</h3>
+        <section class="container roundOneSection" id="roundOneSection">
+            <div class="instruction col-md-7" id="roundOneInstruction">
+                <h3>Instructions for the Guidance of User During Round One</h3>
                 <ul>
                     <li>
                        <strong> Timetable and seating lists</strong>
@@ -44,33 +44,55 @@
                             drafting instruments, and, if specifically permitted, electronic calculators.
                         </p>
                     </li>
-                </ul>
-                
-                <ul>
+                    <li>
                     <strong>Beginning the Examination</strong>
                     <p>Only those candidates who are required to write the examination will be allowed in the room 
                         during the examination.</p>
+                    </li>
                 </ul>
+                <button onclick="loadQuestion()" id="startRoundOne" class="btn btn-block btn-danger">Start</button>
+            
             </div>
-            <button onclick="loadQuestion()" id="startRoundOne" class="btn btn-danger">Start</button>
-            <div class="container-fluid " id="showQuestion">
-               
-            </div>
-
-        </section>
         
-        <section class="container durationSelect boxShadow text-center btn-primary col-md-4" id="durationSelect">
-            <h4>Select Time Duration</h4>
-            <select class="form-control" id="timeSelect">
-                <option id="10min">10 minutes</option>
-                <option id="20min">20 minutes</option>
-                <option id="30min">30 minutes</option>
-            </select>
-        </section>
-        <section class="container boxShadow sideSection" id="sideSection">
+            <div class="container col-md-4 durationSelect" id="durationSelect">
+                    <h3>Select Time Duration</h3>
+                    <select class="form-control btn btn-primary" id="timeSelect">
+                        <option id="10min">10 minutes</option>
+                        <option id="20min">20 minutes</option>
+                        <option id="30min">30 minutes</option>
+                    </select>
+                    
+                    <table class="table text-center">
+                        <h4>Point Distribution</h4>
+                        <th>Duration</th><th>No. of Questions</th><th>Points</th>
+                        <tr>
+                            <td>10 minutes</td>
+                            <td>50</td>
+                            <td>+100</td>
+                        </tr>
+                        <tr>
+                            <td>20 minutes</td>
+                            <td>50</td>
+                            <td>+50</td>
+                        </tr>
+                        <tr>
+                            <td>30 minutes</td>
+                            <td>50</td>
+                            <td>+10</td>
+                        </tr>
+                    </table>
+        
+                </div>
+        
+                <div class="container col-md-7" id="showQuestion">
+                
+                    </div>
+                 
+            <div class="container col-md-4" id="sideSection">
            
-        
+            </div>   
         </section>
+        
     </div>
     <!-- footer -->
     <jsp:include page="/WEB-INF/shared/footer.jsp" />

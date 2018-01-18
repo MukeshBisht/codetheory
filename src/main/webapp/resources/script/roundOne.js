@@ -7,23 +7,23 @@ function loadQuestion(){
                 data = response;
                 var question_data = '';
                 for ( i=0;i<response.length;i++){
-                    question_data += '<div class="container allQuestion">';
                     question_data += '<a hre="#" onclick="getQuestion(id)" id="'+(i+1);
-                    question_data += '" style="text-decoration:none">'+(i+1)+ ' : '+response[i].question +'</h4>';
-                    question_data += '</div>'
+                    question_data += '" style="color:black;text-decoration:none"><br>'+(i+1)+ ' : '+response[i].question +'</h4>';
+                   
                }
                              
                 $('#showQuestion').html(question_data);
                 $('#roundOneInstruction').hide();
                 $('#startRoundOne').hide();
                 $('#durationSelect').hide();
+                $('#submitRoundOne').show();
                 document.getElementById('sideSection').style.display='block';
-                buildOptionSideBar(0,data);
+                buildOptionSideBar(0);
             }
     });
 
     
-    var time = $('.durationSelect option:selected').val();
+    var time = $('#timeSelect option:selected').val();
     var t;
     if (time == "10 minutes")
         t = 10;
