@@ -30,25 +30,34 @@ body {
 	margin-right:10px;
 	padding:2%;
 	float:left;
+	height:1000px;
 }
 .durationSelect{
 	width:20%;
 	height:20%;
-	float:left;
+	right:40px;
+
 }
 .questionOptions{
-	width:20%;
-	padding:2%;
-	float:left;
-	display: none;
+	background: whitesmoke;
 }
 #timeSelect{
 	width:75%;
 	
 }
 .timer{
+	background:whitesmoke;
+}
+.sideSection{
 	width:20%;
-	height:20%;
-	float:left;
+	padding:2%;
 	display: none;
+	float:left;
+	right:40px;
+	background: cornflowerblue;
+	position: fixed;
+}
+
+.questionButton {
+	
 }

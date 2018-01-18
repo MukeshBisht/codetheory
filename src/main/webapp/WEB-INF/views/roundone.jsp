@@ -15,7 +15,7 @@
             <h1 class="jumbotron">Welcome To Round 1</h1>
         </header>
 
-        <section class="boxShadow col-md-9" id="roundOneSection">
+        <section class="container boxShadow col-md-9" id="roundOneSection">
             <div class="instruction" id="roundOneInstruction">
                 <h3>Instructions for the Guidance of Candidates During Round One</h3>
                 <ul>
@@ -42,14 +42,13 @@
                 </ul>
             </div>
             <button onclick="loadQuestion()" id="startRoundOne" class="btn btn-danger">Start</button>
-            <div id="showQuestion">
+            <div class="container-fluid" id="showQuestion">
                
-                          
             </div>
 
         </section>
         
-        <section class="durationSelect boxShadow text-center btn-primary col-md-3" id="durationSelect">
+        <section class="container durationSelect boxShadow text-center btn-primary col-md-3" id="durationSelect">
             <h4>Select Time Duration</h4>
             <select class="form-control" id="timeSelect">
                 <option id="10min">10 minutes</option>
@@ -57,14 +56,15 @@
                 <option id="30min">30 minutes</option>
             </select>
         </section>
-
-        <section class="timer boxShadow text-center col-md-3" id="timer">
-            <h1 class="starttimer text-active" id="starttimer"></h1>
+        <section class="container boxShadow sideSection" id="sideSection">
+            <div class="text-center boxShadow" id="timer">
+                <h1 class="text-active" id="starttimer"></h1>
            
-        </section>
+             </div>
         
-        <section class="questionOptions boxShadow col-md-3" id="optionSidebar">
-                   </section>
+            <div class="boxShadow" id="optionSidebar">
+            </div>
+        </section>
     <!-- footer -->
     <jsp:include page="/WEB-INF/shared/footer.jsp" />
 </body>

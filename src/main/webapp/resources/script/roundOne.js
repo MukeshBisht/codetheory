@@ -8,22 +8,25 @@ function loadQuestion(){
                 var question_data = '';
                 num = response.length;
                 for ( i=0;i<response.length;i++){
-
-                    question_data += '<h4>'+'Ques '+(i+1)+': '+ response[i].question + '</h4>';
+                    question_data += '<div class="container-fluid">';
+                    question_data += '<button data-target="#question'+(i+1)+'"' ;
+                    question_data += 'class="btn btn-default questionButton" data-toggle="collapse">Question '+(i+1)+'</button>';
+                    question_data += '<div class="collapse" style="background:lightgrey;" id="question'+(i+1)+'">';
+                    question_data += '<h4>'+ response[i].question + '</h4>';
                     question_data += '<div class="radio">' ;
                     
                     for (j=0; j<4; j++){
                         question_data += '<label>' + '<input type="radio" name="opt'+j+'">' + response[i].options[j] + '</label> <br>';
                     }
-                
-               }question_data += '<input class="btn btn-success" type="submit">';
+                    question_data += '</div></div><br>';
+               }
+                question_data += '<input class="btn btn-success" type="submit">';
                 
                 $('#showQuestion').html(question_data);
                 $('#roundOneInstruction').hide();
                 $('#startRoundOne').hide();
                 $('#durationSelect').hide();
-                document.getElementById('timer').style.display='block';
-                document.getElementById('optionSidebar').style.display='block';
+                document.getElementById('sideSection').style.display='block';
                 buildOptionSideBar(num);          // defination of this function is given below
             }
             
