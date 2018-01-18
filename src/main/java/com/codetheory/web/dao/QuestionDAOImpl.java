@@ -1,6 +1,8 @@
 package com.codetheory.web.dao;
 
-import com.codetheory.web.model.Question;
+import com.codetheory.web.model.QuizQuestion;
+
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -13,7 +15,7 @@ public class QuestionDAOImpl implements QuestionDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public void addQuestion(Question ques) {
+    public void addQuestion(QuizQuestion ques) {
         String sql = "insert into User values(?,?,?,?)";
 
         jdbcTemplate.update(sql, new Object[] {
@@ -22,8 +24,12 @@ public class QuestionDAOImpl implements QuestionDAO {
     }
 
     // Getting a particular Quesiton
-    public QuizQuestion getQuestionBdId(int id) {
+    public QuizQuestion getQuestionById(int id) {
         String sql = "select * from Question where id=?";
         return new QuizQuestion();
+    }
+ 
+    public List<QuizQuestion> getAllQuestion (){
+        return new ArrayList<QuizQuestion>();
     }
 }

@@ -9,17 +9,24 @@
     <!-- header -->
     <jsp:include page="/WEB-INF/shared/header.jsp" />
     <script src="<c:url value=" /resources/script/roundOne.js " />"></script>
-
+    <div class="container">
     <!-- page body -->
-        <header class="d-flex justify-content-between" >
-            <h1 >Welcome To Round 1</h1>
-             <div id="timer" class="text-center" >
-                <h1 class="text-active boxShadow" id="starttimer"></h1>
-           
-             </div>
-        </header>
+    <!-- <div class="row"><div class="col-sm-4">.col-sm-4</div><div class="col-sm-4">.col-sm-4</div><div class="col-sm-4">.col-sm-4</div></div> -->
+            <div class="row">
+              <div class="col-sm-4">
+                <h1>Round 1</h1>
+              </div>
+              <div class="col-sm-4">
+                    <div id="timer">
+                        <h1 class="text-active boxShadow" id="starttimer"></h1>           
+                    </div>
+              </div>
+              <div class="col-sm-4">
+                <a class="btn btn-success" href="#">Submit</a>
+              </div>
+            </div>
 
-        <section class="container boxShadow col-md-8" id="roundOneSection">
+        <section class="container boxShadow col-md-6" id="roundOneSection">
             <div class="instruction" id="roundOneInstruction">
                 <h3>Instructions for the Guidance of Candidates During Round One</h3>
                 <ul>
@@ -64,6 +71,7 @@
            
         
         </section>
+    </div>
     <!-- footer -->
     <jsp:include page="/WEB-INF/shared/footer.jsp" />
 </body>

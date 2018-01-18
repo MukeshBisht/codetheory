@@ -8,8 +8,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 
-@Repository
-@Qualifier("userDAO")
 public class UserDAOImpl implements UserDAO {
 
     @Autowired

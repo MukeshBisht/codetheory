@@ -12,7 +12,6 @@ function loadQuestion(){
                     question_data += '" style="text-decoration:none">'+(i+1)+ ' : '+response[i].question +'</h4>';
                     question_data += '</div>'
                }
-                question_data += '<input class="btn btn-success" type="submit">';
                              
                 $('#showQuestion').html(question_data);
                 $('#roundOneInstruction').hide();

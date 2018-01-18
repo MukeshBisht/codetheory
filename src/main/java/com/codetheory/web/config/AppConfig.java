@@ -50,15 +50,15 @@ public class AppConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 	}
 	
-	// @Bean
-	// public UserDAO getuserDAO() {
-	// 	return new UserDAOImpl();
-	// }
+	@Bean
+	public UserDAO getuserDAO() {
+		return new UserDAOImpl();
+	}
 
-	// @Bean
-    // public JdbcTemplate jdbcTemplate(DataSource dataSource) {
-    //     JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-    //     jdbcTemplate.setResultsMapCaseInsensitive(true);
-    //     return jdbcTemplate;
-    // }
+	@Bean
+    public JdbcTemplate jdbcTemplate(DataSource dataSource) {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        jdbcTemplate.setResultsMapCaseInsensitive(true);
+        return jdbcTemplate;
+    }
 }
