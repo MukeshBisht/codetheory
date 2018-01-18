@@ -26,6 +26,4 @@ public class QuestionDAOImpl implements QuestionDAO {
         String sql = "select * from Question where id=?";
         return new QuizQuestion();
     }
-
-
 }

@@ -9,6 +9,7 @@ public class Card {
     private Date startDate;
     private ArrayList<String> languages;
     private String info;
+    private String organiser;
 
     public Card() {
 
@@ -18,6 +19,7 @@ public class Card {
         this.comId = id;
         this.name = name;
         this.info = info;
+        this.organiser = "CodeTheory";
         this.startDate = new Date();
         languages = new ArrayList<String>();
         languages.add("c");
@@ -44,5 +46,9 @@ public class Card {
 
     public ArrayList<String> getlanguages(){
         return this.languages;
+    }
+
+    public String getorganiser(){
+        return this.organiser;
     }
 }

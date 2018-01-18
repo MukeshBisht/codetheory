@@ -7,6 +7,7 @@ import javax.sql.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
@@ -49,8 +50,15 @@ public class AppConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 	}
 	
-	@Bean
-	public UserDAO getContactDAO() {
-		return new UserDAOImpl();
-	}
+	// @Bean
+	// public UserDAO getuserDAO() {
+	// 	return new UserDAOImpl();
+	// }
+
+	// @Bean
+    // public JdbcTemplate jdbcTemplate(DataSource dataSource) {
+    //     JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+    //     jdbcTemplate.setResultsMapCaseInsensitive(true);
+    //     return jdbcTemplate;
+    // }
 }

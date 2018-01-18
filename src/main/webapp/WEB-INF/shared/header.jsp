@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@page isELIgnored = "false" %>
-
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <link rel='stylesheet' href="<c:url value=" /resources/lib/bootstrap/css/bootstrap.css "/>" type='text/css' media='screen'/>
 <script src="<c:url value=" /resources/lib/jquery/jquery.js " />"></script>
 <script src="<c:url value=" /resources/script/Validate.js " />"></script>
@@ -33,7 +33,7 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">CodeTheory</a>
+                        <a class="navbar-brand" href="/home">CodeTheory</a>
                 </div>
 
                 <!-- navbar-collapse  -->
@@ -58,7 +58,7 @@
                                                         <a href="/user/profile">Profile</a>
                                                 </li>
                                                 <li>
-                                                        <a href="/user/notifications">Notification</a>
+                                                        <a href="/user/notifications">Notification <span class="badge">4</span></a>
                                                 </li>
                                                 <li>
                                                         <a href="<c:url value='/logout' />">Logout</a>

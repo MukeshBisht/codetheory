@@ -2,18 +2,14 @@ package com.codetheory.web.controller;
 
 
 import com.codetheory.web.dao.UserDAO;
-import com.codetheory.web.model.User;
+import com.codetheory.web.viewModel.Register;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping(value="/register")
@@ -23,21 +19,19 @@ public class RegisterController {
     UserDAO dao;
 
     @RequestMapping (method=RequestMethod.GET )
-    public String register(ModelMap model){
+    public String register(Model model){
+        model.addAttribute("registerForm", new Register());
         return "register";
     }
 
     @RequestMapping(method=RequestMethod.POST )
-    public String register(@ModelAttribute User user){
-        
+    public String register(@ModelAttribute("registerForm") Register reg){
+        System.out.println(reg.getusername());
+        System.out.println(reg.getpassword());
+        System.out.println(reg.getname());
+        System.out.println(reg.getnewsletter());
+        System.out.println(reg.getnotifications());
+        System.out.println(reg.getemail());
         return "register";
-    }
-
-    @RequestMapping(value="/available/{username}", method=RequestMethod.GET)
-    public ResponseEntity available(@PathVariable String username){
-        if(dao.userExist(username)){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
