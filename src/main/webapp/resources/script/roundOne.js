@@ -54,8 +54,20 @@ function buildOptionSideBar(index){
         }
     
     option += '</div>';
-    option += '<button class="btn btn-success sideSectionButton" id="prev">prev</button>';
-    option += '<button class="btn btn-success sideSectionButton" id="next">next</button>';
+
+    if (index  != 0){
+        option += '<button class="btn btn-success sideSectionButton" ';
+        option += 'onclick="buildOptionSideBar('+(index-1)+')" id="prev">prev</button>';
+    } else{
+        option += '<button class="btn btn-success sideSectionButton" disabled>prev</button> ';
+    }
+     
+    if (index != data.length-1){
+        option += '<button class="btn btn-success sideSectionButton" ';
+        option += 'onclick="buildOptionSideBar('+(index+1)+')"id="next">next</button>';
+    } else{
+        option += '<button class="btn btn-success sideSectionButton" disabled>next</button> ';
+    }
 
     document.getElementById('sideSection').innerHTML = option;
    

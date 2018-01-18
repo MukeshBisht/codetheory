@@ -61,6 +61,7 @@ body {
 	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 	font-style: normal;
 	border: none;
+	cursor:pointer;
 }
 .sideSectionButton{
 	margin : 10px;
