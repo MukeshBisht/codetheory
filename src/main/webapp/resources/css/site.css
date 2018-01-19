@@ -21,35 +21,6 @@ body {
 	display: block;
 }
 
-/*	:)  */
-.boxShadow {
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-#roundOneSection{
-	margin-left:10px;
-	margin-right:10px;
-	padding:2%;
-}
-
-.questionOptions{
-	background: whitesmoke;
-}
-#timeSelect{
-	width:75%;
-	
-}
-.timer{
-	background:whitesmoke;
-}
-.sideSection{
-	width:25%;
-	padding-left:50px;
-	display: none;
-	float:left;
-	right:40px;
-	position: fixed;
-}
-
 .allQuestion {
 	font-size : 20px;
 	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -57,13 +28,7 @@ body {
 	border: none;
 	cursor:pointer;
 }
-.sideSectionButton{
-	margin : 10px;
-}
-#starttimer{
-	width:10%;
-	border-radius: 50px; 
-}
+
 .space{
 	padding-bottom: 100px;
 }
@@ -71,19 +36,22 @@ body {
 	display: inline;
 	margin-left:50px;
 }
-#submitRoundOne{
-	display: none;
-}
-
 #showQuestion{
 	font-family: 'Times New Roman', 'Times', 'serif';
 	font-size:20px;
-	
 }
-@media only screen 
-and (min-device-width : 768)
-and (max-device-width : 982px) {
-	.hideOnMobile {
-		display : none;
-	}
+
+.col-bg {
+	background-color: #e3e3e3;
+	border-radius: 15px;
+	padding: 5px;
+}
+
+#submitRoundOne {
+	padding-top: 10px;
+}
+
+#showQuestion {
+	height: 75%;
+	overflow: scroll;
 }
