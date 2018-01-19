@@ -2,24 +2,35 @@ package com.codetheory.web.api;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.codetheory.web.dao.QuestionDAOImpl;
 import com.codetheory.web.model.QuizQuestion;
 
 @RestController
 public class QuizController {
 
+	@Autowired;
+	QuestionDAOImpl dao;
+	
 	@RequestMapping(value = "/quiz", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public ArrayList<QuizQuestion> createQuiz() {
 		ArrayList<QuizQuestion> quizquestion = new ArrayList();
 
-		QuizQuestion question = new QuizQuestion();
-		question.setQuestion("What is JAVA?");
+		QuizQuestion question = dao.getQuestionById(1);
+		quizquestion.add(question);
+		question = dao.getQuestionById(2);
+		quizquestion.add(question);
+		question = dao.getQuestionById(3);
+		quizquestion.add(question);
+		
+		/*question.setQuestion("What is JAVA?");
 			String options[] = new String[4];
 			options[0] = "JAVA IS AN OOP LANGUAGE";
 			options[1] = "JAVA IS AN OOD LANGUAGE";
@@ -39,7 +50,7 @@ public class QuizController {
 		question.setOptions(options);
 
 		quizquestion.add(question);
-
+*/
 		return quizquestion;
 	}
 }
