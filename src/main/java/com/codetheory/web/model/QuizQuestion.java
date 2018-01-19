@@ -1,9 +1,17 @@
 package com.codetheory.web.model;
 
 public class QuizQuestion {
+    private int id;
     private String question;
     private String options[];
     
+
+    public int getId (){
+        return id;
+    }
+    public void setId (int id){
+        this.id = id;
+    }
     public QuizQuestion() {
         options = new String[4];
     }

@@ -8,7 +8,8 @@ function loadQuestion(){
                 var question_data = '';
                 for ( i=0;i<response.length;i++){
                     question_data += '<a hre="#" onclick="getQuestion(id)" id="'+(i+1);
-                    question_data += '" style="color:black;text-decoration:none"><br>'+(i+1)+ ' : '+response[i].question +'</h4>';
+                    question_data += '" id="questionList" style="color:black;text-decoration:none;cursor:pointer"><br>';
+                    question_data += (i+1)+ ' : '+response[i].question +'</h4>';
                    
                }
                              
