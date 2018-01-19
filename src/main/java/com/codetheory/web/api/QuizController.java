@@ -8,15 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.codetheory.web.dao.QuestionDAOImpl;
+import com.codetheory.web.dao.QuestionDAO;
 import com.codetheory.web.model.QuizQuestion;
 
 @RestController
 public class QuizController {
 
-	@Autowired;
-	QuestionDAOImpl dao;
+	@Autowired
+	QuestionDAO dao;
 	
 	@RequestMapping(value = "/quiz", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody

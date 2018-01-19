@@ -2,6 +2,7 @@ package com.codetheory.web.model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Random;
 
 public class Card {
     private int comId;
@@ -10,6 +11,7 @@ public class Card {
     private ArrayList<String> languages;
     private String info;
     private String organiser;
+    private int participants;
 
     public Card() {
 
@@ -21,6 +23,7 @@ public class Card {
         this.info = info;
         this.organiser = "CodeTheory";
         this.startDate = new Date();
+        participants = new Random().nextInt(1000);
         languages = new ArrayList<String>();
         languages.add("c");
         languages.add("c#");
@@ -50,5 +53,9 @@ public class Card {
 
     public String getorganiser(){
         return this.organiser;
+    }
+
+    public int getparticipants(){
+        return this.participants;
     }
 }

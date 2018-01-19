@@ -6,7 +6,7 @@
                 <div class="panel-heading">
                         <b>${card.name}</b>
                     
-                    <span class="badge pull-right"><%= (int) (Math.random()*10)%></span>
+                    <span class="badge pull-right">${card.participants}</span>
                 </div>
                 <div class="panel-body">
                     <p>Starting : ${card.startDate}</p>

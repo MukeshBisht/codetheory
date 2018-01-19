@@ -3,9 +3,10 @@ package com.codetheory.web.dao;
 import com.codetheory.web.model.QuizQuestion;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -31,24 +32,19 @@ public class QuestionDAOImpl implements QuestionDAO {
     // Getting a particular Quesiton
     public QuizQuestion getQuestionById(int id) {
         String sql = "select * from quiz_question where id=?";
-        QuizQuestion question =(QuizQuestion)jdbcTemplate.queryForObject(sql, new Object[]{new Integer(id)},new RowMapper() {
-        
-            public Object mapRow (ResultSet rs , int arg) throws SQLException{
-                QuizQuestion q = new QuizQuestion();
-                q.setQuestion(rs.getString("question"));
-                String op[] = new String[4];
-                op[0] = rs.getString("option1");
-                op[1] = rs.getString("option2");
-                op[2] = rs.getString("option3");
-                op[3] = rs.getString("option4");
-                q.setOptions(op);
-                return q;
-            }
-        });
+        QuizQuestion question = new QuizQuestion();
+        Map row = jdbcTemplate.queryForMap(sql, id);
+        String op[] = new String[4];
+        op[0] = row.get("option1").toString();
+        op[1] = row.get("option2").toString();
+        op[2] = row.get("option3").toString();
+        op[3] = row.get("option4").toString();
+        question.setQuestion(row.get("question").toString());
+        question.setOptions(op);
         return question;
     }
- 
-    public List<QuizQuestion> getAllQuestion (){
+
+    public List<QuizQuestion> getAllQuestion() {
         return new ArrayList<QuizQuestion>();
     }
 }

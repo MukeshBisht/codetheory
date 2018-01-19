@@ -1,5 +1,7 @@
 package com.codetheory.web.config;
 
+import com.codetheory.web.dao.QuestionDAO;
+import com.codetheory.web.dao.QuestionDAOImpl;
 import com.codetheory.web.dao.UserDAO;
 import com.codetheory.web.dao.UserDAOImpl;
 import javax.sql.DataSource;
@@ -53,6 +55,11 @@ public class AppConfig implements WebMvcConfigurer {
 	@Bean
 	public UserDAO getuserDAO() {
 		return new UserDAOImpl();
+	}
+
+	@Bean
+	public QuestionDAO getquestionDAO() {
+		return new QuestionDAOImpl();
 	}
 
 	@Bean

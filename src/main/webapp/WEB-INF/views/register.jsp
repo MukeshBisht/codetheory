@@ -1,9 +1,9 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
     <!-- footer -->
     <jsp:include page="/WEB-INF/shared/header.jsp" />
-
+    <script src="<c:url value=" /resources/script/register.js" />"></script>
     <form:form method="POST" name="f" action="/register" modelAttribute="registerForm">
-        <div class="container-fluid">
             <section class="container">
                 <div class="container-page">
                     <div class="col-md-6">
@@ -26,7 +26,8 @@
 
                         <div class="form-group col-lg-6">
                             <label>Repeat Password</label>
-                            <input type="password" name="cusername" placeholder="Confirm Password" name="" class="form-control" id="confirm_password" required="true"/>
+                            <input type="password" name="cpassword" placeholder="Confirm Password" name="" class="form-control" id="confirm_password" required="true"/>
+                            <div id="cpassword_chk" class="response"></div>    
                         </div>
 
                         <div class="form-group col-lg-6">
@@ -70,7 +71,6 @@
                     </div>
                 </div>
             </section>
-        </div>
     </form:form>
     <div class="space"></div>
     <!-- footer -->

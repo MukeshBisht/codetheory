@@ -19,8 +19,8 @@ public class UserController {
     @RequestMapping(value = "/available/{uname}", method = RequestMethod.GET)
     public ResponseEntity<Object> userAvailable(@PathVariable("uname") String uname) {
         if(dao.userExist(uname)){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("1", HttpStatus.OK);
         }
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>("0", HttpStatus.OK);
     }
 }
