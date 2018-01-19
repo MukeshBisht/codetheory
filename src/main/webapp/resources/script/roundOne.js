@@ -6,7 +6,7 @@ function loadQuestion(){
             success: function (response) {
                 data = response;
                 var question_data = '';
-                for (j=0;j<25;j++)
+                for (j=0;j<data.length;j++)
                 for ( i=0;i<response.length;i++){
                     question_data += '<a hre="#" onclick="getQuestion(id)" id="'+(i+1);
                     question_data += '" id="questionList" style="color:black;text-decoration:none;cursor:pointer"><br>';
