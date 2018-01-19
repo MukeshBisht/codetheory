@@ -3,6 +3,7 @@
 <%@page isELIgnored = "false" %>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <link rel='stylesheet' href="<c:url value=" /resources/lib/bootstrap/css/bootstrap.css "/>" type='text/css' media='screen'/>
+<link rel='stylesheet' href="<c:url value=" /resources/font-awesome\css/font-awesome.min.css "/>" type='text/css' media='screen'/>
 <script src="<c:url value=" /resources/lib/jquery/jquery.js " />"></script>
 <script src="<c:url value=" /resources/script/Validate.js " />"></script>
 <script src="<c:url value=" /resources/lib/bootstrap/js/bootstrap.js " />"></script>

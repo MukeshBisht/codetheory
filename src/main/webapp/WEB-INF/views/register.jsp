@@ -46,8 +46,7 @@
 
                         <div class="col-sm-6">
                             <form:checkbox class="checkbox" path="notifications"/>Send notifications to this email
-                        </div>
-
+                        </div><hr>
                     </div>
 
                     <div class="col-md-6">
