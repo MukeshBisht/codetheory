@@ -8,8 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.dao.DataAccessException;  
+import org.springframework.jdbc.core.JdbcTemplate;  
+import org.springframework.jdbc.core.ResultSetExtractor; 
 
 public class QuestionDAOImpl implements QuestionDAO {
 
@@ -45,6 +47,21 @@ public class QuestionDAOImpl implements QuestionDAO {
     }
 
     public List<QuizQuestion> getAllQuestion() {
-        return new ArrayList<QuizQuestion>();
+        return jdbcTemplate.query("select * from quiz_question",new RowMapper<QuizQuestion>(){  
+            @Override  
+            public QuizQuestion mapRow(ResultSet rs, int rownumber) throws SQLException {  
+                QuizQuestion question=new QuizQuestion();  
+                
+               question.setQuestion(rs.getString("question"));
+                String op[] = new String[4];
+                op[0] = rs.getString("option1");
+                op[1] = rs.getString("option2");
+                op[2] = rs.getString("option3");
+                op[3] = rs.getString("option4");
+                question.setOptions(op);
+                return question;
+            }  
+        });  
+        
     }
 }

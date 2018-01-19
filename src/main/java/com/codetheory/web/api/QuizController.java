@@ -1,6 +1,8 @@
 package com.codetheory.web.api;
 
 import java.util.ArrayList;
+import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.codetheory.web.dao.QuestionDAO;
 import com.codetheory.web.model.QuizQuestion;
 
+import org.springframework.dao.DataAccessException;  
+import org.springframework.jdbc.core.JdbcTemplate;  
+import org.springframework.jdbc.core.ResultSetExtractor;  
+import org.springframework.jdbc.core.RowMapper;  
+
 @RestController
 public class QuizController {
 
@@ -19,37 +26,8 @@ public class QuizController {
 	
 	@RequestMapping(value = "/quiz", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public ArrayList<QuizQuestion> createQuiz() {
-		ArrayList<QuizQuestion> quizquestion = new ArrayList();
-
-		QuizQuestion question = dao.getQuestionById(1);
-		quizquestion.add(question);
-		question = dao.getQuestionById(2);
-		quizquestion.add(question);
-		question = dao.getQuestionById(3);
-		quizquestion.add(question);
-		
-		/*question.setQuestion("What is JAVA?");
-			String options[] = new String[4];
-			options[0] = "JAVA IS AN OOP LANGUAGE";
-			options[1] = "JAVA IS AN OOD LANGUAGE";
-			options[2] = "JAVA IS AN OOA LANGUAGE";
-			options[3] = "JAVA IS AN OBP LANGUAGE";
-		question.setOptions(options);
-
-		quizquestion.add(question);
-
-		question=new QuizQuestion();
-
-		question.setQuestion("What is Maven?");
-			options[0] = "Maven is a Programming Language";
-			options[1] = "Maven is a Build Tool";
-			options[2] = "Maven is a Framework";
-			options[3] = "None of these";
-		question.setOptions(options);
-
-		quizquestion.add(question);
-*/
+    public List<QuizQuestion> createQuiz() {
+		List<QuizQuestion> quizquestion = dao.getAllQuestion();
 		return quizquestion;
 	}
 }
