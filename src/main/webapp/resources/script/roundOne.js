@@ -6,11 +6,11 @@ function loadQuestion(){
             success: function (response) {
                 data = response;
                 var question_data = '';
-                for (j=0;j<25;j++)
+                
                 for ( i=0;i<response.length;i++){
                     question_data += '<a hre="#" onclick="getQuestion(id)" id="'+(i+1);
-                    question_data += '" id="questionList" style="color:black;text-decoration:none;cursor:pointer"><br>';
-                    question_data += (i+1)+ ' : '+response[i].question +'</h4>';
+                    question_data += '"style="color:black;text-decoration:none;cursor:pointer"><p>';
+                    question_data += (i+1)+ '. '+response[i].question +'</p>';
                    
                }
                              
