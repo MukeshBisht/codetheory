@@ -3,9 +3,7 @@ package com.codetheory.web.dao;
 import com.codetheory.web.model.User;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
 
 
 public class UserDAOImpl implements UserDAO {
