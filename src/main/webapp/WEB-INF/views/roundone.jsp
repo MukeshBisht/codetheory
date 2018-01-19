@@ -18,7 +18,7 @@
               </div>
               <div class="col-sm-4">
                     <div id="timer">
-                        <h1 class="text-active boxShadow" id="starttimer"></h1>           
+                        <h1 class="text-active" id="starttimer"></h1>           
                     </div>
               </div>
               <div class="col-sm-4">
@@ -53,7 +53,7 @@
                 <button onclick="loadQuestion()" id="startRoundOne" class="btn btn-block btn-danger">Start</button>
             
             </div>
-        
+            
             <div class="container col-md-4 durationSelect" id="durationSelect">
                     <h3>Select Time Duration</h3>
                     <select class="form-control btn btn-primary" id="timeSelect">
