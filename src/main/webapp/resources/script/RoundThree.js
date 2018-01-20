@@ -2,7 +2,7 @@ function runCode(){
     $.ajax({
             type: "POST",
             dataType : 'json',
-            url: "https://api.judge0.com/",
+            url: "https://api.judge0.com/submissions?wait=true",
             data : {
                 "source_code": "#include <stdio.h>\n\nint main(void) {\n  char name[10];\n  scanf(\"%s\", name);\n  printf(\"hello, %s\\n\", name);\n  return 0;\n}",
                 "language_id": "4",
