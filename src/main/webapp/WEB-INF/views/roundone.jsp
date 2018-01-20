@@ -10,16 +10,16 @@
                         <h1>Round 1</h1>
                     </div>
                     <div class="col-sm-4">
-                        <div class="text-center" id="starttimer">
-                        </div>
+                        <h2 class="text-center btn-primary" id="starttimer">
+                        </h2>
                     </div>
                     <div class="col-sm-4 text-center" id="submitRoundOne" hidden>
                         <a class="btn btn-lg btn-success" href="#" onclick="alert('submit round 1')">Submit</a>
                     </div>
                 </div>
 
-                <section class="row roundOneSection" id="roundOneSection">
-                    <div class="instruction col-md-7" id="roundOneInstruction">
+                <section class="row roundOneSection " id="roundOneSection">
+                    <div class="instruction col-md-7 cardView" id="roundOneInstruction">
                         <h3>Instructions for the Guidance of User During Round One</h3>
                         <ul>
                             <li>
@@ -86,7 +86,7 @@
                     </div>
 
                     <!-- answer sheet -->
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-bg" id="sideSection" hidden>
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-bg cardView" id="sideSection" hidden>
 
                     </div>
 

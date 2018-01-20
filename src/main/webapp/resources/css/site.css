@@ -42,8 +42,6 @@ body {
 }
 
 .col-bg {
-	background-color: #e3e3e3;
-	border-radius: 15px;
 	padding: 5px;
 }
 
@@ -54,4 +52,18 @@ body {
 #showQuestion {
 	height: 75%;
 	overflow: scroll;
+}
+.cardView{
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	padding:10px 20px 10px 20px ;
+}
+#starttimer{
+	width:30%;
+	display:none;
+}
+#selectOption{
+	padding-left:20px;
+}
+.radio{
+	margin:20px;
 }

@@ -13,9 +13,11 @@
         <!-- Main jumbotron for a primary marketing message or call to action -->
         <div class="jumbotron">
             <div class="container">
-                <h1>Hello, world!</h1>
-                <p>Use it as a starting point to create something more unique.</p>
-                <a role="button" class="btn btn-success" href="/RoundOne">Start Quick Quiz</a>
+              <p>
+                <h2>&nbsp;Be a Better</h2>
+                <h1>Programmer</h1>
+                <h3>Code. Compete. Create</h3></p>
+                <a role="button" class="btn btn-primary" href="/RoundOne">Start Quick Challenge</a>
             </div>
         </div>
 

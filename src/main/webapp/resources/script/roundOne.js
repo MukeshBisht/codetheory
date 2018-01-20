@@ -9,7 +9,7 @@ function loadQuestion(){
                 for ( i=0;i<response.length;i++){
                     question_data += '<a hre="#" onclick="getQuestion(id)" id="'+(i+1);
                     question_data += '" id="questionList" style="color:black;text-decoration:none;cursor:pointer"><br>';
-                    question_data += (i+1)+ ' : '+response[i].question +'</h4>';              
+                    question_data +=  (i+1)+ ' : '+response[i].question +'';              
                }                            
                 $('#showQuestion').html(question_data);
                 $('#roundOneInstruction').hide();
@@ -17,6 +17,7 @@ function loadQuestion(){
                 $('#durationSelect').hide();
                 $('#submitRoundOne').show();
                 $('#showQuestion').show();
+                $('#starttimer').show();
                 $('#sideSection').show();
                 buildOptionSideBar(0);
             }
@@ -42,8 +43,8 @@ function buildOptionSideBar(index) {
     option += '<h3>' + data[index].question + '</h3>';
     // <!--Radio group-->
     for (j = 0; j < 4; j++) {
-        option += '<div class="well form-group">';
-        option += '<input name="' + index + '" type="radio" class="with-gap" id="' + j + '">';
+        option += '<div class=" form-group cardView">';
+        option += '<input name="' + index + '" type="radio" class="with-gap " id="' + j + '">';
         option += '<label for="' + j + '">' + data[index].options[j] + '</label>';
         option += '</div>';
     }

@@ -48,6 +48,7 @@
                                                 <input class="form-control" placeholder="Password" name="password" type="password" />
                                         </div>
                                         <button type="submit" class="btn btn-success">Sign in</button>
+                                        
                                         <a class="btn btn-primary" href="/register" role="button">New User</a>
                                 </form>
 

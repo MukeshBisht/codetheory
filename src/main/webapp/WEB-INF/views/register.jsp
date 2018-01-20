@@ -4,7 +4,7 @@
     <jsp:include page="/WEB-INF/shared/header.jsp" />
     <script src="<c:url value=" /resources/script/register.js" />"></script>
     <form:form method="POST" name="f" action="/register" modelAttribute="registerForm">
-            <section class="container">
+            <section class="container cardView">
                 <div class="container-page">
                     <div class="col-md-6">
                         <h3 class="dark-grey">
