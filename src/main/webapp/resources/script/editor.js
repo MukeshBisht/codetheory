@@ -1,19 +1,20 @@
 
 var editor;
-$(document).ready(function(){
-    
+$(document).ready(function () {
+
     var code = $(".codeMirror")[0];
-    this.editor = CodeMirror.fromTextArea(code,{
-        lineNumbers:true,
-        value : "#include <stdio.h>",
+    editor = CodeMirror.fromTextArea(code, {
+        lineNumbers: true,
+        value: "#include <stdio.h>",
         matchBrackets: true,
-        styleActiveLine : true ,
-      //  theme : eclipse, 
-      smartIndent : true,
-        mode : 'text/x-csrc'
+        styleActiveLine: true,
+        //  theme : eclipse, 
+        smartIndent: true,
+        mode: 'text/x-csrc'
     });
 });
-/*
+
+
 function setMode (value){
     var m;
     if (value == 1){
@@ -50,5 +51,6 @@ function setMode (value){
         m = 'text/x-csrc';
     }
 
-   this.editor.setOption ("mode",m);
-}*/
+   editor.setOption("mode", m);
+   console.log('language set to: ' + m);
+}
