@@ -46,7 +46,7 @@ body {
 }
 
 #submitRoundOne {
-	padding-top: 10px;
+	padding-top: 20px;
 }
 
 #showQuestion {
@@ -58,7 +58,6 @@ body {
 	padding:10px 20px 10px 20px ;
 }
 #starttimer{
-	width:30%;
 	display:none;
 }
 .lb-lg{
