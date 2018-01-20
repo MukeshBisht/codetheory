@@ -71,3 +71,19 @@ function getQuestion(quesId) {
     var index = quesId-1;
     buildOptionSideBar(index);
  }
+
+ 
+function showPreview() {  
+    var modal = '';
+    for (i = 0; i < data.length; i++) {
+        var j = i+1;
+        modal += '<span class="label lb-lg ';
+        //if(data[i] is marked)
+        // modal += 'label-success">';
+        //else
+        modal += 'label-default" onclick="getQuestion('+j+')">';
+        modal += j +'</span>';
+        document.getElementById('previewbody').innerHTML = modal;
+    }
+    $("#previewModal").modal("toggle");
+}

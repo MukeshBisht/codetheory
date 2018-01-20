@@ -56,15 +56,10 @@
                         <sec:authorize access="isAuthenticated()">
                                 <div class="navbar-form navbar-right" style="margin-top : 0px!important">
                                         <ul class="nav navbar-nav">
-                                                <li>
-                                                        <a href="/user/profile">Profile</a>
-                                                </li>
-                                                <li>
-                                                        <a href="/user/notifications">Notification <span class="badge">4</span></a>
-                                                </li>
-                                                <li>
-                                                        <a href="<c:url value='/logout' />">Logout</a>
-                                                </li>
+                                                <li><a href="/user/profile">Profile</a></li>
+                                                <li><a href="/user/notifications">Notification <span class="badge">4</span></a></li>
+                                                <li><a href="/contest/create"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></li>
+                                                <li><a href="<c:url value='/logout' />">Logout</a></li>
                                         </ul>
                                 </div>
                         </sec:authorize>

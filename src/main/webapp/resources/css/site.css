@@ -61,6 +61,10 @@ body {
 	width:30%;
 	display:none;
 }
+.lb-lg{
+	font-size: 15px;
+	margin:2px;
+}
 #selectOption{
 	padding-left:20px;
 }

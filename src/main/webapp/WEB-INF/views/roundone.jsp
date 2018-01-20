@@ -13,8 +13,9 @@
                         <h2 class="text-center btn-primary" id="starttimer">
                         </h2>
                     </div>
-                    <div class="col-sm-4 text-center" id="submitRoundOne" hidden>
-                        <a class="btn btn-lg btn-success" href="/RoundThree" onclick="alert('submit round 1')">Submit</a>
+                    <div class="col-sm-4 text-center" id="submitRoundOne" hidden>                       
+                        <a class="btn btn-info" href="#" onclick="showPreview()">Preview</a>
+                        <a class="btn btn-success" href="/RoundThree" onclick="alert('submit round 1')">Submit</a>
                     </div>
                 </div>
 
@@ -89,7 +90,22 @@
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-bg cardView" id="sideSection" hidden>
 
                     </div>
-
+                 <!-- Modal -->
+                 <div class="modal fade" id="previewModal" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Preview</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        &times;
+                                    </button>
+                                </div>
+                                <div class="modal-body" id="previewbody">        
+                                         
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="space"></div>
                 <jsp:include page="/WEB-INF/shared/footer.jsp" />
