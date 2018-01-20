@@ -67,3 +67,33 @@ body {
 .radio{
 	margin:20px;
 }
+.CodeMirror {
+	border:2px solid #eee;
+	height: 70%;
+	width:70%;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	margin:0px 50px 0px 50px;
+  }
+  
+  #langSelect{
+	margin-top:20px;
+	position: inherit;
+	margin-left:150px;
+	width:60%;
+  }
+
+  /* Styling for devices having screen width less then 500px*/
+  @media only screen and 
+  (max-width:600px){
+	  .CodeMirror{
+		  margin:0px;
+		  width:100%;
+		  border: 1px solid #eee;
+	  }
+	  #langSelect{
+		  margin-top:20px;
+		  width:100%;
+		  margin-left: 0px;
+	  }
+  }

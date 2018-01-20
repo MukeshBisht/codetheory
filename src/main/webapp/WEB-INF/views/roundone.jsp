@@ -14,7 +14,7 @@
                         </h2>
                     </div>
                     <div class="col-sm-4 text-center" id="submitRoundOne" hidden>
-                        <a class="btn btn-lg btn-success" href="#" onclick="alert('submit round 1')">Submit</a>
+                        <a class="btn btn-lg btn-success" href="/RoundThree" onclick="alert('submit round 1')">Submit</a>
                     </div>
                 </div>
 
