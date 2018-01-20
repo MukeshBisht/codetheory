@@ -81,9 +81,6 @@ body {
   
   #langSelect{
 	margin-top:20px;
-	position: inherit;
-	margin-left:150px;
-	width:60%;
   }
 
   /* Styling for devices having screen width less then 500px*/

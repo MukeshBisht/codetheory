@@ -3,10 +3,12 @@
         <html>
 
         <head>
+            <script src="<c:url value=" /resources/script/RoundThree.js " />"></script>
             <script src="<c:url value=" /resources/lib/codemirror/lib/codemirror.js " />"></script>
             <script src="<c:url value=" /resources/lib/codemirror/mode/javascript/javascript.js " />"></script>
             <link rel='stylesheet' href="<c:url value=" /resources/lib/codemirror/lib/codemirror.css "/>" type='text/css' media='screen'/>
             <script src="\resources\lib\codemirror\mode\clike\clike.js"></script>
+            
         </head>
 
         <body>
@@ -20,7 +22,7 @@
                 <h1>Round 3</h1>
                 <div class="row">
                     <!-- Question Seciton -->
-                    <div class=" col-md-6">
+                    <div class=" col-md-5">
                         <section class="cardView">
                             <p>
                                 <h3>Question</h3> 
@@ -39,7 +41,7 @@
                         </section>
                     </div>
                     <!-- Editor Section -->
-                    <section class="col-md-6" id="editor">
+                    <section class="col-md-7" id="editor">
                         <!-- <h4>Please Submit Your Solution Below</h4> -->
                         <textarea class="codeMirror ">       
                     </textarea>
@@ -49,16 +51,16 @@
                     </section>
                 </div>
 
-                <div class="row">
-                    <div class="cardView" id="langSelect">
+                <div class="row text-right">
+                    <div class="cardView col-md-4" id="langSelect">
                         <label for="edit-language">Language:</label>
                         <select name="language" class="form-control" onclick="setMode(value)">
                             <option value="1" selected="selected">C</option>
                             <option value="2">C++</option>
                             <option value="3">C#</option>
-                            <option value="4">Go(go 1.7.4)</option>
-                            <option value="5">Java</option>
-                            <option value="6">JavaScript</option>
+                            <option value="4">Java</option>
+                            <option value="5">JavaScript</option>
+                            <option value="6">Go(go 1.7.4)</option>
                             <option value="7">Kotlin(kotlin 1.0.6)</option>
                             <option value="8">PHP(php 7.1.0)</option>
                             <option value="9">Python(cpython 2.7.13)</option>
@@ -66,7 +68,7 @@
                             <option value="11">Ruby(ruby 2.3.3)</option>
                         </select>
                         <br>
-                        <a input type="button" class="btn btn-primary">Run&nbsp;
+                        <a onclick="runCode()" type="button" class="btn btn-primary">Run&nbsp;
                             <i class="fa fa-cog"></i>
                         </a>
                     </div>

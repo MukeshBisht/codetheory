@@ -5,12 +5,15 @@ $(document).ready(function () {
     var code = $(".codeMirror")[0];
     editor = CodeMirror.fromTextArea(code, {
         lineNumbers: true,
-        value: "#include <stdio.h>",
-        matchBrackets: true,
-        styleActiveLine: true,
-        //  theme : eclipse, 
+        matchBrackets: true, 
         smartIndent: true,
-        mode: 'text/x-csrc'
+        mode: 'text/x-csrc',
+        styleActiveLine: true,
+        indentUnit: 4,
+        indentWithTabs: true,
+        autoCloseTags: true,
+        autoCloseBrackets: true,
+        matchTags: false
     });
 });
 
