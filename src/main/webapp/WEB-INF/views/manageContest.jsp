@@ -9,7 +9,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 cardView">
-                    asf
+                    MANAGE CONTESTS
                 </div>
             </div>
         </div>

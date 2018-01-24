@@ -58,7 +58,18 @@
                                         <ul class="nav navbar-nav">
                                                 <li><a href="/user/profile">Profile</a></li>
                                                 <li><a href="/user/notifications">Notification <span class="badge">4</span></a></li>
-                                                <li><a href="/contest/create"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></li>
+                                                
+                                                <li class="dropdown">
+                                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                                        <span class="glyphicon glyphicon-edit" aria-hidden="true">MyContest</span></a>
+                                                                
+                                                        <ul class="dropdown-menu">
+                                                                <li><a href="/contest/create">Create Contest</a></li>
+                                                                <li><a href="/contest/manage">Manage Contest</a></li>
+                                                                
+                                                        </ul>
+                                                </li>
+                                                
                                                 <li><a href="<c:url value='/logout' />">Logout</a></li>
                                         </ul>
                                 </div>

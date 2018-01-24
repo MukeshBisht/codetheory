@@ -73,12 +73,18 @@
                         <th>Ending Date</th>
                         <th>Status</th>
                         <th>Number of Participants</th>
+                        <th></th>
                         <tr>
                             <td>CodeJam</td>
                             <td>20 June 2018</td>
                             <td>30 June 2018</td>
                             <td>Not Started Yet</td>
                             <td>Not Specified</td>
+                            <td>
+                                <a href="/contest/manage">
+                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                </a>
+                            </td>
                         </tr>
 
                         <tr>
@@ -87,6 +93,11 @@
                             <td>12 March 2018</td>
                             <td>Under Process</td>
                             <td>100</td>
+                            <td>
+                                <a href="/contest/manage">
+                                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                </a>
+                            </td>
                         </tr>
 
                         <tr>
