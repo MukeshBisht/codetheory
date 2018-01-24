@@ -12,5 +12,11 @@ public class ContestController {
 	@RequestMapping(value="/create", method = RequestMethod.GET)
 	public String createContest(Model model) {
 		return "createContest";
-    }
+	}
+	
+	@RequestMapping(value="/manage", method = RequestMethod.GET)
+	public String manageContest(Model model) {
+		return "manageContest";
+	}
+	
 }

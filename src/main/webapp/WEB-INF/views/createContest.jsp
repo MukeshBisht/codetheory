@@ -20,10 +20,12 @@
                     $('#endtimepicker').datetimepicker();
                 });
             </script>
-            <div class="container">
-                <div class="row">
-                    <h3>Create Contest</h3>
-                    <p>Host your own contest on CodeTheory.</p>
+
+            <section>
+            <div class="container cardView">
+                <div class="row ">
+                    <h3>&nbsp;Create Contest</h3>
+                    <p>&nbsp;Host your own contest on CodeTheory.</p><br>
                 </div>
 
                 <div class="form-group col-lg-12">
@@ -57,7 +59,56 @@
                     </div>
                 </div>
 
+                <button class="btn btn-success">create contest</button><br>
             </div>
+            
+                <div class="container bmargin">
+                    <table class="table">
+                        <h3>
+                            Contests Created By @username
+                        </h3>
+
+                        <th>Contest Name</th>
+                        <th>Starting Date</th>
+                        <th>Ending Date</th>
+                        <th>Status</th>
+                        <th>Number of Participants</th>
+                        <tr>
+                            <td>CodeJam</td>
+                            <td>20 June 2018</td>
+                            <td>30 June 2018</td>
+                            <td>Not Started Yet</td>
+                            <td>Not Specified</td>
+                        </tr>
+
+                        <tr>
+                            <td>CodeChamp</td>
+                            <td>11 March 2018</td>
+                            <td>12 March 2018</td>
+                            <td>Under Process</td>
+                            <td>100</td>
+                        </tr>
+
+                        <tr>
+                            <td>CodeThunder</td>
+                            <td>01 Nov 2017</td>
+                            <td>02 Nov 2017</td>
+                            <td>Finished</td>
+                            <td>150</td>
+                        </tr>
+                        
+                        <tr>
+                                <td>SnackDown</td>
+                                <td>01 June 2017</td>
+                                <td>02 June 2017</td>
+                                <td>Finished</td>
+                                <td>50</td>
+                            </tr>
+
+                    </table>
+                </div>
+            </div>
+            </section>
             <!-- footer -->
             <jsp:include page="/WEB-INF/shared/footer.jsp" />
         </body>
