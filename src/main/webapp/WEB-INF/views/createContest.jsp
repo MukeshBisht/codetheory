@@ -59,6 +59,24 @@
                     </div>
                 </div>
 
+                <div class='col-sm-12'>
+                        <div class="form-group">
+                            <label> Orgranization Name </label>
+                             <input type='text' class="form-control" />        
+                        </div>
+                </div>
+
+                <div class='col-sm-12 form-group'>                                
+                    <label> Orgranization Type </label><br>
+                    <select class="form-control">
+                        <option disabled selected value> -- select an option -- </option>
+                        <option>School</option>
+                        <option>Collage</option>
+                        <option>Individual</option>
+                        <option>Other</option>
+                    </select>  
+                </div>
+    
                 <button class="btn btn-success">create contest</button><br>
             </div>
             

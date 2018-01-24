@@ -5,10 +5,12 @@ function startTimer() {
   var m = timeArray[0];
   var s = checkSecond((timeArray[1] - 1));
   if(s==59){m=m-1}
-  //if(m<0){alert('timer completed')}
   
-  document.getElementById('starttimer').innerHTML =
-    m + ":" + s;
+  if (m == 0 && s == 1){
+    document.getElementById ('submitRound').click();
+  }
+  
+  document.getElementById('starttimer').innerHTML = m + ":" + s;
   setTimeout(startTimer, 1000);
 }
 

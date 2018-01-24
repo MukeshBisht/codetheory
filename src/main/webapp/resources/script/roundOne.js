@@ -27,7 +27,7 @@ function loadQuestion(){
     var time = $('#timeSelect option:selected').val();
     var t;
     if (time == "10 minutes")
-        t = 10;
+        t = 1;
     else if (time == "20 minutes") {
         t = 20; 
     } else {
@@ -44,7 +44,7 @@ function buildOptionSideBar(index) {
     // <!--Radio group-->
     for (j = 0; j < 4; j++) {
         option += '<div class=" form-group cardView">';
-        option += '<input name="' + index + '" type="radio" class="with-gap " id="' + j + '">';
+        option += '<input name="op" type="radio" class="with-gap" onclick="changeColor('+(index+1)+')">';
         option += '<label for="' + j + '">' + data[index].options[j] + '</label>';
         option += '</div>';
     }
@@ -86,4 +86,9 @@ function showPreview() {
         document.getElementById('previewbody').innerHTML = modal;
     }
     $("#previewModal").modal("toggle");
+}
+
+function changeColor (id){
+    var change = document.getElementById (id);
+    change.style.color = "green";
 }
