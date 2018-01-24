@@ -9,7 +9,8 @@ function loadQuestion(){
                 for ( i=0;i<response.length;i++){
                     question_data += '<a hre="#" onclick="getQuestion(id)" id="'+(i+1);
                     question_data += '" id="questionList" style="color:black;text-decoration:none;cursor:pointer"><br>';
-                    question_data +=  (i+1)+ ' : '+response[i].question +'';              
+                    question_data +=  (i+1)+ ' : '+response[i].question +'';   
+                    data[i].selected = -1;           
                }                            
                 $('#showQuestion').html(question_data);
                 $('#roundOneInstruction').hide();
@@ -44,7 +45,7 @@ function buildOptionSideBar(index) {
     // <!--Radio group-->
     for (j = 0; j < 4; j++) {
         option += '<div class=" form-group cardView">';
-        option += '<input name="op" type="radio" class="with-gap" onclick="changeColor('+(index+1)+')">';
+        option += '<input name="op" type="radio" class="with-gap" onclick="changeColor('+(index+1)+','+(j+1)+')">';
         option += '<label for="' + j + '">' + data[index].options[j] + '</label>';
         option += '</div>';
     }
@@ -75,20 +76,24 @@ function getQuestion(quesId) {
  
 function showPreview() {  
     var modal = '';
+
     for (i = 0; i < data.length; i++) {
         var j = i+1;
         modal += '<span class="label lb-lg ';
-        //if(data[i] is marked)
-        // modal += 'label-success">';
-        //else
-        modal += 'label-default" onclick="getQuestion('+j+')">';
+        if(data[i].selected > 0){
+          modal += 'label-success">';
+        }
+        else {
+            modal += 'label-default" onclick="getQuestion('+j+')">';
+        }
         modal += j +'</span>';
         document.getElementById('previewbody').innerHTML = modal;
     }
     $("#previewModal").modal("toggle");
 }
 
-function changeColor (id){
-    var change = document.getElementById (id);
+function changeColor (i , j){
+    var change = document.getElementById (i);
     change.style.color = "green";
+    data[i-1].selected = j;
 }
