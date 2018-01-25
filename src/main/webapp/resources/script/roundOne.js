@@ -79,11 +79,12 @@ function showPreview() {
         var j = i+1;
         modal += '<span class="label lb-lg ';
         if(data[i].selected > 0){
-          modal += 'label-success">';
+          modal += 'label-success" ';
         }
         else {
-            modal += 'label-default" onclick="getQuestion('+j+')">';
+            modal += 'label-default" ';
         }
+        modal += 'onclick="getQuestion('+j+')">';
         modal += j +'</span>';
         document.getElementById('previewbody').innerHTML = modal;
     }

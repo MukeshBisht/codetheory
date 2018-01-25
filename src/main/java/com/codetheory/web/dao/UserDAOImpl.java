@@ -1,19 +1,16 @@
 package com.codetheory.web.dao;
-
 import com.codetheory.web.model.User;
 import com.codetheory.web.viewModel.Register;
-
-import java.sql.Types;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.transaction.annotation.Transactional;
 
 
 public class UserDAOImpl implements UserDAO {
 
-    @Autowired
-    JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
     
     public void addUser(User user) {
         String sql = "insert into User values(?,?,?,?)";
@@ -23,7 +20,12 @@ public class UserDAOImpl implements UserDAO {
         });
     }
 
-    // Getting a particular Employee
+    @Autowired
+    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
+    // Getting a particular user
     public User getUserById(int id) {
         String sql = "select * from User where id=?";
         return new User();
@@ -46,11 +48,16 @@ public class UserDAOImpl implements UserDAO {
         return null;
     }
 
-    public void registerUser (Register reg){
-        
-        String sql = "insert into Users (username , password , enabled , name , email) values (? , ? , ? , ? , ?)";
+    //@Transactional(rollbackFor = Exception.class)
+    public void registerUser (Register reg) {      
+        String sql = "insert into users (username , password , enabled , name , email) values (? , ? , ? , ? , ?)";
         jdbcTemplate.update(sql , new Object[] {
             reg.getusername() , reg.getpassword() , 1 , reg.getname() , reg.getemail() 
         });
+        sql = "insert into user_roles (username , role) values (? , ?)";
+        jdbcTemplate.update(sql , new Object[] {
+            reg.getusername() , "USER" 
+        });
+    
     }
 }

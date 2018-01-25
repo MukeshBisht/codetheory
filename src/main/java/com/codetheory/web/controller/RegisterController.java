@@ -26,8 +26,7 @@ public class RegisterController {
     }
 
     @RequestMapping(method=RequestMethod.POST )
-    public String register(@ModelAttribute("registerForm") Register reg){
-        UserDAOImpl dao = new UserDAOImpl();
+    public String register(@ModelAttribute("registerForm") Register reg) {
         dao.registerUser(reg);
         return "home";
     }
