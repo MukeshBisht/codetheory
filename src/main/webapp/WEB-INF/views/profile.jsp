@@ -35,73 +35,125 @@
                         </div>
                     </div>
 
-                <div class="col-md-8 cardView" style="margin-left:10px">
+
+        <div class="row col-md-8" style="margin-left:10px">
+            <!-- Question Seciton -->
+            <div>
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a data-toggle="tab" href="#Details">Details</a>
+                    </li>
+                    
+                    <li>
+                        <a data-toggle="tab" href="#Notifications">Notifications</a>
+                    </li>
+                    
+                    <li>
+                        <a data-toggle="tab" href="#Participation">Participation</a>
+                    </li>
+                    <li>
+                    <a data-toggle="tab" href="#Contribution">Contribution</a>
+                </li>
+                    <li>
+                        <a data-toggle="tab" href="#Security">Security</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div id="Details" class="tab-pane fade in active">
+                        <h3>Personal Details</h3>
+                        <div style="margin-left:10px">
                    
-                    <div class="form-group">
-                        <label path="username">Username</label>
-                        <input path="username" name="username" id="username" value="@imsagar" class="form-control">                                
+                                <div class="form-group">
+                                    <label path="username">Username</label>
+                                    <input path="username" name="username" id="username" value="@imsagar" class="form-control">                                
+                                </div>
+            
+                                <div class="form-group">
+                                        <label path="name">Name</label>
+                                        <input path="name" name="name" id="name" value="Sagar Rawat" class="form-control">                                
+                                </div>
+                
+                                <div class="form-group">
+                                    <label path="email">Email</label>
+                                    <input path="email" name="email" id="email" value="sagarrawat2808@gmail.com" class="form-control">                                
+                                </div>
+            
+                                <div class="form-group">
+                                    <label path="something">Something</label>
+                                    <input path="something" name="something" id="something" value="something" class="form-control">                                
+                                </div>
+                                
+                                <button class="btn btn-success">save changes</button>
+                            </div>
+            
                     </div>
 
-                    <div class="form-group">
-                            <label path="name">Name</label>
-                            <input path="name" name="name" id="name" value="Sagar Rawat" class="form-control">                                
+                    <div id="Notifications" class="tab-pane fade">
+                        <h3>Notifications</h3>
+    
                     </div>
     
-                    <div class="form-group">
-                        <label path="email">Email</label>
-                        <input path="email" name="email" id="email" value="sagarrawat2808@gmail.com" class="form-control">                                
-                    </div>
-
-                    <div class="form-group">
-                        <label path="something">Something</label>
-                        <input path="something" name="something" id="something" value="something" class="form-control">                                
-                    </div>
- 
-                    <div class="form-group">
-                        <label path="something">Something</label>
-                        <input path="something" name="something" id="something" value="something" class="form-control">                                
-                    </div>
-            
-                    <button class="btn btn-success">save changes</button>
-                </div>
-
-            </section>
-
-            <section class="container">
-                <div class="col-md-3"></div> 
-                
-                <div class="col-md-8" data-toggle="collapse" data-target="#accordion">
-                    <button class="btn btn-block btn-default"><h4>Contest Participated</h4></button>
-                    <table class="table table-hover collapse" id="accordion" >
+                    <div id="Participation" class="tab-pane fade">
+                        <h3>Participation</h3>
+                        <table class="table">
                       
-                        <th>Contest Name</th>
-                        <th>Contest Rank</th>
-                        <th>Points Earned</th>
-                        <th>Question Solved</th>
-                    
-                        <tr>
-                            <td>CodeJam</td>
-                            <td>123</td>
-                            <td>85</td>
-                            <td>15</td>
-                        </tr>
+                                <th>Contest Name</th>
+                                <th>Contest Rank</th>
+                                <th>Points Earned</th>
+                                <th>Question Solved</th>
+                            
+                                <tr>
+                                    <td>CodeJam</td>
+                                    <td>123</td>
+                                    <td>85</td>
+                                    <td>15</td>
+                                </tr>
+        
+                                <tr>
+                                    <td>CodeJam</td>
+                                    <td>123</td>
+                                    <td>85</td>
+                                    <td>15</td>
+                                </tr>
+                            
+                                <tr>
+                                        <td>CodeJam</td>
+                                        <td>123</td>
+                                        <td>85</td>
+                                        <td>15</td>
+                                    </tr>
+                            </table>
+                    </div>
 
-                        <tr>
-                            <td>CodeJam</td>
-                            <td>123</td>
-                            <td>85</td>
-                            <td>15</td>
-                        </tr>
-                    
-                        <tr>
-                                <td>CodeJam</td>
-                                <td>123</td>
-                                <td>85</td>
-                                <td>15</td>
-                            </tr>
-                    </table>
+                    <div id="Contribution" class="tab-pane fade">
+                        <h3>Contributed to CodeTheory.in</h3>
+
+                    </div>
+
+                    <div id="Security" class="tab-pane fade">
+                        <h3>Security Settings</h3>
+                        <div class="form-group">
+
+                            <label for="password">Current Password</label>
+                                <input class="form-control" type="password"/> <br/>
+                            
+                            <label for="password">New Password</label>
+                                <input class="form-control" type="password"/> <br/>
+                            
+                            <label for="password">Confirm Password</label>
+                                <input class="form-control" type="password"/> <br/>
+
+                            <input class="btn btn-success" type="button" value="change password"/>
+                            
+                        </div>
+                    </div>
                 </div>
+            </div>
+        </div>
+
+
             </section>
+
         <!-- footer -->
         <jsp:include page="/WEB-INF/shared/footer.jsp" />
     </body>
