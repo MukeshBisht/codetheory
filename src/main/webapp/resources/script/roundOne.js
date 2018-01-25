@@ -39,6 +39,7 @@ function loadQuestion(){
 }
 
 function buildOptionSideBar(index) {
+    if(index < 0) return;
     var option = '';
     option += '<div class="">';
     option += '<h3>' + data[index].question + '</h3>';
@@ -50,20 +51,17 @@ function buildOptionSideBar(index) {
         option += '</div>';
     }
     option += '</div>';
+    option +='<nav><ul class="pager">';
 
-    if (index != 0) {
-        option += '<button class="btn btn-success sideSectionButton" ';
-        option += 'onclick="buildOptionSideBar(' + (index - 1) + ')" id="prev">prev</button>';
-    } else {
-        option += '<button class="btn btn-success sideSectionButton" disabled>prev</button> ';
-    }
-
-    if (index != data.length - 1) {
-        option += '<button class="btn btn-success sideSectionButton" ';
-        option += 'onclick="buildOptionSideBar(' + (index + 1) + ')"id="next">next</button>';
-    } else {
-        option += '<button class="btn btn-success sideSectionButton" disabled>next</button> ';
-    }
+    var p = index;
+    if(index==0)
+        p = -2;
+    option += '<li class="previous"  onclick="buildOptionSideBar('+ (p-1) +')" id="prev"><a href="#">Previous</a></li>';
+    p = index;
+    if(index == data.length - 1)
+        p = -2;
+    option += '<li class="next" onclick="buildOptionSideBar('+ (p+1) +')" id="prev"><a href="#" >Next</a></li>';
+    option += '</ul></nav>';
 
     document.getElementById('sideSection').innerHTML = option;
 }

@@ -17,9 +17,9 @@ function runCode() {
         success: function (response) {
             console.log(response);
             var op = '<p><b>Output</b>    : '+ response.stdout +'</p>';
-               op += '<p><b>Error</b>     : '+ response.stderr +'</p>';
+               op += '<p class="text-danger"><b>Error</b>     : '+ response.stderr +'</p>';
                op += '<p><b>Test</b>      : '+ response.status.description +'</p>';
-               op += '<p><b>Compilter</b> : '+ response.compile_output +'</p>';
+               op += '<p><b>Compiler</b> : '+ response.compile_output +'</p>';
             
             $("#output").html(op);
         },
