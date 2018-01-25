@@ -28,7 +28,7 @@ function loadQuestion(){
     var time = $('#timeSelect option:selected').val();
     var t;
     if (time == "10 minutes")
-        t = 1;
+        t = 10;
     else if (time == "20 minutes") {
         t = 20; 
     } else {

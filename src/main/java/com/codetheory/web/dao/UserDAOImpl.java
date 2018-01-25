@@ -1,7 +1,11 @@
 package com.codetheory.web.dao;
 
 import com.codetheory.web.model.User;
+import com.codetheory.web.viewModel.Register;
+
+import java.sql.Types;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -10,7 +14,7 @@ public class UserDAOImpl implements UserDAO {
 
     @Autowired
     JdbcTemplate jdbcTemplate;
-
+    
     public void addUser(User user) {
         String sql = "insert into User values(?,?,?,?)";
 
@@ -40,5 +44,13 @@ public class UserDAOImpl implements UserDAO {
 
     public List<User> getAllUsers() {
         return null;
+    }
+
+    public void registerUser (Register reg){
+        
+        String sql = "insert into Users (username , password , enabled , name , email) values (? , ? , ? , ? , ?)";
+        jdbcTemplate.update(sql , new Object[] {
+            reg.getusername() , reg.getpassword() , 1 , reg.getname() , reg.getemail() 
+        });
     }
 }

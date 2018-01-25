@@ -2,6 +2,7 @@ package com.codetheory.web.controller;
 
 
 import com.codetheory.web.dao.UserDAO;
+import com.codetheory.web.dao.UserDAOImpl;
 import com.codetheory.web.viewModel.Register;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +27,8 @@ public class RegisterController {
 
     @RequestMapping(method=RequestMethod.POST )
     public String register(@ModelAttribute("registerForm") Register reg){
-        System.out.println(reg.getusername());
-        System.out.println(reg.getpassword());
-        System.out.println(reg.getname());
-        System.out.println(reg.getnewsletter());
-        System.out.println(reg.getnotifications());
-        System.out.println(reg.getemail());
-        return "register";
+        UserDAOImpl dao = new UserDAOImpl();
+        dao.registerUser(reg);
+        return "home";
     }
 }
