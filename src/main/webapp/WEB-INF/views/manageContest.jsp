@@ -42,7 +42,7 @@
                 <div class="tab-content">
                     <div id="Details" class="tab-pane fade in active">
                         <h3>Contest Details</h3>
-                        
+
                     </div>
 
                     <div id="Customization" class="tab-pane fade">
