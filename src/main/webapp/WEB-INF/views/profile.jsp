@@ -17,19 +17,20 @@
                             
                             <label for="Rank" class="text">
                                 Rank :<span>SuperUser</span>
-                            </label>
+                            </label><br/>
                             
                             <label for="Challenge Completed" class="text">
                                 Challenge Completed : <span>280</span>
-                            </label>
+                            </label><br/>
                             
                             <label for="Contest Created" class="text">
                                     Contest Created : <span>10</span>
-                            </label><br>
+                            </label><br/>
 
                             <label for="total points" class="text">
-                                 Total Points: <span>930</span>
-                            </label>
+                                Total Points :
+                                <span>930</span>
+                            </label><br/>
                             
                         </div>
                     </div>
@@ -55,10 +56,51 @@
                         <label path="something">Something</label>
                         <input path="something" name="something" id="something" value="something" class="form-control">                                
                     </div>
+ 
+                    <div class="form-group">
+                        <label path="something">Something</label>
+                        <input path="something" name="something" id="something" value="something" class="form-control">                                
+                    </div>
             
                     <button class="btn btn-success">save changes</button>
                 </div>
 
+            </section>
+
+            <section class="container">
+                <div class="col-md-3"></div> 
+                
+                <div class="col-md-8" data-toggle="collapse" data-target="#accordion">
+                    <button class="btn btn-block btn-default"><h4>Contest Participated</h4></button>
+                    <table class="table table-hover collapse" id="accordion" >
+                      
+                        <th>Contest Name</th>
+                        <th>Contest Rank</th>
+                        <th>Points Earned</th>
+                        <th>Question Solved</th>
+                    
+                        <tr>
+                            <td>CodeJam</td>
+                            <td>123</td>
+                            <td>85</td>
+                            <td>15</td>
+                        </tr>
+
+                        <tr>
+                            <td>CodeJam</td>
+                            <td>123</td>
+                            <td>85</td>
+                            <td>15</td>
+                        </tr>
+                    
+                        <tr>
+                                <td>CodeJam</td>
+                                <td>123</td>
+                                <td>85</td>
+                                <td>15</td>
+                            </tr>
+                    </table>
+                </div>
             </section>
         <!-- footer -->
         <jsp:include page="/WEB-INF/shared/footer.jsp" />
