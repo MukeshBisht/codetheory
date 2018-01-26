@@ -55,20 +55,46 @@
                         </sec:authorize>
                         <sec:authorize access="isAuthenticated()">
                                 <div class="navbar-form navbar-right" style="margin-top : 0px!important">
+                                      
                                         <ul class="nav navbar-nav">
-                                                <li><a href="/user/profile">Profile</a></li>
-                                                <li><a href="/user/notifications">Notification <span class="badge">4</span></a></li>
+                                        <li><a href="/user/profile">Profile</a></li>
+                                        <li class="nav-icon-btn nav-icon-btn-danger dropdown">
+                                            
+                                                <a href="#notifications" class="dropdown-toggle" data-toggle="dropdown">
+                                                        <span class="small-screen-text">Notifications</span>
+                                                        <span class="badge">3</span>
+                                                </a>
+
+                                                <!-- NOTIFICATIONS -->
+                                                <div class="dropdown-menu cardView" style="width: 300px;border-radius:5px;font-family:tahoma">
+                                                        <div class="notifications-list" id="navbar-notifications">
+
+                                                                <div class="notification">
+                                                                        <strong class="text-primary">Contest Invite : </strong>
+                                                                        <p>Take part in CodeChamp Held in 28/03/2018 for free. And get Exciting prices.</p>
+                                                                </div>
+                                                                
+                                                                <div class="notification">
+                                                                        <strong class="text-primary">Contest Invite : </strong>
+                                                                        <p>Take part in CodeChamp Held in 28/03/2018 for free. And get Exciting prices.</p>
+                                                                </div>
+                                                                
+                                                                <div class="notification">
+                                                                        <strong class="text-primary">Contest Invite : </strong>
+                                                                        <p>Take part in CodeChamp Held in 28/03/2018 for free. And get Exciting prices.</p>
+                                                                </div>
                                                 
-                                                <li class="dropdown">
-                                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                                        <span class="glyphicon glyphicon-edit" aria-hidden="true">MyContest</span></a>
-                                                                
-                                                        <ul class="dropdown-menu">
-                                                                <li><a href="/contest/create">Create Contest</a></li>
-                                                                <li><a href="/contest/manage">Manage Contest</a></li>
-                                                                
-                                                        </ul>
+                                                        </div> 
+
+                                                        <a href="#" class="notifications-link">see all Notifications</a>
+                                                   
+                                                        </div> <!-- / .dropdown-menu -->
                                                 </li>
+
+                                                <li><a href="/contest/create">My Contest</a></li>
+                                              
+                                                
+
                                                 
                                                 <li><a href="<c:url value='/logout' />">Logout</a></li>
                                         </ul>

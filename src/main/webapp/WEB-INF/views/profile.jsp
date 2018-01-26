@@ -17,11 +17,6 @@
                         <label for="username" class="h3">@imsagar</label>
                         <div>
 
-                            <c:forEach items="${cardList.cards}" var="card">
-                                <p>${card.name}</p>
-                            </c:forEach>
-
-                            
                             <label for="Rank" class="text">
                                 Rank :<span>SuperUser</span>
                             </label><br/>
@@ -43,6 +38,7 @@
                     </div>
 
 
+                    
         <div class="row col-md-8" style="margin-left:10px">
             <!-- Question Seciton -->
             <div>
