@@ -1,20 +1,40 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page isELIgnored = "false" %>
 
-<form:form method="POST" >
-<div class="form-group col-lg-12">
-        <label>Contest Name
-            <label>
-                <input name="contestname" id="contestname" placeholder="Contest Name" class="form-control" required="true"/>
-                <div id="uname_response" class="response"></div>
+
+<script src="<c:url value=" /resources/script/moment.js " />"></script>
+<script src="<c:url value=" /resources/script/bootstrap-datetimepicker.js " />"></script>
+<link rel='stylesheet' href="<c:url value=" /resources/css/bootstrap-datetimepicker.css "/>" type='text/css' media='screen'/>
+<script type="text/javascript">
+    $(function () {
+        $('#starttimepicker').datetimepicker({
+           // format : "YYYY-MM-DD HH:mm:ss"
+        });
+        $('#endtimepicker').datetimepicker({
+            //format : "YYYY-MM-DD HH:mm:ss"
+        });
+
+        $(".clickable-row").click(function(){
+            window.location = $(this).data("href");
+        });
+    });
+</script>
+
+<form:form method="POST" action="${action}" modelAttribute="contest">
+<c:if test="${not update}">
+    <div class="form-group col-lg-12">
+        <form:label path="contestname">Contest Name</form:label>
+        <form:input path="contestname" name="contestname" id="contestname" placeholder="Contest Name" class="form-control" required="true"/>
+        <div id="uname_response" class="response"></div>
     </div>
+</c:if>
     <div class='col-sm-12'>
         <div class="form-group">
-            <label>Starting
-                <label>
+                <form:label path="startDate">Starting</form:label>
                     <div class='input-group date' id='starttimepicker'>
-                        <input type='text' class="form-control" />
+                        <form:input type='text' path="startDate" class="form-control" required="true"/>
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
@@ -23,10 +43,9 @@
     </div>
     <div class='col-sm-12'>
         <div class="form-group">
-            <label>Ending
-                <label>
+                <form:label path="endDate">Ending</form:label>
                     <div class='input-group date' id='endtimepicker'>
-                        <input type='text' class="form-control" />
+                        <form:input path="endDate" type='text' class="form-control" required="true"/>
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
@@ -36,23 +55,26 @@
 
     <div class='col-sm-12'>
         <div class="form-group">
-            <label> Orgranization Name </label>
-            <input type='text' class="form-control" />
+            <form:label path="orgName">Orgranization Name</form:label>
+            <form:input path="orgName" type='text' placeholder="Orgranization Name" class="form-control" required="true"/>
         </div>
     </div>
 
     <div class='col-sm-12 form-group'>
-        <label> Orgranization Type </label>
-        <br>
-        <select class="form-control">
+        <form:label path="orgType" required="true">Orgranization Type</form:label>
+        <!-- <br> -->
+        <form:select path="orgType" class="form-control">
             <option disabled selected value> -- select an option -- </option>
-            <option>School</option>
-            <option>Collage</option>
-            <option>Individual</option>
-            <option>Other</option>
-        </select>
+            <form:options items="${orgs}" itemLabel="name"/>
+        </form:select>
     </div>
-
-    <button class="btn btn-success">create contest</button>
-</form:form>
     
+    <button type="submit" class="btn btn-success pull-right">
+        <c:if test="${not update}">
+            Create
+        </c:if>
+        <c:if test="${update}">
+            Update
+        </c:if>
+    </button>
+</form:form>

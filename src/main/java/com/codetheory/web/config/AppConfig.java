@@ -1,9 +1,6 @@
 package com.codetheory.web.config;
 
-import com.codetheory.web.dao.QuestionDAO;
-import com.codetheory.web.dao.QuestionDAOImpl;
-import com.codetheory.web.dao.UserDAO;
-import com.codetheory.web.dao.UserDAOImpl;
+import com.codetheory.web.dao.*;
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
@@ -60,6 +57,11 @@ public class AppConfig implements WebMvcConfigurer {
 	@Bean
 	public QuestionDAO getquestionDAO() {
 		return new QuestionDAOImpl();
+	}
+
+	@Bean
+	public ContestDAO getContestDAO() {
+		return new ContestDAOImpl();
 	}
 
 	@Bean

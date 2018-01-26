@@ -21,7 +21,7 @@ CREATE TABLE `user_roles` (
   CONSTRAINT `fk_username` FOREIGN KEY (`username`) REFERENCES `users` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
-# quiz_question table
+# quiz_question table  
 CREATE TABLE `quiz_question` (
   `id` int(11) NOT NULL,
   `question` varchar(255) NOT NULL,
@@ -32,3 +32,21 @@ CREATE TABLE `quiz_question` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
   
+# contests table  
+CREATE TABLE `contests` (
+  `contestName` varchar(45) NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT '0',
+  `orgType` tinyint(4) NOT NULL DEFAULT '0',
+  `orgName` varchar(45) NOT NULL,
+  `startDate` datetime NOT NULL,
+  `endDate` datetime NOT NULL,
+  `creationDate` datetime NOT NULL,
+  PRIMARY KEY (`contestName`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+# user_contests table  
+CREATE TABLE `user_contests` (
+  `contest` varchar(45) NOT NULL,
+  `user` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

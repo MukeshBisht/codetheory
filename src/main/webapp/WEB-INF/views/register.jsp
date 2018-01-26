@@ -71,6 +71,6 @@
                 </div>
             </section>
     </form:form>
-    <div class="space"></div>
+    <!-- <div class="space"></div> -->
     <!-- footer -->
     <jsp:include page="/WEB-INF/shared/footer.jsp" />

@@ -1,52 +1,29 @@
 package com.codetheory.web.viewModel;
 
-import java.util.Date;
+import com.codetheory.web.model.Contest;
 
-public class RowContest {
+public class RowContest extends Contest{
 
-    private String contestid;
-    private String contestName;
-    private Date startingDate;
-    private Date creationDate;
+	//Contest
+	// private String contestname;
+	// private Date startDate;
+	// private Date endDate;
+	// private Date creationDate;
+	// private String orgName;
+	// private OrganizationType orgType;
+
+	public RowContest(){
+		super.setContestname("Java9");
+		status = "not started";
+	}
+	public RowContest(Contest con){
+		super(con);
+		status = "not started";
+	}
+
     private String status;
-    private int participants;
-
-	/**
-	 * @return the contestName
-	 */
-	public String getContestName() {
-		return contestName;
-	}
-	/**
-	 * @param contestName the contestName to set
-	 */
-	public void setContestName(String contestName) {
-		this.contestName = contestName;
-	}
-	/**
-	 * @return the startingDate
-	 */
-	public Date getStartingDate() {
-		return startingDate;
-	}
-	/**
-	 * @param startingDate the startingDate to set
-	 */
-	public void setStartingDate(Date startingDate) {
-		this.startingDate = startingDate;
-	}
-	/**
-	 * @return the creationDate
-	 */
-	public Date getCreationDate() {
-		return creationDate;
-	}
-	/**
-	 * @param creationDate the creationDate to set
-	 */
-	public void setCreationDate(Date creationDate) {
-		this.creationDate = creationDate;
-	}
+	private int participants;
+	
 	/**
 	 * @return the status
 	 */
@@ -70,17 +47,5 @@ public class RowContest {
 	 */
 	public void setParticipants(int participants) {
 		this.participants = participants;
-	}
-	/**
-	 * @return the contestid
-	 */
-	public String getContestid() {
-		return contestid;
-	}
-	/**
-	 * @param contestid the contestid to set
-	 */
-	public void setContestid(String contestid) {
-		this.contestid = contestid;
 	}
 }
