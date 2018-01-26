@@ -8,12 +8,19 @@
         <jsp:include page="/WEB-INF/shared/header.jsp" />
         
         <!-- page body -->
-
+        <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+        <%@page isELIgnored = "false" %>
+    
             <section class="container">
                 <div class="text-center cardView col-md-3">
                         <i class="fa fa-user " style="font-size:250px" aria-hidden="true"></i>
                         <label for="username" class="h3">@imsagar</label>
                         <div>
+
+                            <c:forEach items="${cardList.cards}" var="card">
+                                <p>${card.name}</p>
+                            </c:forEach>
+
                             
                             <label for="Rank" class="text">
                                 Rank :<span>SuperUser</span>
