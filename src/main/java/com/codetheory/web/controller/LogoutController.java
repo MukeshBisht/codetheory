@@ -19,7 +19,7 @@ public class LogoutController{
             new SecurityContextLogoutHandler().logout(request, response, authentication);
             request.getSession().invalidate();
         }
-
-        return "redirect:/";
+        
+        return "home";
     }
 }

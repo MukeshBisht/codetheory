@@ -8,20 +8,6 @@
 <body>
     <!-- header -->
     <jsp:include page="/WEB-INF/shared/header.jsp" />
-    <script src="<c:url value=" /resources/script/moment.js " />"></script>
-    <script src="<c:url value=" /resources/script/bootstrap-datetimepicker.js " />"></script>
-    <link rel='stylesheet' href="<c:url value=" /resources/css/bootstrap-datetimepicker.css "/>" type='text/css' media='screen'
-    />
-    <link rel='stylesheet' href="<c:url value=" /resources/css/jsgrid.min.css "/>" type='text/css' media='screen' />
-    <link rel='stylesheet' href="<c:url value=" /resources/css/jsgrid-theme.css "/>" type='text/css' media='screen' />
-    <script src="<c:url value=" /resources/script/jsgrid.js " />"></script>
-    <script type="text/javascript">
-        $(function () {
-            $('#starttimepicker').datetimepicker();
-            $('#endtimepicker').datetimepicker();
-        });
-    </script>
-
     <div class="container">
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
             <div class="panel panel-default">
@@ -35,39 +21,39 @@
                 </div>
                 <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                     <div class="panel-body">
-                        <jsp:include page="/WEB-INF/views/contestdetail.jsp"/>
+                        <jsp:include page="/contest/new"/>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="container bmargin">
-        <table class="table">
+        <div class="table-responsive">
+        <table class="table table-striped table-hover">
             <h3>
-                Contests Created By @username
+                Contests Created By ${newContest.user}
             </h3>
 
-            <th>Contest Name</th>
-            <th>Starting Date</th>
-            <th>Creation Date</th>
-            <th>Status</th>
-            <th>Number of Participants</th>
+            <th scope="col">Contest Name</th>
+            <th scope="col">Starting Date</th>
+            <th scope="col">Creation Date</th>
+            <th scope="col">Status</th>
+            <th scope="col">Participants</th>
             <th></th>
             <c:forEach items="${newContest.myContests}" var="con">
-            <tr>
-                <td>${con.contestName}</td>
-                <td>${con.startingDate}</td>
+            <tr class="clickable-row" data-href="/contest/manage/${con.contestname}">
+                <td>${con.contestname}</td>
+                <td>${con.startDate}</td>
                 <td>${con.creationDate}</td>
                 <td>${con.status}</td>
                 <td>${con.participants}</td>
                 <td>
-                    <a href="/contest/manage/${con.contestid}">
-                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-                    </a>
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>                   
                 </td>
             </tr>
-    </c:forEach>
+        </c:forEach>
         </table>
+    </div>
     </div>
     </div>
     </section>

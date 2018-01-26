@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@page isELIgnored = "false" %>
 <html>
 
 <head></head>
@@ -10,9 +12,9 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
-                <h3>CodeJam</h3>
+                <h3>${contest}</h3>
                 <p>
-                    <a href="/contest/codejam2018" target="_blank">www.codetheory.com/contest/codejam2018</a>
+                    <a href="/contest/${contest}" target="_blank">www.codetheory.com/contest/${contest}</a>
                 </p>
             </div>
         </div>
@@ -42,7 +44,7 @@
                 <div class="tab-content">
                     <div id="Details" class="tab-pane fade in active">
                         <h3>Contest Details</h3>
-
+                        <jsp:include page="/contest/update/${contest}"/>
                     </div>
 
                     <div id="Customization" class="tab-pane fade">
