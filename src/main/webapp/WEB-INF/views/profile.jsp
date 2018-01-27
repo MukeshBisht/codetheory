@@ -14,7 +14,7 @@
             <section class="container">
                 <div class="text-center cardView col-md-3">
                         <i class="fa fa-user " style="font-size:250px" aria-hidden="true"></i>
-                        <label for="username" class="h3">@${username}</label>
+                        <label for="username" class="h3">@${user.username}</label>
                         <div>
 
                             <label for="Rank" class="text">
@@ -64,30 +64,27 @@
                 <div class="tab-content">
                     <div id="Details" class="tab-pane fade in active">
                         <h3>Personal Details</h3>
-                        <div style="margin-left:10px">
+                       
+                        <form class="form" method="POST" modelAttribute="updateForm" style="margin-left:10px">
                    
                                 <div class="form-group">
                                     <label path="username">Username</label>
-                                    <input path="username" name="username" id="username" value="@imsagar" class="form-control">                                
+                                    <input path="username" name="username" id="username" value=${user.username} class="form-control" disabled="true">                                
                                 </div>
             
                                 <div class="form-group">
                                         <label path="name">Name</label>
-                                        <input path="name" name="name" id="name" value="Sagar Rawat" class="form-control">                                
+                                        <input path="name" name="name" id="name" value=${user.name} class="form-control">                                
                                 </div>
                 
                                 <div class="form-group">
                                     <label path="email">Email</label>
-                                    <input path="email" name="email" id="email" value="sagarrawat2808@gmail.com" class="form-control">                                
+                                    <input path="email" name="email" id="email" value=${user.email} class="form-control">                                
                                 </div>
             
-                                <div class="form-group">
-                                    <label path="something">Something</label>
-                                    <input path="something" name="something" id="something" value="something" class="form-control">                                
-                                </div>
-                                
                                 <button class="btn btn-success">save changes</button>
-                            </div>
+                         
+                            </form>
             
                     </div>
 

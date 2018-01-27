@@ -32,13 +32,14 @@ public class UserDAOImpl implements UserDAO {
     }
 
     public User getUserByUsername(String username) {
-        String sql = "select * from User where username=?";
+        String sql = "select * from Users where username=?";
         User user = new User();
-        
+
         Map row = jdbcTemplate.queryForMap(sql, username);
         
         user.setUsername(username);
         user.setEmail(row.get("email").toString());
+        user.setName(row.get("name").toString());
 
         return user;
     }
@@ -46,6 +47,12 @@ public class UserDAOImpl implements UserDAO {
 
     public void updateUser(User user) {
 
+        String sql = "UPDATE users SET email=? , name=? WHERE username=?";
+        jdbcTemplate.update (sql, new Object[] {
+            user.getEmail(), 
+            user.getName() ,
+            user.getUsername()
+        });
     }
 
     public void deleteUser(int id) {

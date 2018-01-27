@@ -4,9 +4,10 @@ package com.codetheory.web.model;
 public class User {
     private Long id;
     private String username;
+    private String name;
     private String password;
     private String email;
-
+    
     public void setId (long id){
         this.id = id;
     }
@@ -19,6 +20,13 @@ public class User {
     }
     public String getUsername (){
         return this.username;
+    }
+
+    public void setName (String name){
+        this.name = name;
+    }
+    public String getName (){
+        return this.name;
     }
 
     public void setEmail (String email){

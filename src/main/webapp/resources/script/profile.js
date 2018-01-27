@@ -1,4 +1,5 @@
-$("#confirm_password").keyup(function () {
+$(function(){
+    $("#confirm_password").keyup(function () {
         var pass = $("#password").val().trim();
         var cpass = $("#confirm_password").val().trim();
         if(cpass != ''){
@@ -13,4 +14,5 @@ $("#confirm_password").keyup(function () {
         $("#cpassword_chk").hide();
     }
     console.log ("asdfghjk");
+    });
 });
