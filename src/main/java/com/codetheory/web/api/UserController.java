@@ -1,8 +1,10 @@
 package com.codetheory.web.api;
 
 import com.codetheory.web.dao.UserDAO;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,5 +24,10 @@ public class UserController {
             return new ResponseEntity<>("1", HttpStatus.OK);
         }
         return new ResponseEntity<>("0", HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/suggestion/{uname}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<String> userSuggestions(@PathVariable("uname") String uname) {
+        return dao.suggest(uname);
     }
 }

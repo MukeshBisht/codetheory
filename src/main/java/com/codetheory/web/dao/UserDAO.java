@@ -12,4 +12,5 @@ public interface UserDAO {
     public boolean userExist(String username);
     public List<User> getAllUsers();
     public void registerUser (Register reg);
+    public List<String> suggest(String name);
 }

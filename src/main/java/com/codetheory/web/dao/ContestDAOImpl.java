@@ -16,9 +16,9 @@ public class ContestDAOImpl implements ContestDAO{
         jdbcTemplate.update(sql , new Object[] {
             con.getContestname(), con.getOrgType().getValue(), con.getOrgName(), con.getStartDate(), con.getEndDate(), con.getCreationDate()
         });
-        sql = "insert into User_contests (contest , user) values (? , ?)";
+        sql = "insert into User_contests (contest , user, role) values (? , ?, ?)";
         jdbcTemplate.update(sql , new Object[] {
-            con.getContestname(), user
+            con.getContestname(), user, "owner"
         });
 	}
 

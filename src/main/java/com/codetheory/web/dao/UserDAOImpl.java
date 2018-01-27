@@ -60,4 +60,9 @@ public class UserDAOImpl implements UserDAO {
         });
     
     }
+
+    public List<String> suggest(String name) {
+        String sql = "select username from Users where username like ?";
+        return (List<String>)jdbcTemplate.queryForList(sql, new String[]{ name +'%' }, String.class);
+    }
 }

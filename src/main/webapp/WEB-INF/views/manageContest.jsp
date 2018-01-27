@@ -5,9 +5,12 @@
 <head></head>
 
 <body>
-
     <!-- header -->
     <jsp:include page="/WEB-INF/shared/header.jsp" />
+    <script src="<c:url value=" /resources/script/ContestMgmt.js" />"></script>
+    <script src="<c:url value=" /resources/script/jquery-ui.js" />"></script>
+    <link rel='stylesheet' href="<c:url value=" /resources/css/jquery-ui.css "/>" type='text/css'/>
+
 
     <div class="container">
         <div class="row">
@@ -44,27 +47,39 @@
                 <div class="tab-content">
                     <div id="Details" class="tab-pane fade in active">
                         <h3>Contest Details</h3>
+                        <p>Edit contest details</p>
                         <jsp:include page="/contest/update/${contest}"/>
                     </div>
 
                     <div id="Customization" class="tab-pane fade">
                         <h3>Landing Page Customization</h3>
-
+                        <p>Change content on landing page</p>
                     </div>
 
                     <div id="Content" class="tab-pane fade">
-                        <h3>Manage Contest Content</h3>
-
+                        <h3>Manage Contest Content</h3>                   
                     </div>
 
                     <div id="Moderators" class="tab-pane fade">
                         <h3>Moderators</h3>
-
+                        <p>Users with moderator access can edit this contest</p>
+                        <div class="input-group">
+                            <span class="input-group-addon">Add Moderator </span>
+                            <input type="text" id="modselect" class="form-control" placeholder="Username eg. john12">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" onclick="addModerator()" type="button">Add</button>
+                              </span>                        
+                        </div>
+                        <br/>
+                        <h4>Current Moderators</h4>
+                        <i class="fa fa-cog fa-spin fa-3x fa-fw" id="outloading"></i>
+                        <div id="modList">                         
+                        </div>
                     </div>
 
                     <div id="Notifications" class="tab-pane fade">
                         <h3>Notifications Settings</h3>
-
+                        <p>Notification to send to the user when they signup for this contest</p>
                     </div>
 
                     <div id="Advance" class="tab-pane fade">
