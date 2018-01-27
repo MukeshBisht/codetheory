@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 import org.springframework.web.servlet.ModelAndView;
 
@@ -33,12 +35,18 @@ public class ProfileController {
 	@RequestMapping (method = RequestMethod.POST)
 	public ModelAndView setProfile (@ModelAttribute("updateForm") User userDetail ,Principal principal){
 		ModelAndView modelandview = new ModelAndView("profile");
-		
 		String username = principal.getName();
 		userDetail.setUsername (username);
 		dao.updateUser(userDetail);
-		User user = dao.getUserByUsername (username);
-		modelandview.addObject(user);
+		modelandview.addObject(userDetail);
 		return modelandview;
+	}
+
+	@RequestMapping (value="/changePass" , method = RequestMethod.POST)
+	public ModelAndView changePassword (@RequestParam ("password")String password ,
+									@RequestParam ("newpassword")String newpassword , 
+									Principal principal ){
+		dao.updateUser (password , newpassword , principal.getName());
+		return new ModelAndView("redirect:/user/profile");
 	}
 }

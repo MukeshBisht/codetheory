@@ -8,6 +8,7 @@
     <body>
         <!-- header -->
         <jsp:include page="/WEB-INF/shared/header.jsp" />
+        <script src="<c:url value=" /resources/script/profile.js" />"></script>
         
         <!-- page body -->
       
@@ -132,20 +133,21 @@
 
                     <div id="Security" class="tab-pane fade">
                         <h3>Security Settings</h3>
-                        <div class="form-group">
+                        <form class="form-group" method="POST" action="/user/profile/changePass">
 
                             <label for="password">Current Password</label>
-                                <input class="form-control" type="password"/> <br/>
+                                <input class="form-control" id="password" name="password" type="password" required="true"/> <br/>
                             
                             <label for="password">New Password</label>
-                                <input class="form-control" type="password"/> <br/>
+                                <input class="form-control" id="newpassword" name="newpassword" type="password" required="true"/> <br/>
                             
                             <label for="password">Confirm Password</label>
-                                <input class="form-control" type="password"/> <br/>
-
-                            <input class="btn btn-success" type="button" value="change password"/>
+                                <input class="form-control" id="cnewpassword" type="password" required="true"/> <br/>
+                                <div id="cpassword_chk" class="response"></div> 
+                                
+                            <button class="btn btn-success">change password</button>
                             
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>

@@ -55,6 +55,16 @@ public class UserDAOImpl implements UserDAO {
         });
     }
 
+    public int updateUser(String pass , String newpass , String username){
+
+        String sql = "update users set password = if (password = ? , ?, password ) where username = ?";
+        int status =jdbcTemplate.update (sql , new Object[]{
+           pass , newpass , username 
+        });
+        return status;
+    }
+
+
     public void deleteUser(int id) {
 
     }
