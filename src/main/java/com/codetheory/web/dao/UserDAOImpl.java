@@ -2,7 +2,7 @@ package com.codetheory.web.dao;
 import com.codetheory.web.model.User;
 import com.codetheory.web.viewModel.Register;
 import java.util.List;
-
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,6 +30,19 @@ public class UserDAOImpl implements UserDAO {
         String sql = "select * from User where id=?";
         return new User();
     }
+
+    public User getUserByUsername(String username) {
+        String sql = "select * from User where username=?";
+        User user = new User();
+        
+        Map row = jdbcTemplate.queryForMap(sql, username);
+        
+        user.setUsername(username);
+        user.setEmail(row.get("email").toString());
+
+        return user;
+    }
+
 
     public void updateUser(User user) {
 
