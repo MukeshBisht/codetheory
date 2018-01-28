@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class LogoutController{
+public class SecurityController{
     
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     public String logout(HttpServletRequest request, HttpServletResponse response){
@@ -20,6 +20,11 @@ public class LogoutController{
             request.getSession().invalidate();
         }
         
+        return "home";
+    }
+
+    @RequestMapping(value="/login", method = RequestMethod.GET)
+    public String login(HttpServletRequest request, HttpServletResponse response){
         return "home";
     }
 }

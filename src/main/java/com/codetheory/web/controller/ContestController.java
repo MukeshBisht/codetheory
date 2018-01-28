@@ -87,6 +87,7 @@ public class ContestController {
 			return "redirect:/contest/create";
 		}
 		model.addAttribute("contest", name);
+		//model.addAttribute("owner", user);
 		return "manageContest";
 	}	
 }

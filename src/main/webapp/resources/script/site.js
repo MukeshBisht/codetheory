@@ -9,7 +9,6 @@ $(document).ajaxStart(function(){
 var no = 0
 
 function loadCard() {
-    $("html, body").animate({ scrollTop: $(document).height()}, 1000);
     $.ajax({
         type: "GET",
         url: "/home/cards/" + no,
@@ -19,4 +18,9 @@ function loadCard() {
             console.log(no);
         }
     });
+}
+
+function loadAndScroll(){
+    $("html, body").animate({ scrollTop: $(document).height()}, 1000);
+    loadCard();
 }

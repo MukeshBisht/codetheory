@@ -3,6 +3,7 @@ package com.codetheory.web.dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import com.codetheory.web.model.Contest;
+import com.codetheory.web.model.UserContestMap;
 import java.util.List;
 
 public class ContestDAOImpl implements ContestDAO{
@@ -46,5 +47,27 @@ public class ContestDAOImpl implements ContestDAO{
 	public List<Contest> getContestsByUser(String username){
 		String sql = "SELECT * FROM contests C inner join user_contests UC on C.contestName = UC.contest where UC.user = ?";
 		return jdbcTemplate.query(sql, new String[]{username}, new ContestMapper());
+	}
+
+	@Override
+	public void addModerators(String con, String user) {		
+        String sql = "insert into User_contests (contest , user, role) values (? , ?, ?)";
+        jdbcTemplate.update(sql , new Object[] {
+            con, user, "moderator"
+        });
+	}
+
+	@Override
+	public List<UserContestMap> getContestsEditors(String contest) {
+		String sql = "select * from User_contests where contest = ?";
+		return jdbcTemplate.query(sql, new String[]{contest}, new UserContestMapper());
+	}
+
+	@Override
+	public void removeEditor(String user, String contest) {
+		String sql = "delete from User_contests where user = ? and contest = ? and role = ?";
+        jdbcTemplate.update(sql , new Object[] {
+            user, contest, "moderator"
+        });
 	}
 }

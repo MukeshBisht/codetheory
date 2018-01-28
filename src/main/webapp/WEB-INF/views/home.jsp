@@ -23,7 +23,7 @@
 
         <div id="wallpage"></div>
         <p style="text-align:center"><img id="loading" style="display:none" src="<c:url value="/resources/images/loading.gif"/>" alt="loading"/></p>
-        <a id="loadmore" onclick="loadCard()">Load More</a>
+        <a id="loadmore" onclick="loadAndScroll()">Load More</a>
 
     </div>
     <!-- footer -->
