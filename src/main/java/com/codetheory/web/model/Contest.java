@@ -10,6 +10,7 @@ public class Contest {
 	private Date endDate;
 	private Date creationDate;
 	private String orgName;
+	private String landingPage;
 	private OrganizationType orgType;
 	
 	public Contest(){
@@ -111,4 +112,11 @@ public class Contest {
 		this.creationDate = creationDate;
 	}
 
+	public void setLandingPage (String landingPage){
+		this.landingPage = landingPage;
+	}
+
+	public String getLandingPage (){
+		return landingPage;
+	}
 }

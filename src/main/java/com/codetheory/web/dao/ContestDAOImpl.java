@@ -50,6 +50,12 @@ public class ContestDAOImpl implements ContestDAO{
 	}
 
 	@Override
+	public Contest getContestByContestName(String contestName) {
+		String sql = "SELECT * FROM contests where contestName=?";
+		return jdbcTemplate.queryForObject(sql, new String[]{contestName},new ContestMapper());
+	}
+	
+	@Override
 	public void addModerators(String con, String user) {		
         String sql = "insert into User_contests (contest , user, role) values (? , ?, ?)";
         jdbcTemplate.update(sql , new Object[] {

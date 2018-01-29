@@ -11,6 +11,7 @@ public interface ContestDAO {
     public Contest getContestById(String id);
     public boolean contestExist(String name);
     public boolean validUserContest(String user, String contest);
+    public Contest getContestByContestName(String contestName);
     public List<Contest> getContestsByUser(String username);
     public void removeEditor(String user, String contest);
 }

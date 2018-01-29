@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/contest")
@@ -90,4 +91,14 @@ public class ContestController {
 		//model.addAttribute("owner", user);
 		return "manageContest";
 	}	
+
+	@RequestMapping (value="/{contestName}")
+	public ModelAndView startContest (@PathVariable ("contestName") String contestName){
+		
+		Contest contest = dao.getContestByContestName(contestName);
+		ModelAndView modelandview = new ModelAndView("contestBegin");
+		modelandview.addObject(contest);
+		System.out.println(contest.getContestname() + contest.getOrgName());
+		return modelandview;
+	}
 }

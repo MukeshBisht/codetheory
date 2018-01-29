@@ -4,7 +4,7 @@ public class QuizQuestion {
     private int id;
     private String question;
     private String options[];
-    
+    private int selected;
 
     public int getId (){
         return id;
@@ -28,5 +28,12 @@ public class QuizQuestion {
     }
     public String[] getOptions (){
         return options;
+    }
+
+    public void setSelected (int selected){
+        this.selected = selected;
+    }
+    public int getSelected (){
+        return this.selected;
     }
 }
