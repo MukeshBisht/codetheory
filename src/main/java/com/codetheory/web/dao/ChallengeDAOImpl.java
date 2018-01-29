@@ -1,19 +1,18 @@
 package com.codetheory.web.dao;
 
+import com.codetheory.web.constant.ChallengeType;
+import com.codetheory.web.model.ChallengeGroup;
 import com.codetheory.web.model.QuizQuestion;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.dao.DataAccessException;  
-import org.springframework.jdbc.core.JdbcTemplate;  
-import org.springframework.jdbc.core.ResultSetExtractor; 
+import org.springframework.jdbc.core.JdbcTemplate; 
 
-public class QuestionDAOImpl implements QuestionDAO {
+public class ChallengeDAOImpl implements ChallengeDAO {
 
     @Autowired
     JdbcTemplate jdbcTemplate;
@@ -64,4 +63,34 @@ public class QuestionDAOImpl implements QuestionDAO {
         });  
         
     }
+
+	@Override
+	public void addChallengeGroup(ChallengeGroup cg) {
+		String sql = "insert into challengegroup(name, owner, type) values(?,?,?)";
+        jdbcTemplate.update(sql, new Object[] {
+            cg.getName(), cg.getOwner(), cg.getChallengeType().getValue()
+        });
+	}
+
+	@Override
+	public List<ChallengeGroup> getChallengeGroups(String user) {
+		return jdbcTemplate.query("select * from challengegroup",new RowMapper<ChallengeGroup>(){  
+            @Override  
+            public ChallengeGroup mapRow(ResultSet rs, int rownumber) throws SQLException {  
+                ChallengeGroup cg=new ChallengeGroup();  
+                cg.setGroupId(rs.getString("challengegroupid"));
+                int i = Integer.parseInt(rs.getString("type"))-1;
+                cg.setChallengeType(ChallengeType.values()[i]);
+                cg.setOwner(rs.getString("owner"));
+                cg.setName(rs.getString("name"));
+                return cg;
+            }  
+        });  
+	}
+
+	@Override
+	public boolean challengeGroupExist(String name, String user) {
+		String sql = "select (1) as Flag from challengegroup A inner join user_challengegroup_map B on A.ChallengeGroupId = B.challengegroupid where A.Name = ? and B.user = ?";
+        return (jdbcTemplate.queryForList(sql, name, user).size() > 0);
+	}
 }

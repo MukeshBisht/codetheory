@@ -48,5 +48,30 @@ CREATE TABLE `contests` (
 # user_contests table  
 CREATE TABLE `user_contests` (
   `contest` varchar(45) NOT NULL,
-  `user` varchar(45) NOT NULL
+  `user` varchar(45) NOT NULL,
+  `role` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+# challengegroup table  
+CREATE TABLE `codedb`.`challengegroup` (
+  `ChallengeGroupId` INT NOT NULL AUTO_INCREMENT,
+  `Name` VARCHAR(45) NOT NULL,
+  `User` VARCHAR(45) NOT NULL,
+  `Type` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`ChallengeGroupId`));
+
+# user_challengegroup_map table  
+CREATE TABLE `codedb`.`user_challengegroup_map` (
+  `user_challengegroup_mapid` INT NOT NULL AUTO_INCREMENT,
+  `challengegroupid` INT NOT NULL,
+  `user` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`user_challengegroup_mapid`));
+
+# INSERT TRIGGER  
+DELIMITER $$
+create trigger insertmap AFTER insert on challengegroup for each row 
+BEGIN
+	insert into user_challengegroup_map(user_challengegroup_map.challengegroupid, user_challengegroup_map.user)
+    values (NEW.challengegroupid, NEW.User);
+END; $$

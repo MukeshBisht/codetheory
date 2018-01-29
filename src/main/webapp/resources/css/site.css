@@ -2,6 +2,7 @@ body {
 	padding-top: 70px;
 	padding-bottom: 20px;
 	height: 100%;
+	background-color:whitesmoke;
 }
 .navbar {
 	margin-bottom: 20px;
@@ -16,7 +17,7 @@ body {
 	background-color: #f5f5f5;
 }
 #loadmore{
-	padding-bottom: 100px;
+	/* padding-bottom: 100px; */
 	text-align: center;
 	display: block;
 }

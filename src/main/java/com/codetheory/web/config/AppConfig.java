@@ -55,8 +55,8 @@ public class AppConfig implements WebMvcConfigurer {
 	}
 
 	@Bean
-	public QuestionDAO getquestionDAO() {
-		return new QuestionDAOImpl();
+	public ChallengeDAO getquestionDAO() {
+		return new ChallengeDAOImpl();
 	}
 
 	@Bean
