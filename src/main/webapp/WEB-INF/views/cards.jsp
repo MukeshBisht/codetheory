@@ -10,12 +10,12 @@
                 </div>
                 <div class="panel-body">
                     <p>Starting : ${card.startDate}</p>
-                    <p>Languages :
-                        <c:forEach items="${card.languages}" var="lang"> ${lang},</c:forEach>
+                    <p>Tags :
+                        <c:forEach items="${card.tags}" var="tag"> ${tag}, </c:forEach>
                     </p>
                     <p>Info : ${card.info}</p>
                     <p>Organiser : ${card.organiser}</p>
-                    <a role="button" class="btn btn-success" href="competition/${card.comId}">View</a>
+                    <a role="button" class="btn btn-success" href="contest/${card.name}">View</a>
                 </div>
             </div>
         </c:forEach>
