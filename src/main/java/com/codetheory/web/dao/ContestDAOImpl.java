@@ -32,6 +32,12 @@ public class ContestDAOImpl implements ContestDAO{
 		return null;
 	}
 
+	@Override
+	public List<Contest> getAllContest(){
+		String sql = "SELECT * FROM contests";
+		return jdbcTemplate.query(sql , new ContestMapper());	
+	}
+
 	public boolean validUserContest(String user, String contest){
 		String sql = "SELECT (1) as Flag FROM contests C inner join user_contests UC on C.contestName = UC.contest where UC.user = ? and UC.contest = ?";
         return (jdbcTemplate.queryForList(sql, user, contest).size() > 0);

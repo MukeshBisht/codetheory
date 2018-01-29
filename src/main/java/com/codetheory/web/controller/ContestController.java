@@ -98,7 +98,6 @@ public class ContestController {
 		Contest contest = dao.getContestByContestName(contestName);
 		ModelAndView modelandview = new ModelAndView("contestBegin");
 		modelandview.addObject(contest);
-		System.out.println(contest.getContestname() + contest.getOrgName());
 		return modelandview;
 	}
 }
