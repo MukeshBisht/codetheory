@@ -13,9 +13,9 @@ public class ContestDAOImpl implements ContestDAO{
 
 	@Override
 	public void addContest(Contest con, String user) {
-		String sql = "insert into contests (contestName , orgType , orgName , startDate , endDate , creationDate) values (? , ? , ? , ? , ?, ?)";
+		String sql = "insert into contests (contestName , orgType , orgName , startDate , endDate , creationDate,info) values (? ,? , ? , ? , ? , ?, ?)";
         jdbcTemplate.update(sql , new Object[] {
-            con.getContestname(), con.getOrgType().getValue(), con.getOrgName(), con.getStartDate(), con.getEndDate(), con.getCreationDate()
+            con.getContestname(), con.getOrgType().getValue(), con.getOrgName(), con.getStartDate(), con.getEndDate(), con.getCreationDate(),con.getinfo()
         });
         sql = "insert into User_contests (contest , user, role) values (? , ?, ?)";
         jdbcTemplate.update(sql , new Object[] {

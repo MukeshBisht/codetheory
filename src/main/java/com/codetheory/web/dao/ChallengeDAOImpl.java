@@ -34,33 +34,12 @@ public class ChallengeDAOImpl implements ChallengeDAO {
     public QuizQuestion getQuestionById(int id) {
         String sql = "select * from quiz_question where id=?";
         QuizQuestion question = new QuizQuestion();
-        Map row = jdbcTemplate.queryForMap(sql, id);
-        String op[] = new String[4];
-        op[0] = row.get("option1").toString();
-        op[1] = row.get("option2").toString();
-        op[2] = row.get("option3").toString();
-        op[3] = row.get("option4").toString();
-        question.setQuestion(row.get("question").toString());
-        question.setOptions(op);
-        return question;
+        return jdbcTemplate.queryForObject (sql , new Object[]{id} , new QuizQuestionMapper());
     }
 
     public List<QuizQuestion> getAllQuestion() {
-        return jdbcTemplate.query("select * from quiz_question",new RowMapper<QuizQuestion>(){  
-            @Override  
-            public QuizQuestion mapRow(ResultSet rs, int rownumber) throws SQLException {  
-                QuizQuestion question=new QuizQuestion();  
-                
-               question.setQuestion(rs.getString("question"));
-                String op[] = new String[4];
-                op[0] = rs.getString("option1");
-                op[1] = rs.getString("option2");
-                op[2] = rs.getString("option3");
-                op[3] = rs.getString("option4");
-                question.setOptions(op);
-                return question;
-            }  
-        });  
+        String sql = "select * from quiz_question order by rand() limit 50";
+        return jdbcTemplate.query(sql, new QuizQuestionMapper());
         
     }
 

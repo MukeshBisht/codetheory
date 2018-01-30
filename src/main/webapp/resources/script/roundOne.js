@@ -96,3 +96,18 @@ function changeColor (i , j){
     change.style.color = "green";
     data[i-1].selected = j;
 }
+
+/*
+    submitQuestion will 
+ */
+
+
+function submitQuestion(){
+    $.ajax({
+            type: "POST",
+            url: "/roundOne/submit",
+            data: JSON.stringify(data),
+            contentType: "application/json",
+         
+    });
+}

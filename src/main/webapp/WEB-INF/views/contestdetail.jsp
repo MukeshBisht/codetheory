@@ -60,6 +60,14 @@
         </div>
     </div>
 
+    
+    <div class='col-sm-12'>
+        <div class="form-group">
+            <form:label path="info">Short Description</form:label>
+            <form:input path="info" type='text' placeholder="describe your contest" class="form-control" required="true"/>
+        </div>
+    </div>
+
     <div class='col-sm-12 form-group'>
         <form:label path="orgType" required="true">Orgranization Type</form:label>
         <!-- <br> -->

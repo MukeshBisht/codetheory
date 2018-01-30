@@ -10,8 +10,10 @@ public class Contest {
 	private Date endDate;
 	private Date creationDate;
 	private String orgName;
+	private String info;
 	private String landingPage;
 	private OrganizationType orgType;
+	
 	
 	public Contest(){
 		orgName = "codeTheory";
@@ -118,5 +120,12 @@ public class Contest {
 
 	public String getLandingPage (){
 		return landingPage;
+	}
+
+	public void setinfo(String info){
+		this.info = info;
+	}
+	public String getinfo(){
+		return info;
 	}
 }

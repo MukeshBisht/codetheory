@@ -18,6 +18,7 @@ public class ContestMapper implements RowMapper<Contest> {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Contest con = new Contest();
         con.setContestname(rs.getString("contestname"));
+        con.setinfo(rs.getString("info"));
         OrganizationType ot = OrganizationType.values()[Integer.parseInt(rs.getString("orgType")) - 1];
         con.setOrgType(ot);
         con.setOrgName(rs.getString("orgName"));

@@ -63,4 +63,11 @@ public class QuizController {
 		}
 		return output;
 	}
+
+	
+	@RequestMapping ( value="/roundOne/submit" , produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+	public String submitRoundOne (@RequestBody String input){
+		System.out.println(input);
+		return "marks";
+	}
 }

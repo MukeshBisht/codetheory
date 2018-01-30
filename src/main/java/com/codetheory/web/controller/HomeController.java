@@ -35,7 +35,7 @@ public class HomeController {
 		ArrayList<Card> cardList = new ArrayList<Card>();
 		List<Contest> contestList = dao.getAllContest();
 		for (Contest con : contestList){
-			Card card = new Card(id++ ,con.getContestname(), "This document does not provide you any legal rights to change it");
+			Card card = new Card(id++ ,con.getContestname(), con.getinfo());
 			card.setorganiser(con.getOrgName());
 			card.setstartDate(con.getStartDate());
 			cardList.add(card);

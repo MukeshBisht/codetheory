@@ -57,8 +57,7 @@
                                 <div class="navbar-form navbar-right" style="margin-top : 0px!important">
                                       
                                         <ul class="nav navbar-nav">
-                                        <li><a href="/user/profile">Profile</a></li>
-                                        <li class="nav-icon-btn nav-icon-btn-danger dropdown">
+                                          <li class="nav-icon-btn nav-icon-btn-danger dropdown">
                                             
                                                 <a href="#notifications" class="dropdown-toggle" data-toggle="dropdown">
                                                         <span class="small-screen-text">Notifications</span>
@@ -93,7 +92,7 @@
 
                                                  <li class="dropdown">
                                                          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                                         <span class="glyphicon glyphicon-edit" aria-hidden="true">Administration</span></a>
+                                                         <span aria-hidden="true">Administration</span></a>
                                                                 
                                                          <ul class="dropdown-menu">
                                                                 <li><a href="/contest/create">Manage Contest</a></li>
@@ -103,7 +102,17 @@
                                                 
 
                                                 
-                                                <li><a href="<c:url value='/logout' />">Logout</a></li>
+                                                <li class="dropdown">   
+                                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                                       
+                                                        <i class="fa fa-user-circle" style="font-size:25px;color:white"></i></a>
+                                                       <ul class="dropdown-menu">
+                                                                <li><a href="/user/profile">Profile</a></li>
+                                                                <li><a href="<c:url value='/logout' />">logout</a></li>
+                                                        </ul>
+                                                                
+                                                </li>
+                                                
                                         </ul>
                                 </div>
                         </sec:authorize>
