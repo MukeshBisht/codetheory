@@ -12,7 +12,7 @@
     <jsp:include page="/WEB-INF/shared/header.jsp" />
     <!-- page body -->
     <div class="container body-content">
-
+        
     </div>
     <!-- footer -->
     <jsp:include page="/WEB-INF/shared/footer.jsp" />

@@ -1,10 +1,12 @@
 package com.codetheory.web.model;
 
-public class QuizQuestion {
+public class QuizQuestion implements IQuestion{
+
     private int id;
     private String question;
     private String options[];
     private int selected;
+    private int level;
 
     public int getId (){
         return id;
@@ -36,4 +38,16 @@ public class QuizQuestion {
     public int getSelected (){
         return this.selected;
     }
+	/**
+	 * @return the level
+	 */
+	public int getLevel() {
+		return level;
+	}
+	/**
+	 * @param level the level to set
+	 */
+	public void setLevel(int level) {
+		this.level = level;
+	}
 }

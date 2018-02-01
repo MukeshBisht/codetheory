@@ -23,17 +23,17 @@ public class challengeController {
     ChallengeDAO dao;
 
     @RequestMapping(value = "/group", method = RequestMethod.GET)
-    public String showGroups(Model model, Principal principal) {    
+    public String showGroups(Model model, Principal principal) {
         String name = principal.getName();
         List<ChallengeGroup> challengeGroups = dao.getChallengeGroups(name);
         ArrayList<ChallengeGroup> mcqs = new ArrayList<ChallengeGroup>();
         ArrayList<ChallengeGroup> codes = new ArrayList<ChallengeGroup>();
         GroupChallenge gc = new GroupChallenge();
         for (ChallengeGroup var : challengeGroups) {
-            if(var.getChallengeType() == ChallengeType.MCQ){
+            if (var.getChallengeType() == ChallengeType.MCQ) {
                 mcqs.add(var);
-            } 
-            if(var.getChallengeType() == ChallengeType.Code){
+            }
+            if (var.getChallengeType() == ChallengeType.Code) {
                 codes.add(var);
             }
         }
@@ -45,10 +45,23 @@ public class challengeController {
     }
 
     @RequestMapping(value = "/group/manage/{id}", method = RequestMethod.GET)
-    public String manageGroups(Model model, @PathVariable("id") String id, Principal principal) {    
-        String name = principal.getName();
-        
-        return "manageGroup";
+    public String manageGroups(Model model, @PathVariable("id") String id, Principal principal) {
+        String user = principal.getName();
+        ChallengeGroup cgrp = dao.getChallengeById(id);
+        if (cgrp != null) {
+            if (dao.challengeGroupExist(cgrp.getName(), user)) {
+                model.addAttribute("grpid", id);
+                model.addAttribute("grpname", cgrp.getName());              
+                if(cgrp.getChallengeType() == ChallengeType.MCQ){
+                    return "manageMCQGroup";
+                }
+                else
+                {
+                    return "manageCodeGroup";
+                }
+            }
+        }
+        return "redirect:/challenge/group";
     }
 
     @RequestMapping(value = "/group", method = RequestMethod.POST)
@@ -61,14 +74,16 @@ public class challengeController {
             ChallengeGroup cg = new ChallengeGroup();
             cg.setName(name);
             cg.setOwner(user);
-            if (ctype.equals("mcq")){
+            if (ctype.equals("mcq")) {
                 cg.setChallengeType(ChallengeType.MCQ);
             }
-            if (ctype.equals("code")){
+            if (ctype.equals("code")) {
                 cg.setChallengeType(ChallengeType.Code);
             }
-           //cg.setChallengeType(ChallengeType.Code);
+            //cg.setChallengeType(ChallengeType.Code);
             dao.addChallengeGroup(cg);
+        }else{
+
         }
         return "redirect:/challenge/group";
     }

@@ -11,7 +11,16 @@
     <jsp:include page="/WEB-INF/shared/header.jsp" />
     <div class="container">
         <div class="row">
-
+            <!-- <div class="alert alert-success" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                    </button>
+                Group created</div>
+            <div class="alert alert-danger" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                    </button>
+                Failed</div> -->
             <h2>Challenges Created by ${user}</h2>
             <br/>
             <!-- Question Seciton -->
@@ -31,14 +40,14 @@
                         <h4>Create New Group</h4>
 
                         <form class="input-group" method="POST" action="/challenge/group">
-                            <input type="text" id="name" name="name" class="form-control" placeholder="Group Name" />
+                            <input type="text" id="name" name="name" class="form-control" placeholder="Group Name" required/>
                             <input id="ctype" name="ctype" type="hidden" value="mcq" />
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="submit">Add</button>
                             </span>
                         </form>
                         <br/>
-                        <h4>Your Challenges</h4>
+                        <h4>Your Challenge Groups</h4>
                         <div class="table-responsive">
                         <table class="table table-striped table-hover">
                             <th scope="col">Name</th>
@@ -66,7 +75,7 @@
                         <h4>Create New Group</h4>
 
                         <form class="input-group" method="POST" action="/challenge/group">
-                            <input type="text" id="name" name="name" class="form-control" placeholder="Group Name" />
+                            <input type="text" id="name" name="name" class="form-control" placeholder="Group Name" required/>
                             <input id="ctype" name="ctype" type="hidden" value="code" />
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="submit">Add</button>
@@ -74,7 +83,7 @@
                         </form>
 
                         <br/>
-                        <h4>Your Challenges</h4>
+                        <h4>Your Challenge Groups</h4>
                         <div class="table-responsive">
                         <table class="table table-striped table-hover">
                             <th scope="col">Name</th>

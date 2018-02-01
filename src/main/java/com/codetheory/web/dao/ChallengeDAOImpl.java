@@ -3,14 +3,15 @@ package com.codetheory.web.dao;
 import com.codetheory.web.constant.ChallengeType;
 import com.codetheory.web.model.ChallengeGroup;
 import com.codetheory.web.model.QuizQuestion;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.core.JdbcTemplate; 
+import org.springframework.jdbc.core.SqlParameter;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 public class ChallengeDAOImpl implements ChallengeDAO {
 
@@ -22,12 +23,19 @@ public class ChallengeDAOImpl implements ChallengeDAO {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public void addQuestion(QuizQuestion ques) {
-        String sql = "insert into User values(?,?,?,?)";
-
-        jdbcTemplate.update(sql, new Object[] {
-                //employee.getId(), employee.getAge(), employee.getDept(), employee.getName()
-        });
+    public void addQuestion(QuizQuestion ques, String user, int group) {
+        BaseStoredProcedure sp = new BaseStoredProcedure(jdbcTemplate, "addQuestion");
+        String[] opt = ques.getOptions();
+        SqlParameter params[] = new SqlParameter[] { new SqlParameter("ques", Types.VARCHAR),
+                new SqlParameter("op1", Types.VARCHAR), new SqlParameter("op2", Types.VARCHAR),
+                new SqlParameter("op3", Types.VARCHAR), new SqlParameter("op4", Types.VARCHAR),
+                new SqlParameter("lvl", Types.INTEGER), new SqlParameter("ans", Types.INTEGER),
+                new SqlParameter("grp", Types.INTEGER), new SqlParameter("usr", Types.VARCHAR), };
+        sp.setParameters(params);
+        sp.compile();
+        Map result = sp.execute(ques.getQuestion(), opt[0], opt[1], opt[2], opt[3], ques.getLevel(), ques.getSelected(),
+                group, user);
+        System.out.println(result);
     }
 
     // Getting a particular Quesiton
@@ -72,4 +80,17 @@ public class ChallengeDAOImpl implements ChallengeDAO {
 		String sql = "select (1) as Flag from challengegroup A inner join user_challengegroup_map B on A.ChallengeGroupId = B.challengegroupid where A.Name = ? and B.user = ?";
         return (jdbcTemplate.queryForList(sql, name, user).size() > 0);
 	}
+    @Override
+    public ChallengeGroup getChallengeById(String id) {
+        String sql = "select challengegroupid, type, owner, name from challengegroup where challengegroupid=?";
+        return jdbcTemplate.queryForObject(sql, new String[] { id }, new ChallengeMapper());
+    }
+
+    @Override
+    public List<QuizQuestion> getAllQuestion(String groupid) {
+        String sql = "SELECT Q.question, Q.option1, Q.option2, Q.option3, Q.option4, Q.answer, Q.level FROM quiz_question Q ";
+        sql += "inner join question_challengegrp_map M on Q.id = M.QuestionId ";
+        sql += "where M.ChallengeGrpId = ? ";
+        return jdbcTemplate.query(sql, new String[] { groupid },  new QuizQuestionMapper()); 
+    }
 }

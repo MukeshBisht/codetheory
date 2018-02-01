@@ -65,7 +65,7 @@ CREATE TABLE `codedb`.`challengegroup` (
 CREATE TABLE `codedb`.`user_challengegroup_map` (
   `user_challengegroup_mapid` INT NOT NULL AUTO_INCREMENT,
   `challengegroupid` INT NOT NULL,
-  `user` VARCHAR(45) NOT NULL,
+  `owner` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`user_challengegroup_mapid`));
 
 # INSERT TRIGGER  
@@ -73,5 +73,23 @@ DELIMITER $$
 create trigger insertmap AFTER insert on challengegroup for each row 
 BEGIN
 	insert into user_challengegroup_map(user_challengegroup_map.challengegroupid, user_challengegroup_map.user)
-    values (NEW.challengegroupid, NEW.User);
+    values (NEW.challengegroupid, NEW.owner);
 END; $$
+
+# question insert funcation: addQuestion  
+DELIMITER $$
+CREATE FUNCTION `addQuestion` (
+ques nvarchar(2000), op1 nvarchar(1000), op2 nvarchar(1000), op3 nvarchar(1000), op4 nvarchar(1000), lvl int, ans int, grp int, usr varchar(45)) 
+RETURNS INTEGER
+BEGIN
+	#insert question in table
+	INSERT into quiz_question
+    (question, option1, option2, option3, option4, answer, level)
+    values
+    (ques, op1, op2, op3, op4, ans, lvl);
+    #insert mapping
+    insert into question_challengegrp_map(ChallengeGrpId, QuestionId, Userid)
+    values
+	(grp, LAST_INSERT_ID() ,usr);  
+RETURN 1;
+END $$
