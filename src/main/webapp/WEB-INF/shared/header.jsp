@@ -60,16 +60,13 @@
                                           <li class="nav-icon-btn nav-icon-btn-danger dropdown">
                                             
                                                 <a href="#notifications" class="dropdown-toggle" data-toggle="dropdown">
-                                                        <span class="small-screen-text">
-                                                                <i class="fa fa-horn"></i>
-                                                        </span>
+                                                                <i class="fa fa-bell"style="font-size:25px;color:white"></i>
                                                         <span class="badge">3</span>
                                                 </a>
 
                                                 <!-- NOTIFICATIONS -->
                                                 <div class="dropdown-menu cardView" style="width: 300px;border-radius:5px;font-family:tahoma">
                                                         <div class="notifications-list" id="navbar-notifications">
-<i class="fas fa-bell"></i>
                                                                 <div class="notification">
                                                                         <strong class="text-primary">Contest Invite : </strong>
                                                                         <p>Take part in CodeChamp Held in 28/03/2018 for free. And get Exciting prices.</p>

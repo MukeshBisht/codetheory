@@ -4,6 +4,9 @@
         <html>
 
         <head>
+            <script type="text/javascript">
+                var grpid = ${grpid};
+            </script>
         </head>
 
         <body>
@@ -17,7 +20,7 @@
             <div class="container body-content">
                 <h3>MCQ Group : ${grpname}</h3>
                 <div class="row">
-                    <form action="#">
+                    <form id="quesForm" method="POST">
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <div>
@@ -76,7 +79,8 @@
                                         </select>
                                     </div>
                                     <div class="form-group col-lg-6">
-                                        <button class="btn btn-primary  btn-block pull-right" type="submit" onclick="addQuestion(${grpid})">Add</button>
+                                        <button class="btn btn-primary  btn-block pull-right" type="submit" >Add</button>
+                                        <!-- onclick="addQuestion(${grpid})" -->
                                     </div>
 
                                 </div>

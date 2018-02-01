@@ -1,12 +1,37 @@
+var log;
 $(document).ready(function () {
+
+    $("#quesForm").submit(function(e){
+        
+        e.preventDefault();
+        var url = '/api/challenge/group/mcq/'+ grpid +'/questions/add';
+        var id = 0;
+        var question = $('#question').val();
+        var options = [$('#op1').val(), $('#op2').val(), $('#op3').val(), $('#op4').val()];
+        var selected = $('input[name=answer]:checked').val();
+        var level = $('#lvl').val();
+    
+        d = {"id":id,"question":question,"options":options,"selected":selected,"level":level};
+        $.ajax({
+            type : "POST",
+            url : url,          
+            dataType: 'json',
+            contentType: "application/json",
+            data :JSON.stringify(d),
+            success : function(data){
+                alert("Successfull");
+            },
+            error : function(data){
+                log = data;
+            }
+        });
+    });
+
     $(function() {
  
         $("#Grid").jsGrid({
-            // height: "50%",
              width: "100%",
-     
             filtering: true,
-            editing: true,
             sorting: true,
             paging: true,
             autoload: true,
@@ -19,7 +44,7 @@ $(document).ready(function () {
                 loadData : function(filter){
                     return $.ajax({
                         type: "GET",
-                        url : "/api/challenge/group/questions/2",
+                        url : "/api/challenge/group/questions/"+grpid,
                         data :filter,
                         dataType : "JSON"
                     });
@@ -28,9 +53,7 @@ $(document).ready(function () {
      
             fields: [
                 { name: "question", type: "text"},
-                { name: "options", type: "text"},
-                { name: "Age", type: "number"},
-                { name: "Address", type: "text"},
+                { name: "options", type: "text", selectedIndex: 0 },
                 { type: "control" }
             ]
         });
@@ -46,26 +69,10 @@ function loadQCode() {
 
 }
 
-
-function addQuestion(grpid) {
-    var id = 0;
-    var question = $('#question').val();
-    var options = [$('#op1').val(), $('#op2').val(), $('#op3').val(), $('#op4').val()];
-    var selected = $('input[name=answer]:checked').val();
-    var level = $('#lvl').val();
-
-    d = {"id":id,"question":question,"options":options,"selected":selected,"level":level};
-    $.ajax({
-        url: '/api/challenge/group/mcq/'+ grpid +'/questions/add',
-        dataType: 'json',
-        contentType: "application/json",
-        type: 'POST',
-        crossDomain: true,
-        data: JSON.stringify(d),
-        success: function (response) {
-        }
-    });
+function setDefault(id){
+    grpid = id;
 }
+
 
 function editQuestion(e) {
 

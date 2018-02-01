@@ -61,7 +61,8 @@ public class ChallengeDAOImpl implements ChallengeDAO {
 
 	@Override
 	public List<ChallengeGroup> getChallengeGroups(String user) {
-		return jdbcTemplate.query("select * from challengegroup",new RowMapper<ChallengeGroup>(){  
+        
+		return jdbcTemplate.query("select A.challengegroupid, A.type, A.owner, A.name from challengegroup A inner join user_challengegroup_map B on A.ChallengeGroupId = B.challengegroupid where B.user = ?",new String[] { user },new RowMapper<ChallengeGroup>(){  
             @Override  
             public ChallengeGroup mapRow(ResultSet rs, int rownumber) throws SQLException {  
                 ChallengeGroup cg=new ChallengeGroup();  
@@ -88,7 +89,7 @@ public class ChallengeDAOImpl implements ChallengeDAO {
 
     @Override
     public List<QuizQuestion> getAllQuestion(String groupid) {
-        String sql = "SELECT Q.question, Q.option1, Q.option2, Q.option3, Q.option4, Q.answer, Q.level FROM quiz_question Q ";
+        String sql = "SELECT Q.id, Q.question, Q.option1, Q.option2, Q.option3, Q.option4, Q.answer, Q.level FROM quiz_question Q ";
         sql += "inner join question_challengegrp_map M on Q.id = M.QuestionId ";
         sql += "where M.ChallengeGrpId = ? ";
         return jdbcTemplate.query(sql, new String[] { groupid },  new QuizQuestionMapper()); 
