@@ -60,14 +60,16 @@
                                           <li class="nav-icon-btn nav-icon-btn-danger dropdown">
                                             
                                                 <a href="#notifications" class="dropdown-toggle" data-toggle="dropdown">
-                                                        <span class="small-screen-text">Notifications</span>
+                                                        <span class="small-screen-text">
+                                                                <i class="fa fa-horn"></i>
+                                                        </span>
                                                         <span class="badge">3</span>
                                                 </a>
 
                                                 <!-- NOTIFICATIONS -->
                                                 <div class="dropdown-menu cardView" style="width: 300px;border-radius:5px;font-family:tahoma">
                                                         <div class="notifications-list" id="navbar-notifications">
-
+<i class="fas fa-bell"></i>
                                                                 <div class="notification">
                                                                         <strong class="text-primary">Contest Invite : </strong>
                                                                         <p>Take part in CodeChamp Held in 28/03/2018 for free. And get Exciting prices.</p>
@@ -90,17 +92,7 @@
                                                         </div> <!-- / .dropdown-menu -->
                                                 </li>
 
-                                                 <li class="dropdown">
-                                                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                                         <span aria-hidden="true">Administration</span></a>
-                                                                
-                                                         <ul class="dropdown-menu">
-                                                                <li><a href="/contest/create">Manage Contest</a></li>
-                                                                 <li><a href="/challenge/group">Manage Challenges</a></li>                                        
-                                                         </ul>
-                                                 </li> 
-                                                
-
+                                            
                                                 
                                                 <li class="dropdown">   
                                                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -108,11 +100,15 @@
                                                         <i class="fa fa-user-circle" style="font-size:25px;color:white"></i></a>
                                                        <ul class="dropdown-menu">
                                                                 <li><a href="/user/profile">Profile</a></li>
+                                                               
+                                                                <li><a href="/contest/create">Manage Contest</a></li>
+                                                                <li><a href="/challenge/group">Manage Challenges</a></li>                                        
+                                                                        
                                                                 <li><a href="<c:url value='/logout' />">logout</a></li>
+                                                               
+                                                              
                                                         </ul>
-                                                                
                                                 </li>
-                                                
                                         </ul>
                                 </div>
                         </sec:authorize>

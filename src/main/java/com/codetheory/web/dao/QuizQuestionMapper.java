@@ -13,7 +13,7 @@ public class QuizQuestionMapper implements RowMapper<QuizQuestion> {
     @Override
     public QuizQuestion mapRow(ResultSet rs, int rowNum) throws SQLException {
         QuizQuestion question=new QuizQuestion();  
-                
+        question.setId(rs.getInt("id"));
         question.setQuestion(rs.getString("question"));
          String op[] = new String[4];
          op[0] = rs.getString("option1");

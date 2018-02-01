@@ -55,7 +55,7 @@ body {
 	overflow: scroll;
 }
 .cardView{
-	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	box-shadow: 2px 4px 8px 0 rgba(0,0,0,0.2);
 	padding:10px 20px 10px 20px ;
 }
 #starttimer{
@@ -104,4 +104,14 @@ body {
 
   .notifications-list{
 	  font-family: sans-serif;
+  }
+
+  #cardHeading{
+	background:teal;
+	color:white;
+	font-size:20px"
+  }
+
+ #notificationBadge{
+	background: rgb(32, 32, 32);
   }
