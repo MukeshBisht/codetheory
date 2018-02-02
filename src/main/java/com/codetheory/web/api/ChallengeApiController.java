@@ -26,15 +26,17 @@ public class ChallengeApiController {
     ChallengeDAO dao;
 
     @RequestMapping(value = "group/questions/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<QuizQuestion> getQuestions(@PathVariable String id, Principal principal) {
+    public QuestionData getQuestions(@PathVariable String id, Principal principal) {
         String user = principal.getName();
+        QuestionData data = new QuestionData();
         ChallengeGroup chgrp = dao.getChallengeById(id);
         if(chgrp!=null){
             if (dao.challengeGroupExist(chgrp.getName(), user)) {
-                return dao.getAllQuestion(id);
+                data.setData(dao.getAllQuestion(id));
+                return data;
             }
         }
-        return new ArrayList<QuizQuestion>();
+        return data;
     }
 
     @RequestMapping(value = "group/mcq/{id}/questions/add", consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
@@ -47,6 +49,15 @@ public class ChallengeApiController {
     @RequestMapping(value = "group/mcq/questions/update", method = RequestMethod.POST)
     public ResponseEntity<Object> updateQuestion(@RequestBody QuizQuestion question, Principal principal) {
         
+        return new ResponseEntity<>("0", HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "group/mcq/questions/delete", method = RequestMethod.POST)
+    public ResponseEntity<Object> deleteQuestion(@RequestBody QuizQuestion question, Principal principal) {
+        String user = principal.getName();
+        if(dao.isUsersQuestion(question.getId(), user)){
+            //delete question
+        }
         return new ResponseEntity<>("0", HttpStatus.OK);
     }
 }

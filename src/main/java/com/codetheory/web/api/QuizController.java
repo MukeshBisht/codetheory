@@ -72,7 +72,6 @@ public class QuizController {
 	}
 
 	
-
 	@RequestMapping ( value="/roundOne/submit" , produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
 	public void submitRoundOne (@RequestBody List<QuizQuestion> question , HttpServletResponse response) throws IOException{
 		int marks=0;

@@ -1,6 +1,41 @@
 var log;
 $(document).ready(function () {
 
+    $('#grid').on('click', 'a.editor_edit', function (e) {
+        e.preventDefault();
+        $(".panel-collapse").collapse("show");
+        $("html, body").animate({ scrollTop: 0}, 500);
+        log = table.row( $(this).parents('tr') ).data();
+        $('#question').val(log.question);
+        $('#op1').val(log.options[0]);
+        $('#op2').val(log.options[1]);
+        $('#op3').val(log.options[2]);
+        $('#op4').val(log.options[3]);
+        $('#lvl').val(log.level);
+        document.qForm.answer[log.selected].checked=true;
+    } );
+
+    $('#grid').on('click', 'a.editor_delete', function (e) {
+        e.preventDefault();
+        log = table.row( $(this).parents('tr') ).data();
+    } );
+
+    var table = $('#grid').DataTable({
+        "ajax": "/api/challenge/group/questions/" + grpid,
+        "columns": [
+            { data: "question" },
+            { data: "options.0", orderable : false },
+            { data: "options.1", orderable : false },
+            { data: "options.2", orderable : false },
+            { data: "options.3", orderable : false },
+            {
+                data: null,
+                orderable : false,
+                defaultContent: '<a href="#" class="editor_edit glyphicon glyphicon-pencil"></a> | <a href="#" class="editor_delete glyphicon glyphicon-trash"></a>'
+            }
+        ]
+    } );
+
     $("#quesForm").submit(function(e){
         
         e.preventDefault();
@@ -27,65 +62,14 @@ $(document).ready(function () {
         });
     });
 
-    $(function() {
- 
-        $("#Grid").jsGrid({
-             width: "100%",
-            filtering: true,
-            sorting: true,
-            paging: true,
-            autoload: true,
-     
-            pageSize: 15,
-            pageButtonCount: 5,
-            deleteConfirm: "Do you really want to delete the client?",
-     
-            controller: {
-                loadData : function(filter){
-                    return $.ajax({
-                        type: "GET",
-                        url : "/api/challenge/group/questions/"+grpid,
-                        data :filter,
-                        dataType : "JSON"
-                    });
-                }
-            },
-     
-            fields: [
-                { name: "question", type: "text"},
-                { name: "options", type: "text", selectedIndex: 0 },
-                { type: "control" }
-            ]
-        });
-     
-    });
 });
 
-function loadQMCQ() {
 
-}
-
-function loadQCode() {
-
-}
-
-function setDefault(id){
-    grpid = id;
-}
-
-
-function editQuestion(e) {
-
-}
-
-function deleteQuestion(e) {
-    if (confirm('Are you sure?')) {
-        // $.ajax({ url: '/Players/Delete', data: { id: e.data.id }, method: 'POST' })
-        //     .done(function () {
-        //         grid.reload();
-        //     })
-        //     .fail(function () {
-        //         alert('Failed to delete.');
-        //     });
-    }
+function resetForm(){
+    $('#question').val("");
+        $('#op1').val("");
+        $('#op2').val("");
+        $('#op3').val("");
+        $('#op4').val("");
+        $('#lvl').val("");
 }

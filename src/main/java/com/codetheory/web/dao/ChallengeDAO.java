@@ -11,7 +11,7 @@ public interface ChallengeDAO {
     public List<ChallengeGroup> getChallengeGroups(String user);
     public boolean challengeGroupExist(String name, String user);
     public ChallengeGroup getChallengeById(String id);
-
+    public boolean isUsersQuestion(int qid, String userid);
     //need changes
     public void addQuestion(QuizQuestion question, String user, int group);
     public QuizQuestion getQuestionById(int id);

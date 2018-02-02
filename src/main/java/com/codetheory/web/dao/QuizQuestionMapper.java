@@ -21,6 +21,8 @@ public class QuizQuestionMapper implements RowMapper<QuizQuestion> {
          op[2] = rs.getString("option3");
          op[3] = rs.getString("option4");
          question.setOptions(op);
+         question.setSelected(rs.getInt("answer"));
+         question.setLevel(rs.getInt("level"));
          return question;
     }
 

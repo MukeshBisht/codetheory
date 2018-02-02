@@ -49,10 +49,11 @@
                         <br/>
                         <h4>Your Challenge Groups</h4>
                         <div class="table-responsive">
-                        <table class="table table-striped table-hover">
+                        <table class="table table-bordered table-striped table-hover">
                             <th scope="col">Name</th>
                             <th scope="col">Challenges</th>
                             <th scope="col">Owner</th>
+                            <th scope="col"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></th>
                             <tbody>
                                 <c:forEach items="${challenge.mcqGroups}" var="g">
                                     <tr class="clickable-row" data-href="/challenge/group/manage/${g.groupId}">
@@ -85,11 +86,12 @@
                         <br/>
                         <h4>Your Challenge Groups</h4>
                         <div class="table-responsive">
-                        <table class="table table-striped table-hover">
+                        <table class="table table-bordered table-striped table-hover">
                             <th scope="col">Name</th>
                             <th scope="col">Challenges</th>
                             <th scope="col">Owner</th>
-                                <c:forEach items="${challenge.codeGroups}" var="g">
+                            <th scope="col"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></th>
+                            <c:forEach items="${challenge.codeGroups}" var="g">
                                     <tr class="clickable-row" data-href="/challenge/group/manage/${g.groupId}">
                                         <td>${g.name}</td>
                                         <td>${codeCount}</td>

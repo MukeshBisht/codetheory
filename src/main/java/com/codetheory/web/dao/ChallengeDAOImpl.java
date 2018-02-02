@@ -88,7 +88,7 @@ public class ChallengeDAOImpl implements ChallengeDAO {
 
     @Override
     public List<QuizQuestion> getAllQuestion(String groupid) {
-        String sql = "SELECT Q.question, Q.option1, Q.option2, Q.option3, Q.option4, Q.answer, Q.level FROM quiz_question Q ";
+        String sql = "SELECT Q.Id, Q.question, Q.option1, Q.option2, Q.option3, Q.option4, Q.answer, Q.level FROM quiz_question Q ";
         sql += "inner join question_challengegrp_map M on Q.id = M.QuestionId ";
         sql += "where M.ChallengeGrpId = ? ";
         return jdbcTemplate.query(sql, new String[] { groupid },  new QuizQuestionMapper()); 
@@ -101,4 +101,10 @@ public class ChallengeDAOImpl implements ChallengeDAO {
         System.out.println(result);
         return result;
     }
+
+	@Override
+	public boolean isUsersQuestion(int qid, String userid) {
+		String sql = "select 1 as flag from question_challengegrp_map where QuestionId = ? and userid = ?";
+        return (jdbcTemplate.queryForList(sql, qid, userid).size() > 0);
+	}
 }

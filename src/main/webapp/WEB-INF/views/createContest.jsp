@@ -29,7 +29,7 @@
     </div>
     <div class="container bmargin">
         <div class="table-responsive">
-        <table class="table table-striped table-hover">
+        <table class="table table-striped table-bordered table-hover">
             <h3>
                 Contests Created By ${newContest.user}
             </h3>
