@@ -15,7 +15,7 @@
                     </div>
                     <div class="col-sm-4 text-center" id="submitRoundOne" hidden>                       
                         <a class="btn btn-info" href="#" onclick="showPreview()">Preview</a>
-                        <a class="btn btn-success" onclick="submitQuestion()" href="/RoundThree" id="submitRound">
+                        <a class="btn btn-success" onclick="submitQuestion()" href="/result" id="submitRound">
                             Submit
                         </a>
                     </div>

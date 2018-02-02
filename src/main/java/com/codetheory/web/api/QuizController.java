@@ -1,5 +1,7 @@
 package com.codetheory.web.api;
 
+import java.io.IOException;
+import java.lang.ProcessBuilder.Redirect;
 import java.net.UnknownHostException;
 import java.util.List;
 
@@ -18,11 +20,16 @@ import com.codetheory.web.model.JudgeData;
 import com.codetheory.web.model.JudgeOutput;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.apache.http.HttpResponse;
+
+import org.springframework.ui.Model;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.util.EntityUtils;
 import org.apache.http.entity.StringEntity;
+
 import org.apache.http.impl.client.HttpClientBuilder;
+
+import javax.servlet.http.HttpServletResponse;
 
 @RestController
 public class QuizController {
@@ -65,12 +72,16 @@ public class QuizController {
 	}
 
 	
+
 	@RequestMapping ( value="/roundOne/submit" , produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
-	public String submitRoundOne (@RequestBody List<QuizQuestion> question){
+	public void submitRoundOne (@RequestBody List<QuizQuestion> question , HttpServletResponse response) throws IOException{
+		int marks=0;
 		for (QuizQuestion var : question) {
-			System.out.println(var.getQuestion() + " " + var.getId());	
+			if (var.getSelected() != -1)
+				if (dao.checkAnswerById(var.getId(), var.getSelected()))
+					marks++;
 		}
-		
-		return "marks";
+		System.out.println(marks*100/question.size());
+//		response.sendRedirect("/result");
 	}
 }

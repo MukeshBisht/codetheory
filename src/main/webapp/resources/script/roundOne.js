@@ -44,9 +44,13 @@ function buildOptionSideBar(index) {
     option += '<div class="">';
     option += '<h3>' + data[index].question + '</h3>';
     // <!--Radio group-->
+    
     for (j = 0; j < 4; j++) {
         option += '<div class=" form-group cardView">';
-        option += '<input name="op" type="radio" class="with-gap" onclick="changeColor('+(index+1)+','+(j+1)+')">';
+        if (data[index].selected == j+1)
+            option += '<input name="op" type="radio" class="with-gap" onclick="changeColor('+(index+1)+','+(j+1)+')" checked>';
+        else
+            option += '<input name="op" type="radio" class="with-gap" onclick="changeColor('+(index+1)+','+(j+1)+')">';
         option += '<label for="' + j + '">' + data[index].options[j] + '</label>';
         option += '</div>';
     }
