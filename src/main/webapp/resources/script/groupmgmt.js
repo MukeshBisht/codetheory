@@ -6,23 +6,42 @@ $(document).ready(function () {
         $(".panel-collapse").collapse("show");
         $("html, body").animate({ scrollTop: 0}, 500);
         log = table.row( $(this).parents('tr') ).data();
+        $('#qid').val(log.id);
         $('#question').val(log.question);
         $('#op1').val(log.options[0]);
         $('#op2').val(log.options[1]);
         $('#op3').val(log.options[2]);
         $('#op4').val(log.options[3]);
         $('#lvl').val(log.level);
+        $('#btnsubmit').html('Update');
         document.qForm.answer[log.selected].checked=true;
     } );
 
     $('#grid').on('click', 'a.editor_delete', function (e) {
         e.preventDefault();
         log = table.row( $(this).parents('tr') ).data();
+        if(confirm("Delete ?")){
+        $.ajax({
+            type : "POST",
+            url : "/api/challenge/group/mcq/questions/delete",          
+            dataType: 'json',
+            contentType: "application/json",
+            data :JSON.stringify(log),
+            success : function(data){
+                $("#grid").DataTable().ajax.reload();
+                alert("Successfull");
+            },
+            error : function(data){
+                log = data;
+            }
+        });
+    }
     } );
 
     var table = $('#grid').DataTable({
-        "ajax": "/api/challenge/group/questions/" + grpid,
-        "columns": [
+        ajax: "/api/challenge/group/questions/" + grpid,
+        columns: [
+            { data: "id", visible : false},
             { data: "question" },
             { data: "options.0", orderable : false },
             { data: "options.1", orderable : false },
@@ -40,7 +59,7 @@ $(document).ready(function () {
         
         e.preventDefault();
         var url = '/api/challenge/group/mcq/'+ grpid +'/questions/add';
-        var id = 0;
+        var id = $('#qid').val();
         var question = $('#question').val();
         var options = [$('#op1').val(), $('#op2').val(), $('#op3').val(), $('#op4').val()];
         var selected = $('input[name=answer]:checked').val();
@@ -54,14 +73,15 @@ $(document).ready(function () {
             contentType: "application/json",
             data :JSON.stringify(d),
             success : function(data){
-                alert("Successfull");
+                alert("Successfull");               
+                $("#grid").DataTable().ajax.reload();
+                resetForm();
             },
             error : function(data){
                 log = data;
             }
         });
     });
-
 });
 
 
@@ -72,4 +92,6 @@ function resetForm(){
         $('#op3').val("");
         $('#op4').val("");
         $('#lvl').val("");
+        $('#qid').val("-1");       
+        $('#btnsubmit').html('Add');
 }

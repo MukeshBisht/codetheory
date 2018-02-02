@@ -33,9 +33,10 @@ public class ChallengeDAOImpl implements ChallengeDAO {
                 new SqlParameter("grp", Types.INTEGER), new SqlParameter("usr", Types.VARCHAR), };
         sp.setParameters(params);
         sp.compile();
-        Map result = sp.execute(ques.getQuestion(), opt[0], opt[1], opt[2], opt[3], ques.getLevel(), ques.getSelected(),
+        //Map result = 
+        sp.execute(ques.getQuestion(), opt[0], opt[1], opt[2], opt[3], ques.getLevel(), ques.getSelected(),
                 group, user);
-        System.out.println(result);
+        //System.out.println(result);
     }
 
     // Getting a particular Quesiton
@@ -61,7 +62,8 @@ public class ChallengeDAOImpl implements ChallengeDAO {
 
 	@Override
 	public List<ChallengeGroup> getChallengeGroups(String user) {
-		return jdbcTemplate.query("select * from challengegroup",new RowMapper<ChallengeGroup>(){  
+        String query = "select C.ChallengeGroupId, C.Name, C.Owner, C.Type from challengegroup C inner join user_challengegroup_map CM on C.ChallengeGroupId = CM.challengegroupid Where CM.user=?";
+		return jdbcTemplate.query(query,new String[]{user},new RowMapper<ChallengeGroup>(){  
             @Override  
             public ChallengeGroup mapRow(ResultSet rs, int rownumber) throws SQLException {  
                 ChallengeGroup cg=new ChallengeGroup();  
@@ -106,5 +108,22 @@ public class ChallengeDAOImpl implements ChallengeDAO {
 	public boolean isUsersQuestion(int qid, String userid) {
 		String sql = "select 1 as flag from question_challengegrp_map where QuestionId = ? and userid = ?";
         return (jdbcTemplate.queryForList(sql, qid, userid).size() > 0);
+	}
+
+	@Override
+	public void deleteQuestion(QuizQuestion question) {
+		String sql = "delete from quiz_question where id=?";
+        jdbcTemplate.update(sql, new Object[] {
+            question.getId()
+        });
+	}
+
+	@Override
+	public void updateQuestion(QuizQuestion question) {
+		String sql = "update quiz_question set question=?, option1=?, option2=?, option3=?, option4=?, answer=?, level=? where id =?";
+        String ops[] = question.getOptions();
+        jdbcTemplate.update(sql, new Object[] {           
+            question.getQuestion(), ops[0], ops[1], ops[2], ops[3], question.getSelected(), question.getLevel(), question.getId()
+        });
 	}
 }

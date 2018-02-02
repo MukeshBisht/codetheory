@@ -5,8 +5,6 @@ import com.codetheory.web.model.ChallengeGroup;
 import com.codetheory.web.model.QuizQuestion;
 
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,13 +40,16 @@ public class ChallengeApiController {
     @RequestMapping(value = "group/mcq/{id}/questions/add", consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
     public ResponseEntity<Object> addMCQQuestion(@RequestBody QuizQuestion question, @PathVariable int id, Principal principal) {
         String user = principal.getName();
-        dao.addQuestion(question, user, id);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "group/mcq/questions/update", method = RequestMethod.POST)
-    public ResponseEntity<Object> updateQuestion(@RequestBody QuizQuestion question, Principal principal) {
-        
+        if(question.getId() == -1){
+            dao.addQuestion(question, user, id);
+        }else{
+            if(dao.isUsersQuestion(question.getId(), user)){
+                //update question
+                dao.updateQuestion(question);
+                
+                System.out.println(question.getId()+"updated");
+            }
+        }
         return new ResponseEntity<>("0", HttpStatus.OK);
     }
 
@@ -57,6 +58,8 @@ public class ChallengeApiController {
         String user = principal.getName();
         if(dao.isUsersQuestion(question.getId(), user)){
             //delete question
+            dao.deleteQuestion(question);
+            System.out.println(question.getId()+"deleted");
         }
         return new ResponseEntity<>("0", HttpStatus.OK);
     }

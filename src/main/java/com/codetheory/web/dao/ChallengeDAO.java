@@ -7,13 +7,16 @@ import java.util.List;
 
 public interface ChallengeDAO {
 
+    //challenge
     public void addChallengeGroup(ChallengeGroup cg);
     public List<ChallengeGroup> getChallengeGroups(String user);
     public boolean challengeGroupExist(String name, String user);
     public ChallengeGroup getChallengeById(String id);
     public boolean isUsersQuestion(int qid, String userid);
-    //need changes
+    //question
     public void addQuestion(QuizQuestion question, String user, int group);
+    public void deleteQuestion(QuizQuestion question);
+    public void updateQuestion(QuizQuestion question);
     public QuizQuestion getQuestionById(int id);
     public List<QuizQuestion> getAllQuestion ();   
     public List<QuizQuestion> getAllQuestion (String groupid);

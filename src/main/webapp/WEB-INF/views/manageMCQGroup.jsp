@@ -33,6 +33,7 @@
           <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
               <div class="panel-body">
                 <form id="quesForm" name="qForm" method="POST">
+                    <input type="hidden" id="qid" value="-1" />
                   <div>
                     <div class="form-group col-md-12">
                       <div class="input-group">
@@ -89,7 +90,7 @@
                       </select>
                     </div>
                     <div class="form-group col-lg-3">
-                      <button class="btn btn-primary  btn-block pull-right" type="submit">Add</button>
+                      <button id="btnsubmit" class="btn btn-primary  btn-block pull-right" type="submit">Add</button>
                       <!-- onclick="addQuestion(${grpid})" -->
                     </div>
                     <div class="form-group col-lg-3">
@@ -106,6 +107,7 @@
     <table id="grid" class="table table-bordered table-hover">
       <thead>
         <tr>
+          <th>Id</th>
           <th>Question</th>
           <th>Option1</th>
           <th>Option2</th>
