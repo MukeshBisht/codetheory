@@ -3,6 +3,7 @@ package com.codetheory.web.api;
 import java.io.IOException;
 import java.lang.ProcessBuilder.Redirect;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import com.codetheory.web.model.QuizQuestion;
 import com.codetheory.web.model.Status;
 import com.codetheory.web.model.JudgeData;
 import com.codetheory.web.model.JudgeOutput;
+
 import org.codehaus.jackson.map.ObjectMapper;
 import org.apache.http.HttpResponse;
 
@@ -29,7 +31,6 @@ import org.apache.http.entity.StringEntity;
 
 import org.apache.http.impl.client.HttpClientBuilder;
 
-import javax.servlet.http.HttpServletResponse;
 
 @RestController
 public class QuizController {
@@ -70,17 +71,44 @@ public class QuizController {
 		}
 		return output;
 	}
-
 	
-	@RequestMapping ( value="/roundOne/submit" , produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
-	public void submitRoundOne (@RequestBody List<QuizQuestion> question , HttpServletResponse response) throws IOException{
-		int marks=0;
+	@RequestMapping ( value="/roundOne/submit" ,consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+	public Object[] submitRoundOne (@RequestBody List<QuizQuestion> question , Model model){
+		
+		String html = "";
+
+		int marks=0, qno=0;
+
 		for (QuizQuestion var : question) {
-			if (var.getSelected() != -1)
-				if (dao.checkAnswerById(var.getId(), var.getSelected()))
-					marks++;
+			
+				html += "<tr>" ;
+				html += "<td>" + ++qno + "</td>";
+				html += "<td>" + var.getQuestion() + "</td>";
+			
+			int selected = var.getSelected();
+			int ans = dao.getAnswerById(var.getId());
+				html += "<td class=\"text-success\">" + var.getOptions()[ans] +"</td>";
+				
+			if (var.getSelected() != -1) {
+				if (ans == selected)
+					html += "<td class=\"text-success\">" + var.getOptions()[selected] +"</td>";
+				else
+					html += "<td class=\"text-danger\">" + var.getOptions()[selected] +"</td>";
+				
+				if (ans == var.getSelected()){	
+					marks += 10;
+						html += "<td class=\"text-success\"> +10 </td>";
+				} else
+						html += "<td class=\"text-danger\"> 0 </td>";
+			} else{
+				
+				html += "<td class=\"text-danger\"> Not attempted </td>";
+				html += "<td class=\"text-danger\"> Not attempted </td>";
+			}
+
+			html += "</tr>";
 		}
-		System.out.println(marks*100/question.size());
-//		response.sendRedirect("/result");
+		
+		return new Object[]{html , marks ,(question.size()*10)};
 	}
 }

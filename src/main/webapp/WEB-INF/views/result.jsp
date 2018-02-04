@@ -14,7 +14,7 @@
     <div class="container">
         <div class="cardView text-center" style="margin-bottom:50px">
             <h2 class="text-active">Result</h2>
-            <h3 class="text-success"><i class="fa fa-smile-o" style="font-size:30px"></i>You got 30/50</h3>
+            <h3 class="text-success">You got ${marks}/${total}</h3>
             <label class="text-primary">Click here to go to next round</label><br/>
             <i class="fa fa-hand-o-right" style="font-size:25px"></i>
             <a class="btn btn-primary" type="button" href="/RoundThree">next round</a>

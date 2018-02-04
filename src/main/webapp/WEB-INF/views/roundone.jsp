@@ -4,7 +4,7 @@
         <body>
             <jsp:include page="/WEB-INF/shared/header.jsp" />
             <script src="<c:url value=" /resources/script/roundOne.js " />"></script>
-            <div class="container">
+            <div class="container" id="roundone">
                 <div class="row">
                     <div class="col-sm-4 text-center">
                         <h1>Round 1</h1>
@@ -15,7 +15,7 @@
                     </div>
                     <div class="col-sm-4 text-center" id="submitRoundOne" hidden>                       
                         <a class="btn btn-info" href="#" onclick="showPreview()">Preview</a>
-                        <a class="btn btn-success" onclick="submitQuestion()" href="/result" id="submitRound">
+                        <a class="btn btn-success" onclick="submitQuestion()" id="submitRound">
                             Submit
                         </a>
                     </div>
@@ -82,6 +82,7 @@
                 </section>
 
                 <!-- Questions -->
+                <section id="questionarea">
                 <div class="row">
                     <div class="hidden-xs col-sm-6">
                         <div class="col-lg-12 col-bg" id="showQuestion" hidden>
@@ -110,5 +111,40 @@
                     </div>
                 </div>
                 <div class="space"></div>
-                <jsp:include page="/WEB-INF/shared/footer.jsp" />
+            </section>
+           </div>
+
+           <div class="container" id = "resultArea" style="display:none">
+                
+                <div class="cardView text-center" >
+                    <h2 class="text-active">Result</h2>
+                    <h3 class="text-success">
+                        You got 
+                        <span id="points">
+                            
+                        </span>
+                    </h3>
+                    <label class="text-primary">Click here to go to next round</label><br/>
+                    <i class="fa fa-hand-o-right" style="font-size:25px"></i>
+                    <a class="btn btn-primary" type="button" href="/RoundThree">next round</a>
+                            
+                    </div>
+
+                    <div class="cardView" style="margin-bottom:50px">
+                        <h2>Summary</h2>
+                        <table class="table">
+                            <thead>
+                                <th>S.No</th>
+                                <th>Question</th>
+                                <th>Correct Answer</th>
+                                <th>Your Answer</th>
+                                <th>points</th>
+                            </thead>
+                            
+                            <tbody id="resultBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            <jsp:include page="/WEB-INF/shared/footer.jsp" />
         </body>

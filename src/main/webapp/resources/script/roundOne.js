@@ -47,10 +47,10 @@ function buildOptionSideBar(index) {
     
     for (j = 0; j < 4; j++) {
         option += '<div class=" form-group cardView">';
-        if (data[index].selected == j+1)
-            option += '<input name="op" type="radio" class="with-gap" onclick="changeColor('+(index+1)+','+(j+1)+')" checked>';
+        if (data[index].selected == j)
+            option += '<input name="op" type="radio" class="with-gap" onclick="changeColor('+(index+1)+','+j+')" checked>';
         else
-            option += '<input name="op" type="radio" class="with-gap" onclick="changeColor('+(index+1)+','+(j+1)+')">';
+            option += '<input name="op" type="radio" class="with-gap" onclick="changeColor('+(index+1)+','+j+')">';
         option += '<label for="' + j + '">' + data[index].options[j] + '</label>';
         option += '</div>';
     }
@@ -102,7 +102,7 @@ function changeColor (i , j){
 }
 
 /*
-    submitQuestion will 
+    submitQuestion 
  */
 
 
@@ -112,6 +112,13 @@ function submitQuestion(){
             url: "/roundOne/submit",
             data: JSON.stringify(data),
             contentType: "application/json",
-         
+            success: function(response){
+               
+                $('#roundone').hide();
+                $('#resultArea').show();
+                $('#points').html(response[1] + '/' + response[2]);
+                $('#resultBody').html(response[0]);
+
+            }
     });
 }

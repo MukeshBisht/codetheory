@@ -21,4 +21,5 @@ public interface ChallengeDAO {
     public List<QuizQuestion> getAllQuestion ();   
     public List<QuizQuestion> getAllQuestion (String groupid);
     public Boolean checkAnswerById (int id , int selected);
+    public int getAnswerById (int id);
 }
