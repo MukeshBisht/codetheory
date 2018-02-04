@@ -2,7 +2,7 @@
     <%@page isELIgnored = "false" %>
 
         <c:forEach items="${cardList.cards}" var="card">
-            <div class="panel panel-info ">
+            <div class="panel panel-info">
                 <div class="panel-heading " id="cardHeading">
                         <b>${card.name}</b>
                     

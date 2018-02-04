@@ -47,6 +47,7 @@ $(document).ready(function () {
             { data: "options.1", orderable : false },
             { data: "options.2", orderable : false },
             { data: "options.3", orderable : false },
+            { data: "level", render: getlvl },
             {
                 data: null,
                 orderable : false,
@@ -84,6 +85,18 @@ $(document).ready(function () {
     });
 });
 
+function getlvl(val, type, row){
+    switch(val){
+        case 1:
+            return "Easy";
+        case 2:
+            return "Medium";
+        case 3:
+            return "Hard";
+        default:
+            return "Undefined";
+    }
+}
 
 function resetForm(){
     $('#question').val("");

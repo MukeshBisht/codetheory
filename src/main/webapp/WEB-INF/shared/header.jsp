@@ -92,18 +92,13 @@
                                             
                                                 
                                                 <li class="dropdown">   
-                                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                                       
+                                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">                          
                                                         <i class="fa fa-user-circle" style="font-size:25px;color:white"></i></a>
                                                        <ul class="dropdown-menu">
-                                                                <li><a href="/user/profile">Profile</a></li>
-                                                               
+                                                                <li><a href="/user/profile">Profile</a></li>                                                      
                                                                 <li><a href="/contest/create">Manage Contest</a></li>
-                                                                <li><a href="/challenge/group">Manage Challenges</a></li>                                        
-                                                                        
+                                                                <li><a href="/challenge/group">Manage Challenges</a></li>                                                     
                                                                 <li><a href="<c:url value='/logout' />">logout</a></li>
-                                                               
-                                                              
                                                         </ul>
                                                 </li>
                                         </ul>

@@ -15,8 +15,7 @@
   <script src="<c:url value=" /resources/script/groupmgmt.js " />"></script>
   <script src="<c:url value=" /resources/lib/datatables/js/jquery.dataTables.js " />"></script>
   <script src="<c:url value=" /resources/lib/datatables/js/dataTables.bootstrap.js " />"></script>
-  <link rel='stylesheet' href="<c:url value=" /resources/lib/datatables/css/dataTables.bootstrap.css "/>" type='text/css' media='screen'
-  />
+  <link rel='stylesheet' href="<c:url value=" /resources/lib/datatables/css/dataTables.bootstrap.css "/>" type='text/css' media='screen'/>
   <!-- page body -->
   <div class="container body-content">
 
@@ -113,6 +112,7 @@
           <th>Option2</th>
           <th>Option3</th>
           <th>Option4</th>
+          <th>Level</th>
           <th><span class="glyphicon glyphicon-cog"></span></th>
         </tr>
       </thead>

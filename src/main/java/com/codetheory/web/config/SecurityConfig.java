@@ -31,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().authorizeRequests().antMatchers("/login","/home").permitAll()
-				.antMatchers("/", "/*competition*/**").access("hasRole('USER')").and()
+				.antMatchers("/", "/*challenge*/**").hasAuthority("USER").and()
 				.formLogin().loginPage("/login")
 				.permitAll().and().logout().deleteCookies("rememberme")
 				.permitAll().and().rememberMe().tokenValiditySeconds(60);

@@ -5,11 +5,13 @@
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
 
-     <filter>
+    <filter>
     		<filter-name>springSecurityFilterChain</filter-name>
     		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
    </filter>
- 
+  <error-page>
+  <location>/error/</location>
+  </error-page>
    <filter-mapping>
    		<filter-name>springSecurityFilterChain</filter-name>
     		<url-pattern>/*</url-pattern>
