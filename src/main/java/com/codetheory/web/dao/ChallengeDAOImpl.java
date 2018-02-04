@@ -100,14 +100,13 @@ public class ChallengeDAOImpl implements ChallengeDAO {
     public Boolean checkAnswerById (int id , int selected){
         String sql = "select (1) from quiz_question where id=? and answer=?";
         Boolean result = (jdbcTemplate.queryForList(sql, new Object[]{id,selected}).size() > 0);
-        System.out.println(result);
         return result;
     }
 
     @Override
     public int getAnswerById(int id) {
         String sql = "select answer from quiz_question where id=?";
-        return 0; 
+        return jdbcTemplate.queryForObject(sql, new Object[]{id},Integer.class);
     }
 
 	@Override
