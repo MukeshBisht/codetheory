@@ -57,6 +57,7 @@ public class challengeController {
                 }
                 else
                 {
+                    
                     return "manageCodeGroup";
                 }
             }

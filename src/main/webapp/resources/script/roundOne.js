@@ -112,13 +112,11 @@ function submitQuestion(){
             url: "/roundOne/submit",
             data: JSON.stringify(data),
             contentType: "application/json",
-            success: function(response){
-               
+            success: function(response){              
                 $('#roundone').hide();
                 $('#resultArea').show();
                 $('#points').html(response[1] + '/' + response[2]);
                 $('#resultBody').html(response[0]);
-
             }
     });
 }

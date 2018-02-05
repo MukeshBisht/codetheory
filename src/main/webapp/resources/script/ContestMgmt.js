@@ -18,11 +18,6 @@ $(function () {
         }
     });
 
-    $("#addRoundDialog").dialog({autoOpen:false});
-    $("#addRound").on("click", function(){
-        $("#addRoundDialog").dialog("open");
-    });
-
     $('#modselect').autocomplete({
         delay: 100,
         minLength: 2,

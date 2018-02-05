@@ -11,8 +11,7 @@
     <script src="<c:url value=" /resources/script/jquery-ui.js " />"></script>
     <link rel='stylesheet' href="<c:url value=" /resources/css/jquery-ui.css "/>" type='text/css' />
     <script src="<c:url value=" /resources/lib/datatables/js/dataTables.bootstrap.js " />"></script>
-    <link rel='stylesheet' href="<c:url value=" /resources/lib/datatables/css/dataTables.bootstrap.css "/>" type='text/css' media='screen'
-    />
+    <link rel='stylesheet' href="<c:url value=" /resources/lib/datatables/css/dataTables.bootstrap.css "/>" type='text/css' media='screen'/>
 
     <div class="container">
         <div class="row">
@@ -28,13 +27,13 @@
             <!-- Question Seciton -->
             <div class=" col-sm-12">
                 <ul class="nav nav-tabs">
-                    <li class="active">
+                    <li>
                         <a data-toggle="tab" href="#Details">Details</a>
                     </li>
                     <li>
                         <a data-toggle="tab" href="#Customization">Customization</a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a data-toggle="tab" href="#Content">Content</a>
                     </li>
                     <li>
@@ -48,7 +47,7 @@
                     </li>
                 </ul>
                 <div class="tab-content">
-                    <div id="Details" class="tab-pane fade in active">
+                    <div id="Details" class="tab-pane fade ">
                         <h3>Contest Details</h3>
                         <p>Edit contest details</p>
                         <jsp:include page="/contest/update/${contest}" />
@@ -59,32 +58,8 @@
                         <p>Change content on landing page</p>
                     </div>
 
-                    <div id="Content" class="tab-pane fade">
-                        <h2>Rounds &nbsp;&nbsp;<a href="#" id="addRound" class="glyphicon glyphicon-plus-sign"></a></h2>
-                        <br/>
-                        <div class="col-md-3">
-                                        
-                        </div>
-                        <div class="col-md-9">
-                            <div class="table-responsive">
-                                <table id="grid" class="table table-bordered table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Question</th>
-                                            <th>Option1</th>
-                                            <th>Option2</th>
-                                            <th>Option3</th>
-                                            <th>Option4</th>
-                                            <th>Level</th>
-                                            <th>
-                                                <span class="glyphicon glyphicon-cog"></span>
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                </table>
-                            </div>
-                        </div>
+                    <div id="Content" class="tab-pane fade in active">
+                        <jsp:include page="/WEB-INF/views/round.jsp" />
                     </div>
 
                     <div id="Moderators" class="tab-pane fade">
@@ -121,27 +96,7 @@
             </div>
         </div>
 
-        <div id="addRoundDialog" title="Add Round">
-            <div class="input-group">
-                <span class="input-group-addon">Name</span>
-                <input id="op2" type="text" placeholder="Round Name" class="form-control" required/>
-            </div>
-            <div class="input-group">
-                <span class="input-group-addon">Type</span>
-                <select class="form-control" required>
-                    <option>MCQ</option>
-                    <option>Code</option>
-                </select>
-            </div>
-            <div class="input-group">
-                <span class="input-group-addon">
-                  Length
-                </span>
-                <input id="op2" type="number" placeholder="Round Name" class="form-control" required/>
-                <span class="input-group-addon">Min</span>
-            </div>
-            <button class="btn btn-block btn-success">Add</button>
-        </div>
+
 
         <!-- footer -->
         <jsp:include page="/WEB-INF/shared/footer.jsp" />
