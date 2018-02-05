@@ -107,18 +107,18 @@ function changeColor (i , j){
 
 
 function submitQuestion(){
+    
+    if (!confirm("Are you sure you want to submit")){
+        return;
+    }
     $.ajax({
             type: "POST",
-            url: "/roundOne/submit",
+            url: "/RoundOne/submit",
             data: JSON.stringify(data),
             contentType: "application/json",
             success: function(response){
-               
                 $('#roundone').hide();
-                $('#resultArea').show();
-                $('#points').html(response[1] + '/' + response[2]);
-                $('#resultBody').html(response[0]);
-
+                $('#resultArea').html(response);
             }
     });
 }

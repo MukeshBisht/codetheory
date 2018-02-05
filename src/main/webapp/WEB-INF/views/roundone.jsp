@@ -114,37 +114,7 @@
             </section>
            </div>
 
-           <div class="container" id = "resultArea" style="display:none">
-                
-                <div class="cardView text-center" >
-                    <h2 class="text-active">Result</h2>
-                    <h3 class="text-success">
-                        You got 
-                        <span id="points">
-                            
-                        </span>
-                    </h3>
-                    <label class="text-primary">Click here to go to next round</label><br/>
-                    <i class="fa fa-hand-o-right" style="font-size:25px"></i>
-                    <a class="btn btn-primary" type="button" href="/RoundThree">next round</a>
-                            
-                    </div>
-
-                    <div class="cardView" style="margin-bottom:50px">
-                        <h2>Summary</h2>
-                        <table class="table">
-                            <thead>
-                                <th>S.No</th>
-                                <th>Question</th>
-                                <th>Correct Answer</th>
-                                <th>Your Answer</th>
-                                <th>points</th>
-                            </thead>
-                            
-                            <tbody id="resultBody">
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+           <section id="resultArea"></section>
+                    
             <jsp:include page="/WEB-INF/shared/footer.jsp" />
         </body>

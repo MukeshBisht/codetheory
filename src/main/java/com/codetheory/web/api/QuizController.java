@@ -72,43 +72,4 @@ public class QuizController {
 		return output;
 	}
 	
-	@RequestMapping ( value="/roundOne/submit" ,consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
-	public Object[] submitRoundOne (@RequestBody List<QuizQuestion> question , Model model){
-		
-		String html = "";
-
-		int marks=0, qno=0;
-
-		for (QuizQuestion var : question) {
-			
-				html += "<tr>" ;
-				html += "<td>" + ++qno + "</td>";
-				html += "<td>" + var.getQuestion() + "</td>";
-			
-			int selected = var.getSelected();
-			int ans = dao.getAnswerById(var.getId());
-				html += "<td class=\"text-success\">" + var.getOptions()[ans] +"</td>";
-				
-			if (var.getSelected() != -1) {
-				if (ans == selected)
-					html += "<td class=\"text-success\">" + var.getOptions()[selected] +"</td>";
-				else
-					html += "<td class=\"text-danger\">" + var.getOptions()[selected] +"</td>";
-				
-				if (ans == var.getSelected()){	
-					marks += 10;
-						html += "<td class=\"text-success\"> +10 </td>";
-				} else
-						html += "<td class=\"text-danger\"> 0 </td>";
-			} else{
-				
-				html += "<td class=\"text-danger\"> Not attempted </td>";
-				html += "<td class=\"text-danger\"> Not attempted </td>";
-			}
-
-			html += "</tr>";
-		}
-		
-		return new Object[]{html , marks ,(question.size()*10)};
-	}
 }
