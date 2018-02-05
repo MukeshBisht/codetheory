@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.SqlParameter;
@@ -33,10 +32,7 @@ public class ChallengeDAOImpl implements ChallengeDAO {
                 new SqlParameter("grp", Types.INTEGER), new SqlParameter("usr", Types.VARCHAR), };
         sp.setParameters(params);
         sp.compile();
-        //Map result = 
-        sp.execute(ques.getQuestion(), opt[0], opt[1], opt[2], opt[3], ques.getLevel(), ques.getSelected(),
-                group, user);
-        //System.out.println(result);
+        sp.execute(ques.getQuestion(), opt[0], opt[1], opt[2], opt[3], ques.getLevel(), ques.getSelected(), group, user);
     }
 
     // Getting a particular Quesiton
