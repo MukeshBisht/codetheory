@@ -58,7 +58,7 @@
                                 <c:forEach items="${challenge.mcqGroups}" var="g">
                                     <tr class="clickable-row" data-href="/challenge/group/manage/${g.groupId}">
                                         <td>${g.name}</td>
-                                        <td>${mcqCount}</td>
+                                        <td>${g.challengeCount}</td>
                                         <td>${g.owner}</td>
                                         <td>
                                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
@@ -94,7 +94,7 @@
                             <c:forEach items="${challenge.codeGroups}" var="g">
                                     <tr class="clickable-row" data-href="/challenge/group/manage/${g.groupId}">
                                         <td>${g.name}</td>
-                                        <td>${codeCount}</td>
+                                        <td>${g.challengeCount}</td>
                                         <td>${g.owner}</td>
                                         <td>
                                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>

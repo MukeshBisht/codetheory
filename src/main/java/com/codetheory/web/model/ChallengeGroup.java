@@ -7,7 +7,8 @@ public class ChallengeGroup{
     private String groupId;
     private String name;
     private String owner;
-    private ChallengeType challengeType;
+	private ChallengeType challengeType;
+	private int challengeCount;
 
 	
 	/**
@@ -57,5 +58,17 @@ public class ChallengeGroup{
 	 */
 	public void setChallengeType(ChallengeType challengeType) {
 		this.challengeType = challengeType;
+	}
+	/**
+	 * @return the challengeCount
+	 */
+	public int getChallengeCount() {
+		return challengeCount;
+	}
+	/**
+	 * @param challengeCount the challengeCount to set
+	 */
+	public void setChallengeCount(int challengeCount) {
+		this.challengeCount = challengeCount;
 	}
 }
