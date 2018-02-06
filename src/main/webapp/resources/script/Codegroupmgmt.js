@@ -57,6 +57,7 @@ function format(d) {
 $(document).ready(function () {
     var table = $('#grid').DataTable({
         data: dat,
+        //ajax : url,
         columns : [
             { data: "id", visible: false },
             { data: "question" },
