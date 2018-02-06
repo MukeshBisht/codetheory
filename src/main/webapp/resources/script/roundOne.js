@@ -116,17 +116,9 @@ function submitQuestion(){
             url: "/RoundOne/submit",
             data: JSON.stringify(data),
             contentType: "application/json",
-<<<<<<< HEAD
             success: function(response){
                 $('#roundone').hide();
                 $('#resultArea').html(response);
-=======
-            success: function(response){              
-                $('#roundone').hide();
-                $('#resultArea').show();
-                $('#points').html(response[1] + '/' + response[2]);
-                $('#resultBody').html(response[0]);
->>>>>>> cac61f95384af2f1234ed9fbd47e3670ec0e7bb6
             }
     });
 }
