@@ -1,5 +1,6 @@
 package com.codetheory.web.dao;
 
+import com.codetheory.web.model.CodeQuestion;
 import com.codetheory.web.constant.ChallengeType;
 import com.codetheory.web.model.ChallengeGroup;
 import com.codetheory.web.model.QuizQuestion;
@@ -58,7 +59,7 @@ public class ChallengeDAOImpl implements ChallengeDAO {
 
 	@Override
 	public List<ChallengeGroup> getChallengeGroups(String user) {
-        String query = "select C.ChallengeGroupId, C.Name, C.Owner, C.Type from challengegroup C inner join user_challengegroup_map CM on C.ChallengeGroupId = CM.challengegroupid Where CM.user=?";
+        String query = "select C.ChallengeGroupId, C.Name, C.Owner, C.Type from challengegroup C inner join user_challengegroup_map CM on C.ChallengeGrou000000000pId = CM.challengegroupid Where CM.user=?";
 		return jdbcTemplate.query(query,new String[]{user},new RowMapper<ChallengeGroup>(){  
             @Override  
             public ChallengeGroup mapRow(ResultSet rs, int rownumber) throws SQLException {  
@@ -126,5 +127,21 @@ public class ChallengeDAOImpl implements ChallengeDAO {
         jdbcTemplate.update(sql, new Object[] {           
             question.getQuestion(), ops[0], ops[1], ops[2], ops[3], question.getSelected(), question.getLevel(), question.getId()
         });
-	}
+    }
+    
+    // Code Question methods implementation
+    
+    
+    @Override
+    public CodeQuestion getCodeQuestionById(int id){
+        String sql = "select * from code_question where id=?";
+        return jdbcTemplate.queryForObject(sql, new Object[]{id}, new CodeQuestionMapper());   
+    }
+
+    @Override
+    public List<CodeQuestion> getAllCodeQuestion(){
+        String sql = "select * from code_question full join test_case";//" on code_question.id = test_case.id";
+        return jdbcTemplate.query(sql, new CodeQuestionMapper());
+        
+    }
 }

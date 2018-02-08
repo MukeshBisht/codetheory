@@ -42,6 +42,16 @@ var dat = [
     }];
 
 
+function loadQuestion(){
+    $.ajax({
+            type: "GET",
+            url: "/code",
+            success: function (response) {
+                dat = response;
+            }
+    });
+}
+
 function format(d) {
     // `d` is the original data object for the row
     var t = '<table class="table"><thead><tr><th>Input</th><th>Output</th><th>Points</th><th><button class="btn btn-success">Add</button></th></tr></thead>';

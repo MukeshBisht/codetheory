@@ -3,6 +3,7 @@
         <html>
 
         <head>
+            <script src="<c:url value=" /resources/lib/jquery/jquery.js " />"></script>
             <script src="<c:url value=" /resources/script/RoundThree.js " />"></script>
             <script src="<c:url value=" /resources/lib/codemirror/lib/codemirror.js " />"></script>
             <script src="<c:url value=" /resources/lib/codemirror/mode/javascript/javascript.js " />"></script>
@@ -65,14 +66,17 @@
                         </ul>
                         <div class="tab-content">
                             <div id="home" class="tab-pane fade in active">
+                             
                                 <h3>Problem</h3>
-                                <p>
-                                    Write a simple program to rewrite the input string with 'hello, ' prefix added in output 
-                                    <br> eg.
-                                    <br> input : world
-                                    <br> output : hello, world
-                                    <br>
-                                </p>
+                                <p id="problemStatement"> </p>
+
+                                 <strong>Details/Explanation/Constraits</strong> 
+
+                                 <p id="details"></p>
+                                <strong>Test Cases</strong>
+                                <table class="table" id="testcase" style="font-size:15px">
+                                </table>
+                                
                             </div>
                             <div id="menu1" class="tab-pane fade">
                                 <h3>Output</h3>
