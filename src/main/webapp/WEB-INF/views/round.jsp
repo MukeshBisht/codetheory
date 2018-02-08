@@ -43,7 +43,7 @@
 
 
 <!-- Add Round Dialog -->
-<div id="addRoundDialog" class="modal fade" role="dialog">
+<form id="addRoundDialog" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="input-group">
@@ -64,8 +64,8 @@
                 <input id="op2" type="number" placeholder="Round Time" class="form-control" required/>
                 <span class="input-group-addon">Min</span>
             </div>
-            <button class="btn btn-block btn-success">Add</button>
+            <button type="submit" class="btn btn-block btn-success">Add</button>
         </div>
     </div>
-</div>
+</form>
 <!-- end Add Round Dialog -->

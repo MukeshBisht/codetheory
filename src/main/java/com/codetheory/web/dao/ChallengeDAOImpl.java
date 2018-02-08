@@ -59,8 +59,15 @@ public class ChallengeDAOImpl implements ChallengeDAO {
 
 	@Override
 	public List<ChallengeGroup> getChallengeGroups(String user) {
-        String query = "select C.ChallengeGroupId, C.Name, C.Owner, C.Type from challengegroup C inner join user_challengegroup_map CM on C.ChallengeGrou000000000pId = CM.challengegroupid Where CM.user=?";
-		return jdbcTemplate.query(query,new String[]{user},new RowMapper<ChallengeGroup>(){  
+
+        String query = "select C.ChallengeGroupId, C.Name, C.Owner, C.Type, count(QM.Id) as Challenges, CM.user from challengegroup C ";
+        query += "inner join user_challengegroup_map CM ";
+        query += "on C.ChallengeGroupId = CM.challengegroupid ";
+        query += "left join question_challengegrp_map QM ";
+        query += "on C.ChallengeGroupId = QM.ChallengeGrpId ";
+        query += "group by CM.challengegroupid ";
+        query += "having CM.user=?; ";
+        return jdbcTemplate.query(query,new String[]{user},new RowMapper<ChallengeGroup>(){  
             @Override  
             public ChallengeGroup mapRow(ResultSet rs, int rownumber) throws SQLException {  
                 ChallengeGroup cg=new ChallengeGroup();  
@@ -69,6 +76,7 @@ public class ChallengeDAOImpl implements ChallengeDAO {
                 cg.setChallengeType(ChallengeType.values()[i]);
                 cg.setOwner(rs.getString("owner"));
                 cg.setName(rs.getString("name"));
+                cg.setChallengeCount(rs.getInt("Challenges"));
                 return cg;
             }  
         });  
