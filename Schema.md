@@ -93,3 +93,25 @@ BEGIN
 	(grp, LAST_INSERT_ID() ,usr);  
 RETURN 1;
 END $$
+
+
+
+CREATE TABLE `test_case` (
+  `test_id` int(11) NOT NULL AUTO_INCREMENT,
+  `input` varchar(45) NOT NULL,
+  `output` varchar(45) NOT NULL,
+  `points` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  PRIMARY KEY (`test_id`),
+  KEY `id_idx` (`id`),
+  CONSTRAINT `id` FOREIGN KEY (`id`) REFERENCES `code_question` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `code_question` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `question` varchar(200) NOT NULL,
+  `details` varchar(100) DEFAULT NULL,
+  `level` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
