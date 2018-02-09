@@ -3,6 +3,7 @@ package com.codetheory.web.controller;
 import com.codetheory.web.constant.OrganizationType;
 import com.codetheory.web.dao.ContestDAO;
 import com.codetheory.web.model.Contest;
+import com.codetheory.web.model.Round;
 import com.codetheory.web.viewModel.RowContest;
 import com.codetheory.web.viewModel.UserContest;
 
@@ -39,6 +40,18 @@ public class ContestController {
 		model.addAttribute("newContest", con);
 		return "createContest";
 	}
+
+	@RequestMapping(value="{name}/rounds", method = RequestMethod.GET)
+	public String Rounds(Model model,@PathVariable("name") String cname, Principal principal) {
+		String user = principal.getName();
+		if(!dao.validUserContest(user, cname)){
+			return "redirect:/contest/create";
+		}
+		List<Round> rounds = dao.getRounds(cname);
+		model.addAttribute("cname", cname);
+		model.addAttribute("rounds", rounds);
+		return "round";
+	}	
 
 	@RequestMapping(value="/create", method=RequestMethod.POST)
     public String register(@ModelAttribute("contest") Contest con, Principal principal) {
