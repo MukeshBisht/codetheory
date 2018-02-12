@@ -10,12 +10,9 @@ import com.codetheory.web.model.Round;
 import com.codetheory.web.viewModel.GroupChallenge;
 import com.codetheory.web.viewModel.RowContest;
 import com.codetheory.web.viewModel.UserContest;
-
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.http.impl.client.SystemDefaultCredentialsProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -60,7 +57,6 @@ public class ContestController {
 		ArrayList<ChallengeGroup> mcqs = new ArrayList<ChallengeGroup>();
         ArrayList<ChallengeGroup> codes = new ArrayList<ChallengeGroup>();
 		GroupChallenge gc = new GroupChallenge();
-		System.out.println(challengeGroups.size());
         for (ChallengeGroup var : challengeGroups) {
             if (var.getChallengeType() == ChallengeType.MCQ) {
                 mcqs.add(var);
@@ -74,7 +70,7 @@ public class ContestController {
 		List<Round> rounds = dao.getRounds(cname);
 		model.addAttribute("cname", cname);
 		model.addAttribute("rounds", rounds);		
-        model.addAttribute("groups", gc);
+		model.addAttribute("groups", gc);
 		return "round";
 	}	
 

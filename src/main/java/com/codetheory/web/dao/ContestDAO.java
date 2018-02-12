@@ -17,5 +17,7 @@ public interface ContestDAO {
     public List<Contest> getContestsByUser(String username);
     public void removeEditor(String user, String contest);
     public void addRound(Round round);
+    public boolean roundExist(Round round);
+    public void deleteRound(Round round);
     public List<Round> getRounds(String contest);
 }

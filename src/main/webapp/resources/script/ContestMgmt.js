@@ -1,17 +1,15 @@
 var contest;
+var log;
 $(function () {
     contest = $('#contestName').val();
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
         var target = $(e.target).attr("href").replace('#', '');
         switch (target) {
-            case 'Customization':
-                break;
             case 'Content':
+                loadRounds();
                 break;
             case 'Moderators':
                 loadModerators();
-                break;
-            case 'Notifications':
                 break;
             case 'Advance':
                 break;
@@ -33,39 +31,51 @@ $(function () {
     });
 });
 
+function loadRounds() {
+    $("#loadingDialog").modal("toggle");
+    contest = $('#contestName').val();
+    $.ajax({
+        type: "GET",
+        url: "/contest/"+contest+"/rounds",
+        success: function (response) {
+            $('#Content').empty();
+            $('#Content').html(response);
+            $("#loadingDialog").modal("toggle");
+        }
+    });
+}
+
 function addModerator() {
     var newmod = $('#modselect').val();
     if (confirm("Are you sure ?\r\n Add " + newmod + "?")) {
-        d = { user: newmod, contest : contest, role : 'moderator' };
+        d = { user: newmod, contest: contest, role: 'moderator' };
         $.ajax({
             url: '/api/contest/moderator/',
-            dataType: 'json',
             contentType: "application/json",
             type: 'POST',
             crossDomain: true,
-            data : JSON.stringify(d),
+            data: JSON.stringify(d),
             success: function (response) {
+                loadModerators();
             }
-        });      
-        loadModerators();
+        });
     }
 }
 
 function removeModerator(moderator) {
     console.log(moderator);
     if (confirm("Are you sure ?\r\n Remove " + moderator + "?")) {
-        d = { user: moderator, contest : contest, role : 'moderator' };
+        d = { user: moderator, contest: contest, role: 'moderator' };
         $.ajax({
             url: '/api/contest/editors/' + contest,
-            dataType: 'json',
             contentType: "application/json",
             crossDomain: true,
             type: 'DELETE',
-            data : JSON.stringify(d),
-            success: function (response) {                
+            data: JSON.stringify(d),
+            success: function (response) {
+                loadModerators();
             }
         });
-        loadModerators();
     }
 }
 
@@ -79,16 +89,16 @@ function loadModerators() {
             var op = '';
             for (i = 0; i < response.length; i++) {
                 var user = response[i].user;
-                var role =  response[i].role;
+                var role = response[i].role;
                 op += '<tr><td>';
                 op += user;
                 op += '</td><td>';
                 op += role;
                 op += '</td><td>';
-                if (response[i].role != 'owner'){
-                    op += '<a onClick="removeModerator(\''+ user +'\')">Remove</a>';
+                if (response[i].role != 'owner') {
+                    op += '<a onClick="removeModerator(\'' + user + '\')">Remove</a>';
                 }
-                   
+
                 op += '</td></tr>';
             }
             $('#modtab > tbody').last().append(op);

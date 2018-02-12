@@ -134,3 +134,7 @@ body {
  #notificationBadge{
 	background: rgb(32, 32, 32);
   }
+
+  table.dataTable tbody tr.selected {
+    background-color: #B0BED9;
+}

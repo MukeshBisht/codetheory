@@ -39,10 +39,18 @@ public class ContestApiController {
 
     @RequestMapping(value = "/editors/{contest}",consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.DELETE)
     public void removeEditor(@RequestBody UserContestMap uc, Principal principal) {
-        //System.out.println(uc.getContest());
-        //System.out.println(uc.getUser());
         if(principal != null && dao.validUserContest(principal.getName(), uc.getContest())){
             dao.removeEditor(uc.getUser(), uc.getContest());
+        }
+    }
+
+    @RequestMapping(value = "/round", method = RequestMethod.DELETE)
+    public void deleteRound(@RequestBody Round round, Principal principal) {        
+        String user = principal.getName();
+        if(dao.validUserContest(user, round.getContest())){
+            if(dao.roundExist(round)){
+                dao.deleteRound(round);
+            }
         }
     }
 
@@ -56,5 +64,4 @@ public class ContestApiController {
 
         return new ResponseEntity<>("0", HttpStatus.UNAUTHORIZED);
     }
-
 }

@@ -12,13 +12,16 @@ $(document).ready(function () {
         $("#addChlngDialog").modal("toggle");
     });
 
-    var grid = $('#grid').DataTable();
+    var grid = $('#grid').DataTable({
+        
+    });
     var Qgrid = $('#Qgrid').DataTable({
         columns: [
             { data: "id", visible : false},
             { data: "question" },
             { data: "level", render: getlvl }
         ],
+        lengthMenu: [[5, 10, 15], [5, 10, 15]],
         autoWidth: false
     });
     $('#Qgrid tbody').on('click', 'tr', function(){
@@ -55,7 +58,35 @@ function getlvl(val, type, row){
     }
 }
 
-function addRound(){
+var round;
+function changeRound(e){
+    $(".list-group .list-group-item").removeClass("active");
+    e.classList.add("active");
+    log = e;
+    round = { roundId : e.id, contest : contest, name:e.text, type : log.attributes['data-type'].value };
+}
+
+function deleteRound(){
+    if(round == null){
+        alert("Select a Round");
+        return;
+    }
+    if(confirm("Delete Round?")){
+        $.ajax({
+            url: '/api/contest/round',
+            contentType: "application/json",
+            crossDomain: true,
+            type: 'DELETE',
+            data: JSON.stringify(round),
+            success: function (response) {        
+                round = null;       
+                loadRounds();
+            }
+        });
+    }
+}
+
+function addRound(){   
     var url = '/api/contest/round';
     var id = $('#roundId').val();
     var roundName = $('#roundName').val();
@@ -70,8 +101,9 @@ function addRound(){
         contentType: "application/json",
         data :JSON.stringify(d),
         success : function(data){
-            alert("Successfull");
+            $("#addRoundDialog").modal("toggle");
             resetAddRound();
+            loadRounds();
         },
         error : function(data){
             log = data;
@@ -79,7 +111,6 @@ function addRound(){
         }
     });
 }
-
 
 function resetAddRound(){
 

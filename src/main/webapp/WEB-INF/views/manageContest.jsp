@@ -9,10 +9,11 @@
     <jsp:include page="/WEB-INF/shared/header.jsp" />
     <script src="<c:url value=" /resources/script/ContestMgmt.js " />"></script>
     <script src="<c:url value=" /resources/script/jquery-ui.js " />"></script>
+    <script src="<c:url value=" /resources/lib/datatables/js/jquery.dataTables.js " />"></script>
+    <script src="<c:url value=" /resources/lib/datatables/js/dataTables.bootstrap.js " />"></script>  
     <link rel='stylesheet' href="<c:url value=" /resources/css/jquery-ui.css "/>" type='text/css' />
-    <script src="<c:url value=" /resources/lib/datatables/js/dataTables.bootstrap.js " />"></script>
     <link rel='stylesheet' href="<c:url value=" /resources/lib/datatables/css/dataTables.bootstrap.css "/>" type='text/css' media='screen'/>
-
+    
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
@@ -27,13 +28,13 @@
             <!-- Question Seciton -->
             <div class=" col-sm-12">
                 <ul class="nav nav-tabs">
-                    <li>
+                    <li class="active">
                         <a data-toggle="tab" href="#Details">Details</a>
                     </li>
                     <li>
                         <a data-toggle="tab" href="#Customization">Customization</a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a data-toggle="tab" href="#Content">Content</a>
                     </li>
                     <li>
@@ -47,7 +48,7 @@
                     </li>
                 </ul>
                 <div class="tab-content">
-                    <div id="Details" class="tab-pane fade ">
+                    <div id="Details" class="tab-pane fade in active">
                         <h3>Contest Details</h3>
                         <p>Edit contest details</p>
                         <jsp:include page="/contest/update/${contest}" />
@@ -58,9 +59,8 @@
                         <p>Change content on landing page</p>
                     </div>
 
-                    <div id="Content" class="tab-pane fade in active">
+                    <div id="Content" class="tab-pane fade">
                         
-                        <jsp:include page="/contest/${contest}/rounds" />
                     </div>
 
                     <div id="Moderators" class="tab-pane fade">
@@ -97,6 +97,22 @@
             </div>
         </div>
 
+        <!-- Add Round Dialog -->
+        <div id="loadingDialog" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1>Loading</h1>
+                    </div>
+                    <div class="modal-body">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>                   
+        </div>
 
 
         <!-- footer -->

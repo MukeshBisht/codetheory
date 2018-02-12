@@ -56,8 +56,7 @@ public class challengeController {
                     return "manageMCQGroup";
                 }
                 else
-                {
-                    
+                {                    
                     return "manageCodeGroup";
                 }
             }
