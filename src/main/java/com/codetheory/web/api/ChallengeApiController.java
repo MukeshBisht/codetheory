@@ -66,10 +66,11 @@ public class ChallengeApiController {
     }
 
 
-    @RequestMapping(value = "group/code/questions/add", consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
-    public void addCodeQuestion(@RequestBody CodeQuestion question, @PathVariable int id, Principal principal) {
+    @RequestMapping(value = "group/code/question/add", consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+    public ResponseEntity<Object> addCodingQuestion(@RequestBody CodeQuestion question, @PathVariable int id, Principal principal) {
         dao.addCodeQuestion(question, principal.getName(), 0);
-        
+        System.out.print("here");
+        return new ResponseEntity<>("0", HttpStatus.OK);
     }
 
 }

@@ -38,7 +38,7 @@
                         <span class="input-group-addon">
                           Question
                         </span>
-                        <input id="question" type="text" placeholder="Your Question goes here" class="form-control" required/>
+                        <input id="codequestion" type="text" placeholder="Your Question goes here" class="form-control" required/>
                       </div>
                     </div>
 
@@ -56,7 +56,7 @@
                         <span class="input-group-addon">
                           Input
                         </span>
-                        <input id="input" type="text" placeholder="Test Case Input" class="form-control" required/>
+                        <input id="testinput" type="text" placeholder="Test Case Input" class="form-control" required/>
                       </div>
                     </div>
 
@@ -65,19 +65,19 @@
                         <span class="input-group-addon">
                           Output
                         </span>
-                        <input id="output" type="text" placeholder="Test Case Output" class="form-control" required/>
+                        <input id="testoutput" type="text" placeholder="Test Case Output" class="form-control" required/>
                       </div>
                     </div>
 
                     <div class="form-group col-md-6">
-                      <select id="lvl" class="form-control" required>
+                      <select id="codelvl" class="form-control" required>
                         <option value="1">Easy</option>
                         <option value="2">Medium</option>
                         <option value="3">Hard</option>
                       </select>
                     </div>
                     <div class="form-group col-md-3">
-                      <button id="btnsubmi" class="btn btn-primary  btn-block pull-right" onclick="addCodeQuestion()" type="submit">Add</button>
+                      <button id="btnsubmit" class="btn btn-primary  btn-block pull-right" onclick="addCodeQuestion()" type="submit">Add</button>
                     </div>
                     <div class="form-group col-md-3">
                       <a class="btn btn-warning  btn-block pull-right" onclick="resetForm()">Reset</a>

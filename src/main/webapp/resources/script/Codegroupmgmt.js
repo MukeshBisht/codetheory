@@ -1,8 +1,6 @@
 
 //var grpid = ${ grpid };
-//dummy data
-var dat;/**
-var dat = [
+/*var dat = [
     {
         id: 1,
         level:2,
@@ -42,7 +40,7 @@ var dat = [
         ]
     }];
 */
-
+var dat;
 
 function format(d) {
     // `d` is the original data object for the row
@@ -57,18 +55,11 @@ function format(d) {
 }
 
 $(document).ready(function () {
-  
-    $.ajax({
-        type: "GET",
-        url: "/code",
-        success: function (response) {
-            dat = response;       
-            console.log(response);
-        }
-    });
+
 
     var table = $('#grid').DataTable({
-        data: dat,
+    
+        ajax : "/code",
         columns : [
             { data: "id", visible: false },
             { data: "question" },
@@ -145,12 +136,23 @@ function getlvl(val, type, row){
 }
 
 function addCodeQuestion (){
+
+        var id = 123;//$('#qid').val();
+        var question = $('#codequestion').val();
+        var description = $('#description').val();
+        var level = $('#codelvl').val();
+        var input = $('#testinput').val();
+        var output = $('#testoutput').val();
+
+        var test = [{"id": 1, "input":input, "output":output, "points":10}];
+        var data = {"id":id ,"level":level, "question":question,"details":description, tests : test};
+
     $.ajax({
-        type: "POST",
-        url: "/api/challenge/group/code/questions/add",
+        url: '/api/challenge/group/code/question/add',
+        type: 'POST',
         dataType: 'json',
-        contentType: "application/json",
-        data: JSON.stringify(dat),
+        contentType: 'application/json',
+        data: JSON.stringify(data),
         success: function () {
             console.log("done");
         }

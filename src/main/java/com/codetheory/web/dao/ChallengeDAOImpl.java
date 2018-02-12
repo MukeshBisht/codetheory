@@ -7,10 +7,14 @@ import com.codetheory.web.model.QuizQuestion;
 import com.codetheory.web.model.Test;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.List;
+
+import org.apache.http.entity.StringEntity;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.SqlParameter;
@@ -139,25 +143,35 @@ public class ChallengeDAOImpl implements ChallengeDAO {
             question.getQuestion(), ops[0], ops[1], ops[2], ops[3], question.getSelected(), question.getLevel(), question.getId()
         });
     }
-    
+     
     // Code Question methods implementation
     
     
+    
     public void addCodeQuestion(CodeQuestion ques, String user, int group) {
-        BaseStoredProcedure sp = new BaseStoredProcedure(jdbcTemplate, "addCodeQuestion");
+        try{
+            
+            BaseStoredProcedure sp = new BaseStoredProcedure(jdbcTemplate, "addCodeQuestion");
+            
+            List<Test> tests;
+            tests = ques.getTests();
+            ObjectMapper mapper = new ObjectMapper();
+            System.out.println(mapper.writeValueAsString(tests)); 
+            StringEntity test_case;
+                test_case = new StringEntity(mapper.writeValueAsString(tests));
+                
 
-      /*  JSONPObject test = new JSONPObject(ques.getTests());
-       *  -- Serialization --
-       */
+            SqlParameter params[] = new SqlParameter[] { new SqlParameter("ques", Types.VARCHAR),
+                    new SqlParameter("detail", Types.VARCHAR), new SqlParameter("lvl", Types.INTEGER),
+                    new SqlParameter("test", Types.VARCHAR), };
+            sp.setParameters(params);
+            sp.compile();
+            sp.execute(ques.getQuestion(), ques.getDetails(), ques.getLevel(), test_case);
+            
+        } catch (Exception exp) {
+            exp.printStackTrace();
+        }
 
-      // TESTING
-        String test = "[{ id: 1,input: \"world\",output: \"hello world\", points:10 },{id: 2,input: \"sam\", output: \"hello sam\",points:20}]";
-        SqlParameter params[] = new SqlParameter[] { new SqlParameter("ques", Types.VARCHAR),
-                new SqlParameter("detail", Types.VARCHAR), new SqlParameter("lvl", Types.INTEGER),
-                new SqlParameter("test", Types.VARCHAR), };
-        sp.setParameters(params);
-        sp.compile();
-        sp.execute(ques.getQuestion(), ques.getDetails(), ques.getLevel(), test);
     }
 
     @Override

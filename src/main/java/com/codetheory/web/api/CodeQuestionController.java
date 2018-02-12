@@ -41,8 +41,10 @@ public class CodeQuestionController {
 
 	@RequestMapping(value = "/code", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
-	public List<CodeQuestion> createCode() {
+	public CodeQuestionData createCode() {
 		List<CodeQuestion> codequestion = dao.getAllCodeQuestion();
-		return codequestion;
+		CodeQuestionData data = new CodeQuestionData();
+		data.setData(codequestion);
+		return data;
 	}	
 }
