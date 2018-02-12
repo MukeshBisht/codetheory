@@ -30,7 +30,7 @@
             </div>
             <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
               <div class="panel-body">
-                <form id="quesForm" name="qForm" method="POST">
+                
                   <input type="hidden" id="qid" value="-1" />
                   <div>
                     <div class="form-group col-md-12">
@@ -38,9 +38,9 @@
                         <span class="input-group-addon">
                           Question
                         </span>
-                        <input id="codequestion" type="text" placeholder="Your Question goes here" class="form-control" required/>
+                        <input id="question" type="text" placeholder="Your Question goes here" class="form-control" required/>
                       </div>
-                    </div>
+                    </div> 
 
                     <div class="form-group col-md-12">
                       <div class="input-group">
@@ -50,27 +50,35 @@
                         <textarea id="description" placeholder="Type Description" class="form-control" required></textarea>
                       </div>
                     </div>
+                    <div id="testcase">
+                      <div class="form-group col-md-5">
+                        <div class="input-group">
+                          <span class="input-group-addon">
+                            Input
+                          </span>
+                          <input id="input" type="text" placeholder="Test Case Input" class="form-control" required/>
+                        </div>
+                      </div>
 
-                    <div class="form-group col-md-6">
-                      <div class="input-group">
-                        <span class="input-group-addon">
-                          Input
-                        </span>
-                        <input id="testinput" type="text" placeholder="Test Case Input" class="form-control" required/>
+                      <div class="form-group col-md-5">
+                        <div class="input-group">
+                          <span class="input-group-addon">
+                            Output
+                          </span>
+                          <input id="output" type="text" placeholder="Test Case Output" class="form-control" required/>
+                        </div>
                       </div>
                     </div>
 
-                    <div class="form-group col-md-6">
-                      <div class="input-group">
-                        <span class="input-group-addon">
-                          Output
-                        </span>
-                        <input id="testoutput" type="text" placeholder="Test Case Output" class="form-control" required/>
-                      </div>
+                    <div class="form-group col-md-2">
+                        <button class="btn btn-active" onclick="addMoreTest()">
+                          <i class="fa fa-plus"></i>   
+                          <span>add more test case</span>
+                        </button>
                     </div>
 
                     <div class="form-group col-md-6">
-                      <select id="codelvl" class="form-control" required>
+                      <select id="lvl" class="form-control" required>
                         <option value="1">Easy</option>
                         <option value="2">Medium</option>
                         <option value="3">Hard</option>
@@ -83,7 +91,6 @@
                       <a class="btn btn-warning  btn-block pull-right" onclick="resetForm()">Reset</a>
                     </div>
                   </div>
-                </form>
               </div>
             </div>
           </div>

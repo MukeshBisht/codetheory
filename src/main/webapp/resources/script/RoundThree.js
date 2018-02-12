@@ -2,22 +2,13 @@
 $(document).ready(function(){
     $.ajax({
         type : "GET",
-        url : "/code",
+        url : "/roundThree/code/question",
         dataType : "json",
         contentType: "application/json",
         success : function (response){
 
-            $("#problemStatement").html (response[0].question);
-            $("#details").html(response[0].details);
-            var str = '<thead><th>s.no</th> <th>input</th> <th>output</th></thead>';
-            str += '<tbody>'
-            var sno = 0;
-            response[0].tests.forEach(element => {
-                str += '<tr><td> #'+ (++sno) +'</td>';
-                str += '<td>' + element.input + '</td>';
-                str += '<td>' + element.output + '</td></tr>';
-            });
-            str += '</tbody>'
+            $("#problemStatement").html (response.question);
+            $("#details").html(response.details);
             $("#testcase").html (str);
         }
     });  
@@ -40,7 +31,6 @@ function runCode() {
         url: "/api/execode",
         data: JSON.stringify(Code),
         success: function (response) {
-         //   console.log(response);
             var op = '<p><b>Output</b>    : '+ response.stdout +'</p>';
                op += '<p class="text-danger"><b>Error</b>     : '+ response.stderr +'</p>';
                op += '<p><b>Test</b>      : '+ response.status.description +'</p>';

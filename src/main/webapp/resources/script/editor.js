@@ -15,7 +15,7 @@ $(document).ready(function () {
         autoCloseBrackets: true,
         matchTags: false
     });
-    editor.setValue("#include <stdio.h>\n\nint main(void) {\n  char name[10];\n  scanf(\"%s\", name);\n  printf(\"hello, %s\\n\", name);\n  return 0;\n}");
+    editor.setValue("#include <stdio.h>\n\nint main() {\n\n\t//write your code here...\n\n\treturn 0;\n}");
 });
 
 

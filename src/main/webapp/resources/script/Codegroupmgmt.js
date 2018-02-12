@@ -1,45 +1,5 @@
 
 //var grpid = ${ grpid };
-/*var dat = [
-    {
-        id: 1,
-        level:2,
-        question: "program to rewrite the input string with 'hello, ' prefix",
-        details: "Write a simple program to rewrite the input string with 'hello, ' prefix added in output \neg. \ninput : world \noutput : hello, world",
-        tests: [{
-            id: 1,
-            input: "world",
-            output: "hello world",
-            points:10
-        },
-        {
-            id: 2,
-            input: "sam",
-            output: "hello sam",
-            points:20
-        }
-        ]
-    },
-    {
-        id: 15,
-        level:1,
-        question: "program to rewrite the input string with 'hello, ' prefix",
-        details: "Write a simple program to rewrite the input string with 'hello, ' prefix added in output \neg. \ninput : world \noutput : hello, world",
-        tests: [{
-            id: 3,
-            input: "world",
-            output: "hello world",
-            points:10
-        },
-        {
-            id: 4,
-            input: "sam",
-            output: "hello sam",
-            points:20
-        }
-        ]
-    }];
-*/
 var dat;
 
 function format(d) {
@@ -103,14 +63,37 @@ $(document).ready(function () {
         $("html, body").animate({ scrollTop: 0}, 500);
         log = table.row( $(this).parents('tr') ).data();
         $('#qid').val(log.id);
+        console.log(log.id);
         $('#question').val(log.question);
         $('#description').val(log.details);
         $('#lvl').val(log.level);
-        $('#input').val(log.tests[0].input);
-        $('#output').val(log.tests[0].output);
+     //   $('#input').val(log.tests[0].input);
+     //   $('#output').val(log.tests[0].output);
         $('#btnsubmit').html('Update');
     } );
 });
+
+
+$('#grid').on('click', 'a.editor_delete', function (e) {
+    e.preventDefault();
+    log = table.row( $(this).parents('tr') ).data();
+    if(confirm("Delete ?")){
+    $.ajax({
+        type : "POST",
+        url : "/api/challenge/group/code/question/delete",          
+        dataType: 'json',
+        contentType: "application/json",
+        data :JSON.stringify(log),
+        success : function(data){
+            $("#grid").DataTable().ajax.reload();
+            alert("Successfull");
+        },
+        error : function(data){
+            log = data;
+        }
+    });
+}
+} );
 
 function resetForm() {
     $('#question').val("");
@@ -137,14 +120,14 @@ function getlvl(val, type, row){
 
 function addCodeQuestion (){
 
-        var id = 123;//$('#qid').val();
-        var question = $('#codequestion').val();
+        var id = -1;//$('#qid').val();
+        var question = $('#question').val();
         var description = $('#description').val();
-        var level = $('#codelvl').val();
-        var input = $('#testinput').val();
-        var output = $('#testoutput').val();
+        var level = $('#lvl').val();
+        var input = $('#input').val();
+        var output = $('#output').val();
 
-        var test = [{"id": 1, "input":input, "output":output, "points":10}];
+        var test = [{"id": -1, "input":input, "output":output, "points":10}];
         var data = {"id":id ,"level":level, "question":question,"details":description, tests : test};
 
     $.ajax({
@@ -154,7 +137,14 @@ function addCodeQuestion (){
         contentType: 'application/json',
         data: JSON.stringify(data),
         success: function () {
-            console.log("done");
+            alert('successful');
+            resetForm();
+            $("#grid").DataTable().ajax.reload();
         }
     });
+}
+
+function addMoreTest(){
+    $('#testcase').html($('#testcase').html()+$('#testcase').html());
+
 }

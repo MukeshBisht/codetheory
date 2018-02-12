@@ -148,30 +148,27 @@ public class ChallengeDAOImpl implements ChallengeDAO {
     
     
     
-    public void addCodeQuestion(CodeQuestion ques, String user, int group) {
+    public void addCodeQuestion(CodeQuestion ques, String user, int group){
         try{
-            
+
             BaseStoredProcedure sp = new BaseStoredProcedure(jdbcTemplate, "addCodeQuestion");
             
             List<Test> tests;
             tests = ques.getTests();
             ObjectMapper mapper = new ObjectMapper();
+            String test_case = mapper.writeValueAsString(tests);
             System.out.println(mapper.writeValueAsString(tests)); 
-            StringEntity test_case;
-                test_case = new StringEntity(mapper.writeValueAsString(tests));
-                
-
+        
             SqlParameter params[] = new SqlParameter[] { new SqlParameter("ques", Types.VARCHAR),
-                    new SqlParameter("detail", Types.VARCHAR), new SqlParameter("lvl", Types.INTEGER),
-                    new SqlParameter("test", Types.VARCHAR), };
-            sp.setParameters(params);
-            sp.compile();
-            sp.execute(ques.getQuestion(), ques.getDetails(), ques.getLevel(), test_case);
-            
-        } catch (Exception exp) {
-            exp.printStackTrace();
+                new SqlParameter("detail", Types.VARCHAR), new SqlParameter("lvl", Types.INTEGER),
+                new SqlParameter("test", Types.VARCHAR) };
+                sp.setParameters(params);
+                sp.compile();
+                sp.execute(ques.getQuestion(), ques.getDetails(), ques.getLevel(), test_case);
+                
+        }catch (Exception e){
+            e.printStackTrace();
         }
-
     }
 
     @Override
@@ -185,5 +182,17 @@ public class ChallengeDAOImpl implements ChallengeDAO {
         String sql = "select * from code_question ";//inner join test_case on code_question.id = test_case.id";
         return jdbcTemplate.query(sql, new CodeQuestionMapper());
         
+    }
+
+    @Override 
+    public CodeQuestion getCodeQuestion (){
+        String sql = "select * from code_question order by rand() limit 1";
+        return jdbcTemplate.queryForObject(sql, new CodeQuestionMapper());   
+    }
+
+    @Override 
+    public void deleteCodeQuestion (int id){
+        String sql = "delete from code_question where id=?";
+        jdbcTemplate.update(sql, new Object[]{id} );
     }
 }

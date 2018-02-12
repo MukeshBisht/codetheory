@@ -137,3 +137,17 @@ CREATE TABLE `round_challenges_map` (
   KEY `rid_idx` (`roundid`),
   CONSTRAINT `rid` FOREIGN KEY (`roundid`) REFERENCES `round` (`Roundid`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+#addCodeQuestion sp
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addCodeQuestion`(ques nvarchar(2000), detail nvarchar(1000), lvl int, test nvarchar(1000) )
+BEGIN
+	INSERT into code_question
+    (question, details, level, test_case)
+    values
+    (ques, detail, lvl,test);
+   
+END$$
+DELIMITER ;

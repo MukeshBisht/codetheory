@@ -70,13 +70,8 @@
                                 <h3>Problem</h3>
                                 <p id="problemStatement"> </p>
 
-                                 <strong>Details/Explanation/Constraits</strong> 
-
-                                 <p id="details"></p>
-                                <strong>Test Cases</strong>
-                                <table class="table" id="testcase" style="font-size:15px">
-                                </table>
-                                
+                                 <strong>Example</strong> 
+                                <p id="details"></p>
                             </div>
                             <div id="menu1" class="tab-pane fade">
                                 <h3>Output</h3>
