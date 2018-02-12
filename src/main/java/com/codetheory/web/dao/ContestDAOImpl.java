@@ -3,6 +3,7 @@ package com.codetheory.web.dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import com.codetheory.web.model.Contest;
+import com.codetheory.web.model.Round;
 import com.codetheory.web.model.UserContestMap;
 import java.util.List;
 
@@ -20,6 +21,15 @@ public class ContestDAOImpl implements ContestDAO{
         sql = "insert into User_contests (contest , user, role) values (? , ?, ?)";
         jdbcTemplate.update(sql , new Object[] {
             con.getContestname(), user, "owner"
+        });
+	}
+
+
+	@Override
+	public void addRound(Round round) {
+		String sql = "INSERT INTO round (contest, Name, Length, Type) values (? ,? ,? ,?)";
+        jdbcTemplate.update(sql , new Object[] {
+           round.getContest(), round.getName(), round.getLength(), round.getType()
         });
 	}
 
@@ -82,4 +92,11 @@ public class ContestDAOImpl implements ContestDAO{
             user, contest, "moderator"
         });
 	}
+
+
+	@Override
+	public List<Round> getRounds(String contest) {
+		return null;
+	}
+
 }

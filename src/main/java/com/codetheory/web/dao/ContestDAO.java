@@ -1,8 +1,8 @@
 package com.codetheory.web.dao;
 
 import com.codetheory.web.model.Contest;
+import com.codetheory.web.model.Round;
 import com.codetheory.web.model.UserContestMap;
-import com.codetheory.web.dao.ContestMapper;;
 import java.util.List;
 
 public interface ContestDAO {
@@ -16,4 +16,6 @@ public interface ContestDAO {
     public Contest getContestByContestName(String contestName);
     public List<Contest> getContestsByUser(String username);
     public void removeEditor(String user, String contest);
+    public void addRound(Round round);
+    public List<Round> getRounds(String contest);
 }
