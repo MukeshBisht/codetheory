@@ -48,7 +48,7 @@ public class ContestApiController {
 
     @RequestMapping(value="/round")
     public ResponseEntity<Object> addRound(@RequestBody Round round, Principal principal){
-        String user = principal.getName();
+        String user = principal.getName();        
         if(dao.validUserContest(user, round.getContest())){
             dao.addRound(round);
             return new ResponseEntity<>("0", HttpStatus.OK);

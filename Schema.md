@@ -115,3 +115,25 @@ CREATE TABLE `code_question` (
   `level` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+# round table  
+CREATE TABLE `round` (
+  `Roundid` int(11) NOT NULL AUTO_INCREMENT,
+  `contest` varchar(45) NOT NULL,
+  `Name` varchar(45) NOT NULL,
+  `Length` int(11) NOT NULL,
+  `Type` int(11) NOT NULL,
+  PRIMARY KEY (`Roundid`),
+  KEY `contestid_idx` (`contest`),
+  CONSTRAINT `contestid` FOREIGN KEY (`contest`) REFERENCES `contests` (`contestName`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+# round_challenges_map table  
+CREATE TABLE `round_challenges_map` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `roundid` int(11) DEFAULT NULL,
+  `questionid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `rid_idx` (`roundid`),
+  CONSTRAINT `rid` FOREIGN KEY (`roundid`) REFERENCES `round` (`Roundid`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

@@ -1,15 +1,21 @@
 package com.codetheory.web.controller;
 
+import com.codetheory.web.constant.ChallengeType;
 import com.codetheory.web.constant.OrganizationType;
+import com.codetheory.web.dao.ChallengeDAO;
 import com.codetheory.web.dao.ContestDAO;
+import com.codetheory.web.model.ChallengeGroup;
 import com.codetheory.web.model.Contest;
 import com.codetheory.web.model.Round;
+import com.codetheory.web.viewModel.GroupChallenge;
 import com.codetheory.web.viewModel.RowContest;
 import com.codetheory.web.viewModel.UserContest;
 
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.http.impl.client.SystemDefaultCredentialsProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +31,9 @@ public class ContestController {
 
 	@Autowired
 	private ContestDAO dao;
+
+	@Autowired
+	private ChallengeDAO chdao;
 
 	@RequestMapping(value="/create", method = RequestMethod.GET)
 	public String createContest(Model model, Principal principal) {
@@ -45,11 +54,27 @@ public class ContestController {
 	public String Rounds(Model model,@PathVariable("name") String cname, Principal principal) {
 		String user = principal.getName();
 		if(!dao.validUserContest(user, cname)){
-			return "redirect:/contest/create";
+			return "NotFound";
 		}
+		List<ChallengeGroup> challengeGroups = chdao.getChallengeGroups(user);
+		ArrayList<ChallengeGroup> mcqs = new ArrayList<ChallengeGroup>();
+        ArrayList<ChallengeGroup> codes = new ArrayList<ChallengeGroup>();
+		GroupChallenge gc = new GroupChallenge();
+		System.out.println(challengeGroups.size());
+        for (ChallengeGroup var : challengeGroups) {
+            if (var.getChallengeType() == ChallengeType.MCQ) {
+                mcqs.add(var);
+            }
+            if (var.getChallengeType() == ChallengeType.Code) {
+                codes.add(var);
+            }
+        }
+        gc.setCodeGroups(codes);
+        gc.setMcqGroups(mcqs);
 		List<Round> rounds = dao.getRounds(cname);
 		model.addAttribute("cname", cname);
-		model.addAttribute("rounds", rounds);
+		model.addAttribute("rounds", rounds);		
+        model.addAttribute("groups", gc);
 		return "round";
 	}	
 

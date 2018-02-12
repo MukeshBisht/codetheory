@@ -78,9 +78,14 @@ function getQuestion(quesId) {
  
 function showPreview() {  
     var modal = '';
-
+    var count=0;
     for (i = 0; i < data.length; i++) {
         var j = i+1;
+        count++;
+        if(count==11){
+            count = 0;
+            modal += '<br/><br/>';
+        }
         modal += '<span class="label lb-lg ';
         if(data[i].selected > 0){
           modal += 'label-success" ';

@@ -15,7 +15,7 @@ public class RoundMapper implements RowMapper<Round> {
         round.setContest(rs.getString("contest"));
         round.setLength(rs.getInt("length"));
         round.setName(rs.getString("name"));
-        round.setType(ChallengeType.values()[rs.getInt("type")]);
+        round.setType(ChallengeType.values()[rs.getInt("type")-1]);
         round.setRoundId(rs.getInt("roundid"));
         return round;
     }

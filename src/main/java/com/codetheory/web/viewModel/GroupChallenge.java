@@ -7,8 +7,6 @@ public class GroupChallenge{
 
     private List<ChallengeGroup> mcqGroups;
 	private List<ChallengeGroup> codeGroups;
-	private int mcqCount;
-	private int codeCount;
 
     
 	/**
@@ -36,30 +34,5 @@ public class GroupChallenge{
 	public void setCodeGroups(List<ChallengeGroup> codeGroups) {
 		this.codeGroups = codeGroups;
 		//this.setCodeCount(codeGroups.size());
-	}
-	/**
-	 * @return the codeCount
-	 */
-	public int getCodeCount() {
-		return codeCount;
-	}
-	/**
-	 * @param codeCount the codeCount to set
-	 */
-	public void setCodeCount(int codeCount) {
-		this.codeCount = codeCount;
-	}
-	/**
-	 * @return the mcqCount
-	 */
-	public int getMcqCount() {
-		return mcqCount;
-	}
-	/**
-	 * @param mcqCount the mcqCount to set
-	 */
-	public void setMcqCount(int mcqCount) {
-		this.mcqCount = mcqCount;
-	}
-    
+	}    
 }

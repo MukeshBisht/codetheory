@@ -5,42 +5,50 @@
     <script type="text/javascript">
         var chlng="${cname}";    
     </script>
+    <script src="<c:url value=" /resources/script/roundmgmt.js" />"></script>
+    <script src="<c:url value=" /resources/lib/datatables/js/jquery.dataTables.js " />"></script>
+    <script src="<c:url value=" /resources/lib/datatables/js/dataTables.bootstrap.js " />"></script>
+    <link rel='stylesheet' href="<c:url value=" /resources/lib/datatables/css/dataTables.bootstrap.css "/>" type='text/css' media='screen'/>
     <div class="container">
+<div class="row">
+        <div class="col-md-6">
         <h2>Rounds &nbsp;&nbsp;
             <a href="#" id="addRound" class="glyphicon glyphicon-plus-sign"></a>
         </h2>
-        <br/>
+    </div>
+    <div class="col-md-6">
 
-        <c:forEach items="${rounds}" var="round">
-        <div class="col-md-3">
-            <div class="form-group">
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        ${round.name}
-                    </span>
-                    <input id="op4" type="text" placeholder="" class="form-control" required/>
+            <div class="h3 btn-group pull-right" role="group">           
+                    <a href="#" id="addChlngBtn" class="btn btn-success">Add Challenges</a>
+                    <a href="#" class="btn btn-danger">Delete Round</a>
                 </div>
-            </div>
+    </div>
+</div>
+<div class="row">
+        <div class="col-md-3">
+            <div class="list-group">
+                    <c:forEach items="${rounds}" var="round">
+                        <a href="#" onclick="changeRound(${round.roundId})" class="list-group-item">${round.name}</a>
+                    </c:forEach>  
+                </div>
         </div>
-        </c:forEach>
-
-
-        <div class="col-md-9">
+  
+        <div class="col-md-9 cardview">
             <div class="table-responsive">
-                <table id="grid" class="table table-bordered table-hover">
-                    <thead>
+                    <table id="grid" class="table table-bordered table-hover">
+                      <thead>
                         <tr>
-                            <th>Id</th>
-                            <th>Question</th>
-                            <th>Level</th>
-                            <th>
-                                <span class="glyphicon glyphicon-cog"></span>
-                            </th>
+                          <th></th>
+                          <th>Id</th>
+                          <th>Question</th>
+                          <th>Level</th>
+                          <th><span class="glyphicon glyphicon-cog"></span></th>
                         </tr>
-                    </thead>
-                </table>
-            </div>
+                      </thead>
+                    </table>
+                  </div>
         </div>
+    </div>
     </div>
 </body>
 
@@ -55,7 +63,7 @@
                 </button>
                 <h4 class="modal-title">Add Round</h4>
             </div>
-            <input type="hidden" id="roundId"/>
+            <input type="hidden" value="-1" id="roundId"/>
             <div class="input-group">
                 <span class="input-group-addon">Name</span>
                 <input id="roundName" type="text" placeholder="Round Name" class="form-control" required/>
@@ -71,11 +79,49 @@
                 <span class="input-group-addon">
                     Length
                 </span>
-                <input id="roundLen" type="number" placeholder="Round Time" class="form-control" required/>
+                <input id="roundLen" type="number" min="10" placeholder="Round Time" class="form-control" required/>
                 <span class="input-group-addon">Min</span>
             </div>
             <button id="addRoundBtn" type="submit" class="btn btn-block btn-success">Add</button>
         </div>
     </div>
 </form>
+<!-- end Add Round Dialog -->
+
+<!-- Add Round Dialog -->
+<div id="addChlngDialog" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Add Challenges</h4>
+                    <select class="form-control" onchange="loadGrpQuestions(this)">
+                        <option value="" selected disabled hidden>Select a Group</option>
+                        <c:forEach items="${groups.mcqGroups}" var="g">
+                        <option value="${g.groupId}">${g.name}</option>
+                    </c:forEach>
+                    </select>
+                    <select class="form-control hidden" onchange="loadGrpQuestions(this)">
+                            <option value="" selected disabled hidden>Select a Group</option>
+                            <c:forEach items="${groups.codeGroups}" var="g">
+                            <option value="${g.groupId}">${g.name}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+                <div class="table">
+                        <table id="Qgrid" class="table table-bordered table-hover">
+                          <thead>
+                            <tr>
+                              <th>id</th>
+                              <th>Question</th>
+                              <th>Level</th>
+                            </tr>
+                          </thead>
+                        </table>
+                      </div>
+            </div>
+        </div>
+</div>
 <!-- end Add Round Dialog -->

@@ -5,7 +5,7 @@
 
 <head>
   <script type="text/javascript">
-    var grpid = ${ grpid };
+    var grpid = "${grpid}";
   </script>
 </head>
 

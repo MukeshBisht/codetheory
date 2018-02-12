@@ -29,7 +29,7 @@ public class ContestDAOImpl implements ContestDAO{
 	public void addRound(Round round) {
 		String sql = "INSERT INTO round (contest, Name, Length, Type) values (? ,? ,? ,?)";
         jdbcTemplate.update(sql , new Object[] {
-           round.getContest(), round.getName(), round.getLength(), round.getType()
+           round.getContest(), round.getName(), round.getLength(), round.getType().getValue()
         });
 	}
 
@@ -96,7 +96,8 @@ public class ContestDAOImpl implements ContestDAO{
 
 	@Override
 	public List<Round> getRounds(String contest) {
-		return null;
+		String sql = "select * from round where contest = ?";
+		return jdbcTemplate.query(sql, new String[]{contest}, new RoundMapper());
 	}
 
 }

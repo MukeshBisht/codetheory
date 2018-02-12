@@ -8,7 +8,6 @@
     <!-- header -->
     <jsp:include page="/WEB-INF/shared/header.jsp" />
     <script src="<c:url value=" /resources/script/ContestMgmt.js " />"></script>
-    <script src="<c:url value=" /resources/script/roundmgmt.js" />"></script>
     <script src="<c:url value=" /resources/script/jquery-ui.js " />"></script>
     <link rel='stylesheet' href="<c:url value=" /resources/css/jquery-ui.css "/>" type='text/css' />
     <script src="<c:url value=" /resources/lib/datatables/js/dataTables.bootstrap.js " />"></script>
