@@ -1,6 +1,7 @@
 
 //var grpid = ${ grpid };
 //dummy data
+var dat;/**
 var dat = [
     {
         id: 1,
@@ -40,17 +41,8 @@ var dat = [
         }
         ]
     }];
+*/
 
-
-function loadQuestion(){
-    $.ajax({
-            type: "GET",
-            url: "/code",
-            success: function (response) {
-                dat = response;
-            }
-    });
-}
 
 function format(d) {
     // `d` is the original data object for the row
@@ -65,9 +57,18 @@ function format(d) {
 }
 
 $(document).ready(function () {
+  
+    $.ajax({
+        type: "GET",
+        url: "/code",
+        success: function (response) {
+            dat = response;       
+            console.log(response);
+        }
+    });
+
     var table = $('#grid').DataTable({
         data: dat,
-        //ajax : url,
         columns : [
             { data: "id", visible: false },
             { data: "question" },
@@ -141,4 +142,17 @@ function getlvl(val, type, row){
         default:
             return "Undefined";
     }
+}
+
+function addCodeQuestion (){
+    $.ajax({
+        type: "POST",
+        url: "/api/challenge/group/code/questions/add",
+        dataType: 'json',
+        contentType: "application/json",
+        data: JSON.stringify(dat),
+        success: function () {
+            console.log("done");
+        }
+    });
 }

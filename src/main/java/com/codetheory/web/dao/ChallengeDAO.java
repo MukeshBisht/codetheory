@@ -24,7 +24,7 @@ public interface ChallengeDAO {
     public int getAnswerById (int id);
 
     //code question
-
+    public void addCodeQuestion(CodeQuestion ques, String user, int group);
     public CodeQuestion getCodeQuestionById(int id);
     public List<CodeQuestion> getAllCodeQuestion(); 
 }

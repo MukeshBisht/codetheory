@@ -19,7 +19,7 @@ public class CodeQuestionMapper implements RowMapper<CodeQuestion> {
         question.setLevel(rs.getInt("level"));
         question.setQuestion(rs.getString("question"));
         question.setDetails(rs.getString("details"));
-        
+        /*
         ArrayList<Test> testcase = new ArrayList<>();
         
         while (rs.next()){
@@ -32,7 +32,7 @@ public class CodeQuestionMapper implements RowMapper<CodeQuestion> {
         }
         
         question.setTests(testcase);
-
+*/
         return question;
     }
 

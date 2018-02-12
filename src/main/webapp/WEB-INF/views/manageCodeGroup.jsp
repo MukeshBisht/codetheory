@@ -77,7 +77,7 @@
                       </select>
                     </div>
                     <div class="form-group col-md-3">
-                      <button id="btnsubmit" class="btn btn-primary  btn-block pull-right" type="submit">Add</button>
+                      <button id="btnsubmi" class="btn btn-primary  btn-block pull-right" onclick="addCodeQuestion()" type="submit">Add</button>
                     </div>
                     <div class="form-group col-md-3">
                       <a class="btn btn-warning  btn-block pull-right" onclick="resetForm()">Reset</a>

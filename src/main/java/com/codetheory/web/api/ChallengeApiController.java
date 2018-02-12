@@ -3,6 +3,7 @@ package com.codetheory.web.api;
 import com.codetheory.web.dao.ChallengeDAO;
 import com.codetheory.web.model.ChallengeGroup;
 import com.codetheory.web.model.QuizQuestion;
+import com.codetheory.web.model.CodeQuestion;
 
 import java.security.Principal;
 
@@ -63,4 +64,12 @@ public class ChallengeApiController {
         }
         return new ResponseEntity<>("0", HttpStatus.OK);
     }
+
+
+    @RequestMapping(value = "group/code/questions/add", consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+    public void addCodeQuestion(@RequestBody CodeQuestion question, @PathVariable int id, Principal principal) {
+        dao.addCodeQuestion(question, principal.getName(), 0);
+        
+    }
+
 }

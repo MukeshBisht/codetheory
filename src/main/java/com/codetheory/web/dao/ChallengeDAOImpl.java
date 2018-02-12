@@ -4,6 +4,9 @@ import com.codetheory.web.model.CodeQuestion;
 import com.codetheory.web.constant.ChallengeType;
 import com.codetheory.web.model.ChallengeGroup;
 import com.codetheory.web.model.QuizQuestion;
+import com.codetheory.web.model.Test;
+import com.fasterxml.jackson.databind.util.JSONPObject;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
@@ -140,6 +143,23 @@ public class ChallengeDAOImpl implements ChallengeDAO {
     // Code Question methods implementation
     
     
+    public void addCodeQuestion(CodeQuestion ques, String user, int group) {
+        BaseStoredProcedure sp = new BaseStoredProcedure(jdbcTemplate, "addCodeQuestion");
+
+      /*  JSONPObject test = new JSONPObject(ques.getTests());
+       *  -- Serialization --
+       */
+
+      // TESTING
+        String test = "[{ id: 1,input: \"world\",output: \"hello world\", points:10 },{id: 2,input: \"sam\", output: \"hello sam\",points:20}]";
+        SqlParameter params[] = new SqlParameter[] { new SqlParameter("ques", Types.VARCHAR),
+                new SqlParameter("detail", Types.VARCHAR), new SqlParameter("lvl", Types.INTEGER),
+                new SqlParameter("test", Types.VARCHAR), };
+        sp.setParameters(params);
+        sp.compile();
+        sp.execute(ques.getQuestion(), ques.getDetails(), ques.getLevel(), test);
+    }
+
     @Override
     public CodeQuestion getCodeQuestionById(int id){
         String sql = "select * from code_question where id=?";
@@ -148,7 +168,7 @@ public class ChallengeDAOImpl implements ChallengeDAO {
 
     @Override
     public List<CodeQuestion> getAllCodeQuestion(){
-        String sql = "select * from code_question full join test_case";//" on code_question.id = test_case.id";
+        String sql = "select * from code_question ";//inner join test_case on code_question.id = test_case.id";
         return jdbcTemplate.query(sql, new CodeQuestionMapper());
         
     }
