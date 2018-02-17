@@ -157,7 +157,6 @@ public class ChallengeDAOImpl implements ChallengeDAO {
             tests = ques.getTests();
             ObjectMapper mapper = new ObjectMapper();
             String test_case = mapper.writeValueAsString(tests);
-            System.out.println(mapper.writeValueAsString(tests)); 
         
             SqlParameter params[] = new SqlParameter[] { new SqlParameter("ques", Types.VARCHAR),
                 new SqlParameter("detail", Types.VARCHAR), new SqlParameter("lvl", Types.INTEGER),
@@ -194,5 +193,21 @@ public class ChallengeDAOImpl implements ChallengeDAO {
     public void deleteCodeQuestion (int id){
         String sql = "delete from code_question where id=?";
         jdbcTemplate.update(sql, new Object[]{id} );
+    }
+
+    @Override
+    public void updateCodeQuestion (CodeQuestion question){
+        String sql = "update code_question set question=?, details=?, level=?, test_case=? where id =?";
+        try{
+            ObjectMapper mapper = new ObjectMapper();
+            String test_case = mapper.writeValueAsString(question.getTests());
+            
+            jdbcTemplate.update(sql, new Object[] {           
+                question.getQuestion(), question.getDetails(), question.getLevel(), test_case, question.getId()
+            });
+        
+            }catch(IOException e){
+                e.printStackTrace();
+        }
     }
 }

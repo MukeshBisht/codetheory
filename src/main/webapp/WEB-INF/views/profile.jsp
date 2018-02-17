@@ -95,36 +95,58 @@
                     </div>
     
                     <div id="Participation" class="tab-pane fade">
-                        <h3>Participation</h3>
-                        <table class="table">
-                      
-                                <th>Contest Name</th>
-                                <th>Contest Rank</th>
-                                <th>Points Earned</th>
-                                <th>Question Solved</th>
-                            
-                                <tr>
-                                    <td>CodeJam</td>
-                                    <td>123</td>
-                                    <td>85</td>
-                                    <td>15</td>
-                                </tr>
-        
-                                <tr>
-                                    <td>CodeJam</td>
-                                    <td>123</td>
-                                    <td>85</td>
-                                    <td>15</td>
-                                </tr>
-                            
-                                <tr>
-                                        <td>CodeJam</td>
-                                        <td>123</td>
-                                        <td>85</td>
-                                        <td>15</td>
+                        <div class="row">
+                            <div class="col-xs-12">
+                              <div class="box">
+                                <div class="box-header">
+                                  <h3 class="box-title">Responsive Hover Table</h3>
+                                </div>
+                                <!-- /.box-header -->
+                                <div class="box-body table-responsive no-padding">
+                                  <table class="table table-hover">
+                                    <tr>
+                                      <th>ID</th>
+                                      <th>User</th>
+                                      <th>Date</th>
+                                      <th>Status</th>
+                                      <th>Reason</th>
                                     </tr>
-                            </table>
-                    </div>
+                                    <tr>
+                                      <td>183</td>
+                                      <td>John Doe</td>
+                                      <td>11-7-2014</td>
+                                      <td><span class="label label-success">Approved</span></td>
+                                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                                    </tr>
+                                    <tr>
+                                      <td>219</td>
+                                      <td>Alexander Pierce</td>
+                                      <td>11-7-2014</td>
+                                      <td><span class="label label-warning">Pending</span></td>
+                                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                                    </tr>
+                                    <tr>
+                                      <td>657</td>
+                                      <td>Bob Doe</td>
+                                      <td>11-7-2014</td>
+                                      <td><span class="label label-primary">Approved</span></td>
+                                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                                    </tr>
+                                    <tr>
+                                      <td>175</td>
+                                      <td>Mike Doe</td>
+                                      <td>11-7-2014</td>
+                                      <td><span class="label label-danger">Denied</span></td>
+                                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                                    </tr>
+                                  </table>
+                                </div>
+                                <!-- /.box-body -->
+                              </div>
+                              <!-- /.box -->
+                            </div>
+                          </div>                   
+                         </div>
 
                     <div id="Contribution" class="tab-pane fade">
                         <h3>Contributed to CodeTheory.in</h3>

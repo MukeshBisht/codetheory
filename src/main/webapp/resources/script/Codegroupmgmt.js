@@ -62,25 +62,26 @@ $(document).ready(function () {
         $(".panel-collapse").collapse("show");
         $("html, body").animate({ scrollTop: 0}, 500);
         log = table.row( $(this).parents('tr') ).data();
+
         $('#qid').val(log.id);
-        console.log(log.id);
         $('#question').val(log.question);
         $('#description').val(log.details);
         $('#lvl').val(log.level);
-     //   $('#input').val(log.tests[0].input);
-     //   $('#output').val(log.tests[0].output);
+        $('#input').val(log.tests[0].input);
+        $('#output').val(log.tests[0].output);
+        $('#points').val(log.tests[0].points);
         $('#btnsubmit').html('Update');
+
     } );
-});
-
-
-$('#grid').on('click', 'a.editor_delete', function (e) {
-    e.preventDefault();
-    log = table.row( $(this).parents('tr') ).data();
-    if(confirm("Delete ?")){
-    $.ajax({
-        type : "POST",
-        url : "/api/challenge/group/code/question/delete",          
+    
+    
+    $('#grid').on('click', 'a.editor_delete', function (e) {
+        e.preventDefault();
+        log = table.row( $(this).parents('tr') ).data();
+        if(confirm("Delete ?")){
+            $.ajax({
+                type : "POST",
+                url : "/api/challenge/group/code/question/delete",          
         dataType: 'json',
         contentType: "application/json",
         data :JSON.stringify(log),
@@ -94,6 +95,7 @@ $('#grid').on('click', 'a.editor_delete', function (e) {
     });
 }
 } );
+});
 
 function resetForm() {
     $('#question').val("");
@@ -102,6 +104,7 @@ function resetForm() {
     $('#qid').val("-1");
     $('#input').val("");
     $('#output').val("");
+    $('#points').val("");
     $('#btnsubmit').html('Add');
 }
 
@@ -120,14 +123,15 @@ function getlvl(val, type, row){
 
 function addCodeQuestion (){
 
-        var id = -1;//$('#qid').val();
+        var id = $('#qid').val();
         var question = $('#question').val();
         var description = $('#description').val();
         var level = $('#lvl').val();
         var input = $('#input').val();
         var output = $('#output').val();
+        var points = $('#points').val();
 
-        var test = [{"id": -1, "input":input, "output":output, "points":10}];
+        var test = [{"id": id, "input":input, "output":output, "points":points}];
         var data = {"id":id ,"level":level, "question":question,"details":description, tests : test};
 
     $.ajax({
@@ -144,7 +148,25 @@ function addCodeQuestion (){
     });
 }
 
-function addMoreTest(){
-    $('#testcase').html($('#testcase').html()+$('#testcase').html());
+var counter = 1;
 
+function addMoreTest(){
+    counter++;
+    $('#removeTest').show();
+
+    $('.test').attr('id','t'+counter);
+    $('#testcase').html( $('#testcase').html() + $('#t'+counter).html());   
+
+    console.log (document.getElementById('t'+counter));
+    console.log (document.getElementById('t2'));
+    
+}
+
+function removeTest (){
+    if (counter == 1)
+        return;
+    else {
+        $('#t'+counter).remove();
+        counter--;
+    }
 }

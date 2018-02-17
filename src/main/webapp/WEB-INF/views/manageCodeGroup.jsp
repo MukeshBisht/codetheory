@@ -50,17 +50,20 @@
                         <textarea id="description" placeholder="Type Description" class="form-control" required></textarea>
                       </div>
                     </div>
-                    <div id="testcase">
-                      <div class="form-group col-md-5">
-                        <div class="input-group">
-                          <span class="input-group-addon">
-                            Input
-                          </span>
-                          <input id="input" type="text" placeholder="Test Case Input" class="form-control" required/>
+
+
+                    <section id="testcase">
+                      <div class="test" id="t1">
+                       <div class="form-group col-md-5">
+                          <div class="input-group">
+                            <span class="input-group-addon">
+                              Input
+                           </span>
+                           <input id="input" type="text" placeholder="Test Case Input" class="form-control" required/>
                         </div>
                       </div>
 
-                      <div class="form-group col-md-5">
+                      <div class="form-group col-md-4">
                         <div class="input-group">
                           <span class="input-group-addon">
                             Output
@@ -68,14 +71,31 @@
                           <input id="output" type="text" placeholder="Test Case Output" class="form-control" required/>
                         </div>
                       </div>
-                    </div>
 
                     <div class="form-group col-md-2">
-                        <button class="btn btn-active" onclick="addMoreTest()">
-                          <i class="fa fa-plus"></i>   
-                          <span>add more test case</span>
+                      <div class="input-group">
+                        <span class="input-group-addon">
+                          Points
+                        </span>
+                        <input class="form-control" id = "points" type="text" required/>
+                      </div>
+                    </div>
+                  </div>
+                  </section>                    
+
+                  <div>
+                    <div class="form-group col-md-1">
+                        <button class="btn btn-active" id="removeTest" onclick="removeTest()" style="display:none">
+                          <i class="fa fa-close"></i>   
                         </button>
                     </div>
+
+                    <div class="form-group col-md-1">
+                        <button class="btn btn-active" onclick="addMoreTest()">
+                            <i class="fa fa-plus"></i>   
+                          </button>
+                      </div>
+                  </div>
 
                     <div class="form-group col-md-6">
                       <select id="lvl" class="form-control" required>
@@ -90,7 +110,8 @@
                     <div class="form-group col-md-3">
                       <a class="btn btn-warning  btn-block pull-right" onclick="resetForm()">Reset</a>
                     </div>
-                  </div>
+
+                 </div>
               </div>
             </div>
           </div>

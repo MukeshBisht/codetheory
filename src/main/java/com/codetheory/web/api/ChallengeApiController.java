@@ -47,8 +47,6 @@ public class ChallengeApiController {
             if(dao.isUsersQuestion(question.getId(), user)){
                 //update question
                 dao.updateQuestion(question);
-                
-                System.out.println(question.getId()+"updated");
             }
         }
         return new ResponseEntity<>("0", HttpStatus.OK);
@@ -60,7 +58,6 @@ public class ChallengeApiController {
         if(dao.isUsersQuestion(question.getId(), user)){
             //delete question
             dao.deleteQuestion(question);
-            System.out.println(question.getId()+"deleted");
         }
         return new ResponseEntity<>("0", HttpStatus.OK);
     }
@@ -68,8 +65,13 @@ public class ChallengeApiController {
 
     @RequestMapping(value = "group/code/question/add", consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
     public ResponseEntity<Object> addCodeQuestion(@RequestBody CodeQuestion question, Principal principal) {
-        dao.addCodeQuestion(question, principal.getName(), 0);
-        System.out.print("here");
+        if(question.getId() == -1){
+            dao.addCodeQuestion(question, principal.getName(), 0);
+        }else{
+            //if(dao.isUsersQuestion(question.getId(), user))
+                //update question
+                dao.updateCodeQuestion(question);
+            }
         return new ResponseEntity<>("0", HttpStatus.OK);
     }
 
@@ -79,7 +81,6 @@ public class ChallengeApiController {
         //if(dao.isUsersQuestion(question.getId(), user)){
             //delete question
             dao.deleteCodeQuestion(question.getId());
-            System.out.println(question.getId()+"deleted");
         //}
         return new ResponseEntity<>("0", HttpStatus.OK);
     }

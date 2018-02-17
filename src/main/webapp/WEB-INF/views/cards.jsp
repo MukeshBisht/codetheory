@@ -8,7 +8,7 @@
                     
                     <span class="badge pull-right" id="notificationBadge">${card.participants}</span>
                 </div>
-                <div class="panel-body cardView">
+                <div class="panel-body cardView" style="background:whitesmoke">
                     <p>
                         <strong>Starting :</strong> 
                         ${card.startDate}

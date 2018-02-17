@@ -1,11 +1,15 @@
 package com.codetheory.web.dao;
 
+import java.util.List;
+import java.util.ArrayList;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.codetheory.web.constant.OrganizationType;
 import com.codetheory.web.model.CodeQuestion;
 import com.codetheory.web.model.Test;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -19,20 +23,20 @@ public class CodeQuestionMapper implements RowMapper<CodeQuestion> {
         question.setLevel(rs.getInt("level"));
         question.setQuestion(rs.getString("question"));
         question.setDetails(rs.getString("details"));
-        /*
-        ArrayList<Test> testcase = new ArrayList<>();
+
+        ArrayList<Test> test = new ArrayList<>();
         
-        while (rs.next()){
-            Test test = new Test();
-                test.setId(rs.getInt("test_id"));
-                test.setInput(rs.getString("input"));
-                test.setOutput(rs.getString("output"));
-                test.setPoints(rs.getInt("points"));
-            testcase.add(test);
+        try{
+            
+            String test_case = rs.getString("test_case");
+            ObjectMapper mapper = new ObjectMapper();
+            test = mapper.readValue(test_case, ArrayList.class);
+
+        }catch(Exception e){
+            e.printStackTrace();
         }
-        
-        question.setTests(testcase);
-*/
+
+        question.setTests(test);
         return question;
     }
 

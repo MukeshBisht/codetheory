@@ -43,6 +43,7 @@ public class CodeQuestionController {
 	@ResponseBody
 	public CodeQuestion getCodeQuestion() {
 		CodeQuestion question = dao.getCodeQuestion();
+		question.setTests(null);		// for RoundTree
 		return question;
 	}	
 

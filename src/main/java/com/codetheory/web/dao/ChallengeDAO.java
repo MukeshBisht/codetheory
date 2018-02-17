@@ -29,4 +29,5 @@ public interface ChallengeDAO {
     public CodeQuestion getCodeQuestionById(int id);
     public List<CodeQuestion> getAllCodeQuestion();
     public void deleteCodeQuestion(int id);
+    public void updateCodeQuestion(CodeQuestion question);
 }
