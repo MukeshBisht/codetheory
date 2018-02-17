@@ -6,29 +6,26 @@
         var chlng="${cname}";    
     </script>
     <script src="<c:url value=" /resources/script/roundmgmt.js" />"></script>
-    <script src="<c:url value=" /resources/lib/datatables/js/jquery.dataTables.js " />"></script>
-    <script src="<c:url value=" /resources/lib/datatables/js/dataTables.bootstrap.js " />"></script>
-    <link rel='stylesheet' href="<c:url value=" /resources/lib/datatables/css/dataTables.bootstrap.css "/>" type='text/css' media='screen'/>
     <div class="container">
 <div class="row">
         <div class="col-md-6">
-        <h2>Rounds &nbsp;&nbsp;
-            <a href="#" id="addRound" class="glyphicon glyphicon-plus-sign"></a>
-        </h2>
+        <h3>Rounds &nbsp;&nbsp;
+            <a href="#" id="addRound" class="glyphicon glyphicon-plus-sign"></a> | 
+            <a href="#" onclick="deleteRound()" id="deleteRound" class="glyphicon glyphicon-trash"></a>
+        </h3>
     </div>
     <div class="col-md-6">
-
-            <div class="h3 btn-group pull-right" role="group">           
-                    <a href="#" id="addChlngBtn" class="btn btn-success">Add Challenges</a>
-                    <a href="#" class="btn btn-danger">Delete Round</a>
-                </div>
+        <div class="h3 btn-group pull-right" role="group">           
+            <a href="#" id="addChlngBtn" class="btn btn-success">Add Challenges</a>
+            <a href="#" class="btn btn-danger">Remove Selected</a>
+        </div>
     </div>
 </div>
 <div class="row">
         <div class="col-md-3">
             <div class="list-group">
                     <c:forEach items="${rounds}" var="round">
-                        <a href="#" onclick="changeRound(${round.roundId})" class="list-group-item">${round.name}</a>
+                        <a href="#" id="${round.roundId}" data-type="${round.type}" onclick="changeRound(this)" class="list-group-item">${round.name}</a>
                     </c:forEach>  
                 </div>
         </div>
@@ -120,7 +117,8 @@
                             </tr>
                           </thead>
                         </table>
-                      </div>
+                </div>
+                <button class="btn btn-block btn-success">Done</button>
             </div>
         </div>
 </div>

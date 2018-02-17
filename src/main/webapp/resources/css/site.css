@@ -136,6 +136,7 @@ body {
 	background: rgb(32, 32, 32);
   }
 
+<<<<<<< HEAD
   
 /* Load More Button */
 
@@ -250,3 +251,8 @@ body {
 		font-size: 17px;
 		font-family: 'Times New Roman', Times, serif;
 	}
+=======
+  table.dataTable tbody tr.selected {
+    background-color: #B0BED9;
+}
+>>>>>>> 98d2ee82a77cc00d86a0e80001395b1874df0b5a

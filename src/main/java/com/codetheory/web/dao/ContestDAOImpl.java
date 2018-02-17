@@ -100,4 +100,19 @@ public class ContestDAOImpl implements ContestDAO{
 		return jdbcTemplate.query(sql, new String[]{contest}, new RoundMapper());
 	}
 
+
+	@Override
+	public boolean roundExist(Round round) {
+		String sql = "select (1) as Flag from round where Name=? AND contest = ?";
+        return (jdbcTemplate.queryForList(sql, round.getName(), round.getContest()).size() > 0);
+	}
+
+
+	@Override
+	public void deleteRound(Round round) {
+		String sql = "delete from round where roundid=?";
+        jdbcTemplate.update(sql , new Object[] {
+		   round.getRoundId()
+        });
+	}
 }
