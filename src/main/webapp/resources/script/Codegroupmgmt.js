@@ -63,13 +63,24 @@ $(document).ready(function () {
         $("html, body").animate({ scrollTop: 0}, 500);
         log = table.row( $(this).parents('tr') ).data();
 
+        resetForm();
+        
         $('#qid').val(log.id);
         $('#question').val(log.question);
         $('#description').val(log.details);
         $('#lvl').val(log.level);
-        $('#input').val(log.tests[0].input);
-        $('#output').val(log.tests[0].output);
-        $('#points').val(log.tests[0].points);
+        
+        // test case
+        
+        for (i=1; i<log.tests.length; i++)
+            addMoreTest();
+
+        for (i=1; i<=counter; i++){
+            $('#t'+i).find('#input').val(log.tests[i-1].input);
+            $('#t'+i).find('#output').val(log.tests[i-1].output);
+            $('#t'+i).find('#points').val(log.tests[i-1].points);
+        }
+        
         $('#btnsubmit').html('Update');
 
     } );
@@ -102,9 +113,17 @@ function resetForm() {
     $('#description').val("");
     $('#lvl').val("");
     $('#qid').val("-1");
-    $('#input').val("");
-    $('#output').val("");
-    $('#points').val("");
+
+    //test case
+    var c = counter;
+    for (i=1; i<=c; i++){
+        removeTest();
+    }
+    
+    $('#t1').find('#input').val("");
+    $('#t1').find('#output').val("");
+    $('#t1').find('#points').val("");
+
     $('#btnsubmit').html('Add');
 }
 
@@ -127,11 +146,20 @@ function addCodeQuestion (){
         var question = $('#question').val();
         var description = $('#description').val();
         var level = $('#lvl').val();
-        var input = $('#input').val();
-        var output = $('#output').val();
-        var points = $('#points').val();
+        
+        // test cases
 
-        var test = [{"id": id, "input":input, "output":output, "points":points}];
+        var test = [];
+
+        for (i=1; i<=counter; i++){
+            test.push({
+                id : i,
+                input : $('#t'+i).find('#input').val(),
+                output : $('#t'+i).find('#output').val(),
+                points : $('#t'+i).find('#points').val()
+            });
+        }
+
         var data = {"id":id ,"level":level, "question":question,"details":description, tests : test};
 
     $.ajax({
@@ -154,19 +182,19 @@ function addMoreTest(){
     counter++;
     $('#removeTest').show();
 
-    $('.test').attr('id','t'+counter);
-    $('#testcase').html( $('#testcase').html() + $('#t'+counter).html());   
-
-    console.log (document.getElementById('t'+counter));
-    console.log (document.getElementById('t2'));
+    var div = '<div id=t'+counter+'>';
+    div += $('#t1').html();    
+    div += '</div>'
     
+    $('#testcase').append(div);
 }
 
 function removeTest (){
     if (counter == 1)
         return;
-    else {
-        $('#t'+counter).remove();
-        counter--;
-    }
+    if (counter == 2)
+       $('#removeTest').hide();
+    
+    $('#t'+counter).remove();
+    counter--;
 }

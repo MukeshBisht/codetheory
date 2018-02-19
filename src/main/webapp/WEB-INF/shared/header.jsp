@@ -8,6 +8,7 @@
 <script src="<c:url value=" /resources/script/Validate.js " />"></script>
 <script src="<c:url value=" /resources/lib/bootstrap/js/bootstrap.js " />"></script>
 <script src="<c:url value=" /resources/script/timer.js " />"></script>
+<script src="<c:url value=" /resources/script/dialog.js " />"></script>
 <link rel='stylesheet' href="<c:url value=" /resources/css/site.css "/>" type='text/css' media='screen' />
 <script src="<c:url value=" /resources/script/site.js " />"></script>
 
@@ -24,7 +25,7 @@
 </c:if>
 
 
-<div class="navbar navbar-inverse navbar-fixed-top" style="background:rgb(36,41,46)">
+<div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
                 <div class="navbar-header">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"

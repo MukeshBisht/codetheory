@@ -14,13 +14,13 @@
 
     <div class="container body-content">
         <!-- Main jumbotron for a primary marketing message or call to action -->
-        <div class="jumbotron " style="background:rgb(37,46,56)">
-            <div class="container" style="color:rgb(223, 223, 54)">
+        <div class="jumbotron">
+            <div class="container">
               <p>
                 <h2>&nbsp;Be a Better</h2>
                 <h1>Programmer</h1>
                 <h3>Code. Compete. Create</h3></p>
-                <a role="button" class="btn btn-yellow" href="/RoundOne">Start Quick Challenge</a>
+                <a role="button" class="btn btn-primary" href="/RoundOne">Start Quick Challenge</a>
             </div>
         </div>
 

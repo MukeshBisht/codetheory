@@ -53,34 +53,34 @@
 
 
                     <section id="testcase">
-                      <div class="test" id="t1">
-                       <div class="form-group col-md-5">
-                          <div class="input-group">
-                            <span class="input-group-addon">
-                              Input
+                      <div id="t1">
+                        <div class="form-group col-md-5">
+                           <div class="input-group">
+                             <span class="input-group-addon">
+                               Input
+                            </span>
+                            <input id="input" type="text" placeholder="Test Case Input" class="form-control" required/>
+                         </div>
+                       </div>
+ 
+                       <div class="form-group col-md-4">
+                         <div class="input-group">
+                           <span class="input-group-addon">
+                             Output
                            </span>
-                           <input id="input" type="text" placeholder="Test Case Input" class="form-control" required/>
-                        </div>
-                      </div>
-
-                      <div class="form-group col-md-4">
-                        <div class="input-group">
-                          <span class="input-group-addon">
-                            Output
-                          </span>
-                          <input id="output" type="text" placeholder="Test Case Output" class="form-control" required/>
-                        </div>
-                      </div>
-
-                    <div class="form-group col-md-2">
-                      <div class="input-group">
-                        <span class="input-group-addon">
-                          Points
-                        </span>
-                        <input class="form-control" id = "points" type="text" required/>
-                      </div>
-                    </div>
-                  </div>
+                           <input id="output" type="text" placeholder="Test Case Output" class="form-control" required/>
+                         </div>
+                       </div>
+ 
+                     <div class="form-group col-md-2">
+                       <div class="input-group">
+                         <span class="input-group-addon">
+                           Points
+                         </span>
+                         <input class="form-control" id = "points" type="text" required/>
+                       </div>
+                     </div>
+                   </div>
                   </section>                    
 
                   <div>
@@ -104,8 +104,8 @@
                         <option value="3">Hard</option>
                       </select>
                     </div>
-                    <div class="form-group col-md-3">
-                      <button id="btnsubmit" class="btn btn-primary  btn-block pull-right" onclick="addCodeQuestion()" type="submit">Add</button>
+                    <div class="form-group col-md-3">   
+                       <button id="btnsubmit" class="btn btn-primary  btn-block pull-right" onclick="addCodeQuestion()" type="submit">Add</button>
                     </div>
                     <div class="form-group col-md-3">
                       <a class="btn btn-warning  btn-block pull-right" onclick="resetForm()">Reset</a>
@@ -116,6 +116,26 @@
             </div>
           </div>
         </div>
+          <!-- Dialog box -->                                     
+          <div id="white-background" style="display:none">
+            </div>
+            <div id="dlgbox">
+                <div id="dlg-header">Are you Sure?</div>
+                <div id="dlg-body">
+                    <h4>You want to Submit your answers?</h4>
+                    <span>
+                        <strong>Note :</strong> Once answers are submitted, you will not be able to
+                        make any change in them!
+                    </span>
+                </div>
+                <div id="dlg-footer">
+                    <button onclick="dlg1OK()">OK</button>
+                    <button onclick="dlgCancel()">Cancel</button>
+                </div>
+            </div>
+            
+        <!-- Dialog box end -->   
+
         <div class="table-responsive">
           <table id="grid" class="table table-bordered table-hover">
             <thead>

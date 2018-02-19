@@ -13,7 +13,7 @@
         <!-- page body -->
       
             <section class="container">
-                <div class="text-center cardView col-md-3">
+                <div class="text-center cardView col-md-3" id="profile">
                         <i class="fa fa-user " style="font-size:250px" aria-hidden="true"></i>
                         <label for="username" class="h3">@${user.username}</label>
                         <div>
@@ -66,7 +66,7 @@
                     <div id="Details" class="tab-pane fade in active">
                         <h3>Personal Details</h3>
                        
-                        <form class="form" method="POST" modelAttribute="updateForm" style="margin-left:10px">
+                        <form class="form" method="POST" modelAttribute="updateForm" onsubmit="showDialog()" style="margin-left:10px">
                    
                                 <div class="form-group">
                                     <label path="username">Username</label>
@@ -84,7 +84,21 @@
                                 </div>
             
                                 <button class="btn btn-success">save changes</button>
-                         
+                                    <!-- Dialog box -->                                     
+                                 
+                                    <div id="white-background">
+                                        </div>
+                                        <div id="dlgbox">
+                                            <div id="dlg-header">Are you Sure?</div>
+                                            <div id="dlg-body">
+                                                <span>You want to change you personal details!</span>
+                                            </div>
+                                            <div id="dlg-footer">
+                                                <button onclick="dlgOK2()">Confirm</button>
+                                                <button onclick="dlgCancel()">Cancel</button>
+                                            </div>
+                                        </div>
+                                    <!-- Dialog box end -->       
                             </form>
             
                     </div>
@@ -167,8 +181,24 @@
                                 <input class="form-control" id="cnewpassword" type="password" required="true"/> <br/>
                                 <div id="cpassword_chk" class="response"></div> 
                                 
-                            <button class="btn btn-success">change password</button>
-                            
+                            <button class="btn btn-success" onclick="showDialog()">change password</button>
+                               
+                            <!-- Dialog box -->                                     
+                                 
+                                <div id="white-background">
+                                    </div>
+                                    <div id="dlgbox">
+                                        <div id="dlg-header">Are you Sure?</div>
+                                        <div id="dlg-body">
+                                            <span>You want to change you Password!</span>
+                                        </div>
+                                        <div id="dlg-footer">
+                                            <button onclick="dlgOK()">OK</button>
+                                            <button onclick="dlgCancel()">Cancel</button>
+                                        </div>
+                                    </div>
+                                <!-- Dialog box end -->   
+
                         </form>
                     </div>
                 </div>

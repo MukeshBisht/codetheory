@@ -113,9 +113,8 @@ function changeColor (i , j){
 
 function submitQuestion(){
     
-    if (!confirm("Are you sure you want to submit")){
-        return;
-    }
+    showDialog();
+
     $.ajax({
             type: "POST",
             url: "/RoundOne/submit",

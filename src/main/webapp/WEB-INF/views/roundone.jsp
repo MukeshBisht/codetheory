@@ -15,9 +15,28 @@
                     </div>
                     <div class="col-sm-4 text-center" id="submitRoundOne" hidden>                       
                         <a class="btn btn-info" href="#" onclick="showPreview()">Preview</a>
-                        <a class="btn btn-success" onclick="submitQuestion()" id="submitRound">
+                        <a class="btn btn-success" onclick="showDialog()" id="submitRound">
                             Submit
                         </a>
+                    <!-- Dialog box -->                                     
+                            <div id="white-background">
+                            </div>
+                            <div id="dlgbox">
+                                <div id="dlg-header">Are you Sure?</div>
+                                <div id="dlg-body">
+                                    <h4>You want to Submit your answers?</h4>
+                                    <span>
+                                        <strong>Note :</strong> Once answers are submitted, you will not be able to
+                                        make any change in them!
+                                    </span>
+                                </div>
+                                <div id="dlg-footer">
+                                    <button onclick="dlg1OK()">OK</button>
+                                    <button onclick="dlgCancel()">Cancel</button>
+                                </div>
+                            </div>
+                            
+                        <!-- Dialog box end -->       
                     </div>
                 </div>
 
@@ -45,6 +64,8 @@
                                     during the examination.</p>
                             </li>
                         </ul>
+
+                     
                         <button onclick="loadQuestion()" id="startRoundOne" class="btn btn-block btn-danger">Start</button>
 
                     </div>

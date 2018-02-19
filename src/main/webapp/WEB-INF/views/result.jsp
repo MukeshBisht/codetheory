@@ -26,6 +26,7 @@
                 <th>Question</th>
                 <th>Correct Answer</th>
                 <th>Your Answer</th>
+                <th class="text-center">Points</th>
             </thead>
                     
         <tbody id="resultBody">
@@ -41,11 +42,22 @@
                     
                     <c:choose>
                         <c:when test = "${ques.selected != -1}">
-                            <td class="text-danger">${ques.options[ques.selected]}</td>
+                            <c:choose>
+                                <c:when test = "${ques.options[ques.selected] == answer[status.index]}">
+                                    <td class="text-success">${ques.options[ques.selected]}</td>
+                                    <td class="text-success text-center">+10</td>
+                                </c:when>
+                                
+                                <c:otherwise>
+                                    <td class="text-danger">${ques.options[ques.selected]}</td>
+                                    <td class="text-active text-center">0</td>
+                                </c:otherwise>
+                            </c:choose>
                         </c:when>
             
                         <c:otherwise>
-                            <td class="text-danger">not attempted</td>
+                            <td class="text-active">not attempted</td>
+                            <td class="text-active text-center">0</td>
                         </c:otherwise>
                     </c:choose>
                 </tr>
