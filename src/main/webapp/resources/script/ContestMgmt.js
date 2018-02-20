@@ -32,6 +32,7 @@ $(function () {
 });
 
 function loadRounds() {
+    round = null;
     $("#loadingDialog").modal("toggle");
     contest = $('#contestName').val();
     $.ajax({
@@ -40,7 +41,9 @@ function loadRounds() {
         success: function (response) {
             $('#Content').empty();
             $('#Content').html(response);
-            $("#loadingDialog").modal("toggle");
+            $('.modal').modal('hide'); 
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
         }
     });
 }

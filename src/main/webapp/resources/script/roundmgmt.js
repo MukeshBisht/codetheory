@@ -9,11 +9,21 @@ $(document).ready(function () {
     });
 
     $("#addChlngBtn").on("click", function () {
+        if(round == null){
+            alert("Select a Round");
+            return;
+        }
         $("#addChlngDialog").modal("toggle");
     });
 
     var grid = $('#grid').DataTable({
-        
+        columns: [
+            { data: "id", visible : false},
+            { data: "question" },
+            { data: "level", render: getlvl }
+        ],
+        lengthMenu: [[5, 10, 15], [5, 10, 15]],
+        autoWidth: false
     });
     var Qgrid = $('#Qgrid').DataTable({
         columns: [
@@ -27,7 +37,9 @@ $(document).ready(function () {
     $('#Qgrid tbody').on('click', 'tr', function(){
         $(this).toggleClass('selected');
     });
-
+    $('#grid tbody').on('click', 'tr', function(){
+        $(this).toggleClass('selected');
+    });
 });
 
 function loadGrpQuestions(select){
@@ -38,6 +50,63 @@ function loadGrpQuestions(select){
             log = dat.data;
             $("#Qgrid").DataTable().clear().draw();
             $("#Qgrid").DataTable().rows.add(dat.data).draw();
+        },
+        error : function(dat){
+            log = dat;
+        }
+    });
+}
+
+function removeChallengeFromRound(){
+    var questions = [];
+    $.each($("#grid").DataTable().rows('.selected').data(), function() {
+        questions.push(this['id']);
+    });
+    if(questions.length < 1){
+        alert("Select Challenges to remove");
+        return;
+    }
+    $.ajax({
+        //api/contest/round/{roundid}/removeChallenges
+        url: '/api/contest/round/'+ round.roundId +'/Challenges',
+        contentType: "application/json",
+        crossDomain: true,
+        type: 'DELETE',
+        data: JSON.stringify(questions),
+        success: function (response) {      
+            round = null;       
+            loadRounds();
+        }
+    });   
+}
+
+function AddChallengesToRound(){
+    var questions = [];
+    $.each($("#Qgrid").DataTable().rows('.selected').data(), function() {
+        questions.push(this['id']);
+    });
+    $.ajax({
+        //api/contest/round/{roundid}/addChallenges
+        url: '/api/contest/round/'+ round.roundId +'/addChallenges',
+        contentType: "application/json",
+        crossDomain: true,
+        type: 'POST',
+        data: JSON.stringify(questions),
+        success: function (response) {      
+            round = null;       
+            loadRounds();
+        }
+    });
+}
+
+function loadRoundQuestions(roundID){
+    $.ajax({
+        type : "GET",
+        url : "/api/contest/round/"+ roundID + "/Challenges/",
+        success : function(dat){
+            log = dat.qList;
+            $("#grid").DataTable().clear().draw();
+            $("#grid").DataTable().rows.add(dat.qList).draw();
         },
         error : function(dat){
             log = dat;
@@ -62,8 +131,17 @@ var round;
 function changeRound(e){
     $(".list-group .list-group-item").removeClass("active");
     e.classList.add("active");
-    log = e;
-    round = { roundId : e.id, contest : contest, name:e.text, type : log.attributes['data-type'].value };
+    var t = e.attributes['data-type'].value;
+    round = { roundId : e.id, contest : contest, name:e.text, type : t };
+    loadRoundQuestions(e.id);
+    if(t=="Code"){
+        $('#codeselect').show();
+        $('#mcqselect').hide();
+    }
+    if(t == "MCQ"){
+        $('#mcqselect').show();
+        $('#codeselect').hide();
+    }
 }
 
 function deleteRound(){
@@ -96,13 +174,11 @@ function addRound(){
     d = {"contest":chlng, "roundId":id,"name":roundName,"length":len,"type":type};
     $.ajax({
         type : "POST",
-        url : url,          
-        dataType: 'json',
+        url : url,
         contentType: "application/json",
         data :JSON.stringify(d),
         success : function(data){
-            $("#addRoundDialog").modal("toggle");
-            resetAddRound();
+            round = null;   
             loadRounds();
         },
         error : function(data){
@@ -110,8 +186,4 @@ function addRound(){
             alert("eror");
         }
     });
-}
-
-function resetAddRound(){
-
 }

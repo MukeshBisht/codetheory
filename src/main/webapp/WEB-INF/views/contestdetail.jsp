@@ -7,6 +7,7 @@
 <script src="<c:url value=" /resources/script/moment.js " />"></script>
 <script src="<c:url value=" /resources/script/bootstrap-datetimepicker.js " />"></script>
 <link rel='stylesheet' href="<c:url value=" /resources/css/bootstrap-datetimepicker.css "/>" type='text/css' media='screen'/>
+
 <script type="text/javascript">
     $(function () {
         $('#starttimepicker').datetimepicker({

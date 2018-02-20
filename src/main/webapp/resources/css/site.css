@@ -180,7 +180,10 @@ body {
     font-weight: 500;
 }
 
-
+table.dataTable 
+	tbody tr.selected {
+    background-color: #B0BED9;
+}
 /*
  * Component: Form
  * ---------------

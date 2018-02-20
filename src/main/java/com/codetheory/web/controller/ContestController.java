@@ -94,10 +94,11 @@ public class ContestController {
 	@RequestMapping(value="/update/{name}", method = RequestMethod.GET)
 	public String newContest(Model model, @PathVariable("name") String name) {
 		Contest contest = dao.getContestById(name);
-
+		
 		if(contest == null)
 			return "redirect:/contest/create";
 
+		//System.out.println(contest.getStartDate().toLocaleString());
 		model.addAttribute("contest", contest);		
 		model.addAttribute("orgs", OrganizationType.values());
 		model.addAttribute("update", true);

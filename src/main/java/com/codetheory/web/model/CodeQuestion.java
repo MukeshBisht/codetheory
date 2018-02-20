@@ -2,25 +2,11 @@ package com.codetheory.web.model;
 
 import java.util.ArrayList;
 
-public class CodeQuestion
+public class CodeQuestion extends Question
 {
-  private int id;
-  private int level;
-  private String question;
+
   private String details;
   private ArrayList<Test> tests;
-
-  public int getId() { return this.id; }
-
-  public void setId(int id) { this.id = id; }
-
-  public int getLevel() { return this.level; }
-
-  public void setLevel(int level) { this.level = level; }
-
-  public String getQuestion() { return this.question; }
-
-  public void setQuestion(String question) { this.question = question; }
 
   public String getDetails() { return this.details; }
 

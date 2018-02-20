@@ -2,10 +2,15 @@ package com.codetheory.web.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import com.codetheory.web.model.Contest;
+import com.codetheory.web.model.Question;
 import com.codetheory.web.model.Round;
 import com.codetheory.web.model.UserContestMap;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ContestDAOImpl implements ContestDAO{
 
@@ -114,5 +119,50 @@ public class ContestDAOImpl implements ContestDAO{
         jdbcTemplate.update(sql , new Object[] {
 		   round.getRoundId()
         });
+	}
+
+
+	@Override
+	public Round getRoundById(String id) {
+		String sql = "select * from round where Roundid = ?";
+		return jdbcTemplate.queryForObject(sql, new String[]{id}, new RoundMapper());
+	}
+
+
+	@Override
+	public void addChallengesToround(int[] ids, Round round) {
+		NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate.getDataSource());
+		String sql = "insert ignore into round_challenges_map (roundid, questionid)";
+			   sql += "select :r as Roundid, id from quiz_question where id in (:ids);";
+		Map<String, Object> params = new HashMap<String, Object>();
+		List<Integer> IDs = new ArrayList<Integer>();
+		for(int i=0;i<ids.length;i++)
+			IDs.add(ids[i]);
+		params.put("ids", IDs);
+		params.put("r", round.getRoundId());
+		template.update(sql, params);
+	}
+
+
+	@Override
+	public List<Question> getChallengesByRound(Round round) {
+		String sql = "select q.id, q.question, q.level from quiz_question q where q.id in (";
+		sql += "select questionid from round_challenges_map where roundid = ?);";
+		return jdbcTemplate.query(sql, new Integer[]{round.getRoundId()}, new QuestionMapper());
+	}
+
+
+	@Override
+	public void removeChallengesFromround(int[] ids, Round round) {
+		NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate.getDataSource());
+		String sql = "delete from round_challenges_map ";
+			   sql += "where Roundid = :r and questionid in (:ids);";
+		Map<String, Object> params = new HashMap<String, Object>();
+		List<Integer> IDs = new ArrayList<Integer>();
+		for(int i=0;i<ids.length;i++)
+			IDs.add(ids[i]);
+		params.put("ids", IDs);
+		params.put("r", round.getRoundId());
+		template.update(sql, params);
 	}
 }

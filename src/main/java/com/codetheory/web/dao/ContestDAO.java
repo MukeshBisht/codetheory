@@ -1,6 +1,7 @@
 package com.codetheory.web.dao;
 
 import com.codetheory.web.model.Contest;
+import com.codetheory.web.model.Question;
 import com.codetheory.web.model.Round;
 import com.codetheory.web.model.UserContestMap;
 import java.util.List;
@@ -20,4 +21,8 @@ public interface ContestDAO {
     public boolean roundExist(Round round);
     public void deleteRound(Round round);
     public List<Round> getRounds(String contest);
+    public Round getRoundById(String id);
+    public void addChallengesToround(int[] ids, Round round);
+    public void removeChallengesFromround(int[] ids, Round round);
+    public List<Question> getChallengesByRound(Round round);
 }

@@ -6,6 +6,7 @@
         var chlng="${cname}";    
     </script>
     <script src="<c:url value=" /resources/script/roundmgmt.js" />"></script>
+
     <div class="container">
 <div class="row">
         <div class="col-md-6">
@@ -17,7 +18,7 @@
     <div class="col-md-6">
         <div class="h3 btn-group pull-right" role="group">           
             <a href="#" id="addChlngBtn" class="btn btn-success">Add Challenges</a>
-            <a href="#" class="btn btn-danger">Remove Selected</a>
+            <a href="#" class="btn btn-danger" onclick="removeChallengeFromRound()">Remove Selected</a>
         </div>
     </div>
 </div>
@@ -35,11 +36,9 @@
                     <table id="grid" class="table table-bordered table-hover">
                       <thead>
                         <tr>
-                          <th></th>
-                          <th>Id</th>
+                          <th>id</th>
                           <th>Question</th>
                           <th>Level</th>
-                          <th><span class="glyphicon glyphicon-cog"></span></th>
                         </tr>
                       </thead>
                     </table>
@@ -94,13 +93,13 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                     <h4 class="modal-title">Add Challenges</h4>
-                    <select class="form-control" onchange="loadGrpQuestions(this)">
+                    <select id="mcqselect" class="form-control" onchange="loadGrpQuestions(this)">
                         <option value="" selected disabled hidden>Select a Group</option>
                         <c:forEach items="${groups.mcqGroups}" var="g">
                         <option value="${g.groupId}">${g.name}</option>
                     </c:forEach>
                     </select>
-                    <select class="form-control hidden" onchange="loadGrpQuestions(this)">
+                    <select id="codeselect" class="form-control" style="display:none;" onchange="loadGrpQuestions(this)">
                             <option value="" selected disabled hidden>Select a Group</option>
                             <c:forEach items="${groups.codeGroups}" var="g">
                             <option value="${g.groupId}">${g.name}</option>
@@ -118,7 +117,7 @@
                           </thead>
                         </table>
                 </div>
-                <button class="btn btn-block btn-success">Done</button>
+                <button class="btn btn-block btn-success" onclick="AddChallengesToRound()">Add</button>
             </div>
         </div>
 </div>

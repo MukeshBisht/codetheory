@@ -54,7 +54,7 @@ public class ContestApiController {
         }
     }
 
-    @RequestMapping(value="/round")
+    @RequestMapping(value="/round", method = RequestMethod.POST)
     public ResponseEntity<Object> addRound(@RequestBody Round round, Principal principal){
         String user = principal.getName();        
         if(dao.validUserContest(user, round.getContest())){
@@ -63,5 +63,30 @@ public class ContestApiController {
         }
 
         return new ResponseEntity<>("0", HttpStatus.UNAUTHORIZED);
+    }
+    
+    @RequestMapping(value="/round/{roundid}/Challenges", method = RequestMethod.POST)
+    public ResponseEntity<Object> addChallengesToRound(@RequestBody int[] chlngIds, @PathVariable("roundid") String roundid, Principal principal){
+        String user = principal.getName();
+        Round round = dao.getRoundById(roundid);
+        dao.addChallengesToround(chlngIds, round);
+        return new ResponseEntity<>("0", HttpStatus.OK);
+    }
+
+    @RequestMapping(value="/round/{roundid}/Challenges", method = RequestMethod.DELETE)
+    public ResponseEntity<Object> removeChallengesFromRound(@RequestBody int[] chlngIds, @PathVariable("roundid") String roundid, Principal principal){
+        String user = principal.getName();
+        Round round = dao.getRoundById(roundid);
+        dao.removeChallengesFromround(chlngIds, round);
+        return new ResponseEntity<>("0", HttpStatus.OK);
+    }
+
+    @RequestMapping(value="/round/{roundid}/Challenges", method = RequestMethod.GET)
+    public QuestionList getChallenges(@PathVariable("roundid") String roundid, Principal principal){
+        String user = principal.getName();
+        Round round = dao.getRoundById(roundid);
+        QuestionList questions = new QuestionList();
+        questions.setqList(dao.getChallengesByRound(round));
+        return questions;
     }
 }
