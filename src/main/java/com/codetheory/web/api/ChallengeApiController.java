@@ -38,6 +38,20 @@ public class ChallengeApiController {
         return data;
     }
 
+    @RequestMapping(value = "group/{id}/challenges/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public QuestionList getGroupQuestions(@PathVariable String id, Principal principal) {
+        String user = principal.getName();
+        QuestionList data = new QuestionList();
+        ChallengeGroup chgrp = dao.getChallengeById(id);
+        if(chgrp!=null){
+            if (dao.challengeGroupExist(chgrp.getName(), user)) {
+                data.setqList(dao.getChallengesByGroup(chgrp));
+                return data;
+            }
+        }
+        return data;
+    }
+
     @RequestMapping(value = "group/mcq/{id}/questions/add", consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
     public ResponseEntity<Object> addMCQQuestion(@RequestBody QuizQuestion question, @PathVariable int id, Principal principal) {
         String user = principal.getName();
@@ -63,10 +77,10 @@ public class ChallengeApiController {
     }
 
 
-    @RequestMapping(value = "group/code/question/add", consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
-    public ResponseEntity<Object> addCodeQuestion(@RequestBody CodeQuestion question, Principal principal) {
+    @RequestMapping(value = "group/code/{id}/question/add", consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+    public ResponseEntity<Object> addCodeQuestion(@RequestBody CodeQuestion question,@PathVariable int id, Principal principal) {
         if(question.getId() == -1){
-            dao.addCodeQuestion(question, principal.getName(), 0);
+            dao.addCodeQuestion(question, principal.getName(), id);
         }else{
             //if(dao.isUsersQuestion(question.getId(), user))
                 //update question

@@ -1,8 +1,11 @@
 package com.codetheory.web.dao;
 
+import org.apache.http.impl.conn.tsccm.RouteSpecificPool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+
+import com.codetheory.web.constant.ChallengeType;
 import com.codetheory.web.model.Contest;
 import com.codetheory.web.model.Question;
 import com.codetheory.web.model.Round;
@@ -133,7 +136,12 @@ public class ContestDAOImpl implements ContestDAO{
 	public void addChallengesToround(int[] ids, Round round) {
 		NamedParameterJdbcTemplate template = new NamedParameterJdbcTemplate(jdbcTemplate.getDataSource());
 		String sql = "insert ignore into round_challenges_map (roundid, questionid)";
-			   sql += "select :r as Roundid, id from quiz_question where id in (:ids);";
+			   sql += "select :r as Roundid, id from"; 
+		if(round.getType() == ChallengeType.MCQ)
+			sql += " quiz_question ";
+		if(round.getType() == ChallengeType.Code)
+			sql += " code_question ";
+		sql += "where id in (:ids);";
 		Map<String, Object> params = new HashMap<String, Object>();
 		List<Integer> IDs = new ArrayList<Integer>();
 		for(int i=0;i<ids.length;i++)
@@ -145,9 +153,13 @@ public class ContestDAOImpl implements ContestDAO{
 
 
 	@Override
-	public List<Question> getChallengesByRound(Round round) {
-		String sql = "select q.id, q.question, q.level from quiz_question q where q.id in (";
-		sql += "select questionid from round_challenges_map where roundid = ?);";
+	public List<Question> getChallengesByRound(Round round) {		
+		String sql = "select q.id, q.question, q.level from";
+		if(round.getType() == ChallengeType.Code)
+			sql += " code_question q ";
+		if(round.getType() == ChallengeType.MCQ)
+			sql += " quiz_question q ";
+		sql += "where q.id in (select questionid from round_challenges_map where roundid = ?);";
 		return jdbcTemplate.query(sql, new Integer[]{round.getRoundId()}, new QuestionMapper());
 	}
 

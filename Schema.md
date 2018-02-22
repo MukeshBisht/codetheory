@@ -142,12 +142,17 @@ CREATE TABLE `round_challenges_map` (
 #addCodeQuestion sp
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `addCodeQuestion`(ques nvarchar(2000), detail nvarchar(1000), lvl int, test nvarchar(1000) )
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addCodeQuestion`(ques nvarchar(2000), detail nvarchar(1000), lvl int, test nvarchar(1000), grp int, usr varchar(45))
 BEGIN
 	INSERT into code_question
     (question, details, level, test_case)
     values
     (ques, detail, lvl,test);
+	#insert mapping
+    insert into question_challengegrp_map(ChallengeGrpId, QuestionId, Userid)
+    values
+	(grp, LAST_INSERT_ID() ,usr); 
    
 END$$
 DELIMITER ;
+
