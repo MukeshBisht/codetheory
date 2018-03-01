@@ -45,11 +45,12 @@ $(document).ready(function () {
 function loadGrpQuestions(select){
     $.ajax({
         type : "GET",
-        url : "/api/challenge/group/questions/" + select.value,
+        //url : "/api/challenge/group/questions/" + select.value,
+        url : "/api/challenge/group/" + select.value + "/challenges/",
         success : function(dat){
             log = dat.data;
             $("#Qgrid").DataTable().clear().draw();
-            $("#Qgrid").DataTable().rows.add(dat.data).draw();
+            $("#Qgrid").DataTable().rows.add(dat.qList).draw();
         },
         error : function(dat){
             log = dat;

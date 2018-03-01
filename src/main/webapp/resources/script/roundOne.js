@@ -34,8 +34,8 @@ function loadQuestion(){
     } else {
         t=30;
     }
-    document.getElementById('starttimer').innerHTML = +t + ":" + 00;
-    startTimer();                
+    document.getElementById('starttimer').innerHTML = t + ":" + 00;
+    startTimer();
 }
 
 function buildOptionSideBar(index) {

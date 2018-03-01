@@ -3,6 +3,7 @@ package com.codetheory.web.dao;
 import com.codetheory.web.model.ChallengeGroup;
 import com.codetheory.web.model.QuizQuestion;
 import com.codetheory.web.model.CodeQuestion;
+import com.codetheory.web.model.Question;
 import java.util.List;
 
 public interface ChallengeDAO {
@@ -23,11 +24,14 @@ public interface ChallengeDAO {
     public Boolean checkAnswerById (int id , int selected);
     public int getAnswerById (int id);
 
+    public List<Question> getChallengesByGroup(ChallengeGroup group);
+    
     //code question
     public void addCodeQuestion(CodeQuestion ques, String user, int group);
     public CodeQuestion getCodeQuestion();
     public CodeQuestion getCodeQuestionById(int id);
     public List<CodeQuestion> getAllCodeQuestion();
+    public List<CodeQuestion> getAllCodeQuestionByGroup(int grpId);
     public void deleteCodeQuestion(int id);
     public void updateCodeQuestion(CodeQuestion question);
 }

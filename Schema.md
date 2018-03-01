@@ -142,16 +142,21 @@ CREATE TABLE `round_challenges_map` (
 #addCodeQuestion sp
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `addCodeQuestion`(ques nvarchar(2000), detail nvarchar(1000), lvl int, test nvarchar(1000) )
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addCodeQuestion`(ques nvarchar(2000), detail nvarchar(1000), lvl int, test nvarchar(1000), grp int, usr varchar(45))
 BEGIN
 	INSERT into code_question
     (question, details, level, test_case)
     values
     (ques, detail, lvl,test);
+	#insert mapping
+    insert into question_challengegrp_map(ChallengeGrpId, QuestionId, Userid)
+    values
+	(grp, LAST_INSERT_ID() ,usr); 
    
 END$$
 DELIMITER ;
 
+<<<<<<< HEAD
 #contest_participation table
 
 CREATE TABLE `contest_participation` (
@@ -162,3 +167,5 @@ CREATE TABLE `contest_participation` (
   KEY `contest_id_idx` (`contest_id`),
   CONSTRAINT `contest_id` FOREIGN KEY (`contest_id`) REFERENCES `contests` (`contestName`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+=======
+>>>>>>> 2ffab4659ed1412093756feadec0ea25347858a7

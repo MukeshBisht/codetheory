@@ -4,7 +4,9 @@
     <html>
 
     <head>
-
+      <script type="text/javascript">
+        var grpid = "${grpid}";
+      </script>
     </head>
 
     <body>

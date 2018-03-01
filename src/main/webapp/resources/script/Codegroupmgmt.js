@@ -4,11 +4,9 @@ var dat;
 
 function format(d) {
     // `d` is the original data object for the row
-    var t = '<table class="table"><thead><tr><th>Input</th><th>Output</th><th>Points</th><th><button class="btn btn-success">Add</button></th></tr></thead>';
+    var t = '<table class="table"><thead><tr><th>Input</th><th>Output</th><th>Points</th></tr></thead>';
     d.tests.forEach(test => {
-        t += '<tr> <td>' + test.input + '</td> <td>' + test.output + '</td> <td>' + test.points + '</td>';
-        t += '<td><a href="#" class="editor_edit glyphicon glyphicon-pencil"></a> | <a href="#" class="editor_delete glyphicon glyphicon-trash"></a></td>';
-        t += '</tr>';
+        t += '<tr> <td>' + test.input + '</td> <td>' + test.output + '</td> <td>' + test.points + '</td></tr>';
     });
     t += '</table>';
     return t;
@@ -19,7 +17,7 @@ $(document).ready(function () {
 
     var table = $('#grid').DataTable({
     
-        ajax : "/code",
+        ajax : "/code/" + grpid,
         columns : [
             { data: "id", visible: false },
             { data: "question" },
@@ -163,7 +161,7 @@ function addCodeQuestion (){
         var data = {"id":id ,"level":level, "question":question,"details":description, tests : test};
 
     $.ajax({
-        url: '/api/challenge/group/code/question/add',
+        url: '/api/challenge/group/code/' + grpid + '/question/add',
         type: 'POST',
         dataType: 'json',
         contentType: 'application/json',
