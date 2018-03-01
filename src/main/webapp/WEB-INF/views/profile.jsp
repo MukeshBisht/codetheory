@@ -63,14 +63,14 @@
                     </li>
                 </ul>
                 <div class="tab-content">
-                    <div id="Details" class="tab-pane fade in active">
+                    <div id="Details" class="tab-pane fade in active cardView">
                         <h3>Personal Details</h3>
                        
                         <form class="form" method="POST" modelAttribute="updateForm" onsubmit="showDialog()" style="margin-left:10px">
                    
                                 <div class="form-group">
                                     <label path="username">Username</label>
-                                    <input path="username" name="username" id="username" value=${user.username} class="form-control" disabled="true">                                
+                                    <input path="username" name="username" id="username" value=${user.username} class="form-control" disabled="true" style="cursor:pointer">                                
                                 </div>
             
                                 <div class="form-group">
@@ -108,51 +108,29 @@
     
                     </div>
     
-                    <div id="Participation" class="tab-pane fade">
+                    <div id="Participation" class="tab-pane fade cardView">
                         <div class="row">
                             <div class="col-xs-12">
                               <div class="box">
                                 <div class="box-header">
-                                  <h3 class="box-title">Responsive Hover Table</h3>
+                                  <h4 class="box-title">Your participated in these contest</h4>
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body table-responsive no-padding">
                                   <table class="table table-hover">
                                     <tr>
-                                      <th>ID</th>
-                                      <th>User</th>
+                                      <th>Contest</th>
                                       <th>Date</th>
                                       <th>Status</th>
-                                      <th>Reason</th>
+                                      <th>Goto contest</th>
                                     </tr>
                                     <tr>
-                                      <td>183</td>
                                       <td>John Doe</td>
                                       <td>11-7-2014</td>
-                                      <td><span class="label label-success">Approved</span></td>
-                                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                                      <td><span class="label label-success">Currently Running</span></td>
+                                      <td><a href="#">click</a></td>
                                     </tr>
-                                    <tr>
-                                      <td>219</td>
-                                      <td>Alexander Pierce</td>
-                                      <td>11-7-2014</td>
-                                      <td><span class="label label-warning">Pending</span></td>
-                                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                      <td>657</td>
-                                      <td>Bob Doe</td>
-                                      <td>11-7-2014</td>
-                                      <td><span class="label label-primary">Approved</span></td>
-                                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                      <td>175</td>
-                                      <td>Mike Doe</td>
-                                      <td>11-7-2014</td>
-                                      <td><span class="label label-danger">Denied</span></td>
-                                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
+                                    
                                   </table>
                                 </div>
                                 <!-- /.box-body -->
@@ -167,7 +145,7 @@
 
                     </div>
 
-                    <div id="Security" class="tab-pane fade">
+                    <div id="Security" class="tab-pane fade cardView">
                         <h3>Security Settings</h3>
                         <form class="form-group" method="POST" action="/user/profile/changePass">
 

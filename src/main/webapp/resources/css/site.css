@@ -74,9 +74,17 @@ body {
 	height: 75%;
 	overflow: scroll;
 }
-.cardView{
-	box-shadow: 2px 4px 8px 0 rgba(0,0,0,0.2);
+
+.cardView {
+	/* Add shadows to create the "card" effect */
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	transition: 0.3s;
 	padding:10px 20px 10px 20px ;
+}
+
+/* On mouse-over, add a deeper shadow */
+.cardView:hover {
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
 #profile{
@@ -310,4 +318,43 @@ table.dataTable
 	color: white;
 	padding: 5px;
 	border: 0;
+}
+
+#contestHeader {
+	margin-bottom: 25px;
+}
+
+#part {
+	font-size : 15px;
+	font-weight: bold;
+}
+
+
+
+#clockdiv{
+	font-family: sans-serif;
+	color: #fff;
+	display: inline-block;
+	font-weight: 100;
+	text-align: center;
+	font-size: 18px;
+	padding:0px 5px 0px 5px;
+}
+#clockdiv > div{
+	padding: 5px;
+	background: #00BF96;
+	display: inline-block;
+}
+#clockdiv div > span{
+	padding: 10px;
+	border-radius: 3px;
+	margin:2px;
+	background: #00816A;
+	display: inline-block;
+}
+.tiny{
+	font-style: normal;
+	font-weight: normal;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:15px;
 }

@@ -165,4 +165,20 @@ public class ContestDAOImpl implements ContestDAO{
 		params.put("r", round.getRoundId());
 		template.update(sql, params);
 	}
+
+	@Override
+	public int participate (String user, String contest){
+		
+		String sql = "insert into contest_participation (contest_id , user_id) values (? , ?);";
+		return jdbcTemplate.update (sql , new Object[]{contest , user});
+		
+	}
+
+	@Override
+	public boolean isParticipated (String user , String contest){
+		String sql = "select (1) from contest_participation where user_id=? and contest_id=?";
+		return 
+			(jdbcTemplate.queryForList(sql, user , contest).size() > 0);
+	}
+
 }
