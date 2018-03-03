@@ -18,26 +18,25 @@
                         <a class="btn btn-success" onclick="showDialog()" id="submitRound">
                             Submit
                         </a>
+                    </div>
                     <!-- Dialog box -->                                     
                             <div id="white-background">
                             </div>
-                            <div id="dlgbox">
-                                <div id="dlg-header">Are you Sure?</div>
+                            <div id="dlgbox" class="text-center">
+                                <div id="dlg-header" style="padding:10px 0 0 0">Are you Sure?<hr></div>
                                 <div id="dlg-body">
-                                    <h4>You want to Submit your answers?</h4>
+                                    <span style="font-size:20px">You want to Submit your answers?</span><br>
                                     <span>
-                                        <strong>Note :</strong> Once answers are submitted, you will not be able to
-                                        make any change in them!
+                                        Note : Once answers are submitted, you will not be able to<br>
+                                        make any changes in them!
                                     </span>
                                 </div>
                                 <div id="dlg-footer">
-                                    <button onclick="dlg1OK()">OK</button>
-                                    <button onclick="dlgCancel()">Cancel</button>
+                                    <button class="btn-black" onclick="dlg1OK()" style="padding: 5px">Confirm</button>
+                                    <button class="btn-black" onclick="dlgCancel()" style="padding: 5px">Cancel</button>
                                 </div>
                             </div>
-                            
                         <!-- Dialog box end -->       
-                    </div>
                 </div>
 
                 <section class="row roundOneSection " id="roundOneSection">

@@ -40,8 +40,8 @@
 
 
                     
-        <div class="row col-md-8" style="margin-left:10px">
-            <!-- Question Seciton -->
+        <div class="row col-md-8" style="margin-left:10px;background:#fff">
+            
             <div>
                 <ul class="nav nav-tabs">
                     <li class="active">
@@ -84,9 +84,9 @@
                                 </div>
             
                                 <button class="btn btn-success">save changes</button>
-                                    <!-- Dialog box -->                                     
-                                 
-                                    <div id="white-background">
+                                    <!-- Dialog box                
+                                        
+                                        <div id="white-background">
                                         </div>
                                         <div id="dlgbox">
                                             <div id="dlg-header">Are you Sure?</div>
@@ -94,11 +94,12 @@
                                                 <span>You want to change you personal details!</span>
                                             </div>
                                             <div id="dlg-footer">
-                                                <button onclick="dlgOK2()">Confirm</button>
-                                                <button onclick="dlgCancel()">Cancel</button>
+                                                <button class="btn-black" onclick="dlgOK2()">Confirm</button>
+                                                <button class="btn-black" onclick="dlgCancel()">Cancel</button>
                                             </div>
                                         </div>
-                                    <!-- Dialog box end -->       
+                                       Dialog box end -->       
+                                                              
                             </form>
             
                     </div>
@@ -113,26 +114,39 @@
                             <div class="col-xs-12">
                               <div class="box">
                                 <div class="box-header">
-                                  <h4 class="box-title">Your participated in these contest</h4>
+                                  <h4 class="box-title">Contests You Participated In</h4>
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body table-responsive no-padding">
                                   <table class="table table-hover">
                                     <tr>
                                       <th>Contest</th>
-                                      <th>Date</th>
+                                      <th>Organiztion</th>
                                       <th>Status</th>
-                                      <th>Goto contest</th>
+                                      <th>Visit</th>
+                                      <th></th>
                                     </tr>
-                                    <tr>
-                                      <td>John Doe</td>
-                                      <td>11-7-2014</td>
-                                      <td><span class="label label-success">Currently Running</span></td>
-                                      <td><a href="#">click</a></td>
-                                    </tr>
-                                    
-                                  </table>
-                                </div>
+                                    <tbody id="participationData"></tbody>
+                                    <!-- Dialog box -->                                     
+                                    <div id="white-background">
+                                    </div>
+                                    <div id="dlgbox">
+                                        <div id="dlg-header" class="text-center">Are you Sure?<hr></div>
+                                          <div id="dlg-body" style="font-size:18px;padding-top:0">
+                                              <span>
+                                                    You no longer will be the part of this Contest!
+                                              </span>
+                                          </div>
+                                          <div id="dlg-footer">
+                                              <button class="btn-black" onclick="dlgOK3()" style="padding: 5px">Confirm</button>
+                                              <button class="btn-black" onclick="dlgCancel()" style="padding: 5px">Cancel</button>
+                                          </div>
+                                        </div>
+                                        
+                                        <!-- Dialog box end -->     
+                                    </table>
+
+                                    </div>
                                 <!-- /.box-body -->
                               </div>
                               <!-- /.box -->
@@ -161,7 +175,7 @@
                                 
                             <button class="btn btn-success" onclick="showDialog()">change password</button>
                                
-                            <!-- Dialog box -->                                     
+                            <!-- Dialog box                                   
                                  
                                 <div id="white-background">
                                     </div>
@@ -175,7 +189,7 @@
                                             <button onclick="dlgCancel()">Cancel</button>
                                         </div>
                                     </div>
-                                <!-- Dialog box end -->   
+                                     Dialog box end -->   
 
                         </form>
                     </div>

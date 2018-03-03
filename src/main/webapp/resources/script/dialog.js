@@ -9,6 +9,12 @@ function dlg1OK(){
 function dlgOK2(){
 
 }
+
+function dlgOK3(){
+    removeContest();
+    dlgHide();
+}
+
 function dlgHide(){
     var whitebg = document.getElementById("white-background");
     var dlg = document.getElementById("dlgbox");

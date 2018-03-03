@@ -29,7 +29,7 @@ $(document).ready(function () {
                 
                 if (response == true){
                     $('#participatebtn').hide();
-                    $('#part').html('You are now part of abcd');
+                    $('#part').html('You are now part of '+cname);
                 }
                 else if (response == false){
                     $('#part').html('Please login first');

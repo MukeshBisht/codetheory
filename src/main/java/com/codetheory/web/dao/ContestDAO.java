@@ -25,7 +25,10 @@ public interface ContestDAO {
     public void addChallengesToround(int[] ids, Round round);
     public void removeChallengesFromround(int[] ids, Round round);
     public List<Question> getChallengesByRound(Round round);
+
+    // contest participation methods
     public int participate (String user , String contest);
     public boolean isParticipated (String user , String contest);
-    
+    public void removeParticipation (String username , String contest);
+    public List<Contest> getUserParticipation (String username);
 }

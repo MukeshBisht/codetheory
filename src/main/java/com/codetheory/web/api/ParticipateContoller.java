@@ -9,15 +9,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import java.security.Principal;
 
 import com.codetheory.web.dao.ContestDAO;
+import com.codetheory.web.model.Contest;
+
+import java.util.List;
 
 @RestController
-@RequestMapping(value="/contest/{contestname}")
+@RequestMapping(value="/contest")
 public class ParticipateContoller {
 
     @Autowired
     ContestDAO dao;
 
-    @RequestMapping (value="/isParticipated" ,method = RequestMethod.GET)
+    @RequestMapping (value="/{contestname}/isParticipated" ,method = RequestMethod.GET)
     // this method check whether user is participated in a contest or not
     public boolean checkParticipated(@PathVariable String contestname,Principal principal){
 
@@ -32,7 +35,7 @@ public class ParticipateContoller {
         return stat;
     }
 
-    @RequestMapping (value="/participate" ,method = RequestMethod.GET)
+    @RequestMapping (value="/{contestname}/participate" ,method = RequestMethod.GET)
     public boolean participate(@PathVariable String contestname,Principal principal){
 
         try{
@@ -41,7 +44,16 @@ public class ParticipateContoller {
         catch(NullPointerException np){
             return false;              // if user is not logged in
         }
-
         return true;
+    }
+
+    @RequestMapping (value = "/participation" , method = RequestMethod.GET)
+    public List<Contest> userParticipation (Principal principal){
+        return dao.getUserParticipation (principal.getName());
+    }
+
+    @RequestMapping (value = "/{contest}/remove")
+    public void removeParticipation ( @PathVariable String contest, Principal principal){
+        dao.removeParticipation(principal.getName(), contest);
     }
 }
