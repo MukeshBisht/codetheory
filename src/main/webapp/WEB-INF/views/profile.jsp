@@ -40,8 +40,8 @@
 
 
                     
-        <div class="row col-md-8" style="margin-left:10px">
-            <!-- Question Seciton -->
+        <div class="row col-md-8" style="margin-left:10px;background:#fff">
+            
             <div>
                 <ul class="nav nav-tabs">
                     <li class="active">
@@ -63,14 +63,14 @@
                     </li>
                 </ul>
                 <div class="tab-content">
-                    <div id="Details" class="tab-pane fade in active">
+                    <div id="Details" class="tab-pane fade in active cardView">
                         <h3>Personal Details</h3>
                        
                         <form class="form" method="POST" modelAttribute="updateForm" onsubmit="showDialog()" style="margin-left:10px">
                    
                                 <div class="form-group">
                                     <label path="username">Username</label>
-                                    <input path="username" name="username" id="username" value=${user.username} class="form-control" disabled="true">                                
+                                    <input path="username" name="username" id="username" value=${user.username} class="form-control" disabled="true" style="cursor:pointer">                                
                                 </div>
             
                                 <div class="form-group">
@@ -84,9 +84,9 @@
                                 </div>
             
                                 <button class="btn btn-success">save changes</button>
-                                    <!-- Dialog box -->                                     
-                                 
-                                    <div id="white-background">
+                                    <!-- Dialog box                
+                                        
+                                        <div id="white-background">
                                         </div>
                                         <div id="dlgbox">
                                             <div id="dlg-header">Are you Sure?</div>
@@ -94,11 +94,12 @@
                                                 <span>You want to change you personal details!</span>
                                             </div>
                                             <div id="dlg-footer">
-                                                <button onclick="dlgOK2()">Confirm</button>
-                                                <button onclick="dlgCancel()">Cancel</button>
+                                                <button class="btn-black" onclick="dlgOK2()">Confirm</button>
+                                                <button class="btn-black" onclick="dlgCancel()">Cancel</button>
                                             </div>
                                         </div>
-                                    <!-- Dialog box end -->       
+                                       Dialog box end -->       
+                                                              
                             </form>
             
                     </div>
@@ -108,53 +109,44 @@
     
                     </div>
     
-                    <div id="Participation" class="tab-pane fade">
+                    <div id="Participation" class="tab-pane fade cardView">
                         <div class="row">
                             <div class="col-xs-12">
                               <div class="box">
                                 <div class="box-header">
-                                  <h3 class="box-title">Responsive Hover Table</h3>
+                                  <h4 class="box-title">Contests You Participated In</h4>
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body table-responsive no-padding">
                                   <table class="table table-hover">
                                     <tr>
-                                      <th>ID</th>
-                                      <th>User</th>
-                                      <th>Date</th>
+                                      <th>Contest</th>
+                                      <th>Organiztion</th>
                                       <th>Status</th>
-                                      <th>Reason</th>
+                                      <th>Visit</th>
+                                      <th></th>
                                     </tr>
-                                    <tr>
-                                      <td>183</td>
-                                      <td>John Doe</td>
-                                      <td>11-7-2014</td>
-                                      <td><span class="label label-success">Approved</span></td>
-                                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                      <td>219</td>
-                                      <td>Alexander Pierce</td>
-                                      <td>11-7-2014</td>
-                                      <td><span class="label label-warning">Pending</span></td>
-                                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                      <td>657</td>
-                                      <td>Bob Doe</td>
-                                      <td>11-7-2014</td>
-                                      <td><span class="label label-primary">Approved</span></td>
-                                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                    <tr>
-                                      <td>175</td>
-                                      <td>Mike Doe</td>
-                                      <td>11-7-2014</td>
-                                      <td><span class="label label-danger">Denied</span></td>
-                                      <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                                    </tr>
-                                  </table>
-                                </div>
+                                    <tbody id="participationData"></tbody>
+                                    <!-- Dialog box -->                                     
+                                    <div id="white-background">
+                                    </div>
+                                    <div id="dlgbox">
+                                        <div id="dlg-header" class="text-center">Are you Sure?<hr></div>
+                                          <div id="dlg-body" style="font-size:18px;padding-top:0">
+                                              <span>
+                                                    You no longer will be the part of this Contest!
+                                              </span>
+                                          </div>
+                                          <div id="dlg-footer">
+                                              <button class="btn-black" onclick="dlgOK3()" style="padding: 5px">Confirm</button>
+                                              <button class="btn-black" onclick="dlgCancel()" style="padding: 5px">Cancel</button>
+                                          </div>
+                                        </div>
+                                        
+                                        <!-- Dialog box end -->     
+                                    </table>
+
+                                    </div>
                                 <!-- /.box-body -->
                               </div>
                               <!-- /.box -->
@@ -167,7 +159,7 @@
 
                     </div>
 
-                    <div id="Security" class="tab-pane fade">
+                    <div id="Security" class="tab-pane fade cardView">
                         <h3>Security Settings</h3>
                         <form class="form-group" method="POST" action="/user/profile/changePass">
 
@@ -183,7 +175,7 @@
                                 
                             <button class="btn btn-success" onclick="showDialog()">change password</button>
                                
-                            <!-- Dialog box -->                                     
+                            <!-- Dialog box                                   
                                  
                                 <div id="white-background">
                                     </div>
@@ -197,7 +189,7 @@
                                             <button onclick="dlgCancel()">Cancel</button>
                                         </div>
                                     </div>
-                                <!-- Dialog box end -->   
+                                     Dialog box end -->   
 
                         </form>
                     </div>

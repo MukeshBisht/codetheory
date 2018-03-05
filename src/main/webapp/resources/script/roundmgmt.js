@@ -87,6 +87,7 @@ function AddChallengesToRound(){
         questions.push(this['id']);
     });
     $.ajax({
+        //api/contest/round/{roundid}/addChallenges
         url: '/api/contest/round/'+ round.roundId +'/Challenges',
         contentType: "application/json",
         crossDomain: true,

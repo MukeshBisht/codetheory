@@ -177,4 +177,32 @@ public class ContestDAOImpl implements ContestDAO{
 		params.put("r", round.getRoundId());
 		template.update(sql, params);
 	}
+
+	@Override
+	public int participate (String user, String contest){
+		
+		String sql = "insert into contest_participation (contest_id , user_id) values (? , ?);";
+		return jdbcTemplate.update (sql , new Object[]{contest , user});
+		
+	}
+
+	@Override
+	public boolean isParticipated (String user , String contest){
+		String sql = "select (1) from contest_participation where user_id=? and contest_id=?";
+		return 
+			(jdbcTemplate.queryForList(sql, user , contest).size() > 0);
+	}
+
+	@Override
+	public void removeParticipation (String username , String contest){
+		String sql = "DELETE FROM contest_participation WHERE user_id=? and contest_id=?";
+		jdbcTemplate.update(sql , username , contest);
+	}
+
+	@Override
+	public List<Contest> getUserParticipation (String username){
+		String sql = "select * from contests where contestName in (select contest_id from contest_participation where user_id=?)";
+		
+		return jdbcTemplate.query(sql ,new String[]{username} , new ContestMapper());
+	}
 }

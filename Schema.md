@@ -155,3 +155,16 @@ BEGIN
 END$$
 DELIMITER ;
 
+<<<<<<< HEAD
+#contest_participation table
+
+CREATE TABLE `contest_participation` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `contest_id` varchar(50) NOT NULL,
+  `user_id` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `contest_id_idx` (`contest_id`),
+  CONSTRAINT `contest_id` FOREIGN KEY (`contest_id`) REFERENCES `contests` (`contestName`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+=======
+>>>>>>> 2ffab4659ed1412093756feadec0ea25347858a7

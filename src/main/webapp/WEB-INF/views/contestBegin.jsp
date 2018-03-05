@@ -2,14 +2,27 @@
     <%@page isELIgnored = "false" %>
 
 <html >
+    <head>
+        <script>
+            var cname = "${contest.contestname}";  
+           
+        </script>
+    </head>
+
     <body>
+        
         <!--  Header  -->
         <jsp:include page="/WEB-INF/shared/header.jsp" />
-       
-        <section class="container ">
+        <script src="<c:url value=" /resources/script/participate.js " />"></script>
 
-            <div class="jumbotron text-center"> 
-             
+        <section id="contestHeader" class="container cardView">
+            <div class ="col-md-2">
+                <span class="text text-primary">
+                    <i class="fa fa-user"> &nbsp;Participant : 100+</i><br>
+                    
+                </span>
+            </div>
+            <div class="text-center col-md-7"> 
                 <p>
                     <span style="font-size:60px;font-family:georgia">
                         <i class="fa fa-flash"></i>
@@ -20,11 +33,43 @@
                     </span>
                 </p>
                 <p>${contest.startDate}</p>
-                <button class="btn btn-active btn-flat">
+                <div id="part" class="text text-primary">
+                    </div>
+
+                <button class="btn btn-active btn-flat" id="participatebtn">
                     <i class="fa fa-user-plus"></i>
                     participate
                 </button>
             </div>
+                <!-- clock code -->
+                <div id="clockdiv" class="col-md-3 text-center">
+                    <div>
+                        <h3>
+                            <i class="fa fa-calender"></i> 
+                            Contest Starts In <hr>
+                        </h3>
+                        
+                        <div>
+                            <div class="col-xs-3">
+                                <span class="days" id="day"></span>
+                                <p class="tiny">days</p>
+                            </div>
+
+                            <div class="col-xs-3">
+                                <span class="hours" id="hour"></span>
+                                <p class="tiny">hours</p>
+                            </div>
+                            <div class="col-xs-3">
+                                <span class="minutes" id="minute"></span>
+                                <p class="tiny">min</p>
+                            </div>
+                            <div class="col-xs-3">
+                                <span class="seconds" id="second"></span>
+                                <p class="tiny">sec</p>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
             
         </section>
 
