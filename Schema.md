@@ -140,7 +140,6 @@ CREATE TABLE `round_challenges_map` (
 
 
 #addCodeQuestion sp
-
 DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `addCodeQuestion`(ques nvarchar(2000), detail nvarchar(1000), lvl int, test nvarchar(1000), grp int, usr varchar(45))
 BEGIN
