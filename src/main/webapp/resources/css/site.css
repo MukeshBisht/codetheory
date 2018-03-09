@@ -322,14 +322,13 @@ table.dataTable
 }
 
 
-
 #clockdiv{
 	font-family: sans-serif;
 	color: #fff;
 	display: inline-block;
 	font-weight: 100;
 	text-align: center;
-	font-size: 18px;
+	font-size: 15px;
 	padding:0px 5px 0px 5px;
 }
 #clockdiv > div{
@@ -338,9 +337,9 @@ table.dataTable
 	display: inline-block;
 }
 #clockdiv div > span{
-	padding: 10px;
+	padding: 5px;
 	border-radius: 3px;
-	margin:2px;
+	margin:0px auto;
 	background: #00816A;
 	display: inline-block;
 }
@@ -348,12 +347,34 @@ table.dataTable
 	font-style: normal;
 	font-weight: normal;
 	font-family: Arial, Helvetica, sans-serif;
-	font-size:15px;
+	font-size:14px;
 }
 
 .btn-black {
-	background: #000;
+	background: rgb(35, 118, 212);
 	color: #fff;
-	border-radius: none;
+	border-radius: 2px;
 	padding: 4px;
+	border: none;
+	margin:2px;
+}
+
+
+.nav-tabs > li > a{
+	font-weight:bold;
+}
+
+.headStyle{
+	font-size:30px;
+	font-weight:bold;
+}
+.text-p > p{
+	font-size:16px;
+}
+
+
+#shareContest > div > button{
+	margin:2px;
+	padding:8px;
+	
 }

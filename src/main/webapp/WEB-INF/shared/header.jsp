@@ -61,8 +61,7 @@
                                           <li class="nav-icon-btn nav-icon-btn-danger dropdown">
                                             
                                                 <a href="#notifications" class="dropdown-toggle" data-toggle="dropdown">
-                                                                <i class="fa fa-bell"style="font-size:25px;color:white"></i>
-                                                        <span class="badge">3</span>
+                                                                <i class="fa fa-bell"style="font-size:24px;color:white"></i>
                                                 </a>
 
                                                 <!-- NOTIFICATIONS -->
@@ -93,8 +92,15 @@
                                             
                                                 
                                                 <li class="dropdown">   
-                                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">                          
-                                                        <i class="fa fa-user-circle" style="font-size:25px;color:white"></i></a>
+                                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">    
+                                                                <div style="font-size:24px;color:white">
+                                                                        <i class="fa fa-user-circle" ></i>
+                                                                        <span style="font-size:15px">Hello,
+                                                                                <strong>sagar</strong>
+                                                                        </span>
+                                                                        <i class="fa fa-caret-down" style="font-size:14px"></i>
+                                                                </div>                                                                
+                                                        </a>
                                                        <ul class="dropdown-menu">
                                                                 <li><a href="/user/profile">Profile</a></li>                                                      
                                                                 <li><a href="/contest/create">Manage Contest</a></li>
