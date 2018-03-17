@@ -1,13 +1,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     <%@page isELIgnored = "false" %>
-
+        <head>
+            <script>
+                var contestname = "${contestname}";
+                var round = "${round}";
+            </script>
+        </head>
         <body>
             <jsp:include page="/WEB-INF/shared/header.jsp" />
             <script src="<c:url value=" /resources/script/roundOne.js " />"></script>
             <div class="container" id="roundone">
                 <div class="row">
                     <div class="col-sm-4 text-center">
-                        <h1>Round 1</h1>
+                        <h2 class="text text-muted">Quiz | Round ${round}</h2>
                     </div>
                     <div class="col-sm-4">
                         <h2 class="text-center btn-primary" id="starttimer">

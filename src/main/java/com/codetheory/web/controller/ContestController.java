@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Date;
+
 @Controller
 @RequestMapping("/contest")
 public class ContestController {
@@ -118,7 +120,7 @@ public class ContestController {
 	@RequestMapping(value="/manage/{name}", method = RequestMethod.GET)
 	public String manageContest(Model model, @PathVariable("name") String name, Principal principal) {
 		String user = principal.getName();
-		//contest must belong to the auther
+		//contest must belong to the author
 		if(!dao.validUserContest(user, name)){
 			return "redirect:/contest/create";
 		}
@@ -128,11 +130,34 @@ public class ContestController {
 	}	
 
 	@RequestMapping (value="/{contestName}")
-	public ModelAndView startContest (@PathVariable ("contestName") String contestName){
+	public String startContest (@PathVariable ("contestName") String contestName , Principal principal, Model model){
 		
 		Contest contest = dao.getContestByContestName(contestName);
-		ModelAndView modelandview = new ModelAndView("contestBegin");
-		modelandview.addObject(contest);
-		return modelandview;
+		Date currentDate = new Date();
+
+		// if contest is not started yet , he will land on contestBegin.jsp...
+		// or if the user is not participated in the contest...
+		// so
+		if(contest.getStartDate().compareTo(currentDate)>0){
+			model.addAttribute("contestname", contestName);
+			return "contestBegin";
+		}
+		
+		// if contest is started roundOne page will be invoked...
+		else if(contest.getStartDate().compareTo(new Date())<=0 && contest.getEndDate().compareTo(currentDate)>0 ){
+			if (principal != null){
+				return "redirect:/Round/{contestName}/1";
+			}
+			else{
+				model.addAttribute("contestname", contestName);
+				return "contestBegin";
+			}
+		}
+		
+		// if contest is ended...
+		else{
+			model.addAttribute("contestname", contestName);
+			return "contestEnd";
+		}
 	}
 }

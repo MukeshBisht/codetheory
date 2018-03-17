@@ -91,7 +91,19 @@
                     </div>
 
                     <div id="Advance" class="tab-pane fade">
-                        <h3>Advance Settings</h3>
+                        <h3>Delete Contest</h3>
+                        <form class="form-group" method="POST" action="#">
+
+                            <div>
+                                
+
+                            </div>
+
+                            <label for="password">Password</label>
+                            <input class="form-control" id="" type="password" required="true"/> <br/>
+                            <button class="btn btn-danger" onclick="">Delete Contest</button>
+
+                        </form>
                     </div>
                 </div>
             </div>

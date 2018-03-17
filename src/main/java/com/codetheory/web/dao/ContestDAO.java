@@ -26,6 +26,8 @@ public interface ContestDAO {
     public void removeChallengesFromround(int[] ids, Round round);
     public List<Question> getChallengesByRound(Round round);
 
+    public List<Integer> getAllRoundType (String contest);
+
     // contest participation methods
     public int participate (String user , String contest);
     public boolean isParticipated (String user , String contest);

@@ -50,7 +50,7 @@
 
 
 <!-- Add Round Dialog -->
-<form id="addRoundDialog" class="modal fade" role="dialog">
+<form id="addRoundDialog" class="modal" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -85,7 +85,7 @@
 <!-- end Add Round Dialog -->
 
 <!-- Add Round Dialog -->
-<div id="addChlngDialog" class="modal fade" role="dialog">
+<div id="addChlngDialog" class="modal" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

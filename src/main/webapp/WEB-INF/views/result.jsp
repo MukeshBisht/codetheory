@@ -14,7 +14,7 @@
         </h3>
         <label class="text-primary">Click here to go to next round</label><br/>
         <i class="fa fa-hand-o-right" style="font-size:25px"></i>
-        <a class="btn btn-primary" type="button" href="/RoundThree">next round</a>
+        <a class="btn btn-primary" type="button" href="${nextround}">next round</a>
 
     </div>
 

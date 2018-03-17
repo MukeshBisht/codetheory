@@ -205,4 +205,11 @@ public class ContestDAOImpl implements ContestDAO{
 		
 		return jdbcTemplate.query(sql ,new String[]{username} , new ContestMapper());
 	}
+
+	@Override
+	public List<Integer> getAllRoundType (String contest){
+		String sql = "select Type from round where contest = ?";
+
+		return null;
+	}
 }

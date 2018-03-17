@@ -14,20 +14,28 @@
 
     <div class="container body-content">
         <!-- Main jumbotron for a primary marketing message or call to action -->
-        <div class="jumbotron">
+        <div class="jumbotron cardView">
             <div class="container">
               <p>
-                <h2>&nbsp;Be a Better</h2>
-                <h1>Programmer</h1>
-                <h3>Code. Compete. Create</h3></p>
-                <a role="button" class="btn btn-primary" href="/RoundOne">Start Quick Challenge</a>
+                <div class="col-md-8">
+                    <h2>&nbsp;Be a Better</h2>
+                    <h1>Programmer</h1>
+                    <h3>Code. Compete. Create</h3></p>
+                    <hr>
+                    <a role="button" class="btn btn-primary" href="/practice/quiz/Round/1">Start Quick Challenge</a>&emsp;
+                    <a role="button" class="btn btn-danger" href="#">Participate On Contests</a>&emsp;
+                    <a role="button" class="btn btn-blue" href="#">Host Your Own Contests</a>
+                </div>
+                <div class="col-md-4">
+                    <i class ="fa" style="color:grey;font-size:50px">Some Stuff will be here soon...</i>
+                </div>
             </div>
         </div>
 
-        <div id="wallpage"></div>
-        <p style="text-align:center"><img id="loading" style="display:none" src="<c:url value="/resources/images/loading.gif"/>" alt="loading"/></p>
-        <a class="load-more-button" id="loadmore" onclick="loadAndScroll()">Load</a>
-    </div>
+            <div id="wallpage"></div>
+                <p style="text-align:center"><img id="loading" style="display:none" src="<c:url value="/resources/images/loading.gif"/>" alt="loading"/></p>
+                <a class="load-more-button" id="loadmore" onclick="loadAndScroll()">Load</a>
+            </div>
     <!-- footer -->
     <jsp:include page="/WEB-INF/shared/footer.jsp" />
 </html>

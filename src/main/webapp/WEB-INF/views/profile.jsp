@@ -174,22 +174,6 @@
                                 <div id="cpassword_chk" class="response"></div> 
                                 
                             <button class="btn btn-success" onclick="showDialog()">change password</button>
-                               
-                            <!-- Dialog box                                   
-                                 
-                                <div id="white-background">
-                                    </div>
-                                    <div id="dlgbox">
-                                        <div id="dlg-header">Are you Sure?</div>
-                                        <div id="dlg-body">
-                                            <span>You want to change you Password!</span>
-                                        </div>
-                                        <div id="dlg-footer">
-                                            <button onclick="dlgOK()">OK</button>
-                                            <button onclick="dlgCancel()">Cancel</button>
-                                        </div>
-                                    </div>
-                                     Dialog box end -->   
 
                         </form>
                     </div>

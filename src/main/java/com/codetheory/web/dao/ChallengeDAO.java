@@ -26,6 +26,8 @@ public interface ChallengeDAO {
 
     public List<Question> getChallengesByGroup(ChallengeGroup group);
     
+    public List<Question> getRoundQuestion (String cname , String round);
+    
     //code question
     public void addCodeQuestion(CodeQuestion ques, String user, int group);
     public CodeQuestion getCodeQuestion();

@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,6 +32,8 @@ import org.apache.http.entity.StringEntity;
 
 import org.apache.http.impl.client.HttpClientBuilder;
 
+import com.codetheory.web.model.Round;
+import com.codetheory.web.dao.ContestDAO;
 
 @RestController
 public class QuizController {
@@ -38,10 +41,20 @@ public class QuizController {
 	@Autowired
 	ChallengeDAO dao;
 
-	@RequestMapping(value = "/quiz", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/quiz/question/{contestname}/{round}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
-	public List<QuizQuestion> createQuiz() {
-		List<QuizQuestion> quizquestion = dao.getAllQuestion();
+	public List<QuizQuestion> createQuiz(@PathVariable ("contestname") String cname ,
+										 @PathVariable ("round") String round  ) {
+
+		List<QuizQuestion> quizquestion;
+		
+		if (cname.equals("practice"))
+			quizquestion = dao.getAllQuestion();
+		
+		else {
+			quizquestion = dao.getAllQuestion();
+			//quizquestion = dao.gettRoundQuestion(cname , round);		//contestname and round_number
+		}
 		return quizquestion;
 	}
 

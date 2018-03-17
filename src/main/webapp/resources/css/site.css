@@ -4,6 +4,7 @@ body {
 	padding-bottom: 20px;
 	height: 100%;
 	background: whitesmoke;
+	
 }
 .navbar {
 	margin-bottom: 20px;
@@ -255,16 +256,16 @@ table.dataTable
 	background-color: #fff;
   }
 
-	.btn-yellow{
-		background: rgb(242,187,19);
-		color : rgb(37,46,56);
-		border-radius: 0; 
-		height : 40px;
-		padding: auto;
-		font : bold;
-		font-size: 17px;
-		font-family: 'Times New Roman', Times, serif;
-	}
+.btn-yellow{
+	background: rgb(242,187,19);
+	color : rgb(37,46,56);
+	border-radius: 0; 
+	height : 40px;
+	padding: auto;
+	font : bold;
+	font-size: 17px;
+	font-family: 'Times New Roman', Times, serif;
+}
   table.dataTable tbody tr.selected {
     background-color: #B0BED9;
 }
@@ -314,6 +315,8 @@ table.dataTable
 
 #contestHeader {
 	margin-bottom: 25px;
+	background-image: url('/resources/images/pattern-bg.png');
+	background-repeat: repeat;
 }
 
 #part {
@@ -359,6 +362,18 @@ table.dataTable
 	margin:2px;
 }
 
+.btn-blue {
+	background: white;
+	color : rgb(35, 118, 212);
+	text-decoration: none;
+	border:solid 1px rgb(35, 118, 212);
+	border-radius: 2px;
+}
+
+.btn-blue:hover{
+    background-color: rgb(35, 118, 212);
+	color: #ffffff;
+}
 
 .nav-tabs > li > a{
 	font-weight:bold;
@@ -377,4 +392,30 @@ table.dataTable
 	margin:2px;
 	padding:8px;
 	
+}
+
+.modal-content{
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	border: none;
+	border-radius: 0;	
+	padding:10px;
+	transition: 0;
+	animation: none;
+}
+
+.modal-content > div{
+	padding:5px;
+}
+
+.jumbotron{
+	border-radius: 0;
+	border: 1px;
+	background: white;
+	padding-bottom: 20px;
+}
+
+
+#recentarticle{
+	padding:1px;
+	text-decoration: none;
 }

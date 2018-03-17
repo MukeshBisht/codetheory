@@ -231,5 +231,12 @@ public class ChallengeDAOImpl implements ChallengeDAO {
         sql += "inner join question_challengegrp_map M on Q.id = M.QuestionId ";
         sql += "where M.ChallengeGrpId = ? ";
         return jdbcTemplate.query(sql, new String[]{group.getGroupId()}, new QuestionMapper());
-	}
+    }
+    
+
+    @Override
+    public List<Question> getRoundQuestion (String cname , String round){
+        String sql = "select * from quiz_question ";
+        return null;
+    }
 }
