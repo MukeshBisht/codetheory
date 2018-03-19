@@ -2,7 +2,7 @@
 --
 -- Host: 127.0.0.1    Database: codedb
 -- ------------------------------------------------------
--- Server version	5.7.20-log
+-- Server version	5.7.21-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -28,27 +28,18 @@ CREATE TABLE `challengegroup` (
   `Owner` varchar(45) NOT NULL,
   `Type` varchar(45) NOT NULL,
   PRIMARY KEY (`ChallengeGroupId`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 trigger insertmap AFTER insert on challengegroup for each row 
-BEGIN
-	insert into user_challengegroup_map(user_challengegroup_map.challengegroupid, user_challengegroup_map.user)
-    values (NEW.challengegroupid, NEW.Owner);
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Dumping data for table `challengegroup`
+--
+
+LOCK TABLES `challengegroup` WRITE;
+/*!40000 ALTER TABLE `challengegroup` DISABLE KEYS */;
+INSERT INTO `challengegroup` VALUES (1,'g1mcq','sam','2'),(2,'g1','sam','1'),(3,'','sam','2'),(4,'g2code','kd','1'),(5,'g1mcq','kd','2'),(6,'test','sam','1'),(7,'java set-1','sagar','1'),(8,'java','sagar','2'),(9,'round1','sagar','1'),(10,'aib','sagar','1');
+/*!40000 ALTER TABLE `challengegroup` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -59,4 +50,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-01  6:47:18
+-- Dump completed on 2018-03-19 20:08:33

@@ -16,31 +16,32 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `user_roles`
+-- Table structure for table `round`
 --
 
-DROP TABLE IF EXISTS `user_roles`;
+DROP TABLE IF EXISTS `round`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user_roles` (
-  `user_role_id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(45) NOT NULL,
-  `role` varchar(45) NOT NULL,
-  PRIMARY KEY (`user_role_id`),
-  UNIQUE KEY `uni_username_role` (`role`,`username`),
-  KEY `fk_username_idx` (`username`),
-  CONSTRAINT `fk_username` FOREIGN KEY (`username`) REFERENCES `users` (`username`)
+CREATE TABLE `round` (
+  `Roundid` int(11) NOT NULL AUTO_INCREMENT,
+  `contest` varchar(45) NOT NULL,
+  `Name` varchar(45) NOT NULL,
+  `Length` int(11) NOT NULL,
+  `Type` int(11) NOT NULL,
+  PRIMARY KEY (`Roundid`),
+  KEY `contestid_idx` (`contest`),
+  CONSTRAINT `contestid` FOREIGN KEY (`contest`) REFERENCES `contests` (`contestName`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user_roles`
+-- Dumping data for table `round`
 --
 
-LOCK TABLES `user_roles` WRITE;
-/*!40000 ALTER TABLE `user_roles` DISABLE KEYS */;
-INSERT INTO `user_roles` VALUES (8,'dhirender','USER'),(5,'kd','USER'),(6,'kishor','USER'),(7,'sagar','USER'),(4,'sam','USER'),(9,'sr','USER');
-/*!40000 ALTER TABLE `user_roles` ENABLE KEYS */;
+LOCK TABLES `round` WRITE;
+/*!40000 ALTER TABLE `round` DISABLE KEYS */;
+INSERT INTO `round` VALUES (6,'codechamp','first',10,1),(7,'Test Contest','r1',10,1),(8,'codechamp','second',10,1),(9,'codechamp','thord',10,2);
+/*!40000 ALTER TABLE `round` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-19 20:08:30
+-- Dump completed on 2018-03-19 20:08:32

@@ -2,7 +2,7 @@
 --
 -- Host: 127.0.0.1    Database: codedb
 -- ------------------------------------------------------
--- Server version	5.7.20-log
+-- Server version	5.7.21-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -29,8 +29,18 @@ CREATE TABLE `user_challengegroup_map` (
   PRIMARY KEY (`user_challengegroup_mapid`),
   KEY `challengeGroupId_idx` (`challengegroupid`),
   CONSTRAINT `challengeGroupId` FOREIGN KEY (`challengegroupid`) REFERENCES `challengegroup` (`ChallengeGroupId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_challengegroup_map`
+--
+
+LOCK TABLES `user_challengegroup_map` WRITE;
+/*!40000 ALTER TABLE `user_challengegroup_map` DISABLE KEYS */;
+INSERT INTO `user_challengegroup_map` VALUES (1,1,'sam'),(2,2,'sam'),(3,3,'sam'),(4,4,'kd'),(5,5,'kd'),(6,6,'sam'),(7,7,'sagar'),(8,8,'sagar'),(9,9,'sagar'),(10,10,'sagar');
+/*!40000 ALTER TABLE `user_challengegroup_map` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -41,4 +51,4 @@ CREATE TABLE `user_challengegroup_map` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-01  6:47:16
+-- Dump completed on 2018-03-19 20:08:24

@@ -16,31 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `user_roles`
+-- Table structure for table `contest_participation`
 --
 
-DROP TABLE IF EXISTS `user_roles`;
+DROP TABLE IF EXISTS `contest_participation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user_roles` (
-  `user_role_id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(45) NOT NULL,
-  `role` varchar(45) NOT NULL,
-  PRIMARY KEY (`user_role_id`),
-  UNIQUE KEY `uni_username_role` (`role`,`username`),
-  KEY `fk_username_idx` (`username`),
-  CONSTRAINT `fk_username` FOREIGN KEY (`username`) REFERENCES `users` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+CREATE TABLE `contest_participation` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `contest_id` varchar(50) NOT NULL,
+  `user_id` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `contest_id_idx` (`contest_id`),
+  CONSTRAINT `contest_id` FOREIGN KEY (`contest_id`) REFERENCES `contests` (`contestName`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user_roles`
+-- Dumping data for table `contest_participation`
 --
 
-LOCK TABLES `user_roles` WRITE;
-/*!40000 ALTER TABLE `user_roles` DISABLE KEYS */;
-INSERT INTO `user_roles` VALUES (8,'dhirender','USER'),(5,'kd','USER'),(6,'kishor','USER'),(7,'sagar','USER'),(4,'sam','USER'),(9,'sr','USER');
-/*!40000 ALTER TABLE `user_roles` ENABLE KEYS */;
+LOCK TABLES `contest_participation` WRITE;
+/*!40000 ALTER TABLE `contest_participation` DISABLE KEYS */;
+INSERT INTO `contest_participation` VALUES (44,'code2010','sr'),(65,'codechamp','sagar');
+/*!40000 ALTER TABLE `contest_participation` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-19 20:08:30
+-- Dump completed on 2018-03-19 20:08:29

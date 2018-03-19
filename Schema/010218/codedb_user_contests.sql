@@ -2,7 +2,7 @@
 --
 -- Host: 127.0.0.1    Database: codedb
 -- ------------------------------------------------------
--- Server version	5.7.20-log
+-- Server version	5.7.21-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -30,6 +30,16 @@ CREATE TABLE `user_contests` (
   CONSTRAINT `username` FOREIGN KEY (`user`) REFERENCES `users` (`username`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_contests`
+--
+
+LOCK TABLES `user_contests` WRITE;
+/*!40000 ALTER TABLE `user_contests` DISABLE KEYS */;
+INSERT INTO `user_contests` VALUES ('code2010','sam','owner'),('code2011','sam','owner'),('code2010','kd','moderator'),('code2010','kishor','moderator'),('codechamp','sagar','owner'),('codechamp','sam','moderator'),('abcd','sagar','owner'),('Test Contest','sagar','owner');
+/*!40000 ALTER TABLE `user_contests` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -40,4 +50,4 @@ CREATE TABLE `user_contests` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-01  6:47:17
+-- Dump completed on 2018-03-19 20:08:26

@@ -4,7 +4,7 @@
 <html >
     <head>
         <script>
-            var cname = "${contest.contestname}";  
+            var cname = "${contestname}";  
            
         </script>
     </head>
@@ -26,7 +26,7 @@
             
                 <span style="font-size:60px;font-family:georgia">
                     <i class="fa fa-flash"></i>
-                    ${contest.contestname}
+                    ${contestname}
                 </span>
             
                 <div id="part" class="text text-primary">

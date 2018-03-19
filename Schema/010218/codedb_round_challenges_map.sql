@@ -16,31 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `user_roles`
+-- Table structure for table `round_challenges_map`
 --
 
-DROP TABLE IF EXISTS `user_roles`;
+DROP TABLE IF EXISTS `round_challenges_map`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user_roles` (
-  `user_role_id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(45) NOT NULL,
-  `role` varchar(45) NOT NULL,
-  PRIMARY KEY (`user_role_id`),
-  UNIQUE KEY `uni_username_role` (`role`,`username`),
-  KEY `fk_username_idx` (`username`),
-  CONSTRAINT `fk_username` FOREIGN KEY (`username`) REFERENCES `users` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+CREATE TABLE `round_challenges_map` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `roundid` int(11) DEFAULT NULL,
+  `questionid` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `rid_idx` (`roundid`),
+  CONSTRAINT `rid` FOREIGN KEY (`roundid`) REFERENCES `round` (`Roundid`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user_roles`
+-- Dumping data for table `round_challenges_map`
 --
 
-LOCK TABLES `user_roles` WRITE;
-/*!40000 ALTER TABLE `user_roles` DISABLE KEYS */;
-INSERT INTO `user_roles` VALUES (8,'dhirender','USER'),(5,'kd','USER'),(6,'kishor','USER'),(7,'sagar','USER'),(4,'sam','USER'),(9,'sr','USER');
-/*!40000 ALTER TABLE `user_roles` ENABLE KEYS */;
+LOCK TABLES `round_challenges_map` WRITE;
+/*!40000 ALTER TABLE `round_challenges_map` DISABLE KEYS */;
+INSERT INTO `round_challenges_map` VALUES (8,6,28),(9,6,29),(11,6,33),(12,6,28),(13,6,29),(14,7,28),(15,7,29);
+/*!40000 ALTER TABLE `round_challenges_map` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-19 20:08:30
+-- Dump completed on 2018-03-19 20:08:28

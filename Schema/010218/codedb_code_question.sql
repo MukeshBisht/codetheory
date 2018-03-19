@@ -16,31 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `user_roles`
+-- Table structure for table `code_question`
 --
 
-DROP TABLE IF EXISTS `user_roles`;
+DROP TABLE IF EXISTS `code_question`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `user_roles` (
-  `user_role_id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(45) NOT NULL,
-  `role` varchar(45) NOT NULL,
-  PRIMARY KEY (`user_role_id`),
-  UNIQUE KEY `uni_username_role` (`role`,`username`),
-  KEY `fk_username_idx` (`username`),
-  CONSTRAINT `fk_username` FOREIGN KEY (`username`) REFERENCES `users` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+CREATE TABLE `code_question` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `question` varchar(200) NOT NULL,
+  `details` varchar(100) DEFAULT NULL,
+  `level` int(11) NOT NULL,
+  `test_case` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user_roles`
+-- Dumping data for table `code_question`
 --
 
-LOCK TABLES `user_roles` WRITE;
-/*!40000 ALTER TABLE `user_roles` DISABLE KEYS */;
-INSERT INTO `user_roles` VALUES (8,'dhirender','USER'),(5,'kd','USER'),(6,'kishor','USER'),(7,'sagar','USER'),(4,'sam','USER'),(9,'sr','USER');
-/*!40000 ALTER TABLE `user_roles` ENABLE KEYS */;
+LOCK TABLES `code_question` WRITE;
+/*!40000 ALTER TABLE `code_question` DISABLE KEYS */;
+INSERT INTO `code_question` VALUES (10,'Write a program to find n prime numbers between any given range i to j. Print each number seperated by commas.','input is 10 & 25\noutput should be 11,13,17,19,23',3,'[{\"id\":1,\"input\":\"13\",\"output\":\"45\",\"points\":6},{\"id\":2,\"input\":\"2345\",\"output\":\"34567\",\"points\":8},{\"id\":3,\"input\":\"56\",\"output\":\"90\",\"points\":3},{\"id\":4,\"input\":\"7878\",\"output\":\"456\",\"points\":5}]');
+/*!40000 ALTER TABLE `code_question` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-03-19 20:08:30
+-- Dump completed on 2018-03-19 20:08:31

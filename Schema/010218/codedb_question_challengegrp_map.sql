@@ -2,7 +2,7 @@
 --
 -- Host: 127.0.0.1    Database: codedb
 -- ------------------------------------------------------
--- Server version	5.7.20-log
+-- Server version	5.7.21-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -32,10 +32,20 @@ CREATE TABLE `question_challengegrp_map` (
   KEY `challengeGroupid_idx` (`ChallengeGrpId`),
   KEY `user_idx` (`Userid`),
   CONSTRAINT `cgid` FOREIGN KEY (`ChallengeGrpId`) REFERENCES `challengegroup` (`ChallengeGroupId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `qig` FOREIGN KEY (`QuestionId`) REFERENCES `quiz_question` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `qig` FOREIGN KEY (`QuestionId`) REFERENCES `quiz_question` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `user` FOREIGN KEY (`Userid`) REFERENCES `users` (`username`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `question_challengegrp_map`
+--
+
+LOCK TABLES `question_challengegrp_map` WRITE;
+/*!40000 ALTER TABLE `question_challengegrp_map` DISABLE KEYS */;
+INSERT INTO `question_challengegrp_map` VALUES (15,2,27,'sam'),(16,7,28,'sagar'),(17,7,29,'sagar'),(21,10,33,'sagar');
+/*!40000 ALTER TABLE `question_challengegrp_map` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -46,4 +56,4 @@ CREATE TABLE `question_challengegrp_map` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-01  6:47:16
+-- Dump completed on 2018-03-19 20:08:25
