@@ -2,6 +2,7 @@ package com.codetheory.web.dao;
 
 import com.codetheory.web.model.ChallengeGroup;
 import com.codetheory.web.model.QuizQuestion;
+import com.codetheory.web.model.Round;
 import com.codetheory.web.model.CodeQuestion;
 import com.codetheory.web.model.Question;
 import java.util.List;
@@ -26,7 +27,8 @@ public interface ChallengeDAO {
 
     public List<Question> getChallengesByGroup(ChallengeGroup group);
     
-    public List<Question> getRoundQuestion (String cname , String round);
+    public List<QuizQuestion> getQuizQuestionByRound (Round round);
+    public List<CodeQuestion> getCodeQuestionByRound (Round round);
     
     //code question
     public void addCodeQuestion(CodeQuestion ques, String user, int group);

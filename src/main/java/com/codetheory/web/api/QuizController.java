@@ -40,6 +40,8 @@ public class QuizController {
 
 	@Autowired
 	ChallengeDAO dao;
+	@Autowired
+	ContestDAO cdao;
 
 	@RequestMapping(value = "/quiz/question/{contestname}/{round}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
@@ -47,13 +49,14 @@ public class QuizController {
 										 @PathVariable ("round") String round  ) {
 
 		List<QuizQuestion> quizquestion;
-		
 		if (cname.equals("practice"))
 			quizquestion = dao.getAllQuestion();
 		
 		else {
-			quizquestion = dao.getAllQuestion();
-			//quizquestion = dao.gettRoundQuestion(cname , round);		//contestname and round_number
+			int r = Integer.parseInt(round);
+			Round _round = cdao.getRounds(cname).get(r-1);
+						
+			quizquestion = dao.getQuizQuestionByRound(_round);		//contestname and round_number
 		}
 		return quizquestion;
 	}
