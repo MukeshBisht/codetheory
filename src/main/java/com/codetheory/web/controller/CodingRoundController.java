@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/RoundThree")
-public class RoundThreeController {
+@RequestMapping("/codinground")
+public class CodingRoundController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String RoundOne(Model model) {
-		return "roundThree";
+		return "codinground";
     }
 }

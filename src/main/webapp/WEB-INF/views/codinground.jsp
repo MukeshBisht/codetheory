@@ -4,13 +4,19 @@
 
         <head>
             <script src="<c:url value=" /resources/lib/jquery/jquery.js " />"></script>
-            <script src="<c:url value=" /resources/script/RoundThree.js " />"></script>
+            <script src="<c:url value=" /resources/script/codingRound.js " />"></script>
             <script src="<c:url value=" /resources/lib/codemirror/lib/codemirror.js " />"></script>
             <script src="<c:url value=" /resources/lib/codemirror/mode/javascript/javascript.js " />"></script>
-            <link rel='stylesheet' href="<c:url value=" /resources/lib/codemirror/lib/codemirror.css "/>" type='text/css' media='screen'
-            />
+            <link rel='stylesheet' href="<c:url value=" /resources/lib/codemirror/lib/codemirror.css "/>" type='text/css' media='screen'/>
+            <!-- full screen F11 -->
+            <script src="<c:url value=" /resources/lib/codemirror/addon/display/fullscreen.js" />"></script>
+            <link rel='stylesheet' href="<c:url value=" /resources/lib/codemirror/addon/display/fullscreen.css "/>" type='text/css' media='screen'/>
             <script src="\resources\lib\codemirror\mode\clike\clike.js"></script>
 
+            <script>
+                var contestname = "${contestname}";
+                var round = "${round}";
+            </script>
         </head>
 
         <body>
@@ -23,7 +29,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-4 text-center">
-                        <h1>Round 3</h1>
+                        <h1>code round</h1>
                     </div>
                 </div>
                 <div class="row text-right">
@@ -53,8 +59,7 @@
                     <div class=" col-md-6">
                         <!-- <section class="cardView">
                             <p>
-                                <h3>Question</h3>
-                                
+                                <h3>Question</h3>                                
                         </section> -->
                         <ul class="nav nav-tabs">
                             <li class="active">
@@ -84,7 +89,7 @@
                     <!-- Editor Section -->
                     <section class="col-md-6" id="editor">
                         <!-- <h4>Please Submit Your Solution Below</h4> -->
-                        <textarea class="codeMirror">       
+                        <textarea class="codeMirror" >       
                     </textarea>
                         <script src="<c:url value=" /resources/script/editor.js " />"></script>
                         <!--input type="submit"  value="Submit"  class="btn btn-success" /-->

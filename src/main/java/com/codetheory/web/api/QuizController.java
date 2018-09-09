@@ -70,7 +70,8 @@ public class QuizController {
 		String postUrl = "https://api.judge0.com/submissions?wait=true";
 		try {
 			if (input.getcode().trim() == "") {
-				throw new Exception("Empty Code");
+				//throw new Exception("Empty Code");
+				output.setStatus(new Status(6, "Empty Code"));
 			}
 			StringEntity entity = new StringEntity(mapper.writeValueAsString(payload));
 			httpClient = HttpClientBuilder.create().build();

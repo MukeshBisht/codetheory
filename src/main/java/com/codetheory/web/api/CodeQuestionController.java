@@ -16,7 +16,7 @@ public class CodeQuestionController {
 	@Autowired
 	ChallengeDAO dao;
 
-	@RequestMapping(value = "roundThree/code/question", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "codinground/code/question", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
 	public CodeQuestion getCodeQuestion() {
 		CodeQuestion question = dao.getCodeQuestion();

@@ -7,9 +7,11 @@
   <version>1.0-SNAPSHOT</version>
   <name>CodeTheory</name>
   <url>http://maven.apache.org</url>
+
   <properties>
 		<java-version>1.8</java-version>
 		<org.springframework-version>5.0.0.RELEASE</org.springframework-version>
+		
 	</properties>
   <dependencies>
     <dependency>

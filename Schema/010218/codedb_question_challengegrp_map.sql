@@ -32,7 +32,7 @@ CREATE TABLE `question_challengegrp_map` (
   KEY `challengeGroupid_idx` (`ChallengeGrpId`),
   KEY `user_idx` (`Userid`),
   CONSTRAINT `cgid` FOREIGN KEY (`ChallengeGrpId`) REFERENCES `challengegroup` (`ChallengeGroupId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `qig` FOREIGN KEY (`QuestionId`) REFERENCES `quiz_question` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+--  CONSTRAINT `qig` FOREIGN KEY (`QuestionId`) REFERENCES `quiz_question` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `user` FOREIGN KEY (`Userid`) REFERENCES `users` (`username`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

@@ -13,9 +13,17 @@ $(document).ready(function () {
         indentWithTabs: true,
         autoCloseTags: true,
         autoCloseBrackets: true,
-        matchTags: false
+        matchTags: false,
+        extraKeys: {
+            "F11": function(cm) {
+              cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+            },
+            "Esc": function(cm) {
+              if (cm.getOption("fullScreen")) cm.setOption("fullScreen", false);
+            }
+          }
     });
-    editor.setValue("#include <stdio.h>\n\nint main() {\n\n\t//write your code here...\n\n\treturn 0;\n}");
+    editor.setValue("// Press F11 to edit in full screen\n#include<stdio.h>\nint main(){\n return 0;\n}");
 });
 
 

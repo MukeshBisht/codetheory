@@ -43,7 +43,7 @@ public class RoundController {
                 return "roundone";
     
             else if (type.getValue() == 2)
-                return "roundThree";
+                return "codinground";
             
             else
                 return "contestEnd";

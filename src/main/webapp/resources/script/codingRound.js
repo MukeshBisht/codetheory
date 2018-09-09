@@ -2,7 +2,7 @@
 $(document).ready(function(){
     $.ajax({
         type : "GET",
-        url : "/roundThree/code/question",
+        url : "/codinground/code/question",
         dataType : "json",
         contentType: "application/json",
         success : function (response){
