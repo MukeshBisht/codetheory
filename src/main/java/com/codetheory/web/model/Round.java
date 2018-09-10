@@ -1,18 +1,32 @@
 package com.codetheory.web.model;
 
 import com.codetheory.web.constant.ChallengeType;
+import java.util.Date;
 
 public class Round{
     
-    private int roundId;
+	private int roundId;
     private String contest;
     private String name;
-    private int length;
     private ChallengeType type;
+	private Date startTime;
+	private Date endTime;
 
 	/**
 	 * @return the roundId
 	 */
+
+	public Round (){
+		startTime = new Date();
+		endTime = new Date();
+	}
+
+	public Round (String name, ChallengeType type){
+		this();
+		this.name = name;
+		this.type = type;
+	}
+
 	public int getRoundId() {
         return roundId;
 	}
@@ -47,18 +61,6 @@ public class Round{
 		this.name = name;
 	}
 	/**
-	 * @return the length
-	 */
-	public int getLength() {
-		return length;
-	}
-	/**
-	 * @param length the length to set
-	 */
-	public void setLength(int length) {
-		this.length = length;
-	}
-	/**
 	 * @return the type
 	 */
 	public ChallengeType getType() {
@@ -70,4 +72,22 @@ public class Round{
 	public void setType(ChallengeType type) {
 		this.type = type;
 	}
+
+	public void setStartTime (Date startTime){
+		this.startTime = startTime;
+	}
+
+	public Date getStartTime (){
+		return startTime;
+	}
+
+
+	public void setEndTime (Date startTime){
+		this.startTime = startTime;
+	}
+
+	public Date getEndTime (){
+		return endTime;
+	}
+
 }

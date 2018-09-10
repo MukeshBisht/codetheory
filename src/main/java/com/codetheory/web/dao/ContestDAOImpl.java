@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Date;
 
 public class ContestDAOImpl implements ContestDAO{
 
@@ -35,9 +36,9 @@ public class ContestDAOImpl implements ContestDAO{
 
 	@Override
 	public void addRound(Round round) {
-		String sql = "INSERT INTO round (contest, Name, Length, Type) values (? ,? ,? ,?)";
+		String sql = "INSERT INTO round (contest, Name, Type, startTime, endTime) values (? ,? ,? ,?, ?)";
         jdbcTemplate.update(sql , new Object[] {
-           round.getContest(), round.getName(), round.getLength(), round.getType().getValue()
+           round.getContest(), round.getName(), round.getType().getValue(), round.getStartTime(), round.getEndTime()
         });
 	}
 
@@ -212,4 +213,41 @@ public class ContestDAOImpl implements ContestDAO{
 
 		return null;
 	}
+
+	@Override
+	public Round getRoundByDate (String contest, Date currentDate){
+
+		String sql = "select * from round where contest=? and starttime < ? and ? < endtime";
+		return jdbcTemplate.queryForObject(sql, new Object[]{contest, currentDate, currentDate}, new RoundMapper());
+	}
+
+	@Override
+	public void addSubmissionScore (String contestName, String roundName, String username ,double score) {
+		String sql  = "insert into round_submission (contest , username, score, round_id) values (?, ?, ? ,(select roundid from round where name = ?))";
+		jdbcTemplate.update(sql, new Object[] {
+			contestName, username, score, roundName,
+		});
+
+	}
+
+	@Override
+	public boolean isUserAlreadySubmitted (String contestName, String roundName, String username) {
+
+		String sql = "select (1) from round_submission where contest = ? and username = ? and round_id = (select roundid from round where name = ?)";
+		return jdbcTemplate.queryForList (sql, new Object[] {
+			contestName, username, roundName,
+		}).size()>0;
+	}
+
+	@Override
+	public Round getNextRound (String contest, Date currentDate) {
+		String sql = "select * from round where contest = ? and starttime > ?";
+		List<Round> rounds = jdbcTemplate.query(sql, new Object[] {contest, currentDate}, new RoundMapper());
+
+		if (rounds!= null)
+			return rounds.get(0);
+		
+		return null;
+	}
 }
+

@@ -5,6 +5,7 @@ import com.codetheory.web.model.Question;
 import com.codetheory.web.model.Round;
 import com.codetheory.web.model.UserContestMap;
 import java.util.List;
+import java.util.Date;
 
 public interface ContestDAO {
     public void addContest(Contest con, String user);
@@ -22,6 +23,7 @@ public interface ContestDAO {
     public void deleteRound(Round round);
     public List<Round> getRounds(String contest);
     public Round getRoundById(String id);
+    public Round getRoundByDate (String contest, Date currentDate);
     public void addChallengesToround(int[] ids, Round round);
     public void removeChallengesFromround(int[] ids, Round round);
     public List<Question> getChallengesByRound(Round round);
@@ -32,4 +34,12 @@ public interface ContestDAO {
     public boolean isParticipated (String user , String contest);
     public void removeParticipation (String username , String contest);
     public List<Contest> getUserParticipation (String username);
+
+
+    public Round getNextRound (String contest,Date date);
+
+    //round submission related methods
+    public void addSubmissionScore (String contestName, String roundName, String username ,double score);
+    public boolean isUserAlreadySubmitted (String contestName, String roundName, String username);
+
 }

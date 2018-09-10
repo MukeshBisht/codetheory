@@ -140,17 +140,17 @@ public class ContestController {
 		// so
 		if(contest.getStartDate().compareTo(currentDate)>0){
 			model.addAttribute("contestname", contestName);
-			return "contestBegin";
+			return "contestLandingPage";
 		}
 		
 		// if contest is started roundOne page will be invoked...
 		else if(contest.getStartDate().compareTo(new Date())<=0 && contest.getEndDate().compareTo(currentDate)>0 ){
 			if (principal != null){
-				return "redirect:/Round/{contestName}/1";
+				return "redirect:/Round/{contestName}";
 			}
 			else{
 				model.addAttribute("contestname", contestName);
-				return "contestBegin";
+				return "contestLandingPage";
 			}
 		}
 		

@@ -1,6 +1,6 @@
 var data;
 function loadQuestion(){
-    var URL = '/quiz/question/'+contestname+'/'+round;
+    var URL = '/quiz/question/'+contestname+'/'+roundname;
     $.ajax({
             type: "GET",
             url: URL,
@@ -116,7 +116,7 @@ function submitQuestion(){
     
     showDialog();
 
-    var URL = '/'+contestname+'/quiz/Round/'+round+'/submit';
+    var URL = '/'+contestname+'/'+roundname+'/submit';
     $.ajax({
             type: "POST",
             url: URL,

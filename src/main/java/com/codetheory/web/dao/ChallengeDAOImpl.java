@@ -248,5 +248,18 @@ public class ChallengeDAOImpl implements ChallengeDAO {
 	@Override
 	public List<CodeQuestion> getCodeQuestionByRound(Round round) {
 		return null;
-	}
+    }
+    
+    //returns list of quiz_questions by contestName and roundName
+
+    @Override
+    public List<QuizQuestion> getQuizQuestionByRound (String contestName, String roundName) {
+        String sql = "select q.id, q.question, q.option1, q.option2, q.option3, q.option4, q.level, '' as answer from quiz_question q ";
+            sql += "inner join round_challenges_map r ";
+            sql += "on q.id = r.questionid ";
+            sql += "where r.roundid=(select roundId from round where contest = ? and name = ?)";
+        
+        return jdbcTemplate.query (sql, new String[] { contestName, roundName}, new QuizQuestionMapper());
+    }
+
 }

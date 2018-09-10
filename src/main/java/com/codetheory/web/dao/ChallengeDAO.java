@@ -28,6 +28,7 @@ public interface ChallengeDAO {
     public List<Question> getChallengesByGroup(ChallengeGroup group);
     
     public List<QuizQuestion> getQuizQuestionByRound (Round round);
+    public List<QuizQuestion> getQuizQuestionByRound (String contestName, String roundName);
     public List<CodeQuestion> getCodeQuestionByRound (Round round);
     
     //code question
