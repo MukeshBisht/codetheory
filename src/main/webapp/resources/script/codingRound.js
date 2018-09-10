@@ -1,4 +1,4 @@
-
+var question_id=0;
 $(document).ready(function(){
     $.ajax({
         type : "GET",
@@ -6,10 +6,9 @@ $(document).ready(function(){
         dataType : "json",
         contentType: "application/json",
         success : function (response){
-
+            question_id = response.id;
             $("#problemStatement").html (response.question);
             $("#details").html(response.details);
-            $("#testcase").html (str);
         }
     });  
 });
@@ -20,7 +19,8 @@ function runCode() {
     $('[href="#menu1"]').tab('show');
     var Code = {
         languageid: $('#langid').val(),
-        code: editor.getValue()
+        code: editor.getValue(),
+        questionid: question_id
     }
 
     $.ajax({

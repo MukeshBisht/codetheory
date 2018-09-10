@@ -16,6 +16,7 @@
             <script>
                 var contestname = "${contestname}";
                 var round = "${round}";
+                var roundid = "${roundid}";
             </script>
         </head>
 

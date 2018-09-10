@@ -27,17 +27,19 @@ public class RoundController {
                          @PathVariable("round") String rno, 
                          Model model){
                            
-        List<Round> round = dao.getRounds(cname);
+        List<Round> rounds = dao.getRounds(cname);
         int roundNum = Integer.parseInt(rno);
         
-        if (roundNum > round.size())
-            return "contestEnd";
+        if (roundNum > rounds.size())
+            return "error";
         
         try{
-            ChallengeType type = round.get(Integer.parseInt (rno)-1).getType();
-    
+            Round round = rounds.get(Integer.parseInt (rno)-1);
+            ChallengeType type = round.getType();
+
             model.addAttribute("contestname" , cname);
             model.addAttribute("round" , rno);
+            model.addAttribute("roundid" , round.getRoundId());
 
             if (type.getValue() == 1)
                 return "roundone";
@@ -50,6 +52,6 @@ public class RoundController {
         
         }catch(Exception e){
             return "contestEnd";
-    }
+      }
     }
 }
