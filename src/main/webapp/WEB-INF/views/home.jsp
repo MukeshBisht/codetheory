@@ -10,7 +10,6 @@
     <jsp:include page="/WEB-INF/shared/header.jsp" />
     <!-- page body -->
 
-  
 
     <div class="container body-content">
         <!-- Main jumbotron for a primary marketing message or call to action -->
@@ -22,7 +21,7 @@
                     <h1>Programmer</h1>
                     <h3>Code. Compete. Create</h3></p>
                     <hr>
-                    <a role="button" class="btn btn-primary" href="/practice/quiz/Round/1">Start Quick Challenge</a>&emsp;
+                    <a role="button" class="btn btn-primary" href="/Round/practice/quiz">Start Quick Challenge</a>&emsp;
                     <a role="button" class="btn btn-danger" href="#">Participate On Contests</a>&emsp;
                     <a role="button" class="btn btn-blue" href="#">Host Your Own Contests</a>
                 </div>

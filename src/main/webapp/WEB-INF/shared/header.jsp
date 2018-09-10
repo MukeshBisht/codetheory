@@ -60,11 +60,11 @@
                                         <ul class="nav navbar-nav">
                                           <li class="nav-icon-btn nav-icon-btn-danger dropdown">
                                             
-                                                <a href="#notifications" class="dropdown-toggle" data-toggle="dropdown">
+                                                <!--a href="#notifications" class="dropdown-toggle" data-toggle="dropdown">
                                                                 <i class="fa fa-bell"style="font-size:24px;color:white"></i>
                                                 </a>
 
-                                                <!-- NOTIFICATIONS -->
+                                                
                                                 <div class="dropdown-menu cardView" style="width: 300px;border-radius:5px;font-family:tahoma">
                                                         <div class="notifications-list" id="navbar-notifications">
                                                                 <div class="notification">
@@ -86,17 +86,16 @@
 
                                                         <a href="#" class="notifications-link">see all Notifications</a>
                                                    
-                                                        </div> <!-- / .dropdown-menu -->
+                                                        </div--> 
                                                 </li>
 
-                                            
                                                 
                                                 <li class="dropdown">   
                                                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">    
                                                                 <div style="font-size:24px;color:white">
                                                                         <i class="fa fa-user-circle" ></i>
                                                                         <span style="font-size:15px">Hello,
-                                                                                <strong>sagar</strong>
+                                                                                <strong>${pageContext.request.remoteUser}</strong>
                                                                         </span>
                                                                         <i class="fa fa-caret-down" style="font-size:14px"></i>
                                                                 </div>                                                                

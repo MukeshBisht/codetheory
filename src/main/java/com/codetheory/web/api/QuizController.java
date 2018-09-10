@@ -45,24 +45,22 @@ public class QuizController {
 	@Autowired
 	ContestDAO cdao;
 	
-
 	@RequestMapping(value = "/quiz/question/{contestname}/{round}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
-	public List<QuizQuestion> createQuiz(@PathVariable ("contestname") String cname ,
-										 @PathVariable ("round") String round ) {
+	public List<QuizQuestion> createQuiz(@PathVariable ("contestname") String contestName ,
+										 @PathVariable ("round") String roundName  ) {
 
 		List<QuizQuestion> quizquestion;
-		if (cname.equals("practice"))
+		
+		if (contestName.equals("practice"))
 			quizquestion = dao.getAllQuestion();
 		
 		else {
-			int r = Integer.parseInt(round);
-			Round _round = cdao.getRounds(cname).get(r-1);
-						
-			quizquestion = dao.getQuizQuestionByRound(_round);		//contestname and round_number
+			quizquestion = dao.getQuizQuestionByRound (contestName, roundName);		//contestname and round_number
 		}
 		return quizquestion;
 	}
+
 
 	@RequestMapping(value = "/api/execode", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
 	public JudgeOutput executeCode(@RequestBody Code input) {

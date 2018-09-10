@@ -11,12 +11,14 @@ public class RoundMapper implements RowMapper<Round> {
 
     @Override
     public Round mapRow(ResultSet rs, int rowNum) throws SQLException {
+
         Round round = new Round();
         round.setContest(rs.getString("contest"));
-        round.setLength(rs.getInt("length"));
         round.setName(rs.getString("name"));
         round.setType(ChallengeType.values()[rs.getInt("type")-1]);
         round.setRoundId(rs.getInt("roundid"));
+        round.setStartTime(rs.getDate("startTime"));
+        round.setEndTime (rs.getDate("endTime"));
         return round;
     }
 }

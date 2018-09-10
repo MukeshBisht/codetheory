@@ -171,8 +171,14 @@ function addRound(){
     var roundName = $('#roundName').val();
     var type = $('#roundType').val();
     var len = $('#roundLen').val();
+    var startTime = $('#starttimepicker').val();
+    var endTime = $('#endtimepicker').val();
+    var rno = 1;
+    
+    startTime = new Date();
+    endTime = new Date();
 
-    d = {"contest":chlng, "roundId":id,"name":roundName,"length":len,"type":type};
+    d = {"contest":chlng, "roundId":id,"name":roundName,"type":type, "startTime" : startTime, "endTime": endTime, "roundNumber": rno};
     $.ajax({
         type : "POST",
         url : url,

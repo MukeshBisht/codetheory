@@ -38,6 +38,9 @@
                         <a data-toggle="tab" href="#Content">Content</a>
                     </li>
                     <li>
+                        <a data-toggle="tab" href="#Preview">Preview</a>
+                    </li>
+                    <li>
                         <a data-toggle="tab" href="#Moderators">Moderators</a>
                     </li>
                     <li>
@@ -89,6 +92,11 @@
                         <h3>Notifications Settings</h3>
                         <p>Notification to send to the user when they signup for this contest</p>
                     </div>
+
+                    <div id="Preview" class="tab-pane fade">
+                        <jsp:include page="/WEB-INF/partial/contestPreview.jsp" />
+                    </div>
+    
 
                     <div id="Advance" class="tab-pane fade">
                         <h3>Delete Contest</h3>

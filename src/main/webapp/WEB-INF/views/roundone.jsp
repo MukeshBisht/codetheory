@@ -3,7 +3,9 @@
         <head>
             <script>
                 var contestname = "${contestname}";
-                var round = "${round}";
+                var roundname = "${round.name}";
+                var start = "${round.startTime}";
+                var end = "${round.endTime}";
             </script>
         </head>
         <body>
@@ -12,7 +14,7 @@
             <div class="container" id="roundone">
                 <div class="row">
                     <div class="col-sm-4 text-center">
-                        <h2 class="text text-muted">Quiz | Round ${round}</h2>
+                        <h2 class="text text-muted">Quiz | ${round.name}</h2>
                     </div>
                     <div class="col-sm-4">
                         <h2 class="text-center btn-primary" id="starttimer">

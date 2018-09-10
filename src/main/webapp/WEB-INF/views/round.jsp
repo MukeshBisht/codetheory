@@ -1,6 +1,23 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page isELIgnored = "false" %>
 
+<script src="<c:url value=" /resources/script/moment.js " />"></script>
+<script src="<c:url value=" /resources/script/bootstrap-datetimepicker.js " />"></script>
+<link rel='stylesheet' href="<c:url value=" /resources/css/bootstrap-datetimepicker.css "/>" type='text/css' media='screen'/>
+
+<script type="text/javascript">
+    $(function () {
+        $('#starttimepicker').datetimepicker({
+           // format : "YYYY-MM-DD HH:mm:ss"
+        });
+
+        $(".clickable-row").click(function(){
+            window.location = $(this).data("href");
+        });
+    });
+</script>
+
+
 <body> 
     <script type="text/javascript">
         var chlng="${cname}";    
@@ -71,13 +88,32 @@
                     <option value="1">Code</option>
                 </select>
             </div>
+            
+
             <div class="input-group">
                 <span class="input-group-addon">
-                    Length
+                    Starting Time
                 </span>
-                <input id="roundLen" type="number" min="10" placeholder="Round Time" class="form-control" required/>
-                <span class="input-group-addon">Min</span>
+                <div class='input-group date' >
+                    <input type='text' id='starttimepicker' class="form-control" required/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
             </div>
+            
+            <div class="input-group">
+                <span class="input-group-addon">
+                    Ending Time
+                </span>
+                <div class='input-group date' >
+                    <input type='text' id='endtimepicker' class="form-control" required/>
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+
             <button id="addRoundBtn" type="submit" class="btn btn-block btn-success">Add</button>
         </div>
     </div>
