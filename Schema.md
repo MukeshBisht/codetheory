@@ -41,3 +41,17 @@ BEGIN
    
 END$$
 DELIMITER ;
+
+
+#round_submission table
+CREATE TABLE `round_submission` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `round_id` int(11) NOT NULL,
+  `username` varchar(45) NOT NULL,
+  `score` int(11) NOT NULL DEFAULT '0',
+  `contest` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `round_id_idx` (`round_id`),
+  KEY `username_idx` (`username`),
+  CONSTRAINT `round_id` FOREIGN KEY (`round_id`) REFERENCES `round` (`Roundid`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
