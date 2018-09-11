@@ -2,7 +2,6 @@
 <%@page isELIgnored = "false" %>
 
 <div class="container body-content">
-    
     <h3>CodeChamp Preview</h3>
 
     <table class="table table-hover">
@@ -11,28 +10,19 @@
                 <th>Round Name</th>
                 <th>Starting Time</th>
                 <th>Ending Time</th>
-                <th>Remove</th>
+                <th></th>
                 <th></th>
             </tr>
             <tbody id="contestData">
-
-                <tr>
-                    <td>1</td>
-                    <td>First</td>
-                    <td>12/08/2018</td>
-                    <td>12/08/2018</td>
-                    <td>X</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>First</td>
-                    <td>12/08/2018</td>
-                    <td>12/08/2018</td>
-                    <td>X</td>
-                </tr>
-
-
-
+                <c:forEach items="${rounds}" var="round" varStatus="status">
+                    <tr>
+                        <td>${status.index + 1}</td>
+                        <td>${round.name}</td>
+                        <td>${round.startDate}</td>
+                        <td>${round.endDate}</td>
+                        <td>X</td>
+                    </tr>
+                </c:forEach>
             </tbody>
 
             </table>

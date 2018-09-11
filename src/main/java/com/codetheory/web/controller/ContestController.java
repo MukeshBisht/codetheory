@@ -160,4 +160,14 @@ public class ContestController {
 			return "contestEnd";
 		}
 	}
+
+
+
+	@RequestMapping (value="/all")
+	public String allContest (Model model){
+		
+		List<Contest> contests = dao.getAllContest();
+		model.addAttribute ("contestList", contests);
+		return "contests";
+	}
 }

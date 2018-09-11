@@ -13,7 +13,7 @@
     <script src="<c:url value=" /resources/lib/datatables/js/dataTables.bootstrap.js " />"></script>  
     <link rel='stylesheet' href="<c:url value=" /resources/css/jquery-ui.css "/>" type='text/css' />
     <link rel='stylesheet' href="<c:url value=" /resources/lib/datatables/css/dataTables.bootstrap.css "/>" type='text/css' media='screen'/>
-    
+    <script src="<c:url value=" /resources/script/roundmgmt.js" />"></script>
     <div class="container">
         <div class="row">
             <div class="col-sm-12">

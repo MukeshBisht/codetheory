@@ -22,7 +22,7 @@
                     <h3>Code. Compete. Create</h3></p>
                     <hr>
                     <a role="button" class="btn btn-primary" href="/practice/quiz">Start Quick Challenge</a>&emsp;
-                    <a role="button" class="btn btn-danger" href="#">Participate On Contests</a>&emsp;
+                    <a role="button" class="btn btn-danger" href="/contest/all">Participate On Contests</a>&emsp;
                     <a role="button" class="btn btn-blue" href="#">Host Your Own Contests</a>
                 </div>
                 <div class="col-md-4">
