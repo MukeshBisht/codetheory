@@ -6,7 +6,7 @@ Spring-mvc
 
 # Requirements  
 Maven  
-MySql
+MySql  
 Apache Tomcat  
 Code Editor/IDE  
 
