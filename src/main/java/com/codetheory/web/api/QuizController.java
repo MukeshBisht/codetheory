@@ -95,7 +95,6 @@ public class QuizController {
 				if(status.getId() < _output.getStatus().getId()){
 					status.setId(_output.getStatus().getId());
 					status.setDescription(_output.getStatus().getDescription());
-
 					output.setStderr(_output.getStderr());
 					output.setCompile_output(_output.getCompile_output());
 					output.setStdout(_output.getStdout());

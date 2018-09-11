@@ -249,5 +249,14 @@ public class ContestDAOImpl implements ContestDAO{
 		
 		return null;
 	}
+
+
+	@Override
+	public void updateContest(Contest con) {
+		String sql = "update contests set orgType=?, orgName=?, startDate=?, endDate=?, info=? where contestName =?"; 
+        jdbcTemplate.update(sql, new Object[] {           
+            con.getOrgType().getValue(), con.getOrgName(), con.getStartDate(), con.getEndDate(), con.getinfo(), con.getContestname()
+		});
+	}
 }
 

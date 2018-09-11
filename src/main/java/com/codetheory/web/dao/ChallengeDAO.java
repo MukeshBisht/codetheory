@@ -29,7 +29,7 @@ public interface ChallengeDAO {
     
     public List<QuizQuestion> getQuizQuestionByRound (Round round);
     public List<QuizQuestion> getQuizQuestionByRound (String contestName, String roundName);
-    public List<CodeQuestion> getCodeQuestionByRound (Round round);
+    public List<CodeQuestion> getCodeQuestionByRound (String roundid);
     
     //code question
     public void addCodeQuestion(CodeQuestion ques, String user, int group);

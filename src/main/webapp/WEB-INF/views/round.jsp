@@ -7,10 +7,12 @@
 
 <script type="text/javascript">
     $(function () {
-        $('#starttimepicker').datetimepicker({
+        $('#roundstarttimepicker').datetimepicker({
            // format : "YYYY-MM-DD HH:mm:ss"
         });
-
+        $('#roundendtimepicker').datetimepicker({
+           // format : "YYYY-MM-DD HH:mm:ss"
+        });
         $(".clickable-row").click(function(){
             window.location = $(this).data("href");
         });
@@ -95,7 +97,7 @@
                     Starting Time
                 </span>
                 <div class='input-group date' >
-                    <input type='text' id='starttimepicker' class="form-control" required/>
+                    <input type='text' id='roundstarttimepicker' class="form-control" required/>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -107,7 +109,7 @@
                     Ending Time
                 </span>
                 <div class='input-group date' >
-                    <input type='text' id='endtimepicker' class="form-control" required/>
+                    <input type='text' id='roundendtimepicker' class="form-control" required/>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>

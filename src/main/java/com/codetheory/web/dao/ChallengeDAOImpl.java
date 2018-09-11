@@ -247,10 +247,6 @@ public class ChallengeDAOImpl implements ChallengeDAO {
         return jdbcTemplate.query(sql, new Integer[] { round.getRoundId() },  new QuizQuestionMapper()); 
     }
 
-	@Override
-	public List<CodeQuestion> getCodeQuestionByRound(Round round) {
-		return null;
-    }
     
     //returns list of quiz_questions by contestName and roundName
 
@@ -263,5 +259,14 @@ public class ChallengeDAOImpl implements ChallengeDAO {
         
         return jdbcTemplate.query (sql, new String[] { contestName, roundName}, new QuizQuestionMapper());
     }
+
+	@Override
+	public List<CodeQuestion> getCodeQuestionByRound(String roundid) {
+        String sql = "select q.id, q.question, q.details, q.level, '' as test_case from code_question q ";
+            sql += "inner join round_challenges_map r ";
+            sql += "on q.id = r.questionid ";
+            sql += "where r.roundid=" + roundid;
+        return jdbcTemplate.query(sql, new CodeQuestionMapper());
+	}
 
 }

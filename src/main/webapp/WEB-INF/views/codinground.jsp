@@ -15,8 +15,7 @@
 
             <script>
                 var contestname = "${contestname}";
-                var round = "${round}";
-                var roundid = "${roundid}";
+                var roundid = "${round.roundId}";
             </script>
         </head>
 
@@ -30,9 +29,19 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-4 text-center">
-                        <h1>code round</h1>
+                        <h2 class="text text-muted">Code | ${round.name}</h2>
                     </div>
+                    <div class="col-sm-4">
+                        <h2 class="text-center btn-primary" id="starttimer">
+                        </h2>
+                    </div>
+                    <div class="col-sm-4 text-center" id="submitRound" hidden>
+                        <a class="btn btn-success" onclick="showDialog()" id="submitRound">
+                            Submit
+                        </a>
+                    </div>   
                 </div>
+
                 <div class="row text-right">
                     <div class="col-md-12" id="langSelect">
                         <div class='input-group'>
@@ -64,11 +73,18 @@
                         </section> -->
                         <ul class="nav nav-tabs">
                             <li class="active">
-                                <a data-toggle="tab" href="#home">Problem</a>
+                                <a data-toggle="tab" href="#home">Problem <span id="qcount">0/0</span></a>
                             </li>
                             <li>
                                 <a data-toggle="tab" href="#menu1">Output</a>
                             </li>
+                            <li class="nav-item pull-right">
+                                <a class="btn btn-sm" onclick="nextQuestion()" type="button">Next</a>
+                            </li>
+                            <li class="nav-item pull-right">
+                               <a class="btn btn-sm" onclick="prevQuestion()" type="button">Prev</a>
+                            </li>
+  
                         </ul>
                         <div class="tab-content">
                             <div id="home" class="tab-pane fade in active">

@@ -11,7 +11,7 @@
 <script type="text/javascript">
     $(function () {
         $('#starttimepicker').datetimepicker({
-           // format : "YYYY-MM-DD HH:mm:ss"
+            //format : "YYYY-MM-DD HH:mm:ss"
         });
         $('#endtimepicker').datetimepicker({
             //format : "YYYY-MM-DD HH:mm:ss"
@@ -31,11 +31,14 @@
         <div id="uname_response" class="response"></div>
     </div>
 </c:if>
+<c:if test="${update}">
+        <form:input type="hidden" path="contestname" name="contestname" id="contestname" placeholder="Contest Name" class="form-control" required="true"/>
+</c:if>
     <div class='col-sm-12'>
         <div class="form-group">
                 <form:label path="startDate">Starting</form:label>
-                    <div class='input-group date' id='starttimepicker'>
-                        <form:input type='text' path="startDate" class="form-control" required="true"/>
+                    <div class='input-group date'>
+                        <form:input type='text' id='starttimepicker' path="startDate" class="form-control" required="true"/>
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
@@ -45,8 +48,8 @@
     <div class='col-sm-12'>
         <div class="form-group">
                 <form:label path="endDate">Ending</form:label>
-                    <div class='input-group date' id='endtimepicker'>
-                        <form:input path="endDate" type='text' class="form-control" required="true"/>
+                    <div class='input-group date'>
+                        <form:input path="endDate" id='endtimepicker' type='text' class="form-control" required="true"/>
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
@@ -77,13 +80,13 @@
             <form:options items="${orgs}" itemLabel="name"/>
         </form:select>
     </div>
-    
+       
     <button type="submit" class="btn btn-success pull-right">
-        <c:if test="${not update}">
-            Create
-        </c:if>
-        <c:if test="${update}">
-            Update
-        </c:if>
-    </button>
+    <c:if test="${not update}">
+       Create
+    </c:if>
+    <c:if test="${update}">
+        Update 
+    </c:if>
+</button>
 </form:form>

@@ -9,6 +9,8 @@ import java.util.Date;
 
 public interface ContestDAO {
     public void addContest(Contest con, String user);
+    public void updateContest(Contest con);
+
     public void addModerators(String con, String user);
     public List<UserContestMap> getContestsEditors(String contest);
     public List<Contest> getAllContest();

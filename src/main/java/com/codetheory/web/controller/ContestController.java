@@ -105,16 +105,16 @@ public class ContestController {
 		model.addAttribute("orgs", OrganizationType.values());
 		model.addAttribute("update", true);
 		model.addAttribute("action", "/contest/update/" + name);
+		System.out.println(contest.getStartDate());
 		return "contestdetail";
 	}
 
 	@RequestMapping(value="/update/{name}", method = RequestMethod.POST)
-	public String updateContest(Model model, @ModelAttribute("contest") Contest con, @PathVariable("name") String name, Principal principal) {
-		Contest contest = new Contest();
-		model.addAttribute("contest", contest);		
-		model.addAttribute("orgs", OrganizationType.values());
-		model.addAttribute("update", true);
-		return "contestdetail";
+	public String updateContest(Model model, @ModelAttribute("contest") Contest con, @PathVariable("name") String name, Principal principal) {	
+		//validate update time < starting time
+		dao.updateContest(con);
+		System.out.println(con.getContestname());
+		return "redirect:/contest/manage/"+name;
 	}
 
 	@RequestMapping(value="/manage/{name}", method = RequestMethod.GET)

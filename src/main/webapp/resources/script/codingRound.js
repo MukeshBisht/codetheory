@@ -1,17 +1,41 @@
-var question_id=0;
+var question_id = 0;
+var current_ques = -1;
+var questions = null;
+
 $(document).ready(function(){
     $.ajax({
         type : "GET",
-        url : "/codinground/code/question",
+        url : "/codinground/"+roundid+"/question",
         dataType : "json",
         contentType: "application/json",
         success : function (response){
-            question_id = response.id;
-            $("#problemStatement").html (response.question);
-            $("#details").html(response.details);
+            questions = response;
+            nextQuestion();
         }
     });  
 });
+
+function nextQuestion(){
+    if((questions.length-1)>current_ques){
+        current_ques++;
+        var ques = questions[current_ques];
+        question_id = ques.id;
+        $("#problemStatement").html (ques.question);
+        $("#details").html(ques.details);
+        document.getElementById("qcount").innerText = "["+(current_ques+1)+"/"+questions.length+"]";
+    }
+}
+
+function prevQuestion(){
+    if(current_ques>0){
+        current_ques--;
+        var ques = questions[current_ques];
+        question_id = ques.id;
+        $("#problemStatement").html (ques.question);
+        $("#details").html(ques.details);
+        document.getElementById("qcount").innerText = "["+(current_ques+1)+"/"+questions.length+"]";
+    }
+}
 
 
 function runCode() {
