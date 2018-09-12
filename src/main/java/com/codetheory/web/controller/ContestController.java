@@ -132,35 +132,128 @@ public class ContestController {
 	@RequestMapping (value="/{contestName}")
 	public String startContest (@PathVariable ("contestName") String contestName , Principal principal, Model model){
 		
-		Contest contest = dao.getContestByContestName(contestName);
-		Date currentDate = new Date();
+		//if contest is ended
 
-		// if contest is not started yet , he will land on contestBegin.jsp...
-		// or if the user is not participated in the contest...
-		// so
-		if(contest.getStartDate().compareTo(currentDate)>0){
+		if (dao.isContestEnded(contestName)){
+			model.addAttribute("contestname", contestName);
+			return "contestEnd";
+		}
+
+		// if contest is not started
+
+		else if( dao.isContestNotStarted (contestName)){
 			model.addAttribute("contestname", contestName);
 			return "contestLandingPage";
 		}
 		
-		// if contest is started roundOne page will be invoked...
-		else if(contest.getStartDate().compareTo(new Date())<=0 && contest.getEndDate().compareTo(currentDate)>0 ){
-			if (principal != null){
-				return "redirect:/Round/{contestName}";
+		// if contest is started
+		else if(dao.isContestStarted(contestName)){
+
+			if (principal != null) {	//if user is logged in
+
+				if (dao.isParticipated (principal.getName(), contestName)){
+					return "redirect:/contest/{contestName}/round";
+				}
+
+				else {
+					return "contestAlreadyStarted";
+				}
 			}
-			else{
-				model.addAttribute("contestname", contestName);
-				return "contestLandingPage";
+
+			else {
+				return "contestAlreadyStarted";
 			}
+		}
+
+		else {
+			return "Error";
 		}
 		
-		// if contest is ended...
-		else{
-			model.addAttribute("contestname", contestName);
-			return "contestEnd";
-		}
+		
 	}
 
+
+	@RequestMapping (method = RequestMethod.GET, value = "/quiz")
+    public String round (@PathVariable ("contestname") String contestName, Model model) {
+
+        model.addAttribute("contestname", contestName);
+		model.addAttribute("round" , new Round ("quiz", ChallengeType.MCQ));
+
+		return "roundone";
+    }
+
+    @RequestMapping(value = "/codinground", method = RequestMethod.GET)
+	public String round(Model model) {
+				
+		model.addAttribute("contestname", "yoyo");
+		model.addAttribute("round" , dao.getRoundById("12"));
+		return "codinground";
+    }
+
+
+    @RequestMapping (method = RequestMethod.GET, value = "{contestname}/round")
+    public String round (@PathVariable("contestname") String contestName, 
+                         Model model,
+                        Principal principal){
+                           
+
+    
+		List <Round> roundList = dao.getAllRounds (contestName);
+		Round currentRound = null;
+		Round nextRound = null;
+		Date currentDate = new Date();
+
+		for (Round round : roundList) {
+			if (currentDate.after (round.getStartTime()) && currentDate.before (round.getEndTime()))
+				currentRound = round;
+
+			else if (currentDate.before (round.getStartTime())) {
+				nextRound = round;
+				break;
+			}
+		}
+
+		if (currentRound != null) {
+		
+	        String roundName = currentRound.getName();
+
+	        //checking if user has already made a submission
+			if (dao.isUserAlreadySubmitted (contestName, roundName, principal.getName() )){
+				
+				if (nextRound == null)
+					return "contestEnd";
+				else {
+					model.addAttribute("nextRound", nextRound);
+					return "timer";
+				}
+			}
+
+			//if user has not made any submission
+			else {
+				ChallengeType type = currentRound.getType();
+		
+				model.addAttribute("contestname" , contestName);
+				model.addAttribute("round" , currentRound);
+
+				if (type.getValue() == 1)
+					return "roundone";
+		
+				else if (type.getValue() == 2)
+					return "codinground";
+				
+				else
+					return "/Error";
+			}
+		}
+
+		else if (nextRound != null) {
+			model.addAttribute ("nextContest", nextRound);
+			return "timer";
+		}
+		
+		else 
+			return "/Error";
+    }
 
 
 	@RequestMapping (value="/all")
