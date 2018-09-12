@@ -1,6 +1,7 @@
 package com.codetheory.web.controller;
 
 import com.codetheory.web.dao.ContestDAO;
+import com.codetheory.web.model.Round;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +22,8 @@ public class CodingRoundController {
 	public String round(Model model) {
 				
 		model.addAttribute("contestname", "yoyo");
-		model.addAttribute("round" , contest_dao.getRoundById("12"));
+		Round round = contest_dao.getRoundById("14");
+		model.addAttribute("round" , round);
 		return "codinground";
     }
 }

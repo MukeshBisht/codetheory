@@ -35,7 +35,7 @@
                         <h2 class="text-center btn-primary" id="starttimer">
                         </h2>
                     </div>
-                    <div class="col-sm-4 text-center" id="submitRound" hidden>
+                    <div class="col-sm-4 text-center" id="submitRound" style="padding-top: 20px;">
                         <a class="btn btn-success" onclick="showDialog()" id="submitRound">
                             Submit
                         </a>
