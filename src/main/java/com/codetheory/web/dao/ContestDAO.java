@@ -24,12 +24,16 @@ public interface ContestDAO {
     public boolean roundExist(Round round);
     public void deleteRound(Round round);
     public List<Round> getRounds(String contest);
-    public Round getRoundById(String id);
-    public Round getRoundByDate (String contest, Date currentDate);
+
     public void addChallengesToround(int[] ids, Round round);
     public void removeChallengesFromround(int[] ids, Round round);
     public List<Question> getChallengesByRound(Round round);
     public List<Integer> getAllRoundType (String contest);
+
+    //contest realated methods
+    public boolean isContestEnded (String contestName);
+    public boolean isContestNotStarted (String contestName);
+    public boolean isContestStarted (String contestName);
 
     // contest participation methods
     public int participate (String user , String contest);
@@ -38,7 +42,9 @@ public interface ContestDAO {
     public List<Contest> getUserParticipation (String username);
 
 
-    public Round getNextRound (String contest,Date date);
+    // ROUND related methods
+    public Round getRoundById(String id);
+    public List<Round> getAllRounds (String contest);
 
     //round submission related methods
     public void addSubmissionScore (String contestName, String roundName, String username ,double score);

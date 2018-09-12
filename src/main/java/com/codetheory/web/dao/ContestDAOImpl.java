@@ -214,18 +214,12 @@ public class ContestDAOImpl implements ContestDAO{
 		return null;
 	}
 
-	@Override
-	public Round getRoundByDate (String contest, Date currentDate){
-
-		String sql = "select * from round where contest=? and starttime < ? and ? < endtime";
-		return jdbcTemplate.queryForObject(sql, new Object[]{contest, currentDate, currentDate}, new RoundMapper());
-	}
 
 	@Override
 	public void addSubmissionScore (String contestName, String roundName, String username ,double score) {
-		String sql  = "insert into round_submission (contest , username, score, round_id) values (?, ?, ? ,(select roundid from round where name = ?))";
+		String sql  = "insert into round_submission (contest , username, score, round_id) values (?, ?, ? ,(select roundid from round where name = ? and contest = ?))";
 		jdbcTemplate.update(sql, new Object[] {
-			contestName, username, score, roundName,
+			contestName, username, score, roundName, contestName
 		});
 
 	}
@@ -233,21 +227,10 @@ public class ContestDAOImpl implements ContestDAO{
 	@Override
 	public boolean isUserAlreadySubmitted (String contestName, String roundName, String username) {
 
-		String sql = "select (1) from round_submission where contest = ? and username = ? and round_id = (select roundid from round where name = ?)";
+		String sql = "select (1) from round_submission where contest = ? and username = ? and round_id = (select roundid from round where name = ? and contest = ?)";
 		return jdbcTemplate.queryForList (sql, new Object[] {
-			contestName, username, roundName,
+			contestName, username, roundName, contestName
 		}).size()>0;
-	}
-
-	@Override
-	public Round getNextRound (String contest, Date currentDate) {
-		String sql = "select * from round where contest = ? and starttime > ?";
-		List<Round> rounds = jdbcTemplate.query(sql, new Object[] {contest, currentDate}, new RoundMapper());
-
-		if (rounds!= null)
-			return rounds.get(0);
-		
-		return null;
 	}
 
 
@@ -258,5 +241,39 @@ public class ContestDAOImpl implements ContestDAO{
             con.getOrgType().getValue(), con.getOrgName(), con.getStartDate(), con.getEndDate(), con.getinfo(), con.getContestname()
 		});
 	}
-}
 
+	@Override
+	public boolean isContestStarted (String contestName) {
+
+		Date current = new Date();
+		String sql = "select (1) from contests where contestName = ? and startDate < ? and endDate > ?";
+
+		return jdbcTemplate.queryForList (sql, new Object[]{contestName, current, current}).size()>0;
+	}
+
+
+	@Override
+	public boolean isContestNotStarted (String contestName) {
+		
+		Date current = new Date();
+		String sql = "select (1) from contests where contestName = ? and startDate > ?";
+		
+		return jdbcTemplate.queryForList (sql, new Object[]{contestName, current}).size()>0;
+	}
+
+
+	@Override
+	public boolean isContestEnded (String contestName) {
+		Date current = new Date();
+		String sql = "select (1) from contests where contestName = ? and endDate < ?";
+		return jdbcTemplate.queryForList (sql, new Object[]{contestName, current}).size() > 0;
+	}
+
+
+	@Override
+	public List<Round> getAllRounds (String contest) {
+
+		String sql = "select * from round where contest = ?";
+		return jdbcTemplate.query (sql, new Object[]{contest}, new RoundMapper());
+	}
+}
