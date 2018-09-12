@@ -152,7 +152,7 @@ public class ContestController {
 			if (principal != null) {	//if user is logged in
 
 				if (dao.isParticipated (principal.getName(), contestName)){
-					return "redirect:/{contestName}/round";
+					return "redirect:/contest/{contestName}/round";
 				}
 
 				else {
