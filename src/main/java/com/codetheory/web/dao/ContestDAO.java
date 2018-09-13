@@ -50,4 +50,7 @@ public interface ContestDAO {
     public void addSubmissionScore (String contestName, String roundName, String username ,double score);
     public boolean isUserAlreadySubmitted (String contestName, String roundName, String username);
 
+    //code submission
+    public void addUpdateCodeCheckPoint(String user,float max_exe_time,int roundid,Double score,String code,int languageid,int questionid);
+    public String getSavedCode(String user, int roundid, int questionid);
 }

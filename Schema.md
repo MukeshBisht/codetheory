@@ -55,3 +55,15 @@ CREATE TABLE `round_submission` (
   KEY `username_idx` (`username`),
   CONSTRAINT `round_id` FOREIGN KEY (`round_id`) REFERENCES `round` (`Roundid`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+#code_submission table
+CREATE TABLE `code_submission` (
+  `user` varchar(50) NOT NULL DEFAULT 'none',
+  `max_exe_time` double DEFAULT NULL,
+  `roundid` int(11) NOT NULL DEFAULT '1',
+  `score` double DEFAULT NULL,
+  `code` longtext,
+  `languageid` int(11) DEFAULT NULL,
+  `questionid` int(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`questionid`,`roundid`,`user`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;

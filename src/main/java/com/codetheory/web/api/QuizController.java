@@ -31,6 +31,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.util.EntityUtils;
 import org.apache.http.entity.StringEntity;
+import java.security.Principal;
 
 import org.apache.http.impl.client.HttpClientBuilder;
 
@@ -63,7 +64,7 @@ public class QuizController {
 
 
 	@RequestMapping(value = "/api/execode", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
-	public JudgeOutput executeCode(@RequestBody Code input) {
+	public JudgeOutput executeCode(@RequestBody Code input, Principal principal) {
 		String postUrl = "https://api.judge0.com/submissions?wait=true";
 		JudgeOutput output = new JudgeOutput();
 		if (input.getcode().trim() == "") {
@@ -74,11 +75,13 @@ public class QuizController {
 
 		ObjectMapper mapper = new ObjectMapper();
 		ArrayList<Test> tests = dao.getCodeQuestionById(input.getquestionid()).getTests();
-		
+		float max_exe_time=0.0f;
+		double score=0.0;
+		double points=0;
 		Status status = new Status();
+
 		try {
 			HttpClient httpClient = HttpClientBuilder.create().build();
-			
 			for (Test test : tests) {
 				JudgeData payload = new JudgeData(input);
 				payload.setStdin(test.getInput());
@@ -99,7 +102,17 @@ public class QuizController {
 					output.setCompile_output(_output.getCompile_output());
 					output.setStdout(_output.getStdout());
 				}
+
+				max_exe_time = (_output.getTime() > max_exe_time)?_output.getTime():max_exe_time;
+				//3 for accepted
+
+				if(_output.getStatus().getId() == 3)
+					points += (double)test.getPoints();
 			}
+			score = (points/tests.size());
+			//save code check point
+			addUpdateCheckPoint(principal, input, max_exe_time, score);
+
 		} catch (IOException uhe) {
 			output.setStatus(new Status(6, "Can't compile at the moment, retry in a while"));
 		} 
@@ -107,5 +120,10 @@ public class QuizController {
 		output.setStatus(status);
 		return output;
 	}
-	
+
+	private void addUpdateCheckPoint(Principal p, Code code, float max_exe_time, Double score){
+		String user = p.getName();
+		int languageid = Integer.parseInt(code.getlanguageid());
+		cdao.addUpdateCodeCheckPoint(user, max_exe_time, code.getroundid(), score, code.getcode(), languageid, code.getquestionid());
+	}
 }

@@ -182,14 +182,6 @@ public class ContestController {
 		return "roundone";
     }
 
-    @RequestMapping(value = "/codinground", method = RequestMethod.GET)
-	public String round(Model model) {
-				
-		model.addAttribute("contestname", "yoyo");
-		model.addAttribute("round" , dao.getRoundById("12"));
-		return "codinground";
-    }
-
 
     @RequestMapping (method = RequestMethod.GET, value = "{contestname}/round")
     public String round (@PathVariable("contestname") String contestName, 

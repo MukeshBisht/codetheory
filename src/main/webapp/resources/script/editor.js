@@ -23,7 +23,7 @@ $(document).ready(function () {
             }
           }
     });
-    editor.setValue("// Press F11 to edit in full screen\n#include<stdio.h>\nint main(){\n return 0;\n}");
+    //editor.setValue("// Press F11 to edit in full screen\n#include<stdio.h>\nint main(){\n return 0;\n}");
 });
 
 

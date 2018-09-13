@@ -5,6 +5,7 @@ public class Code {
     private String languageid;
     private String code;
     private int questionid;
+    private int roundid;
 
     public Code(){
 
@@ -37,5 +38,13 @@ public class Code {
 
     public void setcode(String cod){
         code = cod;
+    }
+
+    public void setroundid(int id){
+        roundid = id;
+    }
+
+    public int getroundid(){
+        return roundid;
     }
 }

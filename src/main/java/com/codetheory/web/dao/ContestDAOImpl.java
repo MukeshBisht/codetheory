@@ -276,4 +276,27 @@ public class ContestDAOImpl implements ContestDAO{
 		String sql = "select * from round where contest = ?";
 		return jdbcTemplate.query (sql, new Object[]{contest}, new RoundMapper());
 	}
+
+
+	@Override
+	public void addUpdateCodeCheckPoint(String user,float max_exe_time,int roundid,Double score,String code,int languageid,int questionid) {
+		String sql = "replace into code_submission ( user, max_exe_time, roundid, score, code, languageid, questionid)";
+			sql += "values (?, ?, ?, ?, ?, ?, ?);";
+		//values ('user', 3, 12, 50, 'void main(){return0;}', 11, 14)
+		jdbcTemplate.update(sql, new Object[] {           
+            user,max_exe_time, roundid, score, code, languageid, questionid
+		});
+	}
+
+
+	@Override
+	public String getSavedCode(String user, int roundid, int questionid) {
+		String sql = "select code from code_submission where roundid=? and questionid=? and user=?;";
+		try{
+		return jdbcTemplate.queryForObject(sql, new Object[]{roundid, questionid, user}, String.class);
+		}catch(org.springframework.dao.EmptyResultDataAccessException e){
+			System.out.println("no previous checkpoint");
+			return "";
+		}
+	}
 }

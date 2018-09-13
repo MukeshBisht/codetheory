@@ -23,6 +23,7 @@ function nextQuestion(){
         $("#problemStatement").html (ques.question);
         $("#details").html(ques.details);
         document.getElementById("qcount").innerText = "["+(current_ques+1)+"/"+questions.length+"]";
+        getSavedCode();
     }
 }
 
@@ -34,9 +35,24 @@ function prevQuestion(){
         $("#problemStatement").html (ques.question);
         $("#details").html(ques.details);
         document.getElementById("qcount").innerText = "["+(current_ques+1)+"/"+questions.length+"]";
+        getSavedCode();
     }
 }
 
+var test;
+function getSavedCode(){
+    var c = $(".codeMirror")[0];
+    e = CodeMirror.fromTextArea(c);
+    e.setValue("Downloading your previous code...");
+    $.ajax({
+        type : "GET",
+        url : "/codinground/"+roundid+"/"+question_id,
+        success : function (response){
+            var code = $(".codeMirror")[0];
+            e.setValue(response);
+        }
+    });  
+}
 
 function runCode() {
     $("#output").html('<i class="fa fa-cog fa-spin fa-3x fa-fw" id="outloading"></i>');
@@ -44,7 +60,8 @@ function runCode() {
     var Code = {
         languageid: $('#langid').val(),
         code: editor.getValue(),
-        questionid: question_id
+        questionid: question_id,
+        roundid:roundid
     }
 
     $.ajax({

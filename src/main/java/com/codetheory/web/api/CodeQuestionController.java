@@ -1,5 +1,6 @@
 package com.codetheory.web.api;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class CodeQuestionController {
 	@Autowired
 	ChallengeDAO dao;
 
+	@Autowired
+	ContestDAO con_dao;
+
 	@RequestMapping(value = "codinground/{roundid}/question", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
 	public List<CodeQuestion> getCodeQuestion(@PathVariable String roundid) {
@@ -35,4 +39,13 @@ public class CodeQuestionController {
 		data.setData(codequestion);
 		return data;
 	}	
+
+	@RequestMapping(value = "codinground/{roundid}/{questionid}", method = RequestMethod.GET)
+	@ResponseBody
+	public String getCodeFromCheckPoint(@PathVariable int roundid, @PathVariable int questionid, Principal principal){
+		String uname = principal.getName();
+		String code = con_dao.getSavedCode(uname, roundid, questionid);		
+		if(code=="") code = "//write your first code";
+		return code;
+	}
 }

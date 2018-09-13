@@ -5,7 +5,7 @@ public class JudgeOutput
 {
     private String message;
 
-    private String time;
+    private float time;
 
     private String stdout;
 
@@ -34,12 +34,12 @@ public class JudgeOutput
         this.message = message;
     }
 
-    public String getTime ()
+    public float getTime ()
     {
         return time;
     }
 
-    public void setTime (String time)
+    public void setTime (Float time)
     {
         this.time = time;
     }

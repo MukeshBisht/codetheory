@@ -106,6 +106,7 @@
                     <!-- Editor Section -->
                     <section class="col-md-6" id="editor">
                         <!-- <h4>Please Submit Your Solution Below</h4> -->
+                        Press F11 to edit in full screen
                         <textarea class="codeMirror" >       
                     </textarea>
                         <script src="<c:url value=" /resources/script/editor.js " />"></script>
