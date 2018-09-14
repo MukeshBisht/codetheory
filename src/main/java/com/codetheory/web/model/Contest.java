@@ -13,6 +13,7 @@ public class Contest {
 	private String info;
 	private String landingPage;
 	private OrganizationType orgType;
+	private int roundTimelimit;
 	
 	
 	public Contest(){
@@ -29,6 +30,7 @@ public class Contest {
 		endDate = con.endDate;
 		creationDate =con.creationDate;
 		orgType = con.orgType;
+		roundTimelimit = con.roundTimelimit;
 	}
 	/**
 	 * @return the contestname
@@ -127,5 +129,14 @@ public class Contest {
 	}
 	public String getinfo(){
 		return info;
+	}
+
+
+	public void setRoundTimelimit (int roundTimelimit){
+		this.roundTimelimit = roundTimelimit;
+	}
+
+	public int getRoundTimelimit () {
+		return roundTimelimit;
 	}
 }

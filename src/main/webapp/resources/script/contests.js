@@ -1,4 +1,10 @@
 
-$('contest_body.contest_body tr').click(function(){
-    window.location.href = $(this).data('/home');
- });
+start = new Date (parseInt(start));
+
+function startCountdown () {
+    
+    var time = countdown(start).toString();
+    document.getElementById ('countdown').innerHTML = time;
+        
+    setTimeout(startCountdown, 1000);
+}

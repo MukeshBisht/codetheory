@@ -14,3 +14,18 @@ function validate(){
         return false;
     }
 }
+
+function nameValidator (name) {
+    re = '';
+    return re.test (name);
+}
+
+function usernameValidator (username){
+    re = '';
+    return re.test (username);
+}
+
+function contestNameValidator (cname){
+    re = '';
+    return re.test (cname);
+}

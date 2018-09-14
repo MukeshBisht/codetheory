@@ -1,4 +1,5 @@
-var data;
+var data = '';
+var countdownTime;
 function loadQuestion(){
     var URL = '/quiz/question/'+contestname+'/'+roundname;
     $.ajax({
@@ -19,7 +20,7 @@ function loadQuestion(){
                 $('#durationSelect').hide();
                 $('#submitRoundOne').show();
                 $('#showQuestion').show();
-                $('#starttimer').show();
+                $('#countdown').show();
                 $('#sideSection').show();
                 buildOptionSideBar(0);
             }
@@ -27,16 +28,19 @@ function loadQuestion(){
 
     
     var time = $('#timeSelect option:selected').val();
-    var t;
+    
     if (time == "10 minutes")
-        t = 10;
+        countdownTime = new Date().getTime() + 600000;
     else if (time == "20 minutes") {
-        t = 20; 
+        countdownTime = new Date().getTime() + 1200000; 
     } else {
-        t=30;
+        countdownTime = new Date().getTime() + 1800000;
     }
-    document.getElementById('starttimer').innerHTML = t + ":" + 00;
-    startTimer();
+    
+    if (contestname != 'practice')
+        countdownTime = end;
+
+    startCountdown (countdownTime);
 }
 
 function buildOptionSideBar(index) {
@@ -114,7 +118,7 @@ function changeColor (i , j){
 
 function submitQuestion(){
     
-    showDialog();
+    //showDialog();
 
     var URL = '/'+contestname+'/'+roundname+'/submit';
     $.ajax({
@@ -123,8 +127,25 @@ function submitQuestion(){
             data: JSON.stringify(data),
             contentType: "application/json",
             success: function(response){
-                $('#roundone').hide();
-                $('#resultArea').html(response);
+                    if (response == '')
+                        location.reload(true);
+                    else {
+                        $('#roundone').hide();
+                        $('#resultArea').html(response);
+                    }
             }
     });
+}
+
+function startCountdown () {
+
+    if (timelimit == 'false') {
+        return;
+    }
+    
+    var time = countdown(countdownTime);
+    document.getElementById ('countdown').innerHTML = time;
+    countdownTime -= 1;
+    setTimeout(startCountdown, 1000);
+
 }

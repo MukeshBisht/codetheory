@@ -3,9 +3,10 @@
         <head>
             <script>
                 var contestname = "${contestname}";
-                var roundname = "${round.name}";
-                var start = "${round.startTime}";
-                var end = "${round.endTime}";
+                var roundname = "${roundName}";
+                var start = "${startDate}";
+                var end = "${endDate}";
+                var timelimit = "${timelimit}"
             </script>
         </head>
         <body>
@@ -14,11 +15,12 @@
             <div class="container" id="roundone">
                 <div class="row">
                     <div class="col-sm-4 text-center">
-                        <h2 class="text text-muted">Quiz | ${round.name}</h2>
+                        <h2 class="text text-muted">Quiz | ${contestname}</h2>
                     </div>
-                    <div class="col-sm-4">
-                        <h2 class="text-center btn-primary" id="starttimer">
-                        </h2>
+                    <div class="col-sm-3">
+                        <h3 class="text-center btn-danger" id="countdown">
+                            
+                        </h3>
                     </div>
                     <div class="col-sm-4 text-center" id="submitRoundOne" hidden>                       
                         <a class="btn btn-info" href="#" onclick="showPreview()">Preview</a>
@@ -76,35 +78,40 @@
 
                     </div>
 
-                    <div class="col-md-4 durationSelect" id="durationSelect">
-                        <h3>Select Time Duration</h3>
-                        <select class="form-control btn btn-primary" id="timeSelect">
-                            <option id="10min">10 minutes</option>
-                            <option id="20min">20 minutes</option>
-                            <option id="30min">30 minutes</option>
-                        </select>
+                    <c:choose>
+                        <c:when test = "${contestname == 'practice'}">
+                            <div class="col-md-4 durationSelect" id="durationSelect">
+                                <h3>Select Time Duration</h3>
+                                <select class="form-control btn btn-primary" id="timeSelect">
+                                    <option id="10min">10 minutes</option>
+                                    <option id="20min">20 minutes</option>
+                                    <option id="30min">30 minutes</option>
+                                </select>
+        
+                                <table class="table text-center">
+                                    <h4>Point Distribution</h4>
+                                    <th>Duration</th>
+                                    <th>No. of Questions</th>
+                                    <th>Points</th>
+                                    <tr>
+                                        <td>10 minutes</td>
+                                        <td>50</td>
+                                        <td>+100</td>
+                                    </tr>
+                                    <tr>
+                                        <td>20 minutes</td>
+                                        <td>50</td>
+                                        <td>+50</td>
+                                    </tr>
+                                    <tr>
+                                        <td>30 minutes</td>
+                                        <td>50</td>
+                                        <td>+10</td>
+                                    </tr>
+                                </table>
+                        </c:when>
+                    </c:choose>
 
-                        <table class="table text-center">
-                            <h4>Point Distribution</h4>
-                            <th>Duration</th>
-                            <th>No. of Questions</th>
-                            <th>Points</th>
-                            <tr>
-                                <td>10 minutes</td>
-                                <td>50</td>
-                                <td>+100</td>
-                            </tr>
-                            <tr>
-                                <td>20 minutes</td>
-                                <td>50</td>
-                                <td>+50</td>
-                            </tr>
-                            <tr>
-                                <td>30 minutes</td>
-                                <td>50</td>
-                                <td>+10</td>
-                            </tr>
-                        </table>
                     </div>
                 </section>
 

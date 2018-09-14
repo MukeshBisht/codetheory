@@ -132,17 +132,26 @@ public class ContestController {
 	@RequestMapping (value="/{contestName}")
 	public String startContest (@PathVariable ("contestName") String contestName , Principal principal, Model model){
 		
-		//if contest is ended
+		Contest contest = dao.getContestByContestName (contestName);
+		if (contest == null)
+			return "/Error";
 
+		//if contest is ended
+		
 		if (dao.isContestEnded(contestName)){
-			model.addAttribute("contestname", contestName);
+			model.addAttribute("contest", contest);
 			return "contestEnd";
 		}
 
 		// if contest is not started
 
 		else if( dao.isContestNotStarted (contestName)){
-			model.addAttribute("contestname", contestName);
+
+			model.addAttribute ("contestStartDate", contest.getStartDate().getTime());
+			model.addAttribute ("contestEndDate", contest.getEndDate().getTime());
+
+
+			model.addAttribute("contest", contest);
 			return "contestLandingPage";
 		}
 		
@@ -173,13 +182,22 @@ public class ContestController {
 	}
 
 
-	@RequestMapping (method = RequestMethod.GET, value = "/quiz")
-    public String round (@PathVariable ("contestname") String contestName, Model model) {
+	@RequestMapping (method = RequestMethod.GET, value = "practice/quiz")
+    public String quizRound (Model model) {
 
-        model.addAttribute("contestname", contestName);
+        model.addAttribute("contestname", "practice");
 		model.addAttribute("round" , new Round ("quiz", ChallengeType.MCQ));
+		model.addAttribute ("roundName", "Round");
 
 		return "roundone";
+    }
+
+    @RequestMapping(value = "practice/codinground", method = RequestMethod.GET)
+	public String codingRound(Model model) {
+				
+		model.addAttribute("contestname", "practice");
+		model.addAttribute("round" , new Round ("Coding", ChallengeType.Code));
+		return "codinground";
     }
 
 
@@ -189,15 +207,18 @@ public class ContestController {
                         Principal principal){
                            
 
-    
+
 		List <Round> roundList = dao.getAllRounds (contestName);
 		Round currentRound = null;
 		Round nextRound = null;
 		Date currentDate = new Date();
+		boolean timelimit = dao.roundTimelimit(contestName);
 
 		for (Round round : roundList) {
-			if (currentDate.after (round.getStartTime()) && currentDate.before (round.getEndTime()))
+
+			if (currentDate.after (round.getStartTime()) && currentDate.before (round.getEndTime())) {
 				currentRound = round;
+			}
 
 			else if (currentDate.before (round.getStartTime())) {
 				nextRound = round;
@@ -216,16 +237,23 @@ public class ContestController {
 					return "contestEnd";
 				else {
 					model.addAttribute("nextRound", nextRound);
+					model.addAttribute ("contestStartDate", nextRound.getStartTime().getTime());
+					
 					return "timer";
 				}
 			}
 
 			//if user has not made any submission
 			else {
+				System.out.println ("here /Error");
 				ChallengeType type = currentRound.getType();
 		
 				model.addAttribute("contestname" , contestName);
-				model.addAttribute("round" , currentRound);
+				model.addAttribute("roundName" , currentRound.getName());
+				model.addAttribute("startDate" , currentRound.getStartTime().getTime());
+				model.addAttribute("endDate" , currentRound.getEndTime().getTime());
+				
+				model.addAttribute ("timelimit", timelimit);
 
 				if (type.getValue() == 1)
 					return "roundone";
@@ -239,20 +267,22 @@ public class ContestController {
 		}
 
 		else if (nextRound != null) {
+			System.out.println ("here");
 			model.addAttribute ("nextContest", nextRound);
 			return "timer";
 		}
-		
-		else 
+		else {
 			return "/Error";
-    }
+		}
 
+    }
 
 	@RequestMapping (value="/all")
 	public String allContest (Model model){
 		
 		List<Contest> contests = dao.getAllContest();
 		model.addAttribute ("contestList", contests);
+		model.addAttribute ("participants", 12 );
 		return "contests";
 	}
 }

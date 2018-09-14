@@ -22,6 +22,7 @@ public class ContestMapper implements RowMapper<Contest> {
         OrganizationType ot = OrganizationType.values()[Integer.parseInt(rs.getString("orgType")) - 1];
         con.setOrgType(ot);
         con.setOrgName(rs.getString("orgName"));
+        con.setRoundTimelimit (rs.getInt ("roundTimelimit"));
         try {
             con.setStartDate(formatter.parse(rs.getString("startDate")));
             con.setEndDate(formatter.parse(rs.getString("endDate")));

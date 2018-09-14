@@ -3,13 +3,17 @@
 
 <html >
     <head>
+
+        <script src="<c:url value=" /resources/script/timer.js " />"></script>
+        <script src="<c:url value=" /resources/script/contests.js " />"></script>
         <script>
-            var cname = "${contestname}";  
-           
+            var cname = "${contest.contestname}";  
+            var start = "${contestStartDate}";
+            var end = "${contestEndDate}";
         </script>
     </head>
 
-    <body>
+    <body onload = "startCountdown()">
         
         <!--  Header  -->
         <jsp:include page="/WEB-INF/shared/header.jsp" />
@@ -17,20 +21,23 @@
 
         <section id="contestHeader" class="container cardView">
             <div class ="col-md-2">
-                <!--span class="text text-primary">
-                    <i class="fa fa-user"> &nbsp;Participant : 100+</i><br>
+                <span class="text text-primary">
+                    <i class="fa fa-user">Participant : #12</i><br>
                     
-                </span-->
+                </span>
             </div>
             <div class="text-center col-md-7"> 
             
-                <span style="font-size:60px;font-family:georgia">
+                <span style="font-size:70px;font-family:georgia">
                     <i class="fa fa-flash"></i>
-                    ${contestname}
+                    ${contest.contestname}
                 </span>
             
-                <div id="part" class="text text-primary">
-                    </div>
+                <div id="part-div" class="text text-danger">
+                    <span id = "part"></span>
+                    <h4>Contest will starts in</h4>
+                    <h4 id = "countdown"></h4>
+                </div>
 
                 <button class="btn btn-primary btn-flat" id="participatebtn">
                     <i class="fa fa-user-plus"></i>
@@ -48,11 +55,11 @@
                 </span>
 
                 <span>
-                    <strong>Ending Date : </strong><p>${contest.startDate}</p>
+                    <strong>Ending Date : </strong><p>${contest.endDate}</p>
                 </span>
 
                 <span>
-                    <strong>Duration : </strong> <p>2 Days 10 Hours</p>
+                    <strong>Duration : </strong> <p>${startDate - endDate}</p>
                 </span>
 
             </div>

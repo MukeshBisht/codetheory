@@ -82,8 +82,8 @@ public class Round{
 	}
 
 
-	public void setEndTime (Date startTime){
-		this.startTime = startTime;
+	public void setEndTime (Date endTime){
+		this.endTime = endTime;
 	}
 
 	public Date getEndTime (){

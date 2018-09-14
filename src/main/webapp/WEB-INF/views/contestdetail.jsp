@@ -72,6 +72,7 @@
         </div>
     </div>
 
+
     <div class='col-sm-12 form-group'>
         <form:label path="orgType" required="true">Orgranization Type</form:label>
         <!-- <br> -->

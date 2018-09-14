@@ -40,11 +40,13 @@ public interface ContestDAO {
     public boolean isParticipated (String user , String contest);
     public void removeParticipation (String username , String contest);
     public List<Contest> getUserParticipation (String username);
+    public int getNumberOfParticipation (String contest);
 
 
     // ROUND related methods
     public Round getRoundById(String id);
     public List<Round> getAllRounds (String contest);
+    public boolean roundTimelimit (String contest);
 
     //round submission related methods
     public void addSubmissionScore (String contestName, String roundName, String username ,double score);
@@ -53,4 +55,5 @@ public interface ContestDAO {
     //code submission
     public void addUpdateCodeCheckPoint(String user,float max_exe_time,int roundid,Double score,String code,int languageid,int questionid);
     public String getSavedCode(String user, int roundid, int questionid);
+    public boolean showResult (String contest, String round);
 }

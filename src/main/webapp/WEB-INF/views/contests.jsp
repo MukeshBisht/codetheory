@@ -16,7 +16,7 @@
               
             </div>
             <div class="text-center col-md-7"> 
-                <h2 class="text text-default">CHOOSE FROM MORE THEN 1K CONTEST...</h2>
+                <h2 class="text text-default">PARTICPATE, COMPETE AND HAPPY LEARNING...</h2>
             </div>
             
         </section>
@@ -68,6 +68,7 @@
                         <th>Starting</th>
                         <th>Ending</th>
                         <th>#Participants</th>
+                        <th>visit</th>
                     </thead>
 
                     <tbody class="cardView" id="contests_body">
@@ -80,7 +81,8 @@
                                 <td>Computer Science</td>
                                 <td>${contest.startDate}</td>
                                 <td>${contest.endDate}</td>
-                                <td>123</td>
+                                <td>${participants}</td>
+                                <td style="text-decoration: none"><a href="/contest/${contest.contestname}"><i class="fa fa-binoculars"></i></a></td>
                             </tr>
 
                         </c:forEach>

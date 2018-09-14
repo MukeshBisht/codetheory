@@ -41,7 +41,7 @@ public class ResultController {
 										@RequestBody List<QuizQuestion> question,
 										Principal principal ){
 		
-		ModelAndView model = new ModelAndView ("result");
+		ModelAndView model;
 
         /*************************** CALCULATING SCORE ***************************/
         float score = 0; int marks = 0;
@@ -62,23 +62,34 @@ public class ResultController {
 
         /*********************************************************************************/
 
+		//user's score will not be saved in practice contests
+		
+		if (contestName.equals("practice")){
+			model = new ModelAndView ("result");		
+			model.addObject("nextround", "/contest/practice/codinground");
+			model.addObject ("question", question);
+			model.addObject ("answer",correctAnswer);
+			model.addObject ("marks", marks);
+			model.addObject ("total", question.size()*10);
+			return model;
+		}
+		
+		if (contestDao.contestExist(contestName)) {
+			contestDao.addSubmissionScore (contestName, roundName, principal.getName() ,score);
+		}
+		
+		if (!contestDao.showResult (contestName, roundName)) {
+			return null;
+		}
+		
+		model = new ModelAndView ("result");
+		
 		model.addObject ("question", question);
 		model.addObject ("answer",correctAnswer);
 		model.addObject ("marks", marks);
 		model.addObject ("total", question.size()*10);
-
-        //user's score will not be saved in practice contests
-		if (contestName.equals("practice")){
-			model.addObject("nextround", "/RoundThree");
-			return model;
-		}
-
+		
         //user's score is saved
-        else {
-            contestDao.addSubmissionScore (contestName, roundName, principal.getName() ,score);
-            model.addObject("nextround", "");
-        }
-
 		return model;
     }	
     
