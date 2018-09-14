@@ -37,9 +37,9 @@ $(document).ready(function () {
 function setContestDetail( data ){
     var html = '';
     for (i=0; i<data.length; i++){
-        var url = '\contest\\' + data[i].contestname;
-        var status = getStatus (Math.floor(Math.random() * 3));
-
+        var url = '/contest/' + data[i].contestname;
+        var status = getStatus (data[i].status);
+        console.log (data[i].status);
         html += '<tr>';
         html += '<td>' + data[i].contestname + '</td>';
         html += '<td>' + data[i].orgName + '</td>';
@@ -52,9 +52,9 @@ function setContestDetail( data ){
     
         function getStatus (status){
             
-            if (status == 0)
+            if (status == 'NOTSTARTED')
                 return '<span class="label label-active">Not Started</span>';
-            else if (status == 1)
+            else if (status == 'RUNNING')
                 return '<span class="label label-primary">Currently Running</span>';
             else 
                 return '<span class="label label-success">Finished</span>';

@@ -303,24 +303,24 @@ public class ContestDAOImpl implements ContestDAO{
 
 	@Override
 	public boolean showResult (String contest, String round) {
-		String sql = "select showResult from round where contest = ? and roundid = (select roundid from round where name = ?)";
-		//boolean result = jdbcTemplate.query (sql, contest);
-		//return result;
-		return false;
+		String sql = "select showResult from round where contest = ? and roundid = (select roundid from round where contest = ? and name = ?)";
+		
+		return jdbcTemplate.queryForObject (sql, new Object[]{contest, contest, round}, Integer.class) == 0;
+		
 	}
 
 
 	@Override
 	public boolean roundTimelimit (String contest) {
-		String sql = "select (1) from contest where contestName = ? and round_continous = true";
-		//jdbcTemplate.query (sql, new Object[] {contest});
-		return true;
+		String sql = "select roundTimelimit from contests where contestName = ?";
+		
+		return jdbcTemplate.queryForObject (sql, new Object[] {contest}, Integer.class) == 0;
+		
 	}
 
 	@Override
-	public int getNumberOfParticipation (String contest) {
-		String sql = "select count from contest where contestName = ?";
-		//return jdbcTemplate.query (sql, new Object[] {contest}).size();
-		return 10;
+	public int getNumberOfParticipants (String contest) {
+		String sql = "select count(1) from contest_participation where contest_id = ?";
+		return jdbcTemplate.queryForObject (sql, new Object[] {contest}, Integer.class );
 	}
 }

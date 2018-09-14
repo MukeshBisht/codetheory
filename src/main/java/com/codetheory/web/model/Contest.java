@@ -2,6 +2,7 @@ package com.codetheory.web.model;
 
 import com.codetheory.web.constant.OrganizationType;
 import java.util.Date;
+import com.codetheory.web.constant.ContestStatus;
 
 public class Contest {
 
@@ -13,6 +14,7 @@ public class Contest {
 	private String info;
 	private String landingPage;
 	private OrganizationType orgType;
+	private ContestStatus status;
 	private int roundTimelimit;
 	
 	
@@ -31,6 +33,7 @@ public class Contest {
 		creationDate =con.creationDate;
 		orgType = con.orgType;
 		roundTimelimit = con.roundTimelimit;
+		status = con.status;
 	}
 	/**
 	 * @return the contestname
@@ -138,5 +141,12 @@ public class Contest {
 
 	public int getRoundTimelimit () {
 		return roundTimelimit;
+	}
+
+	public void setStatus (ContestStatus status){
+		this.status = status;
+	}
+	public ContestStatus getStatus (){
+		return status;
 	}
 }

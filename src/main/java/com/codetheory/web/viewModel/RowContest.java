@@ -1,6 +1,7 @@
 package com.codetheory.web.viewModel;
 
 import com.codetheory.web.model.Contest;
+import  com.codetheory.web.constant.ContestStatus;
 
 public class RowContest extends Contest{
 
@@ -14,26 +15,26 @@ public class RowContest extends Contest{
 
 	public RowContest(){
 		super.setContestname("Java9");
-		status = "not started";
+		status = ContestStatus.NOTSTARTED;
 	}
 	public RowContest(Contest con){
 		super(con);
-		status = "not started";
+		status = ContestStatus.NOTSTARTED;
 	}
 
-    private String status;
+    private ContestStatus status;
 	private int participants;
 	
 	/**
 	 * @return the status
 	 */
-	public String getStatus() {
+	public ContestStatus getStatus() {
 		return status;
 	}
 	/**
 	 * @param status the status to set
 	 */
-	public void setStatus(String status) {
+	public void setStatus(ContestStatus status) {
 		this.status = status;
 	}
 	/**

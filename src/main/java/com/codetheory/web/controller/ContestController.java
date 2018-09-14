@@ -281,8 +281,16 @@ public class ContestController {
 	public String allContest (Model model){
 		
 		List<Contest> contests = dao.getAllContest();
+		List<Integer> participants = new ArrayList<>();
+
+		for (Contest con: contests){
+			participants.add (dao.getNumberOfParticipants (con.getContestname()));
+		}
+
+
 		model.addAttribute ("contestList", contests);
-		model.addAttribute ("participants", 12 );
+		model.addAttribute ("participants", participants);
+		
 		return "contests";
 	}
 }

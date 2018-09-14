@@ -40,7 +40,7 @@ public interface ContestDAO {
     public boolean isParticipated (String user , String contest);
     public void removeParticipation (String username , String contest);
     public List<Contest> getUserParticipation (String username);
-    public int getNumberOfParticipation (String contest);
+    public int getNumberOfParticipants (String contest);
 
 
     // ROUND related methods

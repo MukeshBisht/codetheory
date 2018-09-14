@@ -60,7 +60,7 @@
             </div>
 
             <div class="col-md-8 ">
-                <table class="table table-hover contest_table" style="background:white">
+                <table class="table table-hover contest_table" style="background:white; text-align:center">
                     <thead class="cardView">
                         <th>S.no</th>
                         <th>Name</th>
@@ -81,7 +81,7 @@
                                 <td>Computer Science</td>
                                 <td>${contest.startDate}</td>
                                 <td>${contest.endDate}</td>
-                                <td>${participants}</td>
+                                <td>${participants[status.index]}</td>
                                 <td style="text-decoration: none"><a href="/contest/${contest.contestname}"><i class="fa fa-binoculars"></i></a></td>
                             </tr>
 
