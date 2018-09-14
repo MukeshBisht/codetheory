@@ -41,15 +41,12 @@ function prevQuestion(){
 
 var test;
 function getSavedCode(){
-    var c = $(".codeMirror")[0];
-    e = CodeMirror.fromTextArea(c);
-    e.setValue("Downloading your previous code...");
+    editor.setValue("Downloading your previous code...");
     $.ajax({
         type : "GET",
         url : "/codinground/"+roundid+"/"+question_id,
         success : function (response){
-            var code = $(".codeMirror")[0];
-            e.setValue(response);
+            editor.setValue(response);
         }
     });  
 }
