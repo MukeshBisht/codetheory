@@ -39,7 +39,7 @@
                         <span class="input-group-addon">
                           Question
                         </span>
-                        <input id="question" type="text" placeholder="Your Question goes here" class="form-control" required/>
+                        <textarea id="question"  placeholder="Your Question goes here" class="form-control" required></textarea>
                       </div>
                     </div>
                     <div class="form-group col-lg-6">

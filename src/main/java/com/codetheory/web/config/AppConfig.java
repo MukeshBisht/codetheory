@@ -36,6 +36,7 @@ public class AppConfig implements WebMvcConfigurer {
 		dataSource.setUrl("jdbc:mysql://localhost:3306/codedb");
 		dataSource.setUsername("root");
 		dataSource.setPassword("root@123");
+		//dataSource.setPassword("reb00t");
 		return dataSource;
 	}
 

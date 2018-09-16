@@ -21,7 +21,7 @@ function nextQuestion(){
         var ques = questions[current_ques];
         question_id = ques.id;
         $("#problemStatement").html (ques.question);
-        $("#details").html(ques.details);
+        $("#details").html(ques.details.replace("\n", '<br />'));
         document.getElementById("qcount").innerText = "["+(current_ques+1)+"/"+questions.length+"]";
         getSavedCode();
     }
@@ -33,7 +33,7 @@ function prevQuestion(){
         var ques = questions[current_ques];
         question_id = ques.id;
         $("#problemStatement").html (ques.question);
-        $("#details").html(ques.details);
+        $("#details").html(ques.details.replace("\n", '<br />'));
         document.getElementById("qcount").innerText = "["+(current_ques+1)+"/"+questions.length+"]";
         getSavedCode();
     }

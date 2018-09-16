@@ -47,7 +47,8 @@ function buildOptionSideBar(index) {
     if(index < 0) return;
     var option = '';
     option += '<div class="">';
-    option += '<h3>' + data[index].question + '</h3>';
+    //replace newline \n \r to html <br>
+    option += '<h3>' + data[index].question.replace(/(?:\r\n|\r|\n)/g, '<br>') + '</h3>';
     // <!--Radio group-->
     
     for (j = 0; j < 4; j++) {
@@ -55,8 +56,8 @@ function buildOptionSideBar(index) {
         if (data[index].selected == j)
             option += '<input name="op" type="radio" class="with-gap" onclick="changeColor('+(index+1)+','+j+')" checked>';
         else
-            option += '<input name="op" type="radio" class="with-gap" onclick="changeColor('+(index+1)+','+j+')">';
-        option += '<label for="' + j + '">' + data[index].options[j] + '</label>';
+            option += '<input name="op" type="radio" class="with-gap" id="a'+ j +'" onclick="changeColor('+(index+1)+','+j+')">';
+        option += '<label for="a' + j + '">' + data[index].options[j] + '</label>';
         option += '</div>';
     }
     option += '</div>';
