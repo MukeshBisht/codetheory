@@ -91,6 +91,6 @@ public class ResultController {
 		
         //user's score is saved
 		return model;
-    }	
+    }
     
 }

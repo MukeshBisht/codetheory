@@ -15,7 +15,8 @@ public class Contest {
 	private String landingPage;
 	private OrganizationType orgType;
 	private ContestStatus status;
-	private int roundTimelimit;
+	private boolean hasTimeLimit;
+	private boolean isOpen;
 	
 	
 	public Contest(){
@@ -23,6 +24,8 @@ public class Contest {
 		startDate = new Date();
 		endDate = new Date();
 		creationDate = new Date();
+		isOpen = false;
+		hasTimeLimit = true;
 	}
 
 	public Contest(Contest con){
@@ -32,8 +35,9 @@ public class Contest {
 		endDate = con.endDate;
 		creationDate =con.creationDate;
 		orgType = con.orgType;
-		roundTimelimit = con.roundTimelimit;
+		hasTimeLimit = con.hasTimeLimit;
 		status = con.status;
+		isOpen = con.isOpen;
 	}
 	/**
 	 * @return the contestname
@@ -135,12 +139,20 @@ public class Contest {
 	}
 
 
-	public void setRoundTimelimit (int roundTimelimit){
-		this.roundTimelimit = roundTimelimit;
+	public void sethasTimeLimit (boolean hasTimeLimit){
+		this.hasTimeLimit = hasTimeLimit;
 	}
 
-	public int getRoundTimelimit () {
-		return roundTimelimit;
+	public boolean gethasTimeLimit () {
+		return hasTimeLimit;
+	}
+
+	public void setIsOpen (boolean isopen){
+		this.isOpen = isopen;
+	}
+
+	public boolean getIsOpen () {
+		return isOpen;
 	}
 
 	public void setStatus (ContestStatus status){

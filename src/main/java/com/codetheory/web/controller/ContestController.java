@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Date;
 
@@ -55,6 +54,7 @@ public class ContestController {
 		if(!dao.validUserContest(user, cname)){
 			return "NotFound";
 		}
+		boolean timmer = dao.roundHasTimelimit(cname);
 		List<ChallengeGroup> challengeGroups = chdao.getChallengeGroups(user);
 		ArrayList<ChallengeGroup> mcqs = new ArrayList<ChallengeGroup>();
         ArrayList<ChallengeGroup> codes = new ArrayList<ChallengeGroup>();
@@ -73,6 +73,7 @@ public class ContestController {
 		model.addAttribute("cname", cname);
 		model.addAttribute("rounds", rounds);		
 		model.addAttribute("groups", gc);
+		model.addAttribute("timmer", timmer);
 		return "round";
 	}	
 
@@ -144,7 +145,7 @@ public class ContestController {
 		}
 
 		// if contest is not started
-
+		
 		else if( dao.isContestNotStarted (contestName)){
 
 			model.addAttribute ("contestStartDate", contest.getStartDate().getTime());
@@ -212,7 +213,7 @@ public class ContestController {
 		Round currentRound = null;
 		Round nextRound = null;
 		Date currentDate = new Date();
-		boolean timelimit = dao.roundTimelimit(contestName);
+		boolean timelimit = dao.roundHasTimelimit(contestName);
 
 		for (Round round : roundList) {
 

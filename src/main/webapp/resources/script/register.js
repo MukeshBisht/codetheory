@@ -33,9 +33,9 @@ $("#username").keyup(function () {
             $("#cpassword_chk").html("<span class='text-success'>Password matched</span>");
             validusername = true;
         }
-    }else{
-        $("#cpassword_chk").hide();
-    }
+        }else{
+            $("#cpassword_chk").hide();
+        }
     });
 });
 //registration validation

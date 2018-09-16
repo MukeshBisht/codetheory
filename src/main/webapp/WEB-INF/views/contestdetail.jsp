@@ -9,17 +9,44 @@
 <link rel='stylesheet' href="<c:url value=" /resources/css/bootstrap-datetimepicker.css "/>" type='text/css' media='screen'/>
 
 <script type="text/javascript">
+    var validcontest = false;
     $(function () {
         $('#starttimepicker').datetimepicker({
             //format : "YYYY-MM-DD HH:mm:ss"
+            minDate:new Date()
         });
         $('#endtimepicker').datetimepicker({
             //format : "YYYY-MM-DD HH:mm:ss"
+        });
+        $("#starttimepicker").on("dp.change", function (e) {
+            $('#endtimepicker').data("DateTimePicker").minDate(e.date);
         });
 
         $(".clickable-row").click(function(){
             window.location = $(this).data("href");
         });
+        
+        $("#contestname").keyup(function () {
+            var cname = $("#contestname").val().trim();
+            if (cname != '') {
+                $("#cname_response").show();
+                $.ajax({
+                    url: '/api/contest/available/' + cname,
+                    type: 'GET',
+                    success: function (response) {
+                        if (response > 0) {
+                            $("#cname_response").html("<span class='text-danger'>* Contest name Already in use</span>");
+                        } else {
+                            $("#cname_response").html("<span class='text-success'>Available</span>");
+                            validcontest = true;
+                        }
+                    }
+                });
+            } else {
+                $("#uname_response").hide();
+            }
+        });
+
     });
 </script>
 
@@ -28,12 +55,24 @@
     <div class="form-group col-lg-12">
         <form:label path="contestname">Contest Name</form:label>
         <form:input path="contestname" name="contestname" id="contestname" placeholder="Contest Name" class="form-control" required="true"/>
-        <div id="uname_response" class="response"></div>
+        <div id="cname_response" class="response"></div>
     </div>
+</div>
 </c:if>
 <c:if test="${update}">
         <form:input type="hidden" path="contestname" name="contestname" id="contestname" placeholder="Contest Name" class="form-control" required="true"/>
 </c:if>
+
+    <div class="form-group col-lg-12">
+        <label class="checkbox-inline">
+            <form:checkbox path="isOpen" id="isopen" class="checkbox"/><strong>Contest is open for practice</strong>
+        </label>
+
+        <label class="checkbox-inline">
+            <form:checkbox path="hasTimeLimit" id="hastimetimit" class="checkbox"/><strong> Rounds in this contest has time limits</strong>
+        </label>
+    </div>
+
     <div class='col-sm-12'>
         <div class="form-group">
                 <form:label path="startDate">Starting</form:label>

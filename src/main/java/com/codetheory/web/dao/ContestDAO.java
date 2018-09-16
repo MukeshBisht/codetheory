@@ -46,10 +46,11 @@ public interface ContestDAO {
     // ROUND related methods
     public Round getRoundById(String id);
     public List<Round> getAllRounds (String contest);
-    public boolean roundTimelimit (String contest);
+    public boolean roundHasTimelimit (String contest);
 
     //round submission related methods
     public void addSubmissionScore (String contestName, String roundName, String username ,double score);
+    public void addSubmissionFromCodeSubmission(String roundid, String user);
     public boolean isUserAlreadySubmitted (String contestName, String roundName, String username);
 
     //code submission

@@ -82,3 +82,24 @@ function runCode() {
         }
     });
 }
+
+function submitQuestion(){
+    
+    //showDialog();
+    alert(':D');
+    // var URL = '/'+contestname+'/'+roundname+'/submit';
+    // $.ajax({
+    //         type: "POST",
+    //         url: URL,
+    //         data: JSON.stringify(data),
+    //         contentType: "application/json",
+    //         success: function(response){
+    //                 if (response == '')
+    //                     location.reload(true);
+    //                 else {
+    //                     $('#roundone').hide();
+    //                     $('#resultArea').html(response);
+    //                 }
+    //         }
+    // });
+}

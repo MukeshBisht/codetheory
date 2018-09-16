@@ -23,9 +23,9 @@ public class ContestDAOImpl implements ContestDAO{
 
 	@Override
 	public void addContest(Contest con, String user) {
-		String sql = "insert into contests (contestName , orgType , orgName , startDate , endDate , creationDate,info) values (? ,? , ? , ? , ? , ?, ?)";
+		String sql = "insert into contests (contestName , orgType , orgName , startDate , endDate , creationDate,info, roundTimelimit, openPractice) values (? ,? , ? , ? , ? , ?, ?, ?, ?)";
         jdbcTemplate.update(sql , new Object[] {
-            con.getContestname(), con.getOrgType().getValue(), con.getOrgName(), con.getStartDate(), con.getEndDate(), con.getCreationDate(),con.getinfo()
+            con.getContestname(), con.getOrgType().getValue(), con.getOrgName(), con.getStartDate(), con.getEndDate(), con.getCreationDate(), con.getinfo(), con.gethasTimeLimit(), con.getIsOpen()
         });
         sql = "insert into User_contests (contest , user, role) values (? , ?, ?)";
         jdbcTemplate.update(sql , new Object[] {
@@ -221,7 +221,15 @@ public class ContestDAOImpl implements ContestDAO{
 		jdbcTemplate.update(sql, new Object[] {
 			contestName, username, score, roundName, contestName
 		});
+	}
 
+	@Override
+	public void addSubmissionFromCodeSubmission(String roundid, String user){
+		String sql  = "insert into round_submission (username, score, round_id, contest) ";
+			sql += "select user, sum(score), ?, (select contest from round where roundid = ?) from code_submission where user=?;";
+			jdbcTemplate.update(sql, new Object[] {
+				roundid, roundid, user
+			});
 	}
 
 	@Override
@@ -236,9 +244,9 @@ public class ContestDAOImpl implements ContestDAO{
 
 	@Override
 	public void updateContest(Contest con) {
-		String sql = "update contests set orgType=?, orgName=?, startDate=?, endDate=?, info=? where contestName =?"; 
+		String sql = "update contests set orgType=?, orgName=?, startDate=?, endDate=?, info=?, roundTimelimit=?, openPractice=? where contestName =?"; 
         jdbcTemplate.update(sql, new Object[] {           
-            con.getOrgType().getValue(), con.getOrgName(), con.getStartDate(), con.getEndDate(), con.getinfo(), con.getContestname()
+            con.getOrgType().getValue(), con.getOrgName(), con.getStartDate(), con.getEndDate(), con.getinfo(), con.gethasTimeLimit(), con.getIsOpen(), con.getContestname()
 		});
 	}
 
@@ -311,10 +319,10 @@ public class ContestDAOImpl implements ContestDAO{
 
 
 	@Override
-	public boolean roundTimelimit (String contest) {
+	public boolean roundHasTimelimit (String contest) {
 		String sql = "select roundTimelimit from contests where contestName = ?";
 		
-		return jdbcTemplate.queryForObject (sql, new Object[] {contest}, Integer.class) == 0;
+		return jdbcTemplate.queryForObject (sql, new Object[] {contest}, Boolean.class);
 		
 	}
 

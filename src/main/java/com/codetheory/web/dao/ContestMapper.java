@@ -27,8 +27,9 @@ public class ContestMapper implements RowMapper<Contest> {
         OrganizationType ot = OrganizationType.values()[Integer.parseInt(rs.getString("orgType")) - 1];
         con.setOrgType(ot);
         con.setOrgName(rs.getString("orgName"));
-        con.setRoundTimelimit (rs.getInt ("roundTimelimit"));
-
+        con.sethasTimeLimit(rs.getBoolean ("roundTimelimit"));
+        con.setIsOpen(rs.getBoolean("openPractice"));
+        
         /* contest status 
 
         if (dao.isContestEnded (con.getContestname())) {

@@ -9,12 +9,16 @@
     $(function () {
         $('#roundstarttimepicker').datetimepicker({
            // format : "YYYY-MM-DD HH:mm:ss"
+           minDate:new Date()
         });
         $('#roundendtimepicker').datetimepicker({
            // format : "YYYY-MM-DD HH:mm:ss"
         });
         $(".clickable-row").click(function(){
             window.location = $(this).data("href");
+        });
+        $("#roundstarttimepicker").on("dp.change", function (e) {
+            $('#roundendtimepicker').data("DateTimePicker").minDate(e.date);
         });
     });
 </script>
@@ -91,7 +95,7 @@
                 </select>
             </div>
             
-
+        <c:if test="${timmer}">
             <div class="input-group">
                 <span class="input-group-addon">
                     Starting Time
@@ -115,16 +119,13 @@
                     </span>
                 </div>
             </div>
-
+        </c:if>
             <div class="input-group">
                 <input type="checkbox" class="form-check-input" id="resultCheck">
                 <label class="form-check-label text-danger" for="resultCheck">
                     Show the result at the End of this round.
                 </label>
             </div>
-
-                
-
 
             <button id="addRoundBtn" type="submit" class="btn btn-block btn-success">Add</button>
         </div>

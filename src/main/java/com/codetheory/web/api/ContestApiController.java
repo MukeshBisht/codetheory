@@ -89,4 +89,12 @@ public class ContestApiController {
         questions.setqList(dao.getChallengesByRound(round));
         return questions;
     }
+
+    @RequestMapping(value = "/available/{cname}", method = RequestMethod.GET)
+    public ResponseEntity<Object> userAvailable(@PathVariable("cname") String cname) {
+        if(dao.contestExist(cname)){
+            return new ResponseEntity<>("1", HttpStatus.OK);
+        }
+        return new ResponseEntity<>("0", HttpStatus.OK);
+    }
 }

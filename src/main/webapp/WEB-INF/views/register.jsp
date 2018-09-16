@@ -12,7 +12,6 @@
                                 <br>It will not take long.</p>
                             <hr/>
                         </h3>
-
                         <div class="form-group col-lg-12">
                             <form:label path="username">Username</form:label>
                             <form:input path="username" name="username" id="username" placeholder="Username eg. john12" class="form-control" required="true"/>
