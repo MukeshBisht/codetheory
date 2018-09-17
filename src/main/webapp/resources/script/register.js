@@ -11,6 +11,7 @@ $("#username").keyup(function () {
             success: function (response) {
                 if (response > 0) {
                     $("#uname_response").html("<span class='text-danger'>* Username Already in use</span>");
+                    validusername = false;
                 } else {
                     $("#uname_response").html("<span class='text-success'>Available</span>");
                     validusername = true;
@@ -29,9 +30,9 @@ $("#username").keyup(function () {
             $("#cpassword_chk").show();
         if (pass != cpass) {
             $("#cpassword_chk").html("<span class='text-danger'>Password didn't matched</span>");
+            validusername = false;
         } else {
             $("#cpassword_chk").html("<span class='text-success'>Password matched</span>");
-            validusername = true;
         }
         }else{
             $("#cpassword_chk").hide();

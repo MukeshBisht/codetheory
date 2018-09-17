@@ -21,7 +21,7 @@ $(function () {
         minLength: 2,
         source: function (req, res) {
             $.ajax({
-                url: 'http://localhost:8080/api/user/suggestion/' + req.term,
+                url: '/api/user/suggestion/' + req.term,
                 type: 'GET',
                 success: function (data) {
                     res(data);

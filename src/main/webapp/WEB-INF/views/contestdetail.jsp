@@ -9,7 +9,13 @@
 <link rel='stylesheet' href="<c:url value=" /resources/css/bootstrap-datetimepicker.css "/>" type='text/css' media='screen'/>
 
 <script type="text/javascript">
-    var validcontest = false;
+    var validcontest = true;
+
+    function formValidate(){
+        document.f.contestname.focus();
+        return validcontest;
+    }
+
     $(function () {
         $('#starttimepicker').datetimepicker({
             //format : "YYYY-MM-DD HH:mm:ss"
@@ -36,6 +42,7 @@
                     success: function (response) {
                         if (response > 0) {
                             $("#cname_response").html("<span class='text-danger'>* Contest name Already in use</span>");
+                            validcontest = false;
                         } else {
                             $("#cname_response").html("<span class='text-success'>Available</span>");
                             validcontest = true;
@@ -50,18 +57,17 @@
     });
 </script>
 
-<form:form method="POST" action="${action}" modelAttribute="contest">
-<c:if test="${not update}">
-    <div class="form-group col-lg-12">
-        <form:label path="contestname">Contest Name</form:label>
-        <form:input path="contestname" name="contestname" id="contestname" placeholder="Contest Name" class="form-control" required="true"/>
-        <div id="cname_response" class="response"></div>
-    </div>
-</div>
-</c:if>
-<c:if test="${update}">
-        <form:input type="hidden" path="contestname" name="contestname" id="contestname" placeholder="Contest Name" class="form-control" required="true"/>
-</c:if>
+<form:form name="f" method="POST" action="${action}" modelAttribute="contest" onsubmit="return formValidate()">
+    <c:if test="${not update}">
+        <div class="form-group col-lg-12">
+            <form:label path="contestname">Contest Name</form:label>
+            <form:input path="contestname" name="contestname" id="contestname" placeholder="Contest Name" class="form-control" required="true"/>
+            <div id="cname_response" class="response"></div>
+        </div>
+    </c:if>
+    <c:if test="${update}">
+            <form:input type="hidden" path="contestname" name="contestname" id="contestname" placeholder="Contest Name" class="form-control" required="true"/>
+    </c:if>
 
     <div class="form-group col-lg-12">
         <label class="checkbox-inline">

@@ -26,7 +26,7 @@
                     <a role="button" class="btn btn-blue" href="#">Host Your Own Contests</a>
                 </div>
                 <div class="col-md-4">
-                    <i class ="fa" style="color:grey;font-size:50px">Some Stuff will be here soon...</i>
+                    <i class ="fa" style="color:grey;font-size:50px">Practice puts brains in your muscles.</i>
                 </div>
             </div>
         </div>

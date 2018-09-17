@@ -3,7 +3,7 @@
     <!-- footer -->
     <jsp:include page="/WEB-INF/shared/header.jsp" />
     <script src="<c:url value=" /resources/script/register.js" />"></script>
-    <form:form method="POST" name="f" action="/register" modelAttribute="registerForm">
+    <form:form method="POST" name="f" action="/register" modelAttribute="registerForm" onsubmit="return validate()">
             <section class="container cardView">
                 <div class="container-page">
                     <div class="col-md-6">
