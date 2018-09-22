@@ -33,7 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable().authorizeRequests().antMatchers("/login","/home").permitAll()
 				.antMatchers("/", "/*challenge*/**").hasAuthority("USER").and()
 				.formLogin().loginPage("/login")
-				.permitAll().and().logout().deleteCookies("rememberme")
+				.permitAll().and().logout().logoutSuccessUrl("/home").deleteCookies("rememberme")
 				.permitAll().and().rememberMe().tokenValiditySeconds(60);
 	}
 

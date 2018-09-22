@@ -25,6 +25,8 @@ public class SecurityController{
 
     @RequestMapping(value="/login", method = RequestMethod.GET)
     public String login(HttpServletRequest request, HttpServletResponse response){
+        //return "redirect:"+request.getRequestURL().toString() + "?" + request.getQueryString();
+
         return "home";
     }
 }

@@ -24,13 +24,13 @@ import com.codetheory.web.model.JudgeData;
 import com.codetheory.web.model.JudgeOutput;
 
 import org.codehaus.jackson.map.ObjectMapper;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.HttpResponse;
 
 import org.springframework.ui.Model;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.util.EntityUtils;
-import org.apache.http.entity.StringEntity;
 import java.security.Principal;
 
 import org.apache.http.impl.client.HttpClientBuilder;

@@ -6,7 +6,7 @@
                 var roundname = "${roundName}";
                 var start = "${startDate}";
                 var end = "${endDate}";
-                var timelimit = "${timelimit}"
+                var timelimit = "${timelimit}";
             </script>
         </head>
         <body>

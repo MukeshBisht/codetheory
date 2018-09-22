@@ -51,18 +51,21 @@
                     <div class="col-md-6">
                         <h3 class="dark-grey">Terms and Conditions</h3>
                         <p>
-                            By clicking on "Register" you agree to The Company's' Terms and Conditions
+                            By clicking on "Register" you agree to The Terms and Conditions
                         </p>
                         <p>
-                            While rare, prices are subject to change based on exchange rate fluctuations - should such a fluctuation happen, we may request
-                            an additional payment. You have the option to request a full refund or to pay the new price.
-                            blah blah
+                            We reserve the right to update and change these Terms from time to time without notice or acceptance by You,
+                            although if we decide to materially change all or part of the Terms, we will send You a notification.
+                            We reserve the right to refuse registration of, or cancel, any Account or access by anyone in Our reasonable discretion, at any time.
                         </p>
                         <p>
-                            Should there be an error in the description or pricing of a product, we will provide you with a full refund
+                            Accounts will be accessed through a username and password that You will create (Your “Credentials”). 
+                            Your Credentials are solely for Your use and must not be shared.
                         </p>
                         <p>
-                            Acceptance of an order by us is dependent on our suppliers ability to provide the product.
+                            You understand that by posting Your Content that You are responsible for Your Content and any Content that You create,
+                            transmit or display, and for any consequences thereof. 
+                            We are not responsible for Content created by you or any other users of CodeTheory.
                         </p>
 
                         <button type="submit" class="btn btn-primary">Register</button>

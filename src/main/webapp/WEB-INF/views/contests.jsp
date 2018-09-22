@@ -3,14 +3,23 @@
 
 <html >
     <head>
-            <script src="<c:url value=" /resources/script/contests.js " />"></script>
+                       
     </head>
 
     <body>
         
         <!--  Header  -->
         <jsp:include page="/WEB-INF/shared/header.jsp" />
-
+        <!-- <script src="<c:url value=" /resources/script/contests.js " />"></script> -->
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#cgrid').DataTable();
+            } );
+            con = ["a","b"]; 
+        </script>
+        <script src="<c:url value=" /resources/lib/datatables/js/jquery.dataTables.js " />"></script>
+            <script src="<c:url value=" /resources/lib/datatables/js/dataTables.bootstrap.js " />"></script>
+            <link rel='stylesheet' href="<c:url value=" /resources/lib/datatables/css/dataTables.bootstrap.css "/>" type='text/css' media='screen'/>
         <section id="contestHeader" class="container cardView">
             <div class ="col-md-2">
               
@@ -59,14 +68,15 @@
 
             </div>
 
-            <div class="col-md-8 ">
-                <table class="table table-hover contest_table" style="background:white; text-align:center">
+            <div class="col-md-10 ">
+                 <table id="cgrid" class="table table-hover contest_table" style="background:white; text-align:center">
                     <thead class="cardView">
                         <th>S.no</th>
                         <th>Name</th>
                         <th>Category</th>
                         <th>Starting</th>
                         <th>Ending</th>
+                        <th>contest</th>
                         <th>#Participants</th>
                         <th>visit</th>
                     </thead>
@@ -81,17 +91,22 @@
                                 <td>Computer Science</td>
                                 <td>${contest.startDate}</td>
                                 <td>${contest.endDate}</td>
+                                <td><c:if test="${contest.isOpen}">
+                                        Practice
+                                    </c:if>
+                                    <c:if test="${not contest.isOpen}">
+                                        Competition 
+                                    </c:if></td>
                                 <td>${participants[status.index]}</td>
                                 <td style="text-decoration: none"><a href="/contest/${contest.contestname}"><i class="fa fa-binoculars"></i></a></td>
                             </tr>
 
                         </c:forEach>
                     </tbody>
-                </table>
-
+                </table> 
             </div>
 
-            <div class="col-md-2 cardView" id="shareContest">
+          <!--  <div class="col-md-2 cardView" id="shareContest">
                 <p class="text-active" style="font-size:15px;font-weight:bold">
                     Invite your friends to CodeTheory
                 </p>
@@ -119,7 +134,7 @@
                     </p>
                 </div>
                     
-            </div>
+            </div> -->
 
         </section>
         <!-- footer -->

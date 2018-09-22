@@ -10,6 +10,7 @@ import com.codetheory.web.model.Round;
 import com.codetheory.web.viewModel.GroupChallenge;
 import com.codetheory.web.viewModel.RowContest;
 import com.codetheory.web.viewModel.UserContest;
+
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -182,26 +183,6 @@ public class ContestController {
 		
 	}
 
-
-	@RequestMapping (method = RequestMethod.GET, value = "practice/quiz")
-    public String quizRound (Model model) {
-
-        model.addAttribute("contestname", "practice");
-		model.addAttribute("round" , new Round ("quiz", ChallengeType.MCQ));
-		model.addAttribute ("roundName", "Round");
-
-		return "roundone";
-    }
-
-    @RequestMapping(value = "practice/codinground", method = RequestMethod.GET)
-	public String codingRound(Model model) {
-				
-		model.addAttribute("contestname", "practice");
-		model.addAttribute("round" , new Round ("Coding", ChallengeType.Code));
-		return "codinground";
-    }
-
-
     @RequestMapping (method = RequestMethod.GET, value = "{contestname}/round")
     public String round (@PathVariable("contestname") String contestName, 
                          Model model,
@@ -276,7 +257,7 @@ public class ContestController {
 			return "/Error";
 		}
 
-    }
+	}
 
 	@RequestMapping (value="/all")
 	public String allContest (Model model){
@@ -284,14 +265,12 @@ public class ContestController {
 		List<Contest> contests = dao.getAllContest();
 		List<Integer> participants = new ArrayList<>();
 
-		for (Contest con: contests){
-			participants.add (dao.getNumberOfParticipants (con.getContestname()));
+		for (Contest con : contests) {
+			participants.add(dao.getNumberOfParticipants(con.getContestname()));
 		}
-
 
 		model.addAttribute ("contestList", contests);
 		model.addAttribute ("participants", participants);
-		
 		return "contests";
 	}
 }
