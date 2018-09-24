@@ -303,7 +303,7 @@ public class ContestDAOImpl implements ContestDAO{
 		try{
 		return jdbcTemplate.queryForObject(sql, new Object[]{roundid, questionid, user}, String.class);
 		}catch(org.springframework.dao.EmptyResultDataAccessException e){
-			System.out.println("no previous checkpoint");
+			//System.out.println("no previous checkpoint");
 			return "";
 		}
 	}

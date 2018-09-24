@@ -48,7 +48,8 @@ function getSavedCode(){
         success : function (response){
             editor.setValue(response);
         }
-    });  
+    }); 
+    $("#output").html(""); 
 }
 
 function runCode() {
@@ -69,12 +70,18 @@ function runCode() {
         url: "/api/execode",
         data: JSON.stringify(Code),
         success: function (response) {
-            var op = '<p><b>Output</b>    : '+ response.stdout +'</p>';
-               op += '<p class="text-danger"><b>Error</b>     : '+ response.stderr +'</p>';
-               op += '<p><b>Test</b>      : '+ response.status.description +'</p>';
-               op += '<p><b>Compiler</b> : '+ response.compile_output +'</p>';
+            var op = '<p class="text-danger"><b>Error</b>     : '+ response.stderr +'</p>';
+                op += '<p><b>Compiler</b> : '+ response.compile_output +'</p></br>';
             
-            $("#output").html(op);
+            var table = "<table class='table'>";
+            var statuses = response.status;
+            for (let index = 0; index < statuses.length; index++) {
+                table += "<tr><td>Test Case #" + (index+1) + "</td>";
+                var color = (statuses[index].id > 3) ? 'red' : 'green';
+                table += "<td><font color='"+color+"'>" + statuses[index].description + "</font></td></tr>";
+            }
+            table += "</table>";
+            $("#output").html(op + table);
         },
         error: function () {
             var op = '<p>Error</p>';

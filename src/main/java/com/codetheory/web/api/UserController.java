@@ -51,7 +51,7 @@ public class UserController {
             mailText += "and your temporary password is <b>" + password + "</b></br>";
             mailText += "Please consider changing your password.";
             mailText += "</br>";
-            mailText += "<button style='background-color:lightgreen'><a href='http://www.codetheory.in/'></a>go to codetheory</button>";
+            mailText += "<button style='background-color:lightgreen'><a href='www.codetheory.ml/'></a>go to codetheory</button>";
             mailText += "</p>";
             mailText += "Regards,</br>";
             mailText += "Codetheory";

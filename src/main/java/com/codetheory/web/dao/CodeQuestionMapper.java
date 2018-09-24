@@ -21,6 +21,8 @@ public class CodeQuestionMapper implements RowMapper<CodeQuestion> {
         question.setLevel(rs.getInt("level"));
         question.setQuestion(rs.getString("question"));
         question.setDetails(rs.getString("details"));
+        question.setTimeLimit(rs.getFloat("timelimit"));
+        question.setMemoryLimit(rs.getInt("memorylimit"));
 
         ArrayList<Test> test = new ArrayList<Test>();
         

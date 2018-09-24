@@ -27,11 +27,10 @@ END $$
 
 
 #addCodeQuestion sp
-DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `addCodeQuestion`(ques nvarchar(2000), detail nvarchar(1000), lvl int, test nvarchar(1000), grp int, usr varchar(45))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `addCodeQuestion`(ques nvarchar(2000), detail nvarchar(1000), lvl int, tlimit float, mlimit int, test nvarchar(1000), grp int, usr varchar(45))
 BEGIN
 	INSERT into code_question
-    (question, details, level, test_case)
+    (question, details, level, test_case, timelimit, memorylimit)
     values
     (ques, detail, lvl,test);
 	#insert mapping
@@ -39,8 +38,7 @@ BEGIN
     values
 	(grp, LAST_INSERT_ID() ,usr); 
    
-END$$
-DELIMITER ;
+END
 
 
 #round_submission table
