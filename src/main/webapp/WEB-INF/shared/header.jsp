@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@page isELIgnored = "false" %>
+<title>Online Quiz Contests | Coding Contests</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <link rel='stylesheet' href="<c:url value=" /resources/lib/bootstrap/css/bootstrap.css "/>" type='text/css' media='screen'/>
 <link rel='stylesheet' href="<c:url value=" /resources/font-awesome\css/font-awesome.min.css "/>" type='text/css' media='screen'/>
@@ -19,11 +20,31 @@
                         <span aria-hidden="true">&times;</span>
                 </button>
                 <strong>
-                        <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}" /> : </strong> Login Failed.
-                <a href="#"> reset password</a>
+                        <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}" /> : </strong> Login Failed.              
+                <a href="#resetPD" data-toggle="modal" data-target="#resetPD">reset password</a>
         </div>
 </c:if>
 
+<!-- reset password dialog -->
+<div id="resetPD" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Reset Password</h4>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon">Your Email please</span>
+                <input id="emailid" type="text" placeholder="Email" class="form-control" required/>
+            </div>
+            <p id="info" class="text-danger"></p>
+            <button id="sendMail" onclick="resetPassword()" class="btn btn-block btn-success">Send</button>
+            <button data-dismiss="modal" class="btn btn-block btn-info">Cancel</button>
+        </div>
+    </div>
+</div>
 
 <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">

@@ -1,9 +1,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page isELIgnored = "false" %>
 <html>
-<head>
- 
-</head>
+    <head>
+        <title>Online Quiz Contests | Coding Contests</title>
+        <meta name="description" content="Codetheory is online contest portal, where you can learn, teach, practice and update your skills, 
+        Participate on quiz and coding contests. Create and host your Own
+        Contests and let others learn from you.">
+        <meta name="keywords" content="online quiz, coding quiz, programming quiz, mcq,
+         programming mcq,programming contests, code contests, coding contest, online programming contest">
+    
+         <link rel="shortcut icon" href="/resources/images/favicon.ico" type="image/x-icon">
+         <link rel="icon" href="/resources/images/favicon.ico" type="image/x-icon">
+    </head>
 
 <body onload="loadCard()">
     <!-- header -->
