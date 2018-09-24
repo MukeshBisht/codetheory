@@ -4,6 +4,7 @@ import com.codetheory.web.viewModel.Register;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,17 +32,13 @@ public class UserDAOImpl implements UserDAO {
         return new User();
     }
 
-    public User getUserByUsername(String username) {
-        String sql = "select * from Users where username=?";
-        User user = new User();
-
-        Map row = jdbcTemplate.queryForMap(sql, username);
-        
-        user.setUsername(username);
-        user.setEmail(row.get("email").toString());
-        user.setName(row.get("name").toString());
-
-        return user;
+    public User getUserByUsername(String username) {    
+        try{
+            String sql = "select * from Users where username=?";
+            return jdbcTemplate.queryForObject(sql, new String[]{username}, new UserMapper());
+        }catch (EmptyResultDataAccessException e){
+            return null;
+        }
     }
 
 
@@ -94,5 +91,24 @@ public class UserDAOImpl implements UserDAO {
     public List<String> suggest(String name) {
         String sql = "select username from Users where username like ?";
         return (List<String>)jdbcTemplate.queryForList(sql, new String[]{ name +'%' }, String.class);
+    }
+
+    @Override
+    public User findUserByEmail(String userEmail) {
+        try{
+        String sql = "select * from Users where email=?";
+        return jdbcTemplate.queryForObject(sql, new String[]{userEmail}, new UserMapper());
+        }catch (EmptyResultDataAccessException e){
+            return null;
+        }
+    }
+
+    @Override
+    public int changePassword(String password, String username) {
+        String sql = "update users set password = ? where username = ?";
+        int status =jdbcTemplate.update (sql , new Object[]{
+           password, username 
+        });
+        return status;
     }
 }

@@ -1,3 +1,7 @@
+$("#sendMail").click(function(){
+    resetPassword();
+  });
+
 $(document).ajaxStart(function(){
     $('#loading').show();
     $('#loadmore').hide();
@@ -17,6 +21,23 @@ function loadCard() {
             no += 2;
             console.log(no);
         }
+    });
+}
+
+function resetPassword(){
+    $('#info').text('Please Wait....');
+    $.ajax({
+        url : "/api/user/resetPassword",
+        type: "POST",
+        data : {'email': $("#emailid").val().trim()},
+        success : function(data) {
+            console.log(data);
+            $('#info').text(data);
+        },
+        error : function() {
+            $('#info').text('error');
+        }
+
     });
 }
 
