@@ -71,7 +71,7 @@ public class ResultController {
 			model.addObject ("question", question);
 			model.addObject ("answer",correctAnswer);
 			model.addObject ("marks", marks);
-			model.addObject ("total", question.size()*10);
+			model.addObject ("total", question.size());
 			return model;
 		}
 		

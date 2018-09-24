@@ -4,8 +4,8 @@
             <script>
                 var contestname = "${contestname}";
                 var roundname = "${round.name}";
-                var start = "${round.startDate.time}";
-                var end = "${round.endDate.time}";
+                var start = "${round.startTime.time}";
+                var end = "${round.endTime.time}";
                 var timelimit = "${timelimit}";
             </script>
         </head>

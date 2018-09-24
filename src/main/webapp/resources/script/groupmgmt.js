@@ -108,32 +108,3 @@ function resetForm(){
         $('#qid').val("-1");       
         $('#btnsubmit').html('Add');
 }
-
-
-
-
-
-
-$(function(){
-    $("#category").keyup(function () {
-        var category = $("#category").val();
-        if (category != '') {
-            $("#category_response").show();
-            $.ajax({
-                url: 'api/challenge/category/' + category,
-                type: 'GET',
-                success: function (response) {
-                    if (response > 0) {
-                        $("#category_response").html("<span class='text-danger'>* Username Already in use</span>");
-                        validusername = false;
-                    } else {
-                        $("#category_response").html("<span class='text-success'>Available</span>");
-                        validusername = true;
-                    }
-                }
-            });
-        } else {
-            $("#category_response").hide();
-        }
-    });
-});

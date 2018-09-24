@@ -9,6 +9,9 @@
 <body>
     <!-- header -->
     <jsp:include page="/WEB-INF/shared/header.jsp" />
+    <script src="<c:url value=" /resources/script/jquery-ui.js " />"></script>    
+    <script src="<c:url value=" /resources/script/challengegroup.js " />"></script>
+    
     <div class="container">
         <div class="row">
             <!-- <div class="alert alert-success" role="alert">
@@ -39,10 +42,17 @@
                         <br/>
                         <h4>Create New Group</h4>
 
-                        <form class="input-group" method="POST" action="/challenge/group">
-                            <input type="text" id="name" name="name" class="form-control" placeholder="Group Name" required/>
-                            <input id="ctype" name="ctype" type="hidden" value="mcq" />
-                            <input id="category" name="category" class="form-control" type="input" placeholder="Enter a category"/>
+                        <form method="POST" action="/challenge/group">
+
+                            <div class="col-md-5">
+                                <input type="text" id="name" name="name" class="form-control" placeholder="Group Name" required>
+                            </div>
+
+                            <div class="col-md-5">
+                                <input id="category" name="category" class="form-control" type="text" placeholder="Enter a category" required>
+                            </div>
+
+                            <input id="ctype" name="ctype" type="hidden" value="mcq">
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="submit">Add</button>
                             </span>
@@ -53,6 +63,7 @@
                         <table class="table table-bordered table-striped table-hover">
                             <th scope="col">Name</th>
                             <th scope="col">Challenges</th>
+                            <th scope="col">Category</th>
                             <th scope="col">Owner</th>
                             <th scope="col"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></th>
                             <tbody>
@@ -60,6 +71,7 @@
                                     <tr class="clickable-row" data-href="/challenge/group/manage/${g.groupId}">
                                         <td>${g.name}</td>
                                         <td>${g.challengeCount}</td>
+                                        <td>${g.category}</td>
                                         <td>${g.owner}</td>
                                         <td>
                                             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
@@ -77,6 +89,7 @@
                         <h4>Create New Group</h4>
 
                         <form class="input-group" method="POST" action="/challenge/group">
+
                             <input type="text" id="name" name="name" class="form-control" placeholder="Group Name" required/>
                             <input id="ctype" name="ctype" type="hidden" value="code" />
                             <span class="input-group-btn">

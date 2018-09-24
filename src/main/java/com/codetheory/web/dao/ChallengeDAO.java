@@ -39,4 +39,8 @@ public interface ChallengeDAO {
     public List<CodeQuestion> getAllCodeQuestionByGroup(int grpId);
     public void deleteCodeQuestion(int id);
     public void updateCodeQuestion(CodeQuestion question);
+
+    //challege group category
+    public List<String> getAllChallengeCategories ();
+    public List<String> getCategoryStartsWith (String expression);
 }

@@ -101,8 +101,7 @@ public class ChallengeApiController {
     }
 
     @RequestMapping (value="category/{categoryname}", method = RequestMethod.GET)
-    public List<String> getCategories () {
-        //return dao.getAllCategories();
-        return null;
+    public List<String> getCategories (@PathVariable String categoryname) {
+        return dao.getCategoryStartsWith (categoryname);
     }
 }

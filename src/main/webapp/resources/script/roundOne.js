@@ -30,7 +30,7 @@ function loadQuestion(){
     var time = $('#timeSelect option:selected').val();
     
     if (time == "10 minutes")
-        countdownTime = new Date().getTime() + 60000;
+        countdownTime = new Date().getTime() + 600000;
     else if (time == "20 minutes") {
         countdownTime = new Date().getTime() + 1200000; 
     } else {
@@ -147,6 +147,5 @@ function startCountdown () {
     }
     document.getElementById ('countdown').innerHTML = time;
     countdownTime -= 1;
-    setTimeout(startCountdown, 1000);
-
+    setTimeout (startCountdown, 1000);
 }

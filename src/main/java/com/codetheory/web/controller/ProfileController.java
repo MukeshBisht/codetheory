@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.ui.Model;
+
 
 import com.codetheory.web.model.User;
 import com.codetheory.web.model.Contest;
@@ -32,7 +34,7 @@ public class ProfileController {
 	public String getProfile(Model model,  Principal principal) {
 		
 		if (principal == null) {
-			return "/Error";
+			return "redirect:/home";
 		}
 		
 		User user = dao.getUserByUsername (principal.getName());

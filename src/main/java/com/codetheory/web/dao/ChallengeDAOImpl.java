@@ -267,6 +267,18 @@ public class ChallengeDAOImpl implements ChallengeDAO {
             sql += "on q.id = r.questionid ";
             sql += "where r.roundid=" + roundid;
         return jdbcTemplate.query(sql, new CodeQuestionMapper());
-	}
+    }
+    
+    @Override
+    public List<String> getAllChallengeCategories (){
+        String sql = "select name from challenge_category";
+        return null;//jdbcTemplate.query (sql);
+    }
+
+    @Override
+    public List<String> getCategoryStartsWith (String expression) {
+        String sql = "select name from challenge_category where name like ?";
+        return (List<String>)jdbcTemplate.queryForList (sql, new Object[] {expression+"%"}, String.class);
+    }
 
 }
