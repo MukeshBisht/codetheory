@@ -9,30 +9,41 @@
         <!-- header -->
         <jsp:include page="/WEB-INF/shared/header.jsp" />
         <script src="<c:url value=" /resources/script/profile.js" />"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#cgrid').DataTable();
+            } );
+            con = ["a","b"]; 
+        </script>
+        <script src="<c:url value=" /resources/lib/datatables/js/jquery.dataTables.js " />"></script>
+        <script src="<c:url value=" /resources/lib/datatables/js/dataTables.bootstrap.js " />"></script>
+        <link rel='stylesheet' href="<c:url value=" /resources/lib/datatables/css/dataTables.bootstrap.css "/>" type='text/css' media='screen'/>
+
         
         <!-- page body -->
       
             <section class="container">
                 <div class="text-center cardView col-md-3" id="profile">
-                        <i class="fa fa-user " style="font-size:250px" aria-hidden="true"></i>
-                        <label for="username" class="h3">@${user.username}</label>
+                        <i class="fa fa-user " style="font-size:200px" aria-hidden="true"></i><br>
+                        <label for="username" class="text">@${user.username}</label><hr/>
                         <div>
 
                             <label for="Rank" class="text">
-                                Rank :<span>SuperUser</span>
+                                Rank :<span>None</span>
                             </label><br/>
                             
                             <label for="Challenge Completed" class="text">
-                                Challenge Completed : <span>280</span>
+                                Challenge Completed : <span>0</span>
                             </label><br/>
                             
                             <label for="Contest Created" class="text">
-                                    Contest Created : <span>10</span>
+                                    Contest Created : <span>0</span>
                             </label><br/>
 
                             <label for="total points" class="text">
                                 Total Points :
-                                <span>930</span>
+                                <span>0</span>
                             </label><br/>
                             
                         </div>
@@ -118,15 +129,27 @@
                                 </div>
                                 <!-- /.box-header -->
                                 <div class="box-body table-responsive no-padding">
-                                  <table class="table table-hover">
-                                    <tr>
-                                      <th>Contest</th>
-                                      <th>Organiztion</th>
-                                      <th>Status</th>
-                                      <th>Visit</th>
-                                      <th></th>
-                                    </tr>
-                                    <tbody id="participationData"></tbody>
+                                  <table id="cgrid" class="table table-hover">
+                                    <thead>
+                                        <th>Contest</th>
+                                        <th>Organiztion</th>
+                                        <th>Status</th>
+                                        <th>Visit</th>
+                                        <th></th>
+                                    </thead>
+
+                                    <tbody>
+                                        <c:forEach var="contest" items="${contestList}">
+                                            <tr id = ${contest.contestname}>
+                                                <td>${contest.contestname}</td>
+                                                <td>${contest.orgName}</td>
+                                                <td>${contest.status}</td>
+                                                <td><a href='/contest/${contest.contestname}' style="text-decoration:none"><i class="fa fa-binoculars"></i> view</a></td>
+                                                <td> <i class = "fa fa-close" onclick="remove('${contest.contestname}')" style="color:red"></i></td>
+                                            </tr>
+                                        </c:forEach>
+                                     </tbody>
+                                    </table>
                                     <!-- Dialog box -->                                     
                                     <div id="white-background">
                                     </div>

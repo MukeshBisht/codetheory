@@ -46,12 +46,12 @@ public class ParticipateContoller {
         }
         return true;
     }
-
+/*
     @RequestMapping (value = "/participation" , method = RequestMethod.GET)
     public List<Contest> userParticipation (Principal principal){
         return dao.getUserParticipation (principal.getName());
     }
-
+*/
     @RequestMapping (value = "/{contest}/remove")
     public void removeParticipation ( @PathVariable String contest, Principal principal){
         dao.removeParticipation(principal.getName(), contest);

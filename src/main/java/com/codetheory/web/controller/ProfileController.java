@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
-
-
 import org.springframework.web.servlet.ModelAndView;
 
 import com.codetheory.web.model.User;
+import com.codetheory.web.model.Contest;
 import com.codetheory.web.dao.UserDAO;
+import com.codetheory.web.dao.ContestDAO;
+import java.util.List;
+
 
 @Controller
 @RequestMapping("/user/profile")
@@ -22,14 +24,23 @@ public class ProfileController {
 
 	@Autowired
 	UserDAO dao;
+
+	@Autowired
+	ContestDAO contestDao;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView getProfile( Principal principal) {
-		ModelAndView modelandview = new ModelAndView("profile");
-		User user;
-		user = dao.getUserByUsername (principal.getName());
-		modelandview.addObject(user);
-		return modelandview;
+	public String getProfile(Model model,  Principal principal) {
+		
+		if (principal == null) {
+			return "/Error";
+		}
+		
+		User user = dao.getUserByUsername (principal.getName());
+		List<Contest> contests = contestDao.getUserParticipation (principal.getName());
+		model.addAttribute("user", user);
+		model.addAttribute ("contestList", contests);
+
+		return "profile";
 	}	
 
 	@RequestMapping (method = RequestMethod.POST)

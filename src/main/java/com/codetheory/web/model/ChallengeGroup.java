@@ -9,7 +9,7 @@ public class ChallengeGroup{
     private String owner;
 	private ChallengeType challengeType;
 	private int challengeCount;
-
+	private String category;
 	
 	/**
 	 * @return the name
@@ -70,5 +70,13 @@ public class ChallengeGroup{
 	 */
 	public void setChallengeCount(int challengeCount) {
 		this.challengeCount = challengeCount;
+	}
+
+	public void setCategory (String category) {
+		this.category = category;
+	}
+
+	public String getCategory () {
+		return category;
 	}
 }

@@ -35,7 +35,7 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="/home">CodeTheory</a>
+                        <a class="navbar-brand" href="/home" style="color: white">CodeTheory</a>
                 </div>
 
                 <!-- navbar-collapse  -->

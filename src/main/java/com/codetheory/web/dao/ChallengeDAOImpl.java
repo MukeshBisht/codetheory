@@ -60,9 +60,9 @@ public class ChallengeDAOImpl implements ChallengeDAO {
 
 	@Override
 	public void addChallengeGroup(ChallengeGroup cg) {
-		String sql = "insert into challengegroup(name, owner, type) values(?,?,?)";
+		String sql = "insert into challengegroup(name, owner, type, category) values(?,?,?,?)";
         jdbcTemplate.update(sql, new Object[] {
-            cg.getName(), cg.getOwner(), cg.getChallengeType().getValue()
+            cg.getName(), cg.getOwner(), cg.getChallengeType().getValue(), cg.getCategory()
         });
 	}
 

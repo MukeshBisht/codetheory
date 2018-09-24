@@ -42,6 +42,7 @@
                         <form class="input-group" method="POST" action="/challenge/group">
                             <input type="text" id="name" name="name" class="form-control" placeholder="Group Name" required/>
                             <input id="ctype" name="ctype" type="hidden" value="mcq" />
+                            <input id="category" name="category" class="form-control" type="input" placeholder="Enter a category"/>
                             <span class="input-group-btn">
                                 <button class="btn btn-success" type="submit">Add</button>
                             </span>

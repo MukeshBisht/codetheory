@@ -53,7 +53,7 @@ public class ResultController {
 			correctAnswer.add(ques.getOptions()[ans]);
 			
 				if (ans == ques.getSelected()){	
-					marks += 10;
+					marks += 1;
 				} 
 			}
         
@@ -63,6 +63,7 @@ public class ResultController {
         /*********************************************************************************/
 
 		//user's score will not be saved in practice contests
+		
 		
 		if (contestName.equals("practice")){
 			model = new ModelAndView ("result");		
@@ -74,12 +75,17 @@ public class ResultController {
 			return model;
 		}
 		
-		if (contestDao.contestExist(contestName)) {
-			contestDao.addSubmissionScore (contestName, roundName, principal.getName() ,score);
-		}
-		
-		if (!contestDao.showResult (contestName, roundName)) {
-			return null;
+		else {
+			int roundId = contestDao.getRoundIdByName (roundName, contestName);
+
+			if (contestDao.contestExist(contestName)) {
+				contestDao.addSubmissionScore (roundId, principal.getName(), contestName, score);
+			}
+			
+			if (!contestDao.showResult (roundId, contestName)) {
+				return null;
+			}
+	
 		}
 		
 		model = new ModelAndView ("result");

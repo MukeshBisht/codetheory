@@ -69,6 +69,7 @@ public class challengeController {
         String user = principal.getName();
         String name = request.getParameter("name");
         String ctype = request.getParameter("ctype").trim();
+        String category = request.getParameter ("category");
         //System.out.println(ctype);
         if (!dao.challengeGroupExist(name, user)) {
             ChallengeGroup cg = new ChallengeGroup();
@@ -80,6 +81,7 @@ public class challengeController {
             if (ctype.equals("code")) {
                 cg.setChallengeType(ChallengeType.Code);
             }
+            cg.setCategory (category);
             //cg.setChallengeType(ChallengeType.Code);
             dao.addChallengeGroup(cg);
         }else{

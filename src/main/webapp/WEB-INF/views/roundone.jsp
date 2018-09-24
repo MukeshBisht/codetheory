@@ -3,9 +3,9 @@
         <head>
             <script>
                 var contestname = "${contestname}";
-                var roundname = "${roundName}";
-                var start = "${startDate}";
-                var end = "${endDate}";
+                var roundname = "${round.name}";
+                var start = "${round.startDate.time}";
+                var end = "${round.endDate.time}";
                 var timelimit = "${timelimit}";
             </script>
         </head>

@@ -16,6 +16,7 @@ public class ChallengeMapper implements RowMapper<ChallengeGroup> {
         cg.setChallengeType(ChallengeType.values()[i]);
         cg.setOwner(rs.getString("owner"));
         cg.setName(rs.getString("name"));
+        cg.setCategory (rs.getString ("category"));
         return cg;
     }
 

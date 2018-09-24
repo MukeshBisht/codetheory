@@ -49,7 +49,7 @@ public class PracticeController {
         if(principal ==  null)
             return "signIn";
         
-        Contest contest = dao.getContestByContestName(contestName); 
+        Contest contest = dao.getContestByName(contestName); 
 
         //if the contest is not open
         if(!contest.getIsOpen())

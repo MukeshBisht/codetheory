@@ -49,34 +49,6 @@ public class ContestController {
 		return "createContest";
 	}
 
-	@RequestMapping(value="{name}/rounds", method = RequestMethod.GET)
-	public String Rounds(Model model,@PathVariable("name") String cname, Principal principal) {
-		String user = principal.getName();
-		if(!dao.validUserContest(user, cname)){
-			return "NotFound";
-		}
-		boolean timmer = dao.roundHasTimelimit(cname);
-		List<ChallengeGroup> challengeGroups = chdao.getChallengeGroups(user);
-		ArrayList<ChallengeGroup> mcqs = new ArrayList<ChallengeGroup>();
-        ArrayList<ChallengeGroup> codes = new ArrayList<ChallengeGroup>();
-		GroupChallenge gc = new GroupChallenge();
-        for (ChallengeGroup var : challengeGroups) {
-            if (var.getChallengeType() == ChallengeType.MCQ) {
-                mcqs.add(var);
-            }
-            if (var.getChallengeType() == ChallengeType.Code) {
-                codes.add(var);
-            }
-        }
-        gc.setCodeGroups(codes);
-        gc.setMcqGroups(mcqs);
-		List<Round> rounds = dao.getRounds(cname);
-		model.addAttribute("cname", cname);
-		model.addAttribute("rounds", rounds);		
-		model.addAttribute("groups", gc);
-		model.addAttribute("timmer", timmer);
-		return "round";
-	}	
 
 	@RequestMapping(value="/create", method=RequestMethod.POST)
     public String register(@ModelAttribute("contest") Contest con, Principal principal) {
@@ -131,10 +103,40 @@ public class ContestController {
 		return "manageContest";
 	}	
 
+	@RequestMapping(value="{name}/rounds", method = RequestMethod.GET)
+	public String Rounds(Model model,@PathVariable("name") String cname, Principal principal) {
+		String user = principal.getName();
+		if(!dao.validUserContest(user, cname)){
+			return "NotFound";
+		}
+		boolean timmer = dao.roundHasTimelimit(cname);
+		List<ChallengeGroup> challengeGroups = chdao.getChallengeGroups(user);
+		ArrayList<ChallengeGroup> mcqs = new ArrayList<ChallengeGroup>();
+        ArrayList<ChallengeGroup> codes = new ArrayList<ChallengeGroup>();
+		GroupChallenge gc = new GroupChallenge();
+        for (ChallengeGroup var : challengeGroups) {
+            if (var.getChallengeType() == ChallengeType.MCQ) {
+                mcqs.add(var);
+            }
+            if (var.getChallengeType() == ChallengeType.Code) {
+                codes.add(var);
+            }
+        }
+        gc.setCodeGroups(codes);
+        gc.setMcqGroups(mcqs);
+		List<Round> rounds = dao.getRounds(cname);
+		model.addAttribute("cname", cname);
+		model.addAttribute("rounds", rounds);		
+		model.addAttribute("groups", gc);
+		model.addAttribute("timmer", timmer);
+		return "round";
+	}	
+
+
 	@RequestMapping (value="/{contestName}")
 	public String startContest (@PathVariable ("contestName") String contestName , Principal principal, Model model){
 		
-		Contest contest = dao.getContestByContestName (contestName);
+		Contest contest = dao.getContestByName (contestName);
 		if (contest == null)
 			return "/Error";
 
@@ -148,10 +150,6 @@ public class ContestController {
 		// if contest is not started
 		
 		else if( dao.isContestNotStarted (contestName)){
-
-			model.addAttribute ("contestStartDate", contest.getStartDate().getTime());
-			model.addAttribute ("contestEndDate", contest.getEndDate().getTime());
-
 
 			model.addAttribute("contest", contest);
 			return "contestLandingPage";
@@ -195,6 +193,46 @@ public class ContestController {
 		Round nextRound = null;
 		Date currentDate = new Date();
 		boolean timelimit = dao.roundHasTimelimit(contestName);
+		String user = principal.getName();
+
+
+		/****************	if contest's round has no timelimit 	****************/
+		if (timelimit == false) {
+			if (roundList == null)
+				return "/Error";
+
+			for (Round round : roundList) {
+				if (!dao.isUserAlreadySubmitted (round.getRoundId(), user, contestName)){
+					currentRound = round;
+					break;
+				}
+			}
+
+			if (currentRound == null) {
+				return "contestEnd";
+			}
+			else {
+				ChallengeType type = currentRound.getType();
+		
+				model.addAttribute("contestname" , contestName);
+				model.addAttribute("round" , currentRound);
+				
+				model.addAttribute ("timelimit", timelimit);
+
+				if (type.getValue() == 1)
+					return "roundone";
+		
+				else if (type.getValue() == 2)
+					return "codinground";
+				
+				else
+					return "/Error";
+			}
+
+		}
+
+		/****************	if contest's round has timelimit	****************/
+		
 
 		for (Round round : roundList) {
 
@@ -213,13 +251,12 @@ public class ContestController {
 	        String roundName = currentRound.getName();
 
 	        //checking if user has already made a submission
-			if (dao.isUserAlreadySubmitted (contestName, roundName, principal.getName() )){
+			if (dao.isUserAlreadySubmitted (currentRound.getRoundId(), principal.getName(), contestName)){
 				
 				if (nextRound == null)
 					return "contestEnd";
 				else {
 					model.addAttribute("nextRound", nextRound);
-					model.addAttribute ("contestStartDate", nextRound.getStartTime().getTime());
 					
 					return "timer";
 				}
@@ -227,13 +264,11 @@ public class ContestController {
 
 			//if user has not made any submission
 			else {
-				System.out.println ("here /Error");
+				
 				ChallengeType type = currentRound.getType();
 		
 				model.addAttribute("contestname" , contestName);
-				model.addAttribute("roundName" , currentRound.getName());
-				model.addAttribute("startDate" , currentRound.getStartTime().getTime());
-				model.addAttribute("endDate" , currentRound.getEndTime().getTime());
+				model.addAttribute("round" , currentRound);
 				
 				model.addAttribute ("timelimit", timelimit);
 
@@ -249,7 +284,6 @@ public class ContestController {
 		}
 
 		else if (nextRound != null) {
-			System.out.println ("here");
 			model.addAttribute ("nextContest", nextRound);
 			return "timer";
 		}

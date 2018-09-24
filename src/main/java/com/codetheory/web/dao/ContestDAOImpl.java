@@ -10,6 +10,7 @@ import com.codetheory.web.model.Contest;
 import com.codetheory.web.model.Question;
 import com.codetheory.web.model.Round;
 import com.codetheory.web.model.UserContestMap;
+import com.codetheory.web.model.ContestStandingMap;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -75,7 +76,7 @@ public class ContestDAOImpl implements ContestDAO{
 	}
 
 	@Override
-	public Contest getContestByContestName(String contestName) {
+	public Contest getContestByName(String contestName) {
 		String sql = "SELECT * FROM contests where contestName=?";
 		return jdbcTemplate.queryForObject(sql, new String[]{contestName},new ContestMapper());
 	}
@@ -216,10 +217,10 @@ public class ContestDAOImpl implements ContestDAO{
 
 
 	@Override
-	public void addSubmissionScore (String contestName, String roundName, String username ,double score) {
-		String sql  = "insert into round_submission (contest , username, score, round_id) values (?, ?, ? ,(select roundid from round where name = ? and contest = ?))";
+	public void addSubmissionScore (int roundId, String username, String contestName, double score) {
+		String sql  = "insert into round_submission (contest , username, score, round_id) values (?, ?, ? ,?)";
 		jdbcTemplate.update(sql, new Object[] {
-			contestName, username, score, roundName, contestName
+			contestName, username, score, roundId,
 		});
 	}
 
@@ -233,11 +234,11 @@ public class ContestDAOImpl implements ContestDAO{
 	}
 
 	@Override
-	public boolean isUserAlreadySubmitted (String contestName, String roundName, String username) {
+	public boolean isUserAlreadySubmitted (int roundId, String username, String contestName) {
 
-		String sql = "select (1) from round_submission where contest = ? and username = ? and round_id = (select roundid from round where name = ? and contest = ?)";
+		String sql = "select (1) from round_submission where contest = ? and username = ? and round_id = ?";
 		return jdbcTemplate.queryForList (sql, new Object[] {
-			contestName, username, roundName, contestName
+			contestName, username, roundId
 		}).size()>0;
 	}
 
@@ -310,19 +311,19 @@ public class ContestDAOImpl implements ContestDAO{
 
 
 	@Override
-	public boolean showResult (String contest, String round) {
-		String sql = "select showResult from round where contest = ? and roundid = (select roundid from round where contest = ? and name = ?)";
+	public boolean showResult (int roundId, String contestName) {
+		String sql = "select showResult from round where contest = ? and roundid = ?";
 		
-		return jdbcTemplate.queryForObject (sql, new Object[]{contest, contest, round}, Integer.class) == 0;
+		return jdbcTemplate.queryForObject (sql, new Object[]{contestName, roundId}, Integer.class) == 0;
 		
 	}
 
 
 	@Override
-	public boolean roundHasTimelimit (String contest) {
+	public boolean roundHasTimelimit (String contestName) {
 		String sql = "select roundTimelimit from contests where contestName = ?";
 		
-		return jdbcTemplate.queryForObject (sql, new Object[] {contest}, Boolean.class);
+		return jdbcTemplate.queryForObject (sql, new Object[] {contestName}, Boolean.class);
 		
 	}
 
@@ -330,5 +331,18 @@ public class ContestDAOImpl implements ContestDAO{
 	public int getNumberOfParticipants (String contest) {
 		String sql = "select count(1) from contest_participation where contest_id = ?";
 		return jdbcTemplate.queryForObject (sql, new Object[] {contest}, Integer.class );
+	}
+
+	@Override
+	public List<ContestStandingMap> getContestStandings (String contestName){
+
+		String sql = "select contest, username, sum(score) from round_submission where contest = ? group by (username)";
+		return jdbcTemplate.query (sql, new Object[]{contestName}, new ContestStandingMapper());
+	}
+
+	@Override
+	public int getRoundIdByName (String name, String contest) {
+		String sql = "select roundid from round where name = ? and contest = ?";
+		return jdbcTemplate.queryForObject (sql, new Object[]{name, contest}, Integer.class);
 	}
 }

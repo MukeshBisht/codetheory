@@ -8,8 +8,8 @@
         <script src="<c:url value=" /resources/script/contests.js " />"></script>
         <script>
             var cname = "${contest.contestname}";  
-            var start = "${contestStartDate}";
-            var end = "${contestEndDate}";
+            var start = "${contest.startDate.time}";
+            var end = "${contest.endDate.time}";
         </script>
     </head>
 

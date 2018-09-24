@@ -30,7 +30,7 @@ function loadQuestion(){
     var time = $('#timeSelect option:selected').val();
     
     if (time == "10 minutes")
-        countdownTime = new Date().getTime() + 600000;
+        countdownTime = new Date().getTime() + 60000;
     else if (time == "20 minutes") {
         countdownTime = new Date().getTime() + 1200000; 
     } else {
@@ -120,7 +120,7 @@ function changeColor (i , j){
 function submitQuestion(){
     
     //showDialog();
-
+    console.log (roundname);
     var URL = '/'+contestname+'/'+roundname+'/submit';
     $.ajax({
             type: "POST",
@@ -139,12 +139,12 @@ function submitQuestion(){
 }
 
 function startCountdown () {
-
-    if (timelimit == 'false') {
-        return;
-    }
     
     var time = countdown(countdownTime);
+    if (time.value > 0) {
+        submitQuestion();
+        return;
+    }
     document.getElementById ('countdown').innerHTML = time;
     countdownTime -= 1;
     setTimeout(startCountdown, 1000);

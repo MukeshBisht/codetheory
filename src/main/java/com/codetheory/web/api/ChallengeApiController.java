@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.ResponseEntity;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/challenge")
@@ -97,5 +98,11 @@ public class ChallengeApiController {
             dao.deleteCodeQuestion(question.getId());
         //}
         return new ResponseEntity<>("0", HttpStatus.OK);
+    }
+
+    @RequestMapping (value="category/{categoryname}", method = RequestMethod.GET)
+    public List<String> getCategories () {
+        //return dao.getAllCategories();
+        return null;
     }
 }
