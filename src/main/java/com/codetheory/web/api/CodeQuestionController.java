@@ -43,6 +43,8 @@ public class CodeQuestionController {
 	@RequestMapping(value = "codinground/{roundid}/{questionid}", method = RequestMethod.GET)
 	@ResponseBody
 	public String getCodeFromCheckPoint(@PathVariable int roundid, @PathVariable int questionid, Principal principal){
+		if(principal == null)
+			return "//login to save your progress";
 		String uname = principal.getName();
 		String code = con_dao.getSavedCode(uname, roundid, questionid);		
 		if(code=="") code = "//write your first code";

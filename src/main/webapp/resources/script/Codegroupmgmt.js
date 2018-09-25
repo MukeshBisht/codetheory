@@ -67,7 +67,8 @@ $(document).ready(function () {
         $('#question').val(log.question);
         $('#description').val(log.details);
         $('#lvl').val(log.level);
-        
+        $('#tlimit').val(log.timeLimit);
+        $('#mlimit').val(log.memoryLimit);
         // test case
         
         for (i=1; i<log.tests.length; i++)
@@ -111,7 +112,8 @@ function resetForm() {
     $('#description').val("");
     $('#lvl').val("");
     $('#qid').val("-1");
-
+    $('#tlimit').val("2");
+    $('#mlimit').val("128000");
     //test case
     var c = counter;
     for (i=1; i<=c; i++){
@@ -121,7 +123,6 @@ function resetForm() {
     $('#t1').find('#input').val("");
     $('#t1').find('#output').val("");
     $('#t1').find('#points').val("");
-
     $('#btnsubmit').html('Add');
 }
 
@@ -144,6 +145,8 @@ function addCodeQuestion (){
         var question = $('#question').val();
         var description = $('#description').val();
         var level = $('#lvl').val();
+        var tlimit = $('#tlimit').val();
+        var mlimit = $('#mlimit').val();
         
         // test cases
 
@@ -158,7 +161,15 @@ function addCodeQuestion (){
             });
         }
 
-        var data = {"id":id ,"level":level, "question":question,"details":description, tests : test};
+        var data = { 
+                    "id":id ,
+                    "level":level, 
+                    "question":question,
+                    "details":description, 
+                    "timeLimit" : tlimit,
+                    "memoryLimit" : mlimit,
+                    tests : test
+                };
 
     $.ajax({
         url: '/api/challenge/group/code/' + grpid + '/question/add',

@@ -53,7 +53,24 @@
                       </div>
                     </div>
 
+                    <div class="form-group col-md-6">
+                      <div class="input-group">
+                        <span class="input-group-addon">
+                          Time Limit(X) [Sec]
+                        </span>
+                        <input id="tlimit" type="text" placeholder="Time limit in seconds" class="form-control" value="2" required/>
+                      </div>
+                    </div>
 
+                    <div class="form-group col-md-6">
+                      <div class="input-group">
+                        <span class="input-group-addon">
+                          Memory Limit [KB]
+                        </span>
+                        <input id="mlimit" type="text" placeholder="Memory Limit in kilobyte" class="form-control" value="128000" required/>
+                      </div>
+                    </div>
+                    
                     <section id="testcase">
                       <div id="t1">
                         <div class="form-group col-md-5">
@@ -62,7 +79,7 @@
                                Input
                             </span>
                             <input id="input" type="text" placeholder="Test Case Input" class="form-control" required/>
-                         </div>
+                         </div> 
                        </div>
  
                        <div class="form-group col-md-4">

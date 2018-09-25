@@ -38,8 +38,10 @@ public class PracticeController {
     @RequestMapping(value = "/codinground", method = RequestMethod.GET)
 	public String codingRound(Model model) {
 				
-		model.addAttribute("contestname", "practice");
-		model.addAttribute("round" , new Round ("Coding", ChallengeType.Code));
+        model.addAttribute("contestname", "practice");
+        Round round = new Round ("Coding", ChallengeType.Code);
+        round.setRoundId(14);
+		model.addAttribute("round" , round);
 		return "codinground";
     }
 
@@ -54,8 +56,6 @@ public class PracticeController {
         //if the contest is not open
         if(!contest.getIsOpen())
             return "redirect:/contest/"+contestName;
-        
-        
         
         return "resultdummy";
 	}
