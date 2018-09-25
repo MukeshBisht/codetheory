@@ -89,11 +89,11 @@ function showPreview() {
         var j = i+1;
         count++;
         if(count==11){
-            count = 0;
+            count = 1;
             modal += '<br/><br/>';
         }
         modal += '<span class="label lb-lg ';
-        if(data[i].selected > 0){
+        if(data[i].selected > -1){
           modal += 'label-success" ';
         }
         else {
