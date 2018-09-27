@@ -23,10 +23,10 @@ public class Judge0 implements OnlineJudge {
     ObjectMapper mapper = new ObjectMapper();
 
 	@Override
-	public List<JudgeOutput> judge(Code code, List<Test> tests, float timelimit, int memorylimit, Double score) throws IOException{
+	public JudgeResult judge(Code code, List<Test> tests, float timelimit, int memorylimit) throws IOException{
 
         HttpClient httpClient = HttpClientBuilder.create().build();
-        ArrayList<JudgeOutput> result = new ArrayList<JudgeOutput>();  
+        JudgeResult result = new JudgeResult();  
         double total = 0.0;
         double points = 0.0;
         for (Test test : tests) {
@@ -47,9 +47,9 @@ public class Judge0 implements OnlineJudge {
             if(_output.getStatus().getId() == 3)
                 points += (double)test.getPoints();
             total += (double)test.getPoints();
-            result.add(_output);
+            result.addResult(_output);
         }
-        score = points/total;
+        result.setScore(points/total);
         return result;
     }
 }

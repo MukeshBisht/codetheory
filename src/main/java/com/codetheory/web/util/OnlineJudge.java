@@ -19,6 +19,6 @@ public interface OnlineJudge {
      * @return List of JudgeOutput output for each test case
      * @throws IOException
      */
-    public List<JudgeOutput> judge(Code code, List<Test> tests, float timelimit, int memorylimit, Double score) throws IOException;
+    public JudgeResult judge(Code code, List<Test> tests, float timelimit, int memorylimit) throws IOException;
 
 }

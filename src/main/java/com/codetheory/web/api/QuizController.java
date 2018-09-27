@@ -19,6 +19,7 @@ import com.codetheory.web.model.QuizQuestion;
 import com.codetheory.web.model.Status;
 import com.codetheory.web.model.Test;
 import com.codetheory.web.util.Judge0;
+import com.codetheory.web.util.JudgeResult;
 import com.codetheory.web.util.OnlineJudge;
 import com.codetheory.web.model.JudgeOutput;
 import com.codetheory.web.model.OnlineJudgeResult;
@@ -63,19 +64,19 @@ public class QuizController {
 		CodeQuestion question = dao.getCodeQuestionById(input.getquestionid());
 		ArrayList<Test> tests = question.getTests();
 		float max_exe_time=0.0f;
-		Double score=0.0;
 
 		try {
-			List<JudgeOutput> results = judge.judge(input, tests, question.getTimeLimit(), question.getMemoryLimit(), score);
+			JudgeResult results = judge.judge(input, tests, question.getTimeLimit(), question.getMemoryLimit());
 			
-			for (JudgeOutput _output : results) {
+			for (JudgeOutput _output : results.getResults()) {
 				max_exe_time = (_output.getTime() > max_exe_time)?_output.getTime():max_exe_time;				
 				status.add(_output.getStatus());
 			}		
 
 			//save code check point if user logged in
-			addUpdateCheckPoint(principal, input, max_exe_time, score);
+			addUpdateCheckPoint(principal, input, max_exe_time, results.getScore());
 		}catch (IOException uhe) {
+			System.out.println(uhe.getMessage());
 			result.setStderr("Can't compile at the moment, retry in a while");
 		}
 
